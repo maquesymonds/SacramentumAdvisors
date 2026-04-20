@@ -168,9 +168,22 @@ export default function ContactPageClient() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
-    // Simulate network delay — replace with real fetch to /api/contact
-    await new Promise((r) => setTimeout(r, 1400));
-    setStatus("success");
+    try {
+      const res = await fetch("https://formspree.io/f/xykldeza", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body:    JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("idle");
+        alert(locale === "en" ? "Something went wrong. Please try again." : "Algo salió mal. Por favor intentá de nuevo.");
+      }
+    } catch {
+      setStatus("idle");
+      alert(locale === "en" ? "Something went wrong. Please try again." : "Algo salió mal. Por favor intentá de nuevo.");
+    }
   };
 
   return (

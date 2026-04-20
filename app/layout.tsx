@@ -74,6 +74,9 @@ export const metadata: Metadata = {
     index:  true,
     follow: true,
   },
+  icons: {
+    icon: "/favicon.jpg",
+  },
 };
 
 export const viewport: Viewport = {
