@@ -1,0 +1,118 @@
+{
+  "articles": [
+    {
+      "id": "port",
+      "image": "/images/news/port.avif",
+      "category": "Economy",
+      "title": "Montevideo Port: Gateway to South American Trade",
+      "excerpt": "How Uruguay's strategic location and world-class port infrastructure continue to position Montevideo as a leading logistics and trade hub in the region.",
+      "slug": "montevideo-port-gateway-south-american-trade",
+      "date": "2025-03-14"
+    },
+    {
+      "id": "montevideo",
+      "image": "/images/news/montevideo.avif",
+      "category": "Lifestyle",
+      "title": "The Walking City: Graceful Montevideo",
+      "excerpt": "A closer look at Montevideo's waterfront culture, urban rhythm, and high quality of life, making it increasingly attractive for global families and investors.",
+      "slug": "the-walking-city-graceful-montevideo",
+      "date": "2025-02-28"
+    },
+    {
+      "id": "investment",
+      "image": "/images/news/investment.avif",
+      "category": "Investment",
+      "title": "Uruguay's Rising Investment Leaders",
+      "excerpt": "The professionals and institutions helping shape Uruguay's next chapter as a stable, internationally connected destination for capital and innovation.",
+      "slug": "uruguays-rising-investment-leaders",
+      "date": "2025-01-19"
+    },
+    {
+      "id": "agri-boom",
+      "image": "/images/woods.avif",
+      "category": "Investment",
+      "title": "Agricultural Land in Uruguay: A Generational Asset Class",
+      "excerpt": "With fertile prairies, dollar-denominated transactions, and no restrictions on foreign ownership, Uruguay's farmland is quietly becoming one of the most compelling long-term holds in the Southern Hemisphere.",
+      "slug": "agricultural-land-uruguay-generational-asset",
+      "date": "2025-04-05"
+    },
+    {
+      "id": "tech-hub",
+      "image": "/placeholders/pde.avif",
+      "category": "Economy",
+      "title": "Zonamerica: Inside Latin America's Premier Free Trade Zone",
+      "excerpt": "How a visionary free trade zone north of Montevideo became the anchor for Uruguay's technology export boom — and why global companies keep choosing it over cheaper alternatives.",
+      "slug": "zonamerica-latin-america-premier-free-trade-zone",
+      "date": "2025-03-22"
+    },
+    {
+      "id": "residency",
+      "image": "/placeholders/lapalom.avif",
+      "category": "Lifestyle",
+      "title": "Why High-Net-Worth Families Are Choosing Uruguayan Residency",
+      "excerpt": "Stable institutions, competitive tax treatment, and a genuinely high quality of life have made Uruguay the residency choice of an increasingly diverse global cohort — from Latin American executives to European retirees.",
+      "slug": "high-net-worth-families-uruguayan-residency",
+      "date": "2025-02-14"
+    },
+    {
+      "id": "pde-market",
+      "image": "/placeholders/hero-coast.avif",
+      "category": "Investment",
+      "title": "Punta del Este: Beyond the Seasonal Myth",
+      "excerpt": "Long dismissed as a summer destination, Punta del Este's real estate market has matured into a year-round proposition — driven by remote work migration, Uruguayan residency demand, and a shrinking supply of premium coastal lots.",
+      "slug": "punta-del-este-beyond-seasonal-myth",
+      "date": "2025-01-30"
+    },
+    {
+      "id": "governance",
+      "image": "/placeholders/colonia.avif",
+      "category": "Economy",
+      "title": "Governance Premium: Why Uruguay's Institutions Command a Risk Discount",
+      "excerpt": "In a region where political risk is the default assumption, Uruguay's consistent institutional track record — across left and right administrations alike — produces something rare: a genuine governance premium that sophisticated investors are beginning to price in.",
+      "slug": "governance-premium-uruguays-institutions",
+      "date": "2024-12-18"
+    }
+  ],
+  "team": [
+    {
+      "id": "ines",
+      "image": "/images/ines.png",
+      "name": "Inés Bonicelli",
+      "role": "Managing Director",
+      "bio": "Inés Bonicelli brings senior leadership experience across public, private, and international institutions. Her career spans agribusiness, global finance, foreign investment promotion, and ecosystem development. She previously held leadership roles at Uruguay XXI and the Uruguay Innovation Hub, where she led key initiatives focused on attracting strategic international capital and supporting long-term venture growth."
+    },
+    {
+      "id": "pablo",
+      "image": "/images/pablo.png",
+      "name": "Pablo Mautone",
+      "role": "Director",
+      "bio": "Pablo Mautone is founder and director of Sacramentum Capital, with a strong institutional and international track record across investment banking, strategic advisory, energy, infrastructure, and agribusiness. His career includes leadership positions at major global financial institutions and regional firms, combining technical depth, discretion, and long-term strategic execution."
+    },
+    {
+      "id": "omar",
+      "image": "/images/omar.webp",
+      "name": "Omar Paganini",
+      "role": "Infrastructure, Energy & Public Leadership",
+      "bio": "Senior public and private sector leader with deep expertise in energy, technology, telecommunications, and infrastructure policy."
+    },
+    {
+      "id": "guillermo",
+      "image": "/images/guillermo.webp",
+      "name": "Guillermo Javier Dietrich",
+      "role": "Infrastructure, Mobility & Regional Strategy",
+      "bio": "Regional strategist and former public leader with broad experience in transportation systems, urban transformation, and institutional execution."
+    },
+    {
+      "id": "eleanor",
+      "image": "/images/Eleanor.webp",
+      "name": "Eleanor Parks",
+      "role": "Sustainability & Future Systems",
+      "bio": "Strategic sustainability advisor focused on long-term scalable growth models, resilient systems, and future-oriented investment frameworks."
+    }
+  ],
+  "categories": [
+    { "id": "economy",    "label": "Economy",    "color": "#2980B9" },
+    { "id": "lifestyle",  "label": "Lifestyle",  "color": "#27AE60" },
+    { "id": "investment", "label": "Investment", "color": "#8E44AD" }
+  ]
+}

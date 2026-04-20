@@ -1,0 +1,1038 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Sacramentum Advisors — Translation Dictionary
+   Bilingual: English (en) | Spanish (es)
+
+   Usage:
+     import { t, type Locale } from "@/data/translations"
+     const copy = t("en")
+     copy.nav.home  // → "Home"
+   ─────────────────────────────────────────────────────────────────────────── */
+
+export type Locale = "en" | "es";
+
+export interface SiteTranslations {
+  locale: Locale;
+  siteName: string;
+  siteTagline: string;
+
+  nav: {
+    home:       string;
+    whyUruguay: string;
+    sectors:    string;
+    team:       string;
+    news:       string;
+    contact:    string;
+    langToggle: string;
+  };
+
+  hero: {
+    eyebrow:    string;
+    headline:   string;
+    subheadline:string;
+    cta:        string;
+    ctaSecondary: string;
+    scrollLabel: string;
+  };
+
+  // ── Sections scaffolded for future use ──────────────────────────────────
+  whyUruguay: {
+    eyebrow:    string;
+    headline:   string;
+    subheadline:string;
+    stats: Array<{ value: string; label: string }>;
+    cards: Array<{
+      id:          string;
+      icon:        string;
+      title:       string;
+      description: string;
+    }>;
+  };
+
+  sectors: {
+    eyebrow:    string;
+    headline:   string;
+    subheadline:string;
+    items: Array<{
+      id:          string;
+      title:       string;
+      description: string;
+    }>;
+  };
+
+  howWeSupport: {
+    eyebrow:    string;
+    headline:   string;
+    subheadline:string;
+    cta:        string;
+    cards: Array<{
+      id:          string;
+      image:       string;
+      title:       string;
+      description: string;
+    }>;
+  };
+
+  whySacramentum: {
+    eyebrow:    string;
+    headline:   string;
+    subheadline:string;
+    cards: Array<{
+      id:          string;
+      roman:       string;
+      eyebrow:     string;
+      title:       string;
+      description: string;
+    }>;
+  };
+
+  lifestyleAssets: {
+    eyebrow:    string;
+    headline:   string;
+    subheadline:string;
+  };
+
+  trust: {
+    eyebrow:    string;
+    headline:   string;
+    body:       string;
+  };
+
+  team: {
+    eyebrow:  string;
+    headline: string;
+    leadership: Array<{
+      id:    string;
+      image: string;
+      name:  string;
+      role:  string;
+      bio:   string;
+    }>;
+    advisory: {
+      eyebrow:    string;
+      headline:   string;
+      subheadline:string;
+      members: Array<{
+        id:    string;
+        image: string;
+        name:  string;
+        role:  string;
+        bio:   string;
+      }>;
+    };
+  };
+
+  news: {
+    eyebrow:    string;
+    headline:   string;
+    subtitle:   string;
+    viewAll:    string;
+    readArticle:string;
+    articles: Array<{
+      id:       string;
+      image:    string;
+      category: string;
+      title:    string;
+      excerpt:  string;
+      slug:     string;
+      date?:    string;
+    }>;
+  };
+
+  contact: {
+    eyebrow:    string;
+    headline:   string;
+    subheadline:string;
+    cta:        string;
+  };
+
+  contactPage: {
+    meta: {
+      title:       string;
+      description: string;
+    };
+    eyebrow:  string;
+    headline: string;
+    intro:    string;
+    form: {
+      nameLabel:           string;
+      namePlaceholder:     string;
+      emailLabel:          string;
+      emailPlaceholder:    string;
+      phoneLabel:          string;
+      phonePlaceholder:    string;
+      countryLabel:        string;
+      countryPlaceholder:  string;
+      interestLabel:       string;
+      interestPlaceholder: string;
+      interestOptions: Array<{ value: string; label: string }>;
+      messageLabel:        string;
+      messagePlaceholder:  string;
+      submit:              string;
+      submitting:          string;
+    };
+    success: {
+      headline: string;
+      body:     string;
+    };
+    info: {
+      heading:   string;
+      location1: string;
+      location2: string;
+      email:     string;
+      phone:     string;
+      trustNote: string;
+    };
+  };
+
+  closingCta: {
+    eyebrow:  string;
+    headline: string;
+    body:     string;
+    cta:      string;
+  };
+
+  footer: {
+    brand: {
+      tagline: string;
+    };
+    nav: {
+      title: string;
+      links: Array<{ label: string; href: string }>;
+    };
+    services: {
+      title: string;
+      links: Array<{ label: string; href: string }>;
+    };
+    contact: {
+      title:    string;
+      location: string;
+      email:    string;
+    };
+    legal: {
+      copyright: string;
+      privacy:   string;
+      terms:     string;
+    };
+  };
+}
+
+// ─── English ─────────────────────────────────────────────────────────────────
+const en: SiteTranslations = {
+  locale:      "en",
+  siteName:    "Sacramentum Advisors",
+  siteTagline: "Principled Advisory. Strategic Assets. Latin America's Most Stable Market.",
+
+  nav: {
+    home:       "Home",
+    whyUruguay: "Why Uruguay",
+    sectors:    "Services",
+    team:       "Team",
+    news:       "News",
+    contact:    "Contact",
+    langToggle: "ES",
+  },
+
+  hero: {
+    eyebrow:     "Strategic Asset Acquisition",
+    headline:    "The advisory firm behind your move into Uruguay.",
+    subheadline: "We structure real estate, residency, and capital strategy for families and investors entering Latin America's most stable country.",
+    cta:         "Schedule a consultation",
+    ctaSecondary:"Explore Uruguay",
+    scrollLabel: "Scroll to explore",
+  },
+
+  whyUruguay: {
+    eyebrow:     "Why Uruguay",
+    headline:    "Why invest in Uruguay?",
+    subheadline: "A stable, globally connected platform for capital preservation, regional expansion, and long-term family positioning.",
+    stats: [
+      { value: "#1",   label: "Least corruption in Latin America" },
+      { value: "97%",  label: "Renewable energy" },
+      { value: "98%",  label: "Literacy rate" },
+      { value: "3.5M", label: "Population" },
+    ],
+    cards: [
+      {
+        id:          "stability",
+        icon:        "shield",
+        title:       "Institutional Stability & Trust",
+        description: "Uruguay stands out for democratic strength, legal certainty, and the lowest corruption levels in the region. In a volatile continent, it offers seriousness, predictability, and long-term confidence.",
+      },
+      {
+        id:          "innovation",
+        icon:        "circuit",
+        title:       "A Future-Ready Innovation Ecosystem",
+        description: "A regional leader in telecommunications, digital government, and renewable energy, Uruguay combines natural wealth with forward-looking innovation and sustainability policies.",
+      },
+      {
+        id:          "talent",
+        icon:        "people",
+        title:       "Highly Skilled, Digitally Integrated Talent",
+        description: "With one of the world's highest literacy rates and strong digital inclusion, Uruguay offers qualified talent and an educated workforce prepared for long-term growth.",
+      },
+      {
+        id:          "quality",
+        icon:        "leaf",
+        title:       "Quality of Life as a Strategic Asset",
+        description: "Safety, healthcare, education, and social openness make Uruguay an ideal environment for executives, founders, and families seeking both protection and lifestyle quality.",
+      },
+      {
+        id:          "geography",
+        icon:        "globe",
+        title:       "A Privileged Geographic Position",
+        description: "With direct Mercosur access, strong logistics, and excellent regional connectivity, Uruguay is a highly efficient gateway to South America and global trade routes.",
+      },
+      {
+        id:          "tax",
+        icon:        "document",
+        title:       "Tax Incentives & Investment Regimes",
+        description: "Free zones, tax incentives, residency advantages, and investor-friendly regimes create an attractive environment for foreign capital and long-term strategic establishment.",
+      },
+    ],
+  },
+
+  sectors: {
+    eyebrow:     "Our Sectors",
+    headline:    "Where we guide capital.",
+    subheadline: "We specialize in the most resilient and appreciating asset categories Uruguay has to offer.",
+    items: [
+      {
+        id:          "residential",
+        title:       "Luxury Residential",
+        description: "Private residences and coastal estates in Uruguay's most coveted locations.",
+      },
+      {
+        id:          "agricultural",
+        title:       "Agricultural Land",
+        description: "Productive farmland with long-term value — forestry, soy, and cattle ranches.",
+      },
+      {
+        id:          "commercial",
+        title:       "Commercial Assets",
+        description: "Strategic commercial real estate in Montevideo and growth corridors.",
+      },
+      {
+        id:          "equestrian",
+        title:       "Equestrian & Ranches",
+        description: "Curated estancias and equestrian properties for families and investors.",
+      },
+    ],
+  },
+
+  howWeSupport: {
+    eyebrow:     "Our Support",
+    headline:    "How We Support Your Move",
+    subheadline: "From market intelligence and transaction structuring to residency, local establishment, and long-term capital positioning, our team supports each stage of your move into Uruguay.",
+    cta:         "Schedule a private advisory call",
+    cards: [
+      {
+        id:          "soft-landing",
+        image:       "/images/hands.webp",
+        title:       "Soft Landing Partnerships",
+        description: "Our network of legal, financial, tax, and ecosystem partners ensures close support throughout every stage of your establishment process, from residency and structuring to local integration and operational setup.",
+      },
+      {
+        id:          "market-intelligence",
+        image:       "/images/puerto.webp",
+        title:       "Market Intelligence",
+        description: "We conduct opportunity-specific research, sector analysis, risk evaluation, and competitive mapping to give you clear visibility before making high-stakes investment or relocation decisions.",
+      },
+      {
+        id:          "strategic-advisory",
+        image:       "/images/writing.webp",
+        title:       "Strategic Advisory",
+        description: "Our legal and financial experts help assess opportunities, structure transactions, and plan your long-term landing across Uruguay and the wider South American region.",
+      },
+      {
+        id:          "investment-banking",
+        image:       "/images/bandera.webp",
+        title:       "Boutique Investment Banking",
+        description: "Through Sacramentum Capital, we provide discreet advisory across M&A, capital markets, institutional relationships, and investment law, supporting sophisticated transactions with precision and strategic clarity.",
+      },
+    ],
+  },
+
+  whySacramentum: {
+    eyebrow:     "Why Sacramentum",
+    headline:    "Why Sacramentum?",
+    subheadline: "A trust-first advisory platform built on senior execution, institutional access, and long-term alignment.",
+    cards: [
+      {
+        id:          "seniority",
+        roman:       "I",
+        eyebrow:     "Track Record",
+        title:       "Seniority & Track Record",
+        description: "Our team brings decades of leadership across strategic advisory, institutional promotion, and cross-border capital decisions, delivering judgment shaped by real senior experience.",
+      },
+      {
+        id:          "network",
+        roman:       "II",
+        eyebrow:     "Network",
+        title:       "Public-to-Private Insider Network",
+        description: "Our experience across both public and private sectors provides direct access to institutional frameworks, strategic relationships, and trusted regional partners across Uruguay, Argentina, and Paraguay.",
+      },
+      {
+        id:          "trust",
+        roman:       "III",
+        eyebrow:     "Alignment",
+        title:       "A Boutique, Trust-First Approach",
+        description: "Trust is our most valuable asset. We only move into formal engagement when full alignment exists around your long-term vision, family priorities, and capital strategy.",
+      },
+    ],
+  },
+
+  lifestyleAssets: {
+    eyebrow:     "Lifestyle Assets",
+    headline:    "Where capital and life converge.",
+    subheadline: "Beyond pure investment — assets that enrich the lives of the families who own them.",
+  },
+
+  trust: {
+    eyebrow: "Our Commitment",
+    headline:"We do not manage assets. We guard legacies.",
+    body:    "Sacramentum Advisors was founded on the principle that the most important advisory relationships are built on total confidentiality, absolute integrity, and a deep understanding of what families are truly protecting.",
+  },
+
+  team: {
+    eyebrow:  "Our Team",
+    headline: "Our Team",
+    leadership: [
+      {
+        id:    "ines",
+        image: "/images/ines.png",
+        name:  "Inés Bonicelli",
+        role:  "Managing Director",
+        bio:   "Inés Bonicelli brings senior leadership experience across public, private, and international institutions. Her career spans agribusiness, global finance, foreign investment promotion, and ecosystem development. She previously held leadership roles at Uruguay XXI and the Uruguay Innovation Hub, where she led key initiatives focused on attracting strategic international capital and supporting long-term venture growth.",
+      },
+      {
+        id:    "pablo",
+        image: "/images/pablo.png",
+        name:  "Pablo Mautone",
+        role:  "Director",
+        bio:   "Pablo Mautone is founder and director of Sacramentum Capital, with a strong institutional and international track record across investment banking, strategic advisory, energy, infrastructure, and agribusiness. His career includes leadership positions at major global financial institutions and regional firms, combining technical depth, discretion, and long-term strategic execution.",
+      },
+    ],
+    advisory: {
+      eyebrow:    "Advisory Board",
+      headline:   "Advisory Board",
+      subheadline:"Our advisory board extends our reach across public policy, infrastructure, sustainability, technology, and regional institutional networks.",
+      members: [
+        {
+          id:    "omar",
+          image: "/images/omar.webp",
+          name:  "Omar Paganini",
+          role:  "Infrastructure, Energy & Public Leadership",
+          bio:   "Senior public and private sector leader with deep expertise in energy, technology, telecommunications, and infrastructure policy.",
+        },
+        {
+          id:    "guillermo",
+          image: "/images/guillermo.webp",
+          name:  "Guillermo Javier Dietrich",
+          role:  "Infrastructure, Mobility & Regional Strategy",
+          bio:   "Regional strategist and former public leader with broad experience in transportation systems, urban transformation, and institutional execution.",
+        },
+        {
+          id:    "eleanor",
+          image: "/images/Eleanor.webp",
+          name:  "Eleanor Parks",
+          role:  "Sustainability & Future Systems",
+          bio:   "Strategic sustainability advisor focused on long-term scalable growth models, resilient systems, and future-oriented investment frameworks.",
+        },
+      ],
+    },
+  },
+
+  news: {
+    eyebrow:     "Uruguay News",
+    headline:    "Uruguay News",
+    subtitle:    "A curated selection of stories and signals shaping Uruguay's rise as a strategic destination for investment, lifestyle, and long-term regional access.",
+    viewAll:     "View all articles",
+    readArticle: "Read article",
+    articles: [
+      {
+        id:       "port",
+        image:    "/images/news/port.avif",
+        category: "Economy",
+        title:    "Montevideo Port: Gateway to South American Trade",
+        excerpt:  "How Uruguay's strategic location and world-class port infrastructure continue to position Montevideo as a leading logistics and trade hub in the region.",
+        slug:     "montevideo-port-gateway-south-american-trade",
+        date:     "2025-03-14",
+      },
+      {
+        id:       "montevideo",
+        image:    "/images/news/montevideo.avif",
+        category: "Lifestyle",
+        title:    "The Walking City: Graceful Montevideo",
+        excerpt:  "A closer look at Montevideo's waterfront culture, urban rhythm, and high quality of life, making it increasingly attractive for global families and investors.",
+        slug:     "the-walking-city-graceful-montevideo",
+        date:     "2025-02-28",
+      },
+      {
+        id:       "investment",
+        image:    "/images/news/investment.avif",
+        category: "Investment",
+        title:    "Uruguay's Rising Investment Leaders",
+        excerpt:  "The professionals and institutions helping shape Uruguay's next chapter as a stable, internationally connected destination for capital and innovation.",
+        slug:     "uruguays-rising-investment-leaders",
+        date:     "2025-01-19",
+      },
+      {
+        id:       "agri-boom",
+        image:    "/images/woods.avif",
+        category: "Investment",
+        title:    "Agricultural Land in Uruguay: A Generational Asset Class",
+        excerpt:  "With fertile prairies, dollar-denominated transactions, and no restrictions on foreign ownership, Uruguay's farmland is quietly becoming one of the most compelling long-term holds in the Southern Hemisphere.",
+        slug:     "agricultural-land-uruguay-generational-asset",
+        date:     "2025-04-05",
+      },
+      {
+        id:       "tech-hub",
+        image:    "/placeholders/pde.avif",
+        category: "Economy",
+        title:    "Zonamerica: Inside Latin America's Premier Free Trade Zone",
+        excerpt:  "How a visionary free trade zone north of Montevideo became the anchor for Uruguay's technology export boom — and why global companies keep choosing it over cheaper alternatives.",
+        slug:     "zonamerica-latin-america-premier-free-trade-zone",
+        date:     "2025-03-22",
+      },
+      {
+        id:       "residency",
+        image:    "/placeholders/lapalom.avif",
+        category: "Lifestyle",
+        title:    "Why High-Net-Worth Families Are Choosing Uruguayan Residency",
+        excerpt:  "Stable institutions, competitive tax treatment, and a genuinely high quality of life have made Uruguay the residency choice of an increasingly diverse global cohort — from Latin American executives to European retirees.",
+        slug:     "high-net-worth-families-uruguayan-residency",
+        date:     "2025-02-14",
+      },
+      {
+        id:       "pde-market",
+        image:    "/placeholders/hero-coast.avif",
+        category: "Investment",
+        title:    "Punta del Este: Beyond the Seasonal Myth",
+        excerpt:  "Long dismissed as a summer destination, Punta del Este's real estate market has matured into a year-round proposition — driven by remote work migration, Uruguayan residency demand, and a shrinking supply of premium coastal lots.",
+        slug:     "punta-del-este-beyond-seasonal-myth",
+        date:     "2025-01-30",
+      },
+      {
+        id:       "governance",
+        image:    "/placeholders/colonia.avif",
+        category: "Economy",
+        title:    "Governance Premium: Why Uruguay's Institutions Command a Risk Discount",
+        excerpt:  "In a region where political risk is the default assumption, Uruguay's consistent institutional track record — across left and right administrations alike — produces something rare: a genuine governance premium that sophisticated investors are beginning to price in.",
+        slug:     "governance-premium-uruguays-institutions",
+        date:     "2024-12-18",
+      },
+    ],
+  },
+
+  contact: {
+    eyebrow:     "Contact",
+    headline:    "Begin a confidential conversation.",
+    subheadline: "We work with a select number of clients. All inquiries are handled with complete discretion.",
+    cta:         "Request a consultation",
+  },
+
+  closingCta: {
+    eyebrow:  "Begin a Conversation",
+    headline: "Ready to explore your move into Uruguay?",
+    body:     "Whether you are evaluating residency, capital deployment, family relocation, or long-term strategic establishment, our team offers discreet senior-level guidance tailored to your priorities.",
+    cta:      "Book a private consultation",
+  },
+
+  contactPage: {
+    meta: {
+      title:       "Private Consultation | Sacramentum Advisors",
+      description: "Connect with the Sacramentum Advisors team to discuss residency, strategic asset acquisition, lifestyle assets, or long-term positioning in Uruguay.",
+    },
+    eyebrow:  "Private Consultation",
+    headline: "Connect with our team.",
+    intro:    "Connect with our team in Uruguay to discuss residency, strategic asset acquisition, lifestyle assets, or long-term positioning in the region.",
+    form: {
+      nameLabel:           "Full Name",
+      namePlaceholder:     "Your full name",
+      emailLabel:          "Email Address",
+      emailPlaceholder:    "your@email.com",
+      phoneLabel:          "Phone Number",
+      phonePlaceholder:    "Optional",
+      countryLabel:        "Country of Residence",
+      countryPlaceholder:  "e.g. United States",
+      interestLabel:       "Area of Interest",
+      interestPlaceholder: "Select an area",
+      interestOptions: [
+        { value: "not-sure",               label: "I'm not sure yet — just exploring" },
+        { value: "residency",              label: "Residency"                  },
+        { value: "strategic-acquisition",  label: "Strategic Asset Acquisition" },
+        { value: "lifestyle-assets",       label: "Lifestyle Assets"            },
+        { value: "real-estate",            label: "Real Estate Opportunities"   },
+        { value: "agriculture-forestry",   label: "Agriculture & Forestry"      },
+        { value: "special-situations",     label: "Special Situations"          },
+        { value: "general-advisory",       label: "General Advisory"            },
+      ],
+      messageLabel:        "Message",
+      messagePlaceholder:  "Tell us briefly about your priorities and how we can help.",
+      submit:              "Request a Private Consultation",
+      submitting:          "Sending…",
+    },
+    success: {
+      headline: "Thank you for reaching out.",
+      body:     "We have received your enquiry and will respond within one to two business days. All correspondence is handled with complete discretion.",
+    },
+    info: {
+      heading:   "Contact Information",
+      location1: "Montevideo, Uruguay",
+      location2: "Carrasco, Montevideo",
+      email:     "ines@sacramentumcapital.com",
+      phone:     "+598 95 532 533",
+      trustNote: "All conversations are handled with discretion and senior-level attention.",
+    },
+  },
+
+  footer: {
+    brand: {
+      tagline: "Strategic advisory for long-term positioning in Uruguay.",
+    },
+    nav: {
+      title: "Navigation",
+      links: [
+        { label: "Home",        href: "/"             },
+        { label: "Why Uruguay", href: "/invest"        },
+        { label: "Services",    href: "/services"     },
+        { label: "News",        href: "/news"         },
+        { label: "Contact",     href: "/contact"      },
+      ],
+    },
+    services: {
+      title: "Services",
+      links: [
+        { label: "Strategic Advisory",          href: "/services?card=strategic-advisory" },
+        { label: "Market Intelligence",          href: "/services?card=market-intelligence" },
+        { label: "Soft Landing Partnerships",    href: "/services?card=soft-landing" },
+        { label: "Boutique Investment Banking",  href: "/services?card=investment-banking" },
+      ],
+    },
+    contact: {
+      title:    "Contact",
+      location: "Montevideo, Carrasco",
+      email:    "ines@sacramentumcapital.com",
+    },
+    legal: {
+      copyright: "© 2025 Sacramentum Advisors. All rights reserved.",
+      privacy:   "Privacy Policy",
+      terms:     "Terms of Service",
+    },
+  },
+};
+
+// ─── Spanish ─────────────────────────────────────────────────────────────────
+const es: SiteTranslations = {
+  locale:      "es",
+  siteName:    "Sacramentum Advisors",
+  siteTagline: "Asesoría con principios. Activos estratégicos. El mercado más estable de América Latina.",
+
+  nav: {
+    home:       "Inicio",
+    whyUruguay: "Por qué Uruguay",
+    sectors:    "Servicios",
+    team:       "Equipo",
+    news:       "Noticias",
+    contact:    "Contacto",
+    langToggle: "EN",
+  },
+
+  hero: {
+    eyebrow:     "Adquisición de Activos Estratégicos",
+    headline:    "La firma de asesoría detrás de su llegada a Uruguay.",
+    subheadline: "Estructuramos real estate, residencia y estrategia de capital para familias e inversores que llegan al país más estable de América Latina.",
+    cta:         "Agendar una consulta",
+    ctaSecondary:"Explorar Uruguay",
+    scrollLabel: "Explorar",
+  },
+
+  whyUruguay: {
+    eyebrow:     "Por qué Uruguay",
+    headline:    "¿Por qué invertir en Uruguay?",
+    subheadline: "Una plataforma estable y globalmente conectada para la preservación del capital, expansión regional y posicionamiento familiar a largo plazo.",
+    stats: [
+      { value: "#1",   label: "Menos corrupción en América Latina" },
+      { value: "97%",  label: "Energía renovable" },
+      { value: "98%",  label: "Tasa de alfabetización" },
+      { value: "3.5M", label: "Habitantes" },
+    ],
+    cards: [
+      {
+        id:          "stability",
+        icon:        "shield",
+        title:       "Estabilidad y confianza institucional",
+        description: "Uruguay es reconocido por su solidez democrática, su seguridad jurídica y su bajo índice de corrupción —el más bajo de la región. En un continente con volatilidad, Uruguay representa certeza, profesionalismo y seriedad.",
+      },
+      {
+        id:          "innovation",
+        icon:        "circuit",
+        title:       "Un ecosistema ideal para la innovación y la sostenibilidad",
+        description: "Líder regional en telecomunicaciones, energías renovables (97% de su matriz energética), gobierno digital y producción de alimentos premium, Uruguay combina sus riquezas naturales con políticas de desarrollo sostenible y una visión de futuro.",
+      },
+      {
+        id:          "talent",
+        icon:        "people",
+        title:       "Capital humano calificado y digitalmente integrado",
+        description: "Con una de las tasas de alfabetización más altas del mundo y un modelo educativo que promueve la inclusión digital desde la infancia, Uruguay forma talento preparado para los desafíos del siglo XXI.",
+      },
+      {
+        id:          "quality",
+        icon:        "leaf",
+        title:       "Calidad de vida como activo estratégico",
+        description: "Invertir en Uruguay también significa operar en un entorno seguro, con instituciones sólidas, servicios de salud y educación de calidad, y una sociedad abierta, igualitaria y acogedora. Esto facilita tanto la atracción de talento como la instalación de equipos ejecutivos y familias.",
+      },
+      {
+        id:          "geography",
+        icon:        "globe",
+        title:       "Una ubicación geográfica privilegiada",
+        description: "Con acceso directo a los mercados del Mercosur, acuerdos de libre comercio y excelente conectividad logística, Uruguay es una puerta de entrada eficiente a América del Sur y una base operativa ideal para empresas globales.",
+      },
+      {
+        id:          "tax",
+        icon:        "document",
+        title:       "Incentivos Fiscales y Regímenes promocionales a la inversión",
+        description: "La ley de exoneración de impuesto a la renta en el sector tecnológico, un atractivo régimen de promoción de inversiones en activos fijos, una propuesta de tax holiday para los residentes fiscales y un sólido esquema de zonas francas y puertos libres son algunos de los incentivos fiscales que promueven la inversión extranjera.",
+      },
+    ],
+  },
+
+  sectors: {
+    eyebrow:     "Nuestros Sectores",
+    headline:    "Donde orientamos el capital.",
+    subheadline: "Nos especializamos en las categorías de activos más resilientes y de mayor apreciación que Uruguay ofrece.",
+    items: [
+      {
+        id:          "residential",
+        title:       "Residencial de Lujo",
+        description: "Residencias privadas y propiedades costeras en las ubicaciones más codiciadas de Uruguay.",
+      },
+      {
+        id:          "agricultural",
+        title:       "Tierras Agrícolas",
+        description: "Tierras productivas con valor a largo plazo — forestación, soja y estancias ganaderas.",
+      },
+      {
+        id:          "commercial",
+        title:       "Activos Comerciales",
+        description: "Bienes raíces comerciales estratégicos en Montevideo y corredores de crecimiento.",
+      },
+      {
+        id:          "equestrian",
+        title:       "Estancias y Propiedades Ecuestres",
+        description: "Estancias y propiedades ecuestres seleccionadas para familias e inversores.",
+      },
+    ],
+  },
+
+  howWeSupport: {
+    eyebrow:     "Nuestro Apoyo",
+    headline:    "Cómo te acompañamos",
+    subheadline: "Desde inteligencia de mercado y estructuración de transacciones hasta residencia, establecimiento local y posicionamiento de capital a largo plazo, nuestro equipo lo acompaña en cada etapa de su proceso.",
+    cta:         "Agendar una llamada de asesoría privada",
+    cards: [
+      {
+        id:          "investment-banking",
+        image:       "/images/bandera.webp",
+        title:       "Boutique de Banca de Inversión",
+        description: "A través de SACRAMENTUM CAPITAL, brindamos asesoramiento estratégico y confidencial en procesos de M&A, mercado de capitales, relacionamiento institucional, estructuración financiera y régimen de inversiones, acompañando transacciones sofisticadas con precisión y criterio.",
+      },
+      {
+        id:          "soft-landing",
+        image:       "/images/hands.webp",
+        title:       "Soft Landing Partnerships",
+        description: "Contamos con una red de socios estratégicos que integra expertos legales, financieros y referentes clave del ecosistema público y privado. Brindamos un acompañamiento cercano y eficiente durante todo el proceso de instalación, expansión y operación en Uruguay.",
+      },
+      {
+        id:          "market-intelligence",
+        image:       "/images/puerto.webp",
+        title:       "Market Intelligence",
+        description: "Realizamos estudios y análisis del mercado relevante para cada oportunidad de inversión. Evaluamos competencia, riesgos, marco regulatorio y entorno de negocios, aportando claridad estratégica para decisiones de entrada, expansión o transacción.",
+      },
+      {
+        id:          "strategic-advisory",
+        image:       "/images/writing.webp",
+        title:       "Asesoría Estratégica",
+        description: "Nuestros expertos legales y financieros ayudan a identificar oportunidades, estructurar operaciones y planificar un aterrizaje sólido en Uruguay y la región. Acompañamos procesos de adquisición, asociación e inversión con visión de largo plazo.",
+      },
+    ],
+  },
+
+  whySacramentum: {
+    eyebrow:     "Por qué Sacramentum",
+    headline:    "¿Por qué Sacramentum?",
+    subheadline: "Una plataforma de asesoría con foco en la confianza, construida sobre ejecución senior, acceso institucional y alineación a largo plazo.",
+    cards: [
+      {
+        id:          "seniority",
+        roman:       "I",
+        eyebrow:     "Trayectoria",
+        title:       "Seniority y Trayectoria",
+        description: "Nuestro equipo aporta décadas de liderazgo en asesoría estratégica, promoción institucional y decisiones de capital transfronterizo, con un juicio forjado en experiencia senior real.",
+      },
+      {
+        id:          "network",
+        roman:       "II",
+        eyebrow:     "Red",
+        title:       "Red Insider Público-Privada",
+        description: "Nuestra experiencia en los sectores público y privado brinda acceso directo a marcos institucionales, relaciones estratégicas y socios regionales de confianza en Uruguay, Argentina y Paraguay.",
+      },
+      {
+        id:          "trust",
+        roman:       "III",
+        eyebrow:     "Alineación",
+        title:       "Un Enfoque Boutique, Primero la Confianza",
+        description: "La confianza es nuestro activo más valioso. Solo avanzamos hacia un compromiso formal cuando existe plena alineación con su visión a largo plazo, las prioridades familiares y la estrategia de capital.",
+      },
+    ],
+  },
+
+  lifestyleAssets: {
+    eyebrow:     "Activos de Estilo de Vida",
+    headline:    "Donde el capital y la vida convergen.",
+    subheadline: "Más allá de la inversión pura — activos que enriquecen la vida de las familias que los poseen.",
+  },
+
+  trust: {
+    eyebrow: "Nuestro Compromiso",
+    headline:"No administramos activos. Custodiamos legados.",
+    body:    "Sacramentum Advisors fue fundada bajo el principio de que las relaciones de asesoría más importantes se construyen sobre confidencialidad total, integridad absoluta y una profunda comprensión de lo que las familias verdaderamente están protegiendo.",
+  },
+
+  team: {
+    eyebrow:  "Nuestro Equipo",
+    headline: "Nuestro Equipo",
+    leadership: [
+      {
+        id:    "ines",
+        image: "/images/ines.png",
+        name:  "Inés Bonicelli",
+        role:  "Directora General",
+        bio:   "Licenciada en Dirección de Empresas por la Universidad Católica del Uruguay y MBA por la Universidad de Michigan, cuenta con una amplia trayectoria en los sectores público, privado y de la sociedad civil. Inició su carrera en la industria frigorífica y luego se desempeñó en instituciones financieras como ABN AMRO, Citi y Bozano Simonsen en Río de Janeiro. Durante una década en Estados Unidos, fundó y dirigió Reaching U, a Foundation for Uruguay, y gestionó un showroom en Nueva York. Entre 2020 y 2025 fue vicedirectora ejecutiva de Uruguay XXI, liderando iniciativas clave para la atracción de inversión extranjera, y posteriormente se desempeñó como Business Developer en Uruguay Innovation Hub, impulsando emprendimiento, innovación y capital de riesgo.",
+      },
+      {
+        id:    "pablo",
+        image: "/images/pablo.png",
+        name:  "Pablo Mautone",
+        role:  "Director",
+        bio:   "Pablo Mautone es fundador y director de Sacramentum Capital, firma de banca de inversión con sede en Uruguay reconocida por su enfoque estratégico, confiabilidad y profesionalismo. Cuenta con una sólida trayectoria internacional, habiéndose desempeñado como vicepresidente de Banca de Inversión en instituciones líderes como J.P. Morgan y Lehman Brothers, con especialización en energía, infraestructura y agroindustria. Su experiencia incluye además posiciones en Bozano Simonsen en Río de Janeiro y en VR Hedge Fund. Hoy lidera Sacramentum Capital brindando asesoramiento financiero de alto nivel, con máxima confidencialidad y foco en generar valor sostenible para sus clientes.",
+      },
+    ],
+    advisory: {
+      eyebrow:    "Consejo Asesor",
+      headline:   "Consejo Asesor",
+      subheadline:"Profesionales de clase mundial unidos por nuestro compromiso con la excelencia y el éxito de nuestros clientes.",
+      members: [
+        {
+          id:    "omar",
+          image: "/images/omar.webp",
+          name:  "Omar Paganini",
+          role:  "Infraestructura, Energía y Liderazgo Público",
+          bio:   "Líder senior del sector público y privado con profunda experiencia en políticas de energía, tecnología, telecomunicaciones e infraestructura.",
+        },
+        {
+          id:    "guillermo",
+          image: "/images/guillermo.webp",
+          name:  "Guillermo Javier Dietrich",
+          role:  "Infraestructura, Movilidad y Estrategia Regional",
+          bio:   "Estratega regional y ex líder público con amplia experiencia en sistemas de transporte, transformación urbana y ejecución institucional.",
+        },
+        {
+          id:    "eleanor",
+          image: "/images/Eleanor.webp",
+          name:  "Eleanor Parks",
+          role:  "Sostenibilidad y Sistemas del Futuro",
+          bio:   "Asesora estratégica en sostenibilidad especializada en modelos de crecimiento escalables a largo plazo, sistemas resilientes y marcos de inversión orientados al futuro.",
+        },
+      ],
+    },
+  },
+
+  news: {
+    eyebrow:     "Uruguay News",
+    headline:    "Uruguay News",
+    subtitle:    "Una selección curada de historias y señales que marcan el ascenso de Uruguay como destino estratégico para la inversión, el estilo de vida y el acceso regional a largo plazo.",
+    viewAll:     "Ver todos los artículos",
+    readArticle: "Leer artículo",
+    articles: [
+      {
+        id:       "port",
+        image:    "/images/news/port.avif",
+        category: "Economía",
+        title:    "Puerto de Montevideo: Puerta de Entrada al Comercio Sudamericano",
+        excerpt:  "Cómo la ubicación estratégica y la infraestructura portuaria de clase mundial de Uruguay continúan posicionando a Montevideo como un hub logístico y comercial líder en la región.",
+        slug:     "puerto-montevideo-puerta-comercio-sudamericano",
+        date:     "2025-03-14",
+      },
+      {
+        id:       "montevideo",
+        image:    "/images/news/montevideo.avif",
+        category: "Estilo de Vida",
+        title:    "La Ciudad Caminable: La Elegante Montevideo",
+        excerpt:  "Un análisis detallado de la cultura costera de Montevideo, su ritmo urbano y su alta calidad de vida, que la hacen cada vez más atractiva para familias e inversores globales.",
+        slug:     "la-ciudad-caminable-elegante-montevideo",
+        date:     "2025-02-28",
+      },
+      {
+        id:       "investment",
+        image:    "/images/news/investment.avif",
+        category: "Inversión",
+        title:    "Los Líderes Emergentes de la Inversión en Uruguay",
+        excerpt:  "Los profesionales e instituciones que ayudan a construir el próximo capítulo de Uruguay como destino estable e internacionalmente conectado para el capital y la innovación.",
+        slug:     "lideres-emergentes-inversion-uruguay",
+        date:     "2025-01-19",
+      },
+      {
+        id:       "agri-boom",
+        image:    "/images/woods.avif",
+        category: "Inversión",
+        title:    "Tierras Agrícolas en Uruguay: Una Clase de Activo Generacional",
+        excerpt:  "Con praderas fértiles, transacciones en dólares y sin restricciones para propietarios extranjeros, las tierras agrícolas de Uruguay se están convirtiendo silenciosamente en una de las tenencias a largo plazo más atractivas del hemisferio sur.",
+        slug:     "tierras-agricolas-uruguay-activo-generacional",
+        date:     "2025-04-05",
+      },
+      {
+        id:       "tech-hub",
+        image:    "/placeholders/pde.avif",
+        category: "Economía",
+        title:    "Zonamerica: Por Dentro de la Zona Franca Líder de América Latina",
+        excerpt:  "Cómo una visionaria zona franca al norte de Montevideo se convirtió en el ancla del boom exportador tecnológico de Uruguay, y por qué las empresas globales siguen eligiéndola sobre alternativas más baratas.",
+        slug:     "zonamerica-zona-franca-lider-america-latina",
+        date:     "2025-03-22",
+      },
+      {
+        id:       "residency",
+        image:    "/placeholders/lapalom.avif",
+        category: "Estilo de Vida",
+        title:    "Por Qué las Familias de Alto Patrimonio Eligen la Residencia Uruguaya",
+        excerpt:  "Instituciones estables, tratamiento fiscal competitivo y una genuina calidad de vida han convertido a Uruguay en la elección de residencia de un cohorte global cada vez más diverso.",
+        slug:     "familias-alto-patrimonio-residencia-uruguaya",
+        date:     "2025-02-14",
+      },
+      {
+        id:       "pde-market",
+        image:    "/placeholders/hero-coast.avif",
+        category: "Inversión",
+        title:    "Punta del Este: Más Allá del Mito Estacional",
+        excerpt:  "El mercado inmobiliario de Punta del Este ha madurado hacia una propuesta durante todo el año, impulsado por la migración de trabajo remoto, la demanda de residencia uruguaya y una oferta cada vez más escasa de lotes costeros premium.",
+        slug:     "punta-del-este-mas-alla-mito-estacional",
+        date:     "2025-01-30",
+      },
+      {
+        id:       "governance",
+        image:    "/placeholders/colonia.avif",
+        category: "Economía",
+        title:    "Prima de Gobernanza: Por Qué las Instituciones de Uruguay Generan un Descuento de Riesgo",
+        excerpt:  "En una región donde el riesgo político es el supuesto predeterminado, el historial institucional consistente de Uruguay, a través de administraciones de izquierda y derecha, produce algo excepcional: una auténtica prima de gobernanza que los inversores sofisticados comienzan a valorar.",
+        slug:     "prima-gobernanza-instituciones-uruguay",
+        date:     "2024-12-18",
+      },
+    ],
+  },
+
+  contact: {
+    eyebrow:     "Contacto",
+    headline:    "Inicie una conversación confidencial.",
+    subheadline: "Trabajamos con un número selecto de clientes. Todas las consultas se manejan con total discreción.",
+    cta:         "Solicitar una consulta",
+  },
+
+  closingCta: {
+    eyebrow:  "Iniciar una Conversación",
+    headline: "¿Listo para explorar su llegada a Uruguay?",
+    body:     "Ya sea que esté evaluando la residencia, el despliegue de capital, la reubicación familiar o el establecimiento estratégico a largo plazo, nuestro equipo ofrece orientación senior discreta adaptada a sus prioridades.",
+    cta:      "Reservar una consulta privada",
+  },
+
+  contactPage: {
+    meta: {
+      title:       "Consulta Privada | Sacramentum Advisors",
+      description: "Conéctese con el equipo de Sacramentum Advisors para hablar sobre residencia, adquisición estratégica de activos, activos de estilo de vida o posicionamiento a largo plazo en Uruguay.",
+    },
+    eyebrow:  "Consulta Privada",
+    headline: "Conéctese con nuestro equipo.",
+    intro:    "Conéctese con nuestro equipo en Uruguay para hablar sobre residencia, adquisición estratégica de activos, activos de estilo de vida o posicionamiento a largo plazo en la región.",
+    form: {
+      nameLabel:           "Nombre Completo",
+      namePlaceholder:     "Su nombre completo",
+      emailLabel:          "Correo Electrónico",
+      emailPlaceholder:    "su@correo.com",
+      phoneLabel:          "Número de Teléfono",
+      phonePlaceholder:    "Opcional",
+      countryLabel:        "País de Residencia",
+      countryPlaceholder:  "Ej. Argentina",
+      interestLabel:       "Área de Interés",
+      interestPlaceholder: "Seleccione un área",
+      interestOptions: [
+        { value: "not-sure",               label: "Aún no lo sé — solo explorando"   },
+        { value: "residency",              label: "Residencia"                       },
+        { value: "strategic-acquisition",  label: "Adquisición Estratégica de Activos" },
+        { value: "lifestyle-assets",       label: "Activos de Estilo de Vida"         },
+        { value: "real-estate",            label: "Oportunidades Inmobiliarias"       },
+        { value: "agriculture-forestry",   label: "Agricultura y Forestación"         },
+        { value: "special-situations",     label: "Situaciones Especiales"            },
+        { value: "general-advisory",       label: "Asesoría General"                 },
+      ],
+      messageLabel:        "Mensaje",
+      messagePlaceholder:  "Cuéntenos brevemente sobre sus prioridades y cómo podemos ayudarle.",
+      submit:              "Solicitar una Consulta Privada",
+      submitting:          "Enviando…",
+    },
+    success: {
+      headline: "Gracias por contactarnos.",
+      body:     "Hemos recibido su consulta y le responderemos dentro de uno a dos días hábiles. Toda la correspondencia se maneja con total discreción.",
+    },
+    info: {
+      heading:   "Información de Contacto",
+      location1: "Montevideo, Uruguay",
+      location2: "Carrasco, Montevideo",
+      email:     "ines@sacramentumcapital.com",
+      phone:     "+598 95 532 533",
+      trustNote: "Todas las conversaciones se manejan con discreción y atención a nivel senior.",
+    },
+  },
+
+  footer: {
+    brand: {
+      tagline: "Asesoría estratégica para el posicionamiento a largo plazo en Uruguay.",
+    },
+    nav: {
+      title: "Navegación",
+      links: [
+        { label: "Inicio",          href: "/"             },
+        { label: "Por qué Uruguay", href: "/invest"        },
+        { label: "Servicios",       href: "/services"     },
+        { label: "Noticias",        href: "/news"         },
+        { label: "Contacto",        href: "/contact"      },
+      ],
+    },
+    services: {
+      title: "Servicios",
+      links: [
+        { label: "Asesoría Estratégica",           href: "/services?card=strategic-advisory" },
+        { label: "Inteligencia de Mercado",         href: "/services?card=market-intelligence" },
+        { label: "Asociaciones de Soft Landing",    href: "/services?card=soft-landing" },
+        { label: "Banca de Inversión Boutique",     href: "/services?card=investment-banking" },
+      ],
+    },
+    contact: {
+      title:    "Contacto",
+      location: "Montevideo, Carrasco",
+      email:    "ines@sacramentumcapital.com",
+    },
+    legal: {
+      copyright: "© 2025 Sacramentum Advisors. Todos los derechos reservados.",
+      privacy:   "Política de Privacidad",
+      terms:     "Términos de Servicio",
+    },
+  },
+};
+
+// ─── Locale dictionary ────────────────────────────────────────────────────────
+const translations: Record<Locale, SiteTranslations> = { en, es };
+
+export function t(locale: Locale = "en"): SiteTranslations {
+  return translations[locale];
+}
+
+export default translations;
