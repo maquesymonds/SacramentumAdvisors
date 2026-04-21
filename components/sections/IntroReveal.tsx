@@ -143,9 +143,25 @@ export default function IntroReveal() {
 
     let navRevealed  = false;
     let soundPlayed  = false;
+    let audioUnlocked = false;
     const whoosh     = new Audio("/sounds/whoosh.mp3");
     whoosh.volume    = 0.5;
     whoosh.currentTime = 0.25;
+    whoosh.preload   = "auto";
+
+    // Unlock audio context on first user interaction
+    const unlockAudio = () => {
+      if (audioUnlocked) return;
+      audioUnlocked = true;
+      whoosh.play().then(() => {
+        whoosh.pause();
+        whoosh.currentTime = 0.25;
+      }).catch(() => {});
+    };
+    document.addEventListener("mousedown", unlockAudio, { once: true });
+    document.addEventListener("touchstart", unlockAudio, { once: true });
+    document.addEventListener("keydown",    unlockAudio, { once: true });
+    document.addEventListener("wheel",      unlockAudio, { once: true });
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -157,6 +173,7 @@ export default function IntroReveal() {
           onUpdate: (self) => {
             if (!soundPlayed && self.progress > 0.5) {
               soundPlayed = true;
+              whoosh.currentTime = 0.25;
               whoosh.play().catch(() => {});
             }
             if (!navRevealed && self.progress > 0.88) {
@@ -189,6 +206,10 @@ export default function IntroReveal() {
     return () => {
       ctx.revert();
       if (lenis) lenis.off("scroll", ScrollTrigger.update);
+      document.removeEventListener("mousedown", unlockAudio);
+      document.removeEventListener("touchstart", unlockAudio);
+      document.removeEventListener("keydown",    unlockAudio);
+      document.removeEventListener("wheel",      unlockAudio);
     };
   }, []);
 
