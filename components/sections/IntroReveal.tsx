@@ -141,27 +141,42 @@ export default function IntroReveal() {
       }));
     }
 
-    let navRevealed  = false;
-    let soundPlayed  = false;
-    let audioUnlocked = false;
-    const whoosh     = new Audio("/sounds/whoosh.mp3");
-    whoosh.volume    = 0.5;
-    whoosh.currentTime = 0.25;
-    whoosh.preload   = "auto";
+    let navRevealed = false;
+    let soundPlayed = false;
 
-    // Unlock audio context on first user interaction
-    const unlockAudio = () => {
-      if (audioUnlocked) return;
-      audioUnlocked = true;
-      whoosh.play().then(() => {
-        whoosh.pause();
-        whoosh.currentTime = 0.25;
+    // AudioContext approach — more reliable than HTMLAudioElement for scroll-triggered audio
+    type AnyAudioContext = typeof AudioContext;
+    const AudioCtx: AnyAudioContext = (window.AudioContext || (window as unknown as { webkitAudioContext: AnyAudioContext }).webkitAudioContext);
+    const audioCtx = new AudioCtx();
+    let audioBuffer: AudioBuffer | null = null;
+
+    // Preload and decode the whoosh MP3
+    fetch("/sounds/whoosh.mp3")
+      .then(r => r.arrayBuffer())
+      .then(buf => audioCtx.decodeAudioData(buf))
+      .then(decoded => { audioBuffer = decoded; })
+      .catch(() => {});
+
+    // Resume context on first user gesture (required by browser autoplay policy)
+    const resumeCtx = () => {
+      if (audioCtx.state === "suspended") audioCtx.resume();
+    };
+    window.addEventListener("wheel",      resumeCtx, { once: true, passive: true });
+    window.addEventListener("mousedown",  resumeCtx, { once: true });
+    window.addEventListener("touchstart", resumeCtx, { once: true });
+
+    const playWhoosh = () => {
+      if (!audioBuffer) return;
+      audioCtx.resume().then(() => {
+        const src  = audioCtx.createBufferSource();
+        src.buffer = audioBuffer!;
+        const gain = audioCtx.createGain();
+        gain.gain.value = 0.55;
+        src.connect(gain);
+        gain.connect(audioCtx.destination);
+        src.start(0, 0.25); // skip the first 0.25s of the file
       }).catch(() => {});
     };
-    document.addEventListener("mousedown", unlockAudio, { once: true });
-    document.addEventListener("touchstart", unlockAudio, { once: true });
-    document.addEventListener("keydown",    unlockAudio, { once: true });
-    document.addEventListener("wheel",      unlockAudio, { once: true });
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -173,8 +188,7 @@ export default function IntroReveal() {
           onUpdate: (self) => {
             if (!soundPlayed && self.progress > 0.5) {
               soundPlayed = true;
-              whoosh.currentTime = 0.25;
-              whoosh.play().catch(() => {});
+              playWhoosh();
             }
             if (!navRevealed && self.progress > 0.88) {
               navRevealed = true;
@@ -206,10 +220,10 @@ export default function IntroReveal() {
     return () => {
       ctx.revert();
       if (lenis) lenis.off("scroll", ScrollTrigger.update);
-      document.removeEventListener("mousedown", unlockAudio);
-      document.removeEventListener("touchstart", unlockAudio);
-      document.removeEventListener("keydown",    unlockAudio);
-      document.removeEventListener("wheel",      unlockAudio);
+      window.removeEventListener("wheel",      resumeCtx);
+      window.removeEventListener("mousedown",  resumeCtx);
+      window.removeEventListener("touchstart", resumeCtx);
+      audioCtx.close().catch(() => {});
     };
   }, []);
 
