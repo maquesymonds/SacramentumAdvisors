@@ -184,7 +184,7 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
   const everyone = adminTeam
     ? translationMembers.map(member => {
         const override = adminTeam.find(m => m.id === member.id);
-        return override ? { ...member, image: override.image, role: override.role, bio: override.bio } : member;
+        return override ? { ...member, image: override.image } : member;
       })
     : translationMembers;
 
