@@ -282,16 +282,21 @@ function ImageUploader({
   const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > 2 * 1024 * 1024) { setError("La imagen supera el límite de 2 MB"); return; }
+    if (file.size > 5 * 1024 * 1024) { setError("La imagen supera el límite de 5 MB"); return; }
     setUploading(true); setError("");
-    const fd = new FormData();
-    fd.append("file", file);
-    const res  = await fetch("/api/admin/upload", { method: "POST", body: fd });
-    const data = await res.json();
-    if (res.ok) { onChange(data.url); }
-    else        { setError(data.error ?? "Error al subir"); }
-    setUploading(false);
-    e.target.value = "";
+    try {
+      const fd  = new FormData();
+      fd.append("file", file);
+      const res  = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) { onChange(data.url); }
+      else        { setError(data.error ?? `Error ${res.status}`); }
+    } catch {
+      setError("Error de red al subir la imagen");
+    } finally {
+      setUploading(false);
+      e.target.value = "";
+    }
   };
 
   return (
