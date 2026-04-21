@@ -19,15 +19,18 @@ const fadeUp = (delay = 0) => ({
 
 // ── Unified person card (Inés/Pablo style for everyone) ───────────────────────
 interface PersonCardProps {
-  image: string;
-  name:  string;
-  role:  string;
-  bio:   string;
-  index: number;
+  image:  string;
+  name:   string;
+  role:   string;
+  bio:    string;
+  index:  number;
+  locale: "en" | "es";
 }
 
-function PersonCard({ image, name, role, bio, index }: PersonCardProps) {
+function PersonCard({ image, name, role, bio, index, locale }: PersonCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const readMore = locale === "es" ? "Leer más" : "Read more";
+  const readLess = locale === "es" ? "Leer menos" : "Read less";
 
   return (
     <motion.article {...fadeUp(index * 0.09)}>
@@ -107,7 +110,7 @@ function PersonCard({ image, name, role, bio, index }: PersonCardProps) {
               fontFamily:    "inherit",
             }}
           >
-            {expanded ? "Read less" : "Read more"}
+            {expanded ? readLess : readMore}
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"
               style={{ transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.25s ease" }}>
               <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -135,9 +138,32 @@ function PersonCard({ image, name, role, bio, index }: PersonCardProps) {
             {name}
           </h3>
           <span className="block mb-4" style={{ height: 1, width: "2.5rem", backgroundColor: "rgba(31,41,51,0.12)" }} />
-          <div className="text-ink-muted leading-relaxed" style={{ fontSize: "0.875rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            {bio.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}
+          <div
+            className="text-ink-muted leading-relaxed"
+            style={expanded ? {
+              fontSize: "0.875rem", display: "flex", flexDirection: "column", gap: "0.75rem",
+            } : {
+              fontSize: "0.875rem", overflow: "hidden",
+              display: "-webkit-box", WebkitLineClamp: 5, WebkitBoxOrient: "vertical" as const,
+            }}
+          >
+            {bio.split("\n\n").map((para, i) => <p key={i} style={{ margin: 0 }}>{para}</p>)}
           </div>
+          <button
+            onClick={() => setExpanded(e => !e)}
+            style={{
+              marginTop: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.3rem",
+              color: "var(--color-warm)", fontSize: "0.72rem", letterSpacing: "0.08em",
+              textTransform: "uppercase" as const, fontWeight: 500,
+              background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "inherit",
+            }}
+          >
+            {expanded ? readLess : readMore}
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"
+              style={{ transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.25s ease" }}>
+              <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -203,6 +229,7 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
               role={person.role}
               bio={person.bio}
               index={i}
+              locale={locale}
             />
           ))}
         </div>
