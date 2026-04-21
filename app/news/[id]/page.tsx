@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { notFound }      from "next/navigation";
 import ArticlePageClient from "./ArticlePageClient";
 import { t }             from "@/data/translations";
-import { getAdminArticles } from "@/lib/admin-content";
+import { fetchAdminContent } from "@/lib/admin-content";
 
 export async function generateMetadata(
   { params }: { params: { id: string } }
 ): Promise<Metadata> {
-  const articles = getAdminArticles() ?? (t("en").news.articles as { id: string; title: string; excerpt: string }[]);
+  const content  = await fetchAdminContent();
+  const articles = content.articles ?? (t("en").news.articles as { id: string; title: string; excerpt: string }[]);
   const article  = articles.find(a => a.id === params.id);
   if (!article) return {};
   return {
@@ -16,12 +17,16 @@ export async function generateMetadata(
   };
 }
 
-export default function ArticlePage({ params }: { params: { id: string } }) {
-  const adminArticles = getAdminArticles();
+export default async function ArticlePage({ params }: { params: { id: string } }) {
+  const content       = await fetchAdminContent();
+  const adminArticles = content.articles ?? null;
   const enArticles    = t("en").news.articles as { id: string }[];
-  const validIds      = enArticles.map(a => a.id);
+  const allIds        = [
+    ...enArticles.map(a => a.id),
+    ...(adminArticles?.map(a => a.id) ?? []),
+  ];
 
-  if (!validIds.includes(params.id)) notFound();
+  if (!allIds.includes(params.id)) notFound();
 
   return <ArticlePageClient id={params.id} adminArticles={adminArticles} />;
 }

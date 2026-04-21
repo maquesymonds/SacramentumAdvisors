@@ -1,8 +1,10 @@
 import fs from "fs";
 import path from "path";
 import { t } from "@/data/translations";
+import { head } from "@vercel/blob";
 
 const CONTENT_FILE = path.join(process.cwd(), "data/admin-content.json");
+const BLOB_PATH    = "admin/content.json";
 
 export type InlineImage = {
   url:            string;
@@ -56,6 +58,20 @@ export function readAdminContent(): AdminContent {
     }
   } catch {}
   return {};
+}
+
+// Async version — reads from Vercel Blob on production, falls back to disk locally
+export async function fetchAdminContent(): Promise<AdminContent> {
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    try {
+      const blob = await head(BLOB_PATH, { token: process.env.BLOB_READ_WRITE_TOKEN });
+      if (blob) {
+        const res = await fetch(blob.url, { cache: "no-store" });
+        if (res.ok) return await res.json();
+      }
+    } catch {}
+  }
+  return readAdminContent();
 }
 
 export function getAdminArticles(): AdminArticle[] | null {

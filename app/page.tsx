@@ -15,13 +15,14 @@ import {
   UruguayInTheNews,
   ClosingCTA,
 } from "@/components/sections";
-import { getAdminArticles, getAdminTeam } from "@/lib/admin-content";
+import { fetchAdminContent } from "@/lib/admin-content";
 
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
-  const adminArticles = getAdminArticles();
-  const adminTeam     = getAdminTeam();
+export default async function HomePage() {
+  const content       = await fetchAdminContent();
+  const adminArticles = content.articles ?? null;
+  const adminTeam     = content.team     ?? null;
 
   return (
     <>
