@@ -129,7 +129,17 @@ export default function IntroReveal() {
 
     // If arriving from Home link on another page, skip straight to outside state
     const skipIntro = sessionStorage.getItem("skipIntro") === "1";
-    if (skipIntro) sessionStorage.removeItem("skipIntro");
+    if (skipIntro) {
+      sessionStorage.removeItem("skipIntro");
+      // Scroll to the end of the intro section directly — double rAF ensures
+      // layout is settled before we try to move the scroll position.
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const target = outer.offsetTop + outer.offsetHeight - window.innerHeight;
+        if (lenis) lenis.scrollTo(target, { immediate: true });
+        else window.scrollTo({ top: target });
+        window.dispatchEvent(new CustomEvent("intro-nav-ready"));
+      }));
+    }
 
     let navRevealed  = false;
     let soundPlayed  = false;
@@ -144,15 +154,8 @@ export default function IntroReveal() {
           start:   "top top",
           end:     "bottom bottom",
           scrub:   true,
-          onRefresh: () => {
-            if (!skipIntro) return;
-            const target = outer.offsetTop + outer.offsetHeight - window.innerHeight;
-            if (lenis) lenis.scrollTo(target, { immediate: true });
-            else window.scrollTo({ top: target });
-            window.dispatchEvent(new CustomEvent("intro-nav-ready"));
-          },
           onUpdate: (self) => {
-            if (!soundPlayed && self.progress > 0.01) {
+            if (!soundPlayed && self.progress > 0.5) {
               soundPlayed = true;
               whoosh.play().catch(() => {});
             }
