@@ -444,6 +444,12 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
             </div>
 
             <div>
+              <label style={S.label}>Extracto <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "rgba(31,41,51,0.35)" }}>(texto preview que aparece en la card)</span></label>
+              <textarea value={draft.excerpt} onChange={e => update("excerpt", e.target.value)}
+                style={{ ...S.textarea, minHeight: 80 }} placeholder="Descripción breve del artículo..." />
+            </div>
+
+            <div>
               <label style={S.label}>Contenido</label>
               <textarea value={draft.body ?? ""} onChange={e => update("body", e.target.value)}
                 style={{ ...S.textarea, minHeight: 220 }} placeholder={"Escribí el cuerpo del artículo aquí.\n\nCada línea en blanco crea un párrafo nuevo."} />
