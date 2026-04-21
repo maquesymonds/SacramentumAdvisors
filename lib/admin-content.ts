@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { t } from "@/data/translations";
-import { head } from "@vercel/blob";
+import { list } from "@vercel/blob";
 import { unstable_noStore as noStore } from "next/cache";
 
 const CONTENT_FILE = path.join(process.cwd(), "data/admin-content.json");
@@ -67,9 +67,9 @@ export async function fetchAdminContent(): Promise<AdminContent> {
   noStore();
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
-      const blob = await head(BLOB_PATH, { token: process.env.BLOB_READ_WRITE_TOKEN });
-      if (blob) {
-        const res = await fetch(blob.url, { cache: "no-store" });
+      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 });
+      if (blobs.length) {
+        const res = await fetch(blobs[0].url + "?t=" + Date.now(), { cache: "no-store" });
         if (res.ok) return await res.json();
       }
     } catch {}
