@@ -274,8 +274,8 @@ function CategoriesPanel({ categories, onSave, saving }: {
 
 // ── Image Uploader ────────────────────────────────────────────────────────────
 function ImageUploader({
-  value, onChange, aspect = "16/9",
-}: { value: string; onChange: (url: string) => void; aspect?: "16/9" | "3/4" }) {
+  value, onChange, aspect = "16/9", showPreview = true,
+}: { value: string; onChange: (url: string) => void; aspect?: "16/9" | "3/4"; showPreview?: boolean }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError]         = useState("");
 
@@ -301,7 +301,7 @@ function ImageUploader({
 
   return (
     <div>
-      {value && (
+      {value && showPreview && (
         <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: "0.75rem", aspectRatio: aspect, backgroundColor: "#f0ede6", maxWidth: aspect === "3/4" ? 120 : "100%" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={value} alt="Preview" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
@@ -444,12 +444,6 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
             </div>
 
             <div>
-              <label style={S.label}>Extracto</label>
-              <textarea value={draft.excerpt} onChange={e => update("excerpt", e.target.value)}
-                style={{ ...S.textarea, minHeight: 80 }} placeholder="Descripción breve del artículo..." />
-            </div>
-
-            <div>
               <label style={S.label}>Contenido</label>
               <textarea value={draft.body ?? ""} onChange={e => update("body", e.target.value)}
                 style={{ ...S.textarea, minHeight: 220 }} placeholder={"Escribí el cuerpo del artículo aquí.\n\nCada línea en blanco crea un párrafo nuevo."} />
@@ -506,6 +500,7 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
                         return { ...d, inlineImages: imgs };
                       })}
                       aspect="16/9"
+                      showPreview={false}
                     />
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
                       <div>
