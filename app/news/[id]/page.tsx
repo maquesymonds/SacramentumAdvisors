@@ -4,6 +4,8 @@ import ArticlePageClient from "./ArticlePageClient";
 import { t }             from "@/data/translations";
 import { fetchAdminContent } from "@/lib/admin-content";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(
   { params }: { params: { id: string } }
 ): Promise<Metadata> {
