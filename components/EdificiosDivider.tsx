@@ -20,7 +20,7 @@ export default function EdificiosDivider() {
       style={{
         width:              "100%",
         height:             "60vh",
-        backgroundImage:    "url('/images/edificios-divider.png')",
+        backgroundImage:    "url('/images/edificios-divider.webp')",
         backgroundSize:     "cover",
         backgroundPosition,
         backgroundRepeat:   "no-repeat",

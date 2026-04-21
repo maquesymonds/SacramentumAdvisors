@@ -226,7 +226,7 @@ export default function WhySacramentum() {
       {/* ── Card deck — full-bleed background ─────────────────────── */}
       <div
         style={{
-          backgroundImage:    "url('/images/campoextendido.png')",
+          backgroundImage:    "url('/images/campoextendido.webp')",
           backgroundSize:     "cover",
           backgroundPosition: "center top",
           marginTop:          "-4rem",

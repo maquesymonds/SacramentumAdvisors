@@ -394,7 +394,7 @@ export default function WhyUruguay() {
       {/* ── Card grid — full-bleed background ────────────────────────── */}
       <div
         style={{
-          backgroundImage:    "url('/images/OlasLanding.png')",
+          backgroundImage:    "url('/images/OlasLanding.webp')",
           backgroundSize:     "cover",
           backgroundPosition: "center top",
           marginTop:          "-8rem",

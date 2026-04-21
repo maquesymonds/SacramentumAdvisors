@@ -42,7 +42,7 @@ export default function HomePage() {
         <div style={{ position: "relative", overflow: "hidden", background: "linear-gradient(to bottom, var(--color-surface) 0%, #111F30 55%)" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/olas.png"
+            src="/images/olas.webp"
             alt=""
             aria-hidden="true"
             className="hidden lg:block"
