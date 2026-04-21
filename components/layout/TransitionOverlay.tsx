@@ -21,7 +21,7 @@ export default function TransitionOverlay() {
       <path
         ref={overlayPathRef}
         d="M 0 100 V 100 Q 50 100 100 100 V 100 z"
-        fill="#1F2933"
+        fill="#111F30"
       />
     </svg>
   );

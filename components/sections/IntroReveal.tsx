@@ -10,6 +10,99 @@ import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ── Mobile static hero (shown instead of the animation on < 1024px) ──────────
+function MobileHero() {
+  const { locale } = useLocale();
+  const copy   = t(locale);
+  const router = useRouter();
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("intro-nav-ready"));
+  }, []);
+
+  return (
+    <div
+      id="home"
+      className="lg:hidden"
+      style={{
+        position:           "relative",
+        height:             "100vh",
+        overflow:           "hidden",
+        backgroundImage:    "url('/images/uruguay.webp')",
+        backgroundSize:     "cover",
+        backgroundPosition: "center 26%",
+        display:            "flex",
+        alignItems:         "center",
+        justifyContent:     "center",
+        textAlign:          "center",
+        padding:            "0 clamp(1.25rem, 5vw, 4rem)",
+      }}
+    >
+      {/* Subtle dark overlay */}
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(10,18,30,0.18)", zIndex: 0 }} />
+
+      <div style={{ position: "relative", zIndex: 1, maxWidth: "min(90vw, 680px)", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: "9rem" }}>
+
+        {/* Title + subheadline */}
+        <div style={{ textAlign: "center" }}>
+          <h1
+            style={{
+              fontWeight:    300,
+              color:         "white",
+              lineHeight:    1.1,
+              marginBottom:  "1.5rem",
+              fontSize:      "clamp(2.2rem, 7vw, 3.5rem)",
+              letterSpacing: "-0.03em",
+              whiteSpace:    "pre-line",
+            }}
+          >
+            {copy.hero.headline}
+          </h1>
+
+          <p
+            style={{
+              color:      "white",
+              lineHeight: 1.65,
+              fontSize:   "clamp(1rem, 3vw, 1.15rem)",
+              maxWidth:   "560px",
+              margin:     0,
+              opacity:    0.9,
+            }}
+          >
+            {copy.hero.subheadline}
+          </p>
+        </div>
+
+        {/* CTA */}
+        <button
+          onClick={() => router.push("/contact")}
+          style={{
+            display:      "inline-flex",
+            alignItems:   "center",
+            gap:          "0.5rem",
+            padding:      "1.1rem 2.5rem",
+            color:        "#111F30",
+            fontWeight:   500,
+            fontSize:     "1rem",
+            fontFamily:   "inherit",
+            borderRadius: "50px",
+            background:   "white",
+            border:       "none",
+            cursor:       "pointer",
+            boxShadow:    "0 4px 20px rgba(0,0,0,0.15)",
+          }}
+        >
+          {copy.hero.cta}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  );
+}
+
 export default function IntroReveal() {
   const { locale } = useLocale();
   const copy   = t(locale);
@@ -92,7 +185,12 @@ export default function IntroReveal() {
   }, []);
 
   return (
-    <div ref={outerRef} style={{ height: "250vh", position: "relative" }}>
+    <>
+    {/* ── Mobile static hero (< 1024px) ──────────────────────────────────── */}
+    <MobileHero />
+
+    {/* ── Desktop intro animation (≥ 1024px) ─────────────────────────────── */}
+    <div ref={outerRef} className="hidden lg:block" style={{ height: "250vh", position: "relative" }}>
       {/* Anchor at the hero/landscape view — where the animation is at 100% */}
       <div id="home" style={{ position: "absolute", top: "150vh" }} />
 
@@ -168,12 +266,13 @@ export default function IntroReveal() {
 
             <button
               onClick={() => router.push("/contact")}
+              className="hero-cta"
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",
                 gap:            "0.5rem",
                 padding:        "1.1rem 2.5rem",
-                color:          "#1F2933",
+                color:          "#111F30",
                 fontWeight:     500,
                 fontSize:       "1rem",
                 letterSpacing:  "0",
@@ -207,5 +306,6 @@ export default function IntroReveal() {
 
       </div>
     </div>
+    </>
   );
 }

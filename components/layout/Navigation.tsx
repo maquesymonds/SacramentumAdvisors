@@ -211,17 +211,36 @@ export default function Navigation() {
             </button>
           </nav>
 
-          {/* ── Mobile hamburger ─────────────────────────────────────────── */}
-          <button
-            className="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none"
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-          >
-            <span className={["block w-6 h-px transition-all duration-300", isDark ? "bg-brand-dark" : "bg-white", menuOpen ? "rotate-45 translate-y-2.5" : ""].join(" ")} />
-            <span className={["block w-6 h-px transition-all duration-300", isDark ? "bg-brand-dark" : "bg-white", menuOpen ? "opacity-0" : "opacity-100"].join(" ")} />
-            <span className={["block w-6 h-px transition-all duration-300", isDark ? "bg-brand-dark" : "bg-white", menuOpen ? "-rotate-45 -translate-y-2.5" : ""].join(" ")} />
-          </button>
+          {/* ── Mobile: lang toggle + hamburger ─────────────────────────── */}
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={toggleLocale}
+              className="text-xs font-medium tracking-[0.1em] uppercase border transition-all duration-300"
+              style={{
+                borderColor:     isDark ? "rgba(31,41,51,0.25)" : "rgba(255,255,255,0.35)",
+                color:           isDark ? "rgba(31,41,51,0.6)"  : "rgba(255,255,255,0.75)",
+                width:           "2.2rem",
+                height:          "2.2rem",
+                display:         "inline-flex",
+                alignItems:      "center",
+                justifyContent:  "center",
+              }}
+              aria-label={`Switch to ${locale === "en" ? "Spanish" : "English"}`}
+            >
+              {copy.nav.langToggle}
+            </button>
+
+            <button
+              className="flex flex-col gap-1.5 p-2 focus:outline-none"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+            >
+              <span className={["block w-6 h-px transition-all duration-300", isDark ? "bg-brand-dark" : "bg-white", menuOpen ? "rotate-45 translate-y-[7px]" : ""].join(" ")} />
+              <span className={["block w-6 h-px transition-all duration-300", isDark ? "bg-brand-dark" : "bg-white", menuOpen ? "opacity-0 scale-x-0" : "opacity-100"].join(" ")} />
+              <span className={["block w-6 h-px transition-all duration-300", isDark ? "bg-brand-dark" : "bg-white", menuOpen ? "-rotate-45 -translate-y-[7px]" : ""].join(" ")} />
+            </button>
+          </div>
 
         </div>
       </header>
@@ -233,11 +252,11 @@ export default function Navigation() {
         aria-label="Mobile navigation"
         className={[
           "fixed inset-0 z-40 lg:hidden",
-          "bg-brand-dark/98 backdrop-blur-sm",
           "flex flex-col items-center justify-center gap-2",
           "transition-all duration-500",
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         ].join(" ")}
+        style={{ backgroundColor: "#111F30" }}
       >
         {navLinks.map((link, i) => (
           <button
@@ -249,12 +268,6 @@ export default function Navigation() {
             {link.label}
           </button>
         ))}
-        <button
-          onClick={() => { toggleLocale(); setMenuOpen(false); }}
-          className="mt-6 text-sm tracking-[0.1em] uppercase text-white/40 hover:text-white/80 transition-colors duration-300 border border-white/20 px-4 py-2"
-        >
-          {copy.nav.langToggle}
-        </button>
       </div>
     </>
   );

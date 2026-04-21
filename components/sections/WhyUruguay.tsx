@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { gsap }          from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -62,6 +62,156 @@ function PillarCard({ icon, title, description, cardRef }: CardProps) {
         {description}
       </p>
     </article>
+  );
+}
+
+// ── Mobile carousel (< 640px only) ───────────────────────────────────────────
+function IconPause() {
+  return (
+    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true">
+      <rect x="0.5" y="0.5" width="4" height="13" rx="1" fill="currentColor"/>
+      <rect x="7.5" y="0.5" width="4" height="13" rx="1" fill="currentColor"/>
+    </svg>
+  );
+}
+function IconPlay() {
+  return (
+    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true">
+      <path d="M1 1l10 6-10 6V1z" fill="currentColor"/>
+    </svg>
+  );
+}
+
+interface CarouselCard { id: string; icon: string; title: string; description: string }
+
+function MobileCarousel({ cards }: { cards: CarouselCard[] }) {
+  const trackRef  = useRef<HTMLDivElement>(null);
+  const [active, setActive]  = useState(0);
+  const [paused, setPaused]  = useState(false);
+  const pausedRef = useRef(false);
+  const activeRef = useRef(0);
+
+  useEffect(() => { pausedRef.current = paused; }, [paused]);
+  useEffect(() => { activeRef.current = active; }, [active]);
+
+  const scrollTo = useCallback((idx: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    // Each card is 82vw wide + 0.75rem gap, first card offset by 1.25rem padding
+    const cardW = track.children[0]?.getBoundingClientRect().width ?? track.scrollWidth / cards.length;
+    const gap   = 12; // 0.75rem
+    track.scrollTo({ left: idx * (cardW + gap), behavior: "smooth" });
+  }, [cards.length]);
+
+  const onScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardW = track.children[0]?.getBoundingClientRect().width ?? track.scrollWidth / cards.length;
+    const gap   = 12;
+    const idx   = Math.min(Math.round(track.scrollLeft / (cardW + gap)), cards.length - 1);
+    setActive(idx);
+  }, [cards.length]);
+
+  // Auto-advance every 5s
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (pausedRef.current) return;
+      const next = (activeRef.current + 1) % cards.length;
+      scrollTo(next);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [cards.length, scrollTo]);
+
+  return (
+    <div>
+      {/* Track */}
+      <div
+        ref={trackRef}
+        onScroll={onScroll}
+        style={{
+          display:                  "flex",
+          overflowX:                "auto",
+          scrollSnapType:           "x mandatory",
+          WebkitOverflowScrolling:  "touch" as React.CSSProperties["WebkitOverflowScrolling"],
+          scrollbarWidth:           "none",
+          gap:                      "1rem",
+          paddingLeft:              "1.25rem",
+          scrollPaddingLeft:        "1.25rem",
+          paddingBottom:            "0.5rem",
+        }}
+      >
+        {cards.map((card) => (
+          <article
+            key={card.id}
+            style={{
+              flexShrink:      0,
+              width:           "76vw",
+              scrollSnapAlign: "start",
+              borderRadius:   16,
+              background:     "white",
+              border:         "1px solid rgba(31,41,51,0.07)",
+              boxShadow:      "0 4px 24px rgba(0,0,0,0.07)",
+              padding:        "2.25rem 1.75rem 2.5rem",
+              display:        "flex",
+              flexDirection:  "column",
+              gap:            "1.5rem",
+              minHeight:      "460px",
+            }}
+          >
+            <CardIcon id={card.icon} />
+            <h3 style={{ fontSize: "1.35rem", fontWeight: 400, letterSpacing: "-0.015em", lineHeight: 1.25, color: "var(--color-ink)", margin: 0 }}>
+              {card.title}
+            </h3>
+            <p style={{ fontSize: "1rem", lineHeight: 1.75, color: "var(--color-ink-subtle)", margin: 0, flex: 1 }}>
+              {card.description}
+            </p>
+          </article>
+        ))}
+      </div>
+
+      {/* Controls: dots + pause */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem", marginTop: "1.25rem" }}>
+        {cards.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollTo(i)}
+            aria-label={`Go to card ${i + 1}`}
+            style={{
+              width:        i === active ? "1.5rem" : "0.5rem",
+              height:       "0.5rem",
+              borderRadius: "9999px",
+              background:   i === active ? "white" : "rgba(255,255,255,0.45)",
+              border:       "none",
+              cursor:       "pointer",
+              padding:      0,
+              transition:   "width 0.3s ease, background 0.3s ease",
+            }}
+          />
+        ))}
+
+        {/* Pause / play */}
+        <button
+          onClick={() => setPaused(p => !p)}
+          aria-label={paused ? "Play" : "Pause"}
+          style={{
+            marginLeft:      "0.5rem",
+            width:           "2rem",
+            height:          "2rem",
+            borderRadius:    "50%",
+            background:      "white",
+            border:          "none",
+            cursor:          "pointer",
+            display:         "flex",
+            alignItems:      "center",
+            justifyContent:  "center",
+            color:           "var(--color-ink)",
+            flexShrink:      0,
+          }}
+        >
+          {paused ? <IconPlay /> : <IconPause />}
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -253,7 +403,13 @@ export default function WhyUruguay() {
         }}
       >
         <div className="container-site">
-          <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Mobile carousel — only below 640px */}
+          <div className="sm:hidden" style={{ marginRight: "calc(-1 * var(--container-padding-x))" }}>
+            <MobileCarousel cards={copy.cards} />
+          </div>
+
+          {/* Tablet + desktop grid — hidden on mobile */}
+          <div ref={gridRef} className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {copy.cards.map((card, i) => (
               <PillarCard
                 key={card.id}

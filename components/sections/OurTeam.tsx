@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/locale-context";
@@ -26,41 +26,120 @@ interface PersonCardProps {
 }
 
 function PersonCard({ image, name, role, bio, index }: PersonCardProps) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <motion.article
-      {...fadeUp(index * 0.09)}
-      className="grid grid-cols-[180px_1fr] gap-6 items-start"
-    >
-      {/* Portrait */}
-      <div className="relative overflow-hidden rounded-lg flex-shrink-0" style={{ aspectRatio: "3/4" }}>
-        <Image
-          src={image}
-          alt={name}
-          fill
-          quality={90}
-          className="object-cover object-top"
-          style={{ filter: "grayscale(100%) contrast(1.06) brightness(0.96)" }}
-          sizes="180px"
-        />
+    <motion.article {...fadeUp(index * 0.09)}>
+
+      {/* ── Mobile compact card ── */}
+      <div
+        className="sm:hidden"
+        style={{
+          background:   "white",
+          borderRadius: 16,
+          boxShadow:    "0 2px 8px rgba(31,41,51,0.06), 0 8px 32px rgba(31,41,51,0.07)",
+          overflow:     "hidden",
+        }}
+      >
+        {/* Top row: image + name/role */}
+        <div style={{ display: "flex", gap: "1rem", padding: "1.25rem 1.25rem 1rem" }}>
+          <div style={{ position: "relative", width: 72, height: 88, flexShrink: 0, borderRadius: 10, overflow: "hidden" }}>
+            <Image
+              src={image} alt={name} fill quality={85}
+              className="object-cover object-top"
+              style={{ filter: "grayscale(100%) contrast(1.06) brightness(0.96)" }}
+              sizes="72px"
+            />
+          </div>
+          <div style={{ flex: 1, paddingTop: "0.2rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+              <span style={{ display: "block", height: 1, width: "1.25rem", flexShrink: 0, backgroundColor: "var(--color-warm)" }} />
+              <span className="text-eyebrow" style={{ color: "var(--color-warm)", fontSize: "0.6rem" }}>{role}</span>
+            </div>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.2, color: "var(--color-ink)", margin: 0 }}>
+              {name}
+            </h3>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div style={{ height: 1, backgroundColor: "rgba(31,41,51,0.07)", marginLeft: "1.25rem", marginRight: "1.25rem" }} />
+
+        {/* Bio */}
+        <div style={{ padding: "1rem 1.25rem 1.25rem" }}>
+          <p
+            style={expanded ? {
+              fontSize:   "0.82rem",
+              lineHeight: 1.65,
+              color:      "var(--color-ink-muted)",
+              margin:     0,
+            } : {
+              fontSize:        "0.82rem",
+              lineHeight:      1.65,
+              color:           "var(--color-ink-muted)",
+              margin:          0,
+              height:          "4.06rem", // exactly 3 lines: 3 × 0.82rem × 1.65
+              overflow:        "hidden",
+              display:         "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical" as const,
+            }}
+          >
+            {bio}
+          </p>
+          <button
+            onClick={() => setExpanded(e => !e)}
+            style={{
+              marginTop:     "0.6rem",
+              display:       "inline-flex",
+              alignItems:    "center",
+              gap:           "0.3rem",
+              color:         "var(--color-warm)",
+              fontSize:      "0.68rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase" as const,
+              fontWeight:    500,
+              background:    "none",
+              border:        "none",
+              cursor:        "pointer",
+              padding:       0,
+              fontFamily:    "inherit",
+            }}
+          >
+            {expanded ? "Read less" : "Read more"}
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"
+              style={{ transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.25s ease" }}>
+              <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {/* Text */}
-      <div className="flex flex-col pt-1">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="block h-px w-7 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
-          <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{role}</span>
+      {/* ── Desktop layout (unchanged) ── */}
+      <div className="hidden sm:grid grid-cols-[180px_1fr] gap-6 items-start">
+        <div className="relative overflow-hidden rounded-lg flex-shrink-0" style={{ aspectRatio: "3/4" }}>
+          <Image src={image} alt={name} fill quality={90}
+            className="object-cover object-top"
+            style={{ filter: "grayscale(100%) contrast(1.06) brightness(0.96)" }}
+            sizes="180px"
+          />
         </div>
-        <h3
-          className="font-normal text-ink mb-3"
-          style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}
-        >
-          {name}
-        </h3>
-        <span className="block mb-4" style={{ height: 1, width: "2.5rem", backgroundColor: "rgba(31,41,51,0.12)" }} />
-        <div className="text-ink-muted leading-relaxed" style={{ fontSize: "0.875rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-          {bio.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}
+        <div className="flex flex-col pt-1">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="block h-px w-7 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
+            <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{role}</span>
+          </div>
+          <h3 className="font-normal text-ink mb-3"
+            style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
+            {name}
+          </h3>
+          <span className="block mb-4" style={{ height: 1, width: "2.5rem", backgroundColor: "rgba(31,41,51,0.12)" }} />
+          <div className="text-ink-muted leading-relaxed" style={{ fontSize: "0.875rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            {bio.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}
+          </div>
         </div>
       </div>
+
     </motion.article>
   );
 }

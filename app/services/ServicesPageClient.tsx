@@ -33,6 +33,163 @@ const fadeIn = (delay = 0) => ({
   transition:  { duration: 0.8, ease: EASE, delay },
 });
 
+// ── Mobile Timeline ───────────────────────────────────────────────────────────
+function MobileServiceTimeline({ cards, locale }: { cards: { id: string; image: string; title: string; description: string }[]; locale: string }) {
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const items = itemRefs.current.filter((el): el is HTMLDivElement => el !== null);
+    items.forEach(el => {
+      el.style.opacity   = "0";
+      el.style.transform = "translateY(36px)";
+      el.style.transition = "opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)";
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLDivElement;
+          // Stagger via the data-index attribute
+          const i = Number(el.dataset.index ?? 0);
+          setTimeout(() => {
+            el.style.opacity   = "1";
+            el.style.transform = "translateY(0)";
+          }, i * 80);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    items.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      className="lg:hidden"
+      style={{
+        backgroundColor: "var(--color-surface-muted)",
+        padding: "3.5rem 0 5rem",
+      }}
+    >
+      <div className="container-site">
+        {/* Vertical path */}
+        <div style={{ position: "relative", paddingLeft: "3.5rem" }}>
+
+          {/* The line */}
+          <div style={{
+            position:   "absolute",
+            left:       "1.1rem",
+            top:        "1.8rem",
+            bottom:     "1.8rem",
+            width:      "1px",
+            background: "linear-gradient(to bottom, var(--color-warm) 0%, rgba(204,168,124,0.12) 100%)",
+          }} />
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
+            {cards.map((card, i) => {
+              const stepLabel = locale === "en"
+                ? `Step ${String(i + 1).padStart(2, "0")}`
+                : `Paso ${String(i + 1).padStart(2, "0")}`;
+
+              return (
+                <div
+                  key={card.id}
+                  ref={el => { itemRefs.current[i] = el; }}
+                  data-index={i}
+                  style={{ position: "relative" }}
+                >
+                  {/* Timeline node */}
+                  <div style={{
+                    position:     "absolute",
+                    left:         "calc(-3.5rem + 1.1rem - 8px)",
+                    top:          "1.6rem",
+                    width:        17,
+                    height:       17,
+                    borderRadius: "50%",
+                    background:   "var(--color-surface-muted)",
+                    border:       "1.5px solid var(--color-warm)",
+                    zIndex:       1,
+                  }}>
+                    {/* Inner dot */}
+                    <div style={{
+                      position:     "absolute",
+                      inset:        3,
+                      borderRadius: "50%",
+                      background:   "var(--color-warm)",
+                    }} />
+                  </div>
+
+                  {/* Card */}
+                  <div style={{
+                    background:   "white",
+                    borderRadius: 18,
+                    overflow:     "hidden",
+                    boxShadow:    "0 2px 8px rgba(31,41,51,0.05), 0 12px 40px rgba(31,41,51,0.07)",
+                  }}>
+                    {/* Image */}
+                    <div style={{ position: "relative", paddingBottom: "58%", overflow: "hidden" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        draggable={false}
+                        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                      />
+                      {/* Step label over image */}
+                      <div style={{
+                        position:     "absolute",
+                        bottom:       "1rem",
+                        left:         "1.25rem",
+                        display:      "inline-flex",
+                        alignItems:   "center",
+                        gap:          "0.5rem",
+                        background:   "rgba(17,31,48,0.72)",
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
+                        borderRadius: "50px",
+                        padding:      "0.3rem 0.85rem",
+                        border:       "1px solid rgba(255,255,255,0.15)",
+                      }}>
+                        <span style={{ color: "var(--color-warm)", fontSize: "0.62rem", letterSpacing: "0.13em", textTransform: "uppercase", fontWeight: 500 }}>
+                          {stepLabel}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div style={{ padding: "1.5rem 1.75rem 2rem" }}>
+                      <h3 style={{
+                        fontSize:      "1.2rem",
+                        fontWeight:    400,
+                        letterSpacing: "-0.015em",
+                        lineHeight:    1.25,
+                        color:         "var(--color-ink)",
+                        marginBottom:  "0.75rem",
+                      }}>
+                        {card.title}
+                      </h3>
+                      <span style={{ display: "block", height: 1, width: "2rem", backgroundColor: "rgba(204,168,124,0.5)", marginBottom: "0.75rem" }} />
+                      <p style={{
+                        fontSize:   "0.9rem",
+                        lineHeight: 1.72,
+                        color:      "var(--color-ink-muted)",
+                        margin:     0,
+                      }}>
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── 3D Carousel ───────────────────────────────────────────────────────────────
 function ServiceCarousel({ cards, locale, initialCard }: { cards: { id: string; image: string; title: string; description: string }[]; locale: string; initialCard?: string | null }) {
   const outerRef    = useRef<HTMLDivElement>(null);
@@ -274,34 +431,6 @@ function ServiceCarousel({ cards, locale, initialCard }: { cards: { id: string; 
           </div>
         </div>
 
-        {/* ── Mobile fallback ── */}
-        <div
-          className="lg:hidden flex-1 overflow-y-auto"
-          style={{ padding: "1.5rem clamp(1.25rem, 3.5vw, 3rem) 2.5rem" }}
-        >
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-            {cards.map((card, i) => (
-              <article
-                key={card.id}
-                style={{ borderRadius: 12, overflow: "hidden", background: "white", display: "flex", gap: "1rem", boxShadow: "0 2px 12px rgba(0,0,0,0.07)", padding: "1rem", alignItems: "flex-start" }}
-              >
-                <div style={{ position: "relative", width: 80, height: 80, flexShrink: 0, borderRadius: 8, overflow: "hidden" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={card.image} alt={card.title} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <span style={{ color: "var(--color-warm)", fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                    Step {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 style={{ fontSize: "1rem", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.3, margin: "0.25rem 0 0.4rem", color: "var(--color-ink)" }}>
-                    {card.title}
-                  </h3>
-                  <p style={{ fontSize: "0.82rem", lineHeight: 1.6, color: "var(--color-ink-muted)", margin: 0 }}>{card.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
 
       </section>
     </div>
@@ -357,8 +486,13 @@ export default function ServicesPageClient() {
           </div>
         </section>
 
-        {/* ── 3D Carousel ─────────────────────────────────────────────────── */}
-        <ServiceCarousel cards={copy.howWeSupport.cards} locale={locale} initialCard={initialCard} />
+        {/* ── Mobile timeline ─────────────────────────────────────────────── */}
+        <MobileServiceTimeline cards={copy.howWeSupport.cards} locale={locale} />
+
+        {/* ── 3D Carousel (desktop only) ──────────────────────────────────── */}
+        <div className="hidden lg:block">
+          <ServiceCarousel cards={copy.howWeSupport.cards} locale={locale} initialCard={initialCard} />
+        </div>
 
 
       </main>

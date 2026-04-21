@@ -34,6 +34,7 @@ export default function ClosingCTA() {
     <section
       id="contact"
       aria-label="Contact invitation"
+      className="bg-[#111F30] lg:bg-transparent"
       style={{
         position:   "relative",
         overflow:   "hidden",

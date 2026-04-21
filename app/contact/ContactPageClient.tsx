@@ -483,19 +483,6 @@ export default function ContactPageClient() {
                   }}
                 />
 
-                {/* Trust note */}
-                <blockquote
-                  style={{
-                    margin:     0,
-                    padding:    0,
-                    fontStyle:  "italic",
-                    color:      "var(--color-ink-muted)",
-                    fontSize:   "0.95rem",
-                    lineHeight: 1.7,
-                  }}
-                >
-                  &#8220;{copy.info.trustNote}&#8221;
-                </blockquote>
               </div>
 
               {/* Optional secondary note */}

@@ -148,6 +148,79 @@ function FilterPill({ label, active, count, onClick }: { label: string; active: 
   );
 }
 
+function MobileNewsCard({ id, image, category, title, excerpt, readLabel }: { id: string; image: string; category: string; title: string; excerpt: string; readLabel: string }) {
+  return (
+    <Link href={`/news/${id}`} style={{ textDecoration: "none", display: "block" }}>
+      <motion.article
+        layout
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.45, ease: EASE }}
+        style={{
+          borderRadius:  12,
+          overflow:      "hidden",
+          background:    "white",
+          boxShadow:     "0 2px 12px rgba(0,0,0,0.07)",
+          cursor:        "pointer",
+        }}
+      >
+        {/* Square image */}
+        <div style={{ position: "relative", aspectRatio: "1 / 1", overflow: "hidden" }}>
+          <Image
+            src={image}
+            alt={title}
+            fill
+            quality={80}
+            className="object-cover object-center"
+            sizes="50vw"
+          />
+          {/* Category badge over image */}
+          <div style={{ position: "absolute", top: "0.6rem", left: "0.6rem" }}>
+            <CategoryPill category={category} />
+          </div>
+        </div>
+
+        {/* Text */}
+        <div style={{ padding: "0.75rem 0.85rem 1rem" }}>
+          <h3 style={{
+            fontSize:      "0.82rem",
+            fontWeight:    400,
+            letterSpacing: "-0.01em",
+            lineHeight:    1.3,
+            color:         "var(--color-ink)",
+            marginBottom:  "0.35rem",
+            display:       "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow:      "hidden",
+          }}>
+            {title}
+          </h3>
+          <p style={{
+            fontSize:      "0.7rem",
+            lineHeight:    1.5,
+            color:         "var(--color-ink-subtle)",
+            display:       "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow:      "hidden",
+            margin:        0,
+          }}>
+            {excerpt}
+          </p>
+          <span style={{ marginTop: "0.4rem", display: "inline-flex", alignItems: "center", gap: "0.3rem", color: "var(--color-warm)", fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500 }}>
+            {readLabel}
+            <svg width="10" height="10" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </motion.article>
+    </Link>
+  );
+}
+
 type AdminArticle = { id: string; image: string; category: string; title: string; excerpt: string; slug: string; date: string };
 
 export default function NewsPageClient({ adminArticles }: { adminArticles?: AdminArticle[] | null }) {
@@ -214,8 +287,26 @@ export default function NewsPageClient({ adminArticles }: { adminArticles?: Admi
                 : (locale === "en" ? `${filtered.length} of ${articles.length} articles` : `${filtered.length} de ${articles.length} artículos`)}
             </p>
 
+            {/* Mobile: compact 2-col grid */}
             <AnimatePresence mode="popLayout">
-              <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10" style={{ alignItems: "stretch" }}>
+              <motion.div layout className="sm:hidden grid grid-cols-2 gap-3">
+                {filtered.map(article => (
+                  <MobileNewsCard
+                    key={article.id}
+                    id={article.id}
+                    image={article.image}
+                    category={article.category}
+                    title={article.title}
+                    excerpt={article.excerpt}
+                    readLabel={copy.readArticle}
+                  />
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Tablet + desktop: full cards */}
+            <AnimatePresence mode="popLayout">
+              <motion.div layout className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10" style={{ alignItems: "stretch" }}>
                 {filtered.map(article => (
                   <ArticleCard
                     key={article.id}

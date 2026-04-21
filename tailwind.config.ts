@@ -11,7 +11,7 @@ const config: Config = {
       // ─── Brand Colors ────────────────────────────────────────────────
       colors: {
         brand: {
-          dark:  "#1F2933",
+          dark:  "#111F30",
           blue:  "#81A6B0",
           olive: "#AAA462",
           warm:  "#CCA87C",
@@ -22,7 +22,7 @@ const config: Config = {
           card:    "#FFFFFF",
         },
         ink: {
-          DEFAULT: "#1F2933",
+          DEFAULT: "#111F30",
           muted:   "#4A5568",
           subtle:  "#718096",
           ghost:   "#A0AEC0",

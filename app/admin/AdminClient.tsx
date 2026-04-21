@@ -35,19 +35,19 @@ const S = {
   input: {
     width: "100%", padding: "0.65rem 0.875rem",
     border: "1px solid rgba(31,41,51,0.14)", borderRadius: 8,
-    fontSize: "0.9rem", color: "#1F2933", backgroundColor: "white",
+    fontSize: "0.9rem", color: "#111F30", backgroundColor: "white",
     outline: "none", boxSizing: "border-box" as const,
     fontFamily: "inherit",
   },
   textarea: {
     width: "100%", padding: "0.65rem 0.875rem",
     border: "1px solid rgba(31,41,51,0.14)", borderRadius: 8,
-    fontSize: "0.875rem", color: "#1F2933", backgroundColor: "white",
+    fontSize: "0.875rem", color: "#111F30", backgroundColor: "white",
     outline: "none", resize: "vertical" as const,
     boxSizing: "border-box" as const, fontFamily: "inherit", lineHeight: 1.6,
   },
   btnPrimary: {
-    padding: "0.6rem 1.4rem", backgroundColor: "#1F2933", color: "white",
+    padding: "0.6rem 1.4rem", backgroundColor: "#111F30", color: "white",
     border: "none", borderRadius: 50, fontSize: "0.78rem", fontWeight: 600,
     letterSpacing: "0.06em", textTransform: "uppercase" as const, cursor: "pointer",
     fontFamily: "inherit",
@@ -385,7 +385,7 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
                 )}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontSize: "0.82rem", fontWeight: 500, color: "#1F2933", lineHeight: 1.3, marginBottom: "0.3rem",
+                <p style={{ fontSize: "0.82rem", fontWeight: 500, color: "#111F30", lineHeight: 1.3, marginBottom: "0.3rem",
                   overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {a.title || "Sin título"}
                 </p>
@@ -403,7 +403,7 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
       {draft ? (
         <div style={{ backgroundColor: "white", borderRadius: 16, padding: "2rem", overflowY: "auto" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.75rem" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#1F2933", margin: 0 }}>
+            <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: 0 }}>
               {isNew ? "Nueva noticia" : "Editar noticia"}
             </h3>
             <div style={{ display: "flex", gap: "0.5rem" }}>
@@ -502,7 +502,7 @@ function TeamPanel({ team, onSave, saving }: {
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", filter: "grayscale(100%)" }} />
               </div>
               <div>
-                <p style={{ fontSize: "1rem", fontWeight: 500, color: "#1F2933", marginBottom: "0.15rem" }}>{member.name}</p>
+                <p style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", marginBottom: "0.15rem" }}>{member.name}</p>
                 <p style={{ fontSize: "0.75rem", color: "rgba(31,41,51,0.4)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{member.id}</p>
               </div>
             </div>

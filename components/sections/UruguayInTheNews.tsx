@@ -104,16 +104,48 @@ function ArticleCard({ id, image, category, title, excerpt, readLabel }: Article
 
 type Article = { id: string; image: string; category: string; title: string; excerpt: string; slug: string; date: string };
 
+function MobileNewsCard({ id, image, category, title, excerpt, readLabel }: Pick<Article, "id" | "image" | "category" | "title" | "excerpt"> & { readLabel: string }) {
+  return (
+    <Link href={`/news/${id}`} style={{ textDecoration: "none", display: "block" }}>
+      <article style={{ borderRadius: 12, overflow: "hidden", background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.07)", cursor: "pointer" }}>
+        {/* Square image */}
+        <div style={{ position: "relative", aspectRatio: "1 / 1", overflow: "hidden" }}>
+          <Image src={image} alt={title} fill quality={80} className="object-cover object-center" sizes="50vw" />
+          <div style={{ position: "absolute", top: "0.6rem", left: "0.6rem" }}>
+            <CategoryPill category={category} />
+          </div>
+        </div>
+        {/* Text */}
+        <div style={{ padding: "0.75rem 0.85rem 1rem", display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+          <h3 style={{ fontSize: "0.82rem", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.3, color: "var(--color-ink)", margin: 0, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>
+            {title}
+          </h3>
+          <p style={{ fontSize: "0.7rem", lineHeight: 1.5, color: "var(--color-ink-subtle)", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden", margin: 0 }}>
+            {excerpt}
+          </p>
+          <span style={{ marginTop: "0.4rem", display: "inline-flex", alignItems: "center", gap: "0.3rem", color: "var(--color-warm)", fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase" as const, fontWeight: 500 }}>
+            {readLabel}
+            <svg width="10" height="10" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+              <path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </article>
+    </Link>
+  );
+}
+
 export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Article[] | null }) {
   const { locale } = useLocale();
   const copy       = t(locale).news;
   const router     = useRouter();
 
-  const source  = (adminArticles ?? copy.articles) as Article[];
-  const preview = source.slice(0, 3);
+  const source        = (adminArticles ?? copy.articles) as Article[];
+  const preview       = source.slice(0, 3);
+  const mobilePreview = source.slice(0, 4);
 
   return (
-    <section id="news" aria-label="Uruguay News" className="section-padding" style={{ background: "linear-gradient(to bottom, var(--color-surface) var(--dev-news-mask, 60%), transparent var(--dev-news-mask, 60%))" }}>
+    <section id="news" aria-label="Uruguay News" className="section-padding" style={{ background: "linear-gradient(to bottom, var(--color-surface) 30%, transparent 75%)" }}>
       <div className="container-site">
 
         <div className="grid lg:grid-cols-2 lg:items-end gap-10 mb-16 pb-12" style={{ borderBottom: "1px solid rgba(31,41,51,0.08)" }}>
@@ -129,12 +161,27 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
           <p className="text-body text-ink-muted leading-relaxed lg:pb-2">{copy.subtitle}</p>
         </div>
 
+        {/* Mobile 2×2 grid */}
+        <div className="sm:hidden grid grid-cols-2 gap-3 mb-10">
+          {mobilePreview.map((article) => (
+            <MobileNewsCard
+              key={article.id}
+              id={article.id}
+              image={article.image}
+              category={article.category}
+              title={article.title}
+              excerpt={article.excerpt}
+              readLabel={copy.readArticle}
+            />
+          ))}
+        </div>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10" style={{ alignItems: "stretch" }}
+          className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10" style={{ alignItems: "stretch" }}
         >
           {preview.map((article) => (
             <ArticleCard
