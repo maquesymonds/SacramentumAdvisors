@@ -10,6 +10,7 @@ import { LocaleProvider }      from "@/lib/locale-context";
 import SmoothScrollProvider   from "@/components/layout/SmoothScrollProvider";
 import { TransitionProvider } from "@/lib/transition-context";
 import TransitionOverlay      from "@/components/layout/TransitionOverlay";
+import Loader                 from "@/components/layout/Loader";
 
 // ── Regola Pro ────────────────────────────────────────────────────────────────
 const regola = localFont({
@@ -97,6 +98,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <TransitionProvider>
             <LocaleProvider>
+              <Loader />
               <TransitionOverlay />
               {children}
             </LocaleProvider>
