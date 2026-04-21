@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/locale-context";
+import { useCharReveal } from "@/hooks/useCharReveal";
 import { t } from "@/data/translations";
 
 const CARD_W = 340;
@@ -177,6 +178,8 @@ export default function WhySacramentum() {
 
   const [isSpread, setIsSpread] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const h1Ref      = useRef<HTMLHeadingElement>(null);
+  useCharReveal(h1Ref);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -207,6 +210,7 @@ export default function WhySacramentum() {
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
             <h1
+              ref={h1Ref}
               className="font-normal text-ink"
               style={{
                 fontSize:      "clamp(2.8rem, 5vw, 4.5rem)",

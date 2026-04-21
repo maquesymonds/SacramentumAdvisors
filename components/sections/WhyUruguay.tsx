@@ -8,6 +8,7 @@ import { useLocale }     from "@/lib/locale-context";
 import { t }             from "@/data/translations";
 import StatItem          from "@/components/ui/StatItem";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
+import { useCharReveal }   from "@/hooks/useCharReveal";
 import { lenisRef }      from "@/lib/lenis-ref";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -223,6 +224,8 @@ export default function WhyUruguay() {
   const statsRef = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
   const gridRef  = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
+  const h1Ref    = useRef<HTMLHeadingElement>(null);
+  useCharReveal(h1Ref);
 
   useEffect(() => {
     const cards = cardRefs.current.filter((c): c is HTMLElement => c !== null);
@@ -364,6 +367,7 @@ export default function WhyUruguay() {
               <span className="text-eyebrow text-brand-warm">{copy.eyebrow}</span>
             </div>
             <h1
+              ref={h1Ref}
               className="font-normal text-ink"
               style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
             >

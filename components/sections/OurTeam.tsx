@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/locale-context";
 import { t } from "@/data/translations";
 import type { AdminTeamMember } from "@/lib/admin-content";
+import { useCharReveal } from "@/hooks/useCharReveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -150,6 +151,8 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
   const copy       = t(locale).team;
 
   const translationMembers = [...copy.leadership, ...copy.advisory.members];
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  useCharReveal(h1Ref);
 
   // If admin has saved data, merge image/role overrides but keep locale bio/role from translations
   const everyone = adminTeam
@@ -174,6 +177,7 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
             <h1
+              ref={h1Ref}
               className="font-normal text-ink"
               style={{
                 fontSize:      "clamp(2.8rem, 5vw, 4.5rem)",

@@ -1,13 +1,14 @@
 "use client";
 
-import React        from "react";
-import Image        from "next/image";
-import Link         from "next/link";
-import { motion }   from "framer-motion";
-import { useLocale }  from "@/lib/locale-context";
-import { t }          from "@/data/translations";
-import CategoryPill   from "@/components/ui/CategoryPill";
-import { useRouter }  from "next/navigation";
+import React, { useRef }  from "react";
+import Image               from "next/image";
+import Link                from "next/link";
+import { motion }          from "framer-motion";
+import { useLocale }       from "@/lib/locale-context";
+import { t }               from "@/data/translations";
+import CategoryPill        from "@/components/ui/CategoryPill";
+import { useRouter }       from "next/navigation";
+import { useCharReveal }   from "@/hooks/useCharReveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -143,6 +144,8 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
   const source        = (adminArticles ?? copy.articles) as Article[];
   const preview       = source.slice(0, 3);
   const mobilePreview = source.slice(0, 4);
+  const h1Ref         = useRef<HTMLHeadingElement>(null);
+  useCharReveal(h1Ref);
 
   return (
     <section id="news" aria-label="Uruguay News" className="section-padding" style={{ background: "linear-gradient(to bottom, var(--color-surface) 30%, transparent 75%)" }}>
@@ -154,7 +157,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
-            <h1 className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}>
+            <h1 ref={h1Ref} className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}>
               {copy.headline}
             </h1>
           </div>

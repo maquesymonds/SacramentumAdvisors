@@ -6,7 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLocale }     from "@/lib/locale-context";
 import { t }             from "@/data/translations";
 import { padStart } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import { useRouter }    from "next/navigation";
+import { useCharReveal } from "@/hooks/useCharReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +21,10 @@ export default function HowWeSupport() {
   const stickyRef      = useRef<HTMLElement>(null);
   const trackRef       = useRef<HTMLDivElement>(null);
   const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const h1MobileRef    = useRef<HTMLHeadingElement>(null);
+  const h1DesktopRef   = useRef<HTMLHeadingElement>(null);
+  useCharReveal(h1MobileRef);
+  useCharReveal(h1DesktopRef);
 
   // Mobile scroll-reveal for each step card
   useEffect(() => {
@@ -113,6 +118,7 @@ export default function HowWeSupport() {
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
             <h1
+              ref={h1MobileRef}
               className="font-normal text-ink"
               style={{ fontSize: "clamp(2.2rem, 8vw, 3.2rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
             >
@@ -218,6 +224,7 @@ export default function HowWeSupport() {
                 <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
               </div>
               <h1
+                ref={h1DesktopRef}
                 className="font-normal text-ink"
                 style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
               >
