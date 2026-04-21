@@ -142,6 +142,10 @@ export default function IntroReveal() {
     }
 
     let navRevealed = false;
+    let soundPlayed = false;
+    const whoosh = new Audio("/sounds/whoosh.mp3");
+    whoosh.volume = 0.55;
+    whoosh.preload = "auto";
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -151,6 +155,10 @@ export default function IntroReveal() {
           end:     "bottom bottom",
           scrub:   true,
           onUpdate: (self) => {
+            if (!soundPlayed && self.progress > 0.01) {
+              soundPlayed = true;
+              whoosh.play().catch(() => {});
+            }
             if (!navRevealed && self.progress > 0.88) {
               navRevealed = true;
               window.dispatchEvent(new CustomEvent("intro-nav-ready"));
