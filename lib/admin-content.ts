@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { t } from "@/data/translations";
 import { head } from "@vercel/blob";
+import { unstable_noStore as noStore } from "next/cache";
 
 const CONTENT_FILE = path.join(process.cwd(), "data/admin-content.json");
 const BLOB_PATH    = "admin/content.json";
@@ -63,6 +64,7 @@ export function readAdminContent(): AdminContent {
 
 // Async version — reads from Vercel Blob on production, falls back to disk locally
 export async function fetchAdminContent(): Promise<AdminContent> {
+  noStore();
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
       const blob = await head(BLOB_PATH, { token: process.env.BLOB_READ_WRITE_TOKEN });
