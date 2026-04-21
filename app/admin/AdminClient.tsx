@@ -7,7 +7,7 @@ import Image from "next/image";
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
 type Article = {
   id: string; image: string; category: string;
-  title: string; excerpt: string; slug: string; date: string;
+  title: string; excerpt: string; body?: string; slug: string; date: string;
   inlineImages?: InlineImage[];
 };
 type TeamMember = {
@@ -446,7 +446,13 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
             <div>
               <label style={S.label}>Extracto</label>
               <textarea value={draft.excerpt} onChange={e => update("excerpt", e.target.value)}
-                style={{ ...S.textarea, minHeight: 100 }} placeholder="Descripción breve del artículo..." />
+                style={{ ...S.textarea, minHeight: 80 }} placeholder="Descripción breve del artículo..." />
+            </div>
+
+            <div>
+              <label style={S.label}>Contenido</label>
+              <textarea value={draft.body ?? ""} onChange={e => update("body", e.target.value)}
+                style={{ ...S.textarea, minHeight: 220 }} placeholder={"Escribí el cuerpo del artículo aquí.\n\nCada línea en blanco crea un párrafo nuevo."} />
             </div>
 
             <div>

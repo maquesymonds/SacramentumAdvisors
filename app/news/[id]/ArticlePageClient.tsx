@@ -15,7 +15,7 @@ import { lenisRef }   from "@/lib/lenis-ref";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
-type RawArticle = { id: string; image: string; category: string; title: string; excerpt: string; slug: string; date: string; inlineImages?: InlineImage[] };
+type RawArticle = { id: string; image: string; category: string; title: string; excerpt: string; body?: string; slug: string; date: string; inlineImages?: InlineImage[] };
 
 function formatDate(dateStr: string, locale: "en" | "es") {
   return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-US" : "es-UY", {
@@ -49,7 +49,10 @@ export default function ArticlePageClient({
 
   if (!article) return null;
 
-  const body = articleBodies[id]?.[locale] ?? articleBodies[id]?.["en"] ?? [];
+  // Admin-authored body: split on blank lines into paragraphs
+  const body: string[] = article.body
+    ? article.body.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
+    : (articleBodies[id]?.[locale] ?? articleBodies[id]?.["en"] ?? []);
 
   return (
     <>

@@ -18,6 +18,7 @@ export type AdminArticle = {
   category:      string;
   title:         string;
   excerpt:       string;
+  body?:         string;
   slug:          string;
   date:          string;
   inlineImages?: InlineImage[];
