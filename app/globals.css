@@ -222,6 +222,22 @@
   -webkit-backdrop-filter: blur(20px);
 }
 
+/* ── Scroll hint pulse ───────────────────────────────────────────────────────── */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.7; transform: scaleY(1);   }
+  50%       { opacity: 0.3; transform: scaleY(0.6); }
+}
+
+/* ── News/CTA wrapper: mobile-only gradient background ──────────────────────── */
+.news-cta-wrapper {
+  background: linear-gradient(to bottom, var(--color-surface) 0%, #111F30 55%);
+}
+@media (min-width: 1024px) {
+  .news-cta-wrapper {
+    background: none;
+  }
+}
+
 /* ── Button base styles ─────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;

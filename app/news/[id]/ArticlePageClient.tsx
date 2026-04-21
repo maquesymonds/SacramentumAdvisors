@@ -9,10 +9,13 @@ import { useLocale } from "@/lib/locale-context";
 import { t }         from "@/data/translations";
 import { articleBodies } from "@/data/article-bodies";
 import { motion }    from "framer-motion";
+import { useEffect }  from "react";
+import { lenisRef }   from "@/lib/lenis-ref";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type RawArticle = { id: string; image: string; category: string; title: string; excerpt: string; slug: string; date: string };
+type InlineImage = { url: string; afterParagraph: number; caption?: string };
+type RawArticle = { id: string; image: string; category: string; title: string; excerpt: string; slug: string; date: string; inlineImages?: InlineImage[] };
 
 function formatDate(dateStr: string, locale: "en" | "es") {
   return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-US" : "es-UY", {
@@ -27,6 +30,17 @@ export default function ArticlePageClient({
   id: string;
   adminArticles?: RawArticle[] | null;
 }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    const lenis = lenisRef.current;
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+      // Second call after a frame in case Lenis restores position after first call
+      requestAnimationFrame(() => lenis.scrollTo(0, { immediate: true }));
+    }
+  }, []);
+
   const { locale } = useLocale();
   const copy       = t(locale).news;
 
@@ -178,23 +192,49 @@ export default function ArticlePageClient({
               {article.excerpt}
             </motion.p>
 
-            {/* Body paragraphs */}
-            {body.map((para, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: EASE, delay: 0.3 + i * 0.08 }}
-                style={{
-                  fontSize:     "clamp(0.95rem, 1.4vw, 1.05rem)",
-                  lineHeight:   1.8,
-                  color:        "rgba(31,41,51,0.75)",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                {para}
-              </motion.p>
-            ))}
+            {/* Body paragraphs + inline images */}
+            {(() => {
+              const inline = article.inlineImages ?? [];
+              const imgsAt = (n: number) => inline.filter(img => img.afterParagraph === n);
+              const renderImg = (img: InlineImage, key: string) => (
+                <motion.figure
+                  key={key}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: EASE }}
+                  style={{ margin: "2rem 0", padding: 0 }}
+                >
+                  <div style={{ position: "relative", width: "100%", borderRadius: 12, overflow: "hidden", aspectRatio: "16/9" }}>
+                    <Image src={img.url} alt={img.caption ?? ""} fill quality={85} className="object-cover object-center" sizes="(max-width: 780px) 100vw, 780px" />
+                  </div>
+                  {img.caption && (
+                    <figcaption style={{ marginTop: "0.6rem", fontSize: "0.78rem", color: "rgba(31,41,51,0.4)", textAlign: "center", fontStyle: "italic" }}>
+                      {img.caption}
+                    </figcaption>
+                  )}
+                </motion.figure>
+              );
+
+              const elements: React.ReactNode[] = [];
+              // Images before paragraph 1 (afterParagraph === 0)
+              imgsAt(0).forEach((img, j) => elements.push(renderImg(img, `pre-${j}`)));
+
+              body.forEach((para, i) => {
+                elements.push(
+                  <motion.p
+                    key={`p-${i}`}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: EASE, delay: 0.3 + i * 0.08 }}
+                    style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)", lineHeight: 1.8, color: "rgba(31,41,51,0.75)", marginBottom: "1.5rem" }}
+                  >
+                    {para}
+                  </motion.p>
+                );
+                imgsAt(i + 1).forEach((img, j) => elements.push(renderImg(img, `after-${i}-${j}`)));
+              });
+              return elements;
+            })()}
 
           </div>
         </section>

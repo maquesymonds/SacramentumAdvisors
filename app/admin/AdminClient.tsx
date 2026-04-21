@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
+type InlineImage = { url: string; afterParagraph: number; caption?: string };
 type Article = {
   id: string; image: string; category: string;
   title: string; excerpt: string; slug: string; date: string;
+  inlineImages?: InlineImage[];
 };
 type TeamMember = {
   id: string; image: string; name: string; role: string; bio: string;
@@ -453,6 +455,88 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
                 style={{ ...S.input, color: "rgba(31,41,51,0.5)", fontSize: "0.82rem" }}
                 placeholder="se-genera-automaticamente" />
             </div>
+
+            {/* ── Inline images ── */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
+                <label style={S.label}>Imágenes adicionales</label>
+                <button
+                  onClick={() => setDraft(d => d ? { ...d, inlineImages: [...(d.inlineImages ?? []), { url: "", afterParagraph: 1, caption: "" }] } : d)}
+                  style={{ ...S.btnWarm, padding: "0.3rem 0.75rem", fontSize: "0.68rem" }}
+                >
+                  + Agregar imagen
+                </button>
+              </div>
+              {(draft.inlineImages ?? []).length === 0 && (
+                <p style={{ fontSize: "0.78rem", color: "rgba(31,41,51,0.3)", fontStyle: "italic" }}>
+                  Sin imágenes adicionales. Las imágenes se insertan entre párrafos del artículo.
+                </p>
+              )}
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                {(draft.inlineImages ?? []).map((img, i) => (
+                  <div key={i} style={{ border: "1px solid rgba(31,41,51,0.1)", borderRadius: 12, padding: "1rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      <span style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)" }}>
+                        Imagen {i + 1}
+                      </span>
+                      <button
+                        onClick={() => setDraft(d => d ? { ...d, inlineImages: (d.inlineImages ?? []).filter((_, j) => j !== i) } : d)}
+                        style={{ ...S.btnDanger, padding: "0.2rem 0.6rem", fontSize: "0.68rem" }}
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                    <ImageUploader
+                      value={img.url}
+                      onChange={v => setDraft(d => {
+                        if (!d) return d;
+                        const imgs = [...(d.inlineImages ?? [])];
+                        imgs[i] = { ...imgs[i], url: v };
+                        return { ...d, inlineImages: imgs };
+                      })}
+                      aspect="16/9"
+                    />
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                      <div>
+                        <label style={S.label}>Después del párrafo N°</label>
+                        <input
+                          type="number" min={0} value={img.afterParagraph}
+                          onChange={e => setDraft(d => {
+                            if (!d) return d;
+                            const imgs = [...(d.inlineImages ?? [])];
+                            imgs[i] = { ...imgs[i], afterParagraph: Number(e.target.value) };
+                            return { ...d, inlineImages: imgs };
+                          })}
+                          style={S.input}
+                          placeholder="1"
+                        />
+                        <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)", marginTop: "0.25rem", display: "block" }}>
+                          0 = antes del primer párrafo
+                        </span>
+                      </div>
+                      <div>
+                        <label style={S.label}>Caption (opcional)</label>
+                        <input
+                          value={img.caption ?? ""}
+                          onChange={e => setDraft(d => {
+                            if (!d) return d;
+                            const imgs = [...(d.inlineImages ?? [])];
+                            imgs[i] = { ...imgs[i], caption: e.target.value };
+                            return { ...d, inlineImages: imgs };
+                          })}
+                          style={S.input}
+                          placeholder="Descripción de la imagen..."
+                        />
+                      </div>
+                    </div>
+                    {img.url && (
+                      <img src={img.url} alt="" style={{ width: "100%", maxHeight: 160, objectFit: "cover", borderRadius: 8 }} />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       ) : (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,6 +14,15 @@ const expoOut = (t: number): number => Math.min(1, 1.001 - Math.pow(2, -10 * t))
 interface Props { children: ReactNode }
 
 export default function SmoothScrollProvider({ children }: Props) {
+  const pathname = usePathname();
+
+  // Reset scroll to top on every route change
+  useEffect(() => {
+    const lenis = lenisRef.current;
+    if (lenis) lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
+
   useEffect(() => {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
 

@@ -20,7 +20,7 @@ export default function Navigation() {
   const forceDark = pathname === "/contact" || pathname === "/services" || pathname === "/news" || pathname === "/invest" || pathname.startsWith("/news/");
 
   const [menuOpen,    setMenuOpen]    = useState(false);
-  const [introVisible,setIntroVisible]= useState(true);
+  const [introVisible,setIntroVisible]= useState(() => pathname !== "/");
   const [scrollDark,  setScrollDark]  = useState(false);
 
   // On the landing page, detect which section is behind the nav and switch theme

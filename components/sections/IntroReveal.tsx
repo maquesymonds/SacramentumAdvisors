@@ -17,13 +17,15 @@ function MobileHero() {
   const router = useRouter();
 
   useEffect(() => {
-    window.dispatchEvent(new CustomEvent("intro-nav-ready"));
+    if (window.innerWidth < 1024) {
+      window.dispatchEvent(new CustomEvent("intro-nav-ready"));
+    }
   }, []);
 
   return (
     <div
       id="home"
-      className="lg:hidden"
+      className="lg:!hidden"
       style={{
         position:           "relative",
         height:             "100vh",
@@ -108,16 +110,18 @@ export default function IntroReveal() {
   const copy   = t(locale);
   const router = useRouter();
 
-  const outerRef  = useRef<HTMLDivElement>(null);
-  const bgRef     = useRef<HTMLDivElement>(null);
-  const windowRef = useRef<HTMLImageElement>(null);
-  const textRef   = useRef<HTMLDivElement>(null);
+  const outerRef   = useRef<HTMLDivElement>(null);
+  const bgRef      = useRef<HTMLDivElement>(null);
+  const windowRef  = useRef<HTMLImageElement>(null);
+  const textRef    = useRef<HTMLDivElement>(null);
+  const scrollHintRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const outer = outerRef.current;
     const bg    = bgRef.current;
     const win   = windowRef.current;
     const text  = textRef.current;
+    const hint  = scrollHintRef.current;
     if (!outer || !bg || !win || !text) return;
 
     const lenis = lenisRef.current;
@@ -134,7 +138,7 @@ export default function IntroReveal() {
     whoosh.currentTime = 0.25;
 
     const ctx = gsap.context(() => {
-      gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: outer,
           start:   "top top",
@@ -142,7 +146,6 @@ export default function IntroReveal() {
           scrub:   true,
           onRefresh: () => {
             if (!skipIntro) return;
-            // Jump scroll to the end of the trigger (outside state)
             const target = outer.offsetTop + outer.offsetHeight - window.innerHeight;
             if (lenis) lenis.scrollTo(target, { immediate: true });
             else window.scrollTo({ top: target });
@@ -176,6 +179,8 @@ export default function IntroReveal() {
           y:        0,
           ease:     "power2.out",
         }, 0.68);
+
+      if (hint) tl.to(hint, { opacity: 0, y: 8, ease: "power1.in" }, 0);
     });
 
     return () => {
@@ -218,6 +223,29 @@ export default function IntroReveal() {
             draggable={false}
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}
           />
+        </div>
+
+        {/* Scroll hint */}
+        <div
+          ref={scrollHintRef}
+          style={{
+            position:       "absolute",
+            bottom:         "2.5rem",
+            left:           "50%",
+            transform:      "translateX(-50%)",
+            zIndex:         4,
+            display:        "flex",
+            flexDirection:  "column",
+            alignItems:     "center",
+            gap:            "0.5rem",
+            color:          "rgba(255,255,255,0.7)",
+            pointerEvents:  "none",
+          }}
+        >
+          <span style={{ fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
+            Scroll
+          </span>
+          <div style={{ width: 1, height: "2.5rem", background: "linear-gradient(to bottom, rgba(255,255,255,0.7), transparent)", animation: "scrollPulse 1.8s ease-in-out infinite" }} />
         </div>
 
         {/* Hero text — fades in as window zooms away */}

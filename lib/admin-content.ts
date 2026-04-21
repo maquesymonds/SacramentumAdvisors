@@ -4,14 +4,21 @@ import { t } from "@/data/translations";
 
 const CONTENT_FILE = path.join(process.cwd(), "data/admin-content.json");
 
+export type InlineImage = {
+  url:            string;
+  afterParagraph: number; // 0 = before first paragraph, 1 = after §1, etc.
+  caption?:       string;
+};
+
 export type AdminArticle = {
-  id: string;
-  image: string;
-  category: string;
-  title: string;
-  excerpt: string;
-  slug: string;
-  date: string;
+  id:            string;
+  image:         string;
+  category:      string;
+  title:         string;
+  excerpt:       string;
+  slug:          string;
+  date:          string;
+  inlineImages?: InlineImage[];
 };
 
 export type AdminTeamMember = {
