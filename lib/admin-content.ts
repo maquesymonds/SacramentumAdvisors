@@ -5,7 +5,6 @@ import { list } from "@vercel/blob";
 import { unstable_noStore as noStore } from "next/cache";
 
 const CONTENT_FILE = path.join(process.cwd(), "data/admin-content.json");
-const BLOB_PATH    = "admin/content.json";
 
 export type InlineImage = {
   url:            string;
@@ -67,9 +66,12 @@ export async function fetchAdminContent(): Promise<AdminContent> {
   noStore();
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
-      const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 });
+      const { blobs } = await list({ prefix: "admin/content", limit: 10 });
       if (blobs.length) {
-        const res = await fetch(blobs[0].url + "?t=" + Date.now(), { cache: "no-store" });
+        const newest = blobs.sort((a, b) =>
+          new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
+        )[0];
+        const res = await fetch(newest.url, { cache: "no-store" });
         if (res.ok) return await res.json();
       }
     } catch {}
