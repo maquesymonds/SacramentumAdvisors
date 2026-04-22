@@ -126,7 +126,7 @@ function MobileCarousel({ cards }: { cards: SacramentumCard[] }) {
               </p>
 
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1.5rem", paddingTop: "1.25rem", borderTop: "1px solid rgba(31,41,51,0.06)", flexShrink: 0 }}>
-                <span style={{ fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(31,41,51,0.3)" }}>Sacramentum Advisors</span>
+                <span style={{ fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(31,41,51,0.5)", fontWeight: 700 }}>Sacramentum Advisors</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/LogoBeige.png" alt="" aria-hidden="true" style={{ height: 18, width: "auto", opacity: 0.55, flexShrink: 0 }} />
               </div>
@@ -345,7 +345,7 @@ export default function WhySacramentum() {
                         flexShrink:     0,
                       }}
                     >
-                      <span style={{ fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(31,41,51,0.3)" }}>
+                      <span style={{ fontSize: "0.65rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(31,41,51,0.5)", fontWeight: 700 }}>
                         Sacramentum Advisors
                       </span>
                       <img

@@ -31,10 +31,10 @@ const LocaleContext = createContext<LocaleContextValue>({
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("en");
 
-  // Hydrate from localStorage on mount
+  // Hydrate from localStorage on mount (only if user explicitly chose a language)
   useEffect(() => {
     const stored = localStorage.getItem("sa-locale") as Locale | null;
-    if (stored === "en" || stored === "es") {
+    if (stored === "es") {
       setLocaleState(stored);
     }
   }, []);

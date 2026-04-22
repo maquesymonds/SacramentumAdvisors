@@ -235,7 +235,7 @@ const en: SiteTranslations = {
   hero: {
     eyebrow:     "Strategic Asset Acquisition",
     headline:    "The advisory firm for your strategic positioning in Uruguay.",
-    subheadline: "We structure real estate, residency, and investment strategy for families and investors entering Latin America's most stable country.",
+    subheadline: "We structure real estate, residency, and capital strategy for families and investors entering Latin America through its most stable country.",
     cta:         "Schedule a call",
     ctaSecondary:"Explore Uruguay",
     scrollLabel: "Scroll to explore",
@@ -321,7 +321,7 @@ const en: SiteTranslations = {
 
   howWeSupport: {
     eyebrow:     "Our Support",
-    headline:    "How We Support Your Move or Investment",
+    headline:    "How We Support You",
     subheadline: "From market intelligence and transaction structuring to residency, local establishment, and long-term capital positioning, our team supports each stage of your investment move into Uruguay.",
     cta:         "Schedule a private advisory call",
     cards: [
@@ -347,7 +347,7 @@ const en: SiteTranslations = {
         id:          "investment-banking",
         image:       "/images/bandera.webp",
         title:       "Investment banking boutique",
-        description: "Through Sacramentum Capital, we provide discreet advisory across M&A, capital markets, institutional relationships, and investment law, supporting sophisticated transactions with precision and strategic clarity.",
+        description: "Through Sacramentum Capital, we provide professional advisory across M&A, capital markets, advisor institutional relationships, and investment law, supporting sophisticated transactions with precision and strategic clarity.",
       },
     ],
   },
@@ -849,9 +849,9 @@ const es: SiteTranslations = {
   },
 
   news: {
-    eyebrow:     "Uruguay in the News",
-    headline:    "Uruguay in the News",
-    subtitle:    "Una selección curada de historias y señales que marcan el ascenso de Uruguay como destino estratégico para la inversión, el estilo de vida y el acceso regional a largo plazo.",
+    eyebrow:     "Uruguay en los Medios",
+    headline:    "Uruguay en los Medios",
+    subtitle:    "Una selección curada de historias y señales que marcan el ascenso de Uruguay como destino estratégico para la inversión, la calidad de vida y el posicionamiento como hub a largo plazo.",
     viewAll:     "Ver todos los artículos",
     readArticle: "Leer artículo",
     articles: [

@@ -146,7 +146,7 @@ export default function Hero() {
                   style={{ borderRadius: "50px", background: "rgba(255,255,255,0.15)" }}
                   aria-hidden="true"
                 />
-                <span className="relative z-10">Schedule a consultation</span>
+                <span className="relative z-10">Schedule a call</span>
               </button>
             </motion.div>
 
