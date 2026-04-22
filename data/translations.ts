@@ -234,16 +234,16 @@ const en: SiteTranslations = {
 
   hero: {
     eyebrow:     "Strategic Asset Acquisition",
-    headline:    "The advisory firm behind your move into Uruguay.",
-    subheadline: "We structure real estate, residency, and capital strategy for families and investors entering Latin America's most stable country.",
-    cta:         "Schedule a consultation",
+    headline:    "The advisory firm for your strategic positioning in Uruguay.",
+    subheadline: "We structure real estate, residency, and investment strategy for families and investors entering Latin America's most stable country.",
+    cta:         "Schedule a call",
     ctaSecondary:"Explore Uruguay",
     scrollLabel: "Scroll to explore",
   },
 
   whyUruguay: {
     eyebrow:     "Why Uruguay",
-    headline:    "Why invest in Uruguay?",
+    headline:    "Why Uruguay?",
     subheadline: "A stable, globally connected platform for capital preservation, regional expansion, and long-term family positioning.",
     stats: [
       { value: "#1",   label: "Least corruption in Latin America" },
@@ -321,8 +321,8 @@ const en: SiteTranslations = {
 
   howWeSupport: {
     eyebrow:     "Our Support",
-    headline:    "How We Support Your Move",
-    subheadline: "From market intelligence and transaction structuring to residency, local establishment, and long-term capital positioning, our team supports each stage of your move into Uruguay.",
+    headline:    "How We Support Your Move or Investment",
+    subheadline: "From market intelligence and transaction structuring to residency, local establishment, and long-term capital positioning, our team supports each stage of your investment move into Uruguay.",
     cta:         "Schedule a private advisory call",
     cards: [
       {
@@ -346,7 +346,7 @@ const en: SiteTranslations = {
       {
         id:          "investment-banking",
         image:       "/images/bandera.webp",
-        title:       "Boutique Investment Banking",
+        title:       "Investment banking boutique",
         description: "Through Sacramentum Capital, we provide discreet advisory across M&A, capital markets, institutional relationships, and investment law, supporting sophisticated transactions with precision and strategic clarity.",
       },
     ],
@@ -433,19 +433,19 @@ const en: SiteTranslations = {
         },
         {
           id:    "eleanor",
-          image: "/images/Eleanor.webp",
-          name:  "Eleanor Parks",
-          role:  "Sustainability & Future Systems",
-          bio:   "Director of Sustainability. Everything starts with an idea. Perhaps you want to start a business or turn a hobby into something more.",
+          image: "/images/PaulinaFernandez.JPG",
+          name:  "Paulina Fernandez Rubio",
+          role:  "Investment Sales & Wealth Management",
+          bio:   "Paulina is a distinguished investment sales professional with a stellar track record in investment product brokerage and personal wealth management across Europe and South America. With a natural talent for sales and exceptional relationship-building skills, Paulina excels at connecting with high-net-worth individuals. She brings extensive multinational financial services experience from top-tier institutions like Citibank, Merrill Lynch, and Lloyds TSB, all backed by a Business Administration degree with a finance emphasis. A true global citizen, Paulina is fluent in Spanish, English, Portuguese, French, and German. Her studies and professional connections extend across the USA, Switzerland, Spain, and South America, particularly in Argentina, Brazil, and Uruguay. Married to an expatriate marketing executive, Paulina's dynamic career has taken her across the globe, living in Montevideo, Lima, Dubai, Rio de Janeiro, Zurich, and Barcelona between 2003–2017.",
         },
       ],
     },
   },
 
   news: {
-    eyebrow:     "Uruguay News",
-    headline:    "Uruguay News",
-    subtitle:    "A curated selection of stories and signals shaping Uruguay's rise as a strategic destination for investment, lifestyle, and long-term regional access.",
+    eyebrow:     "Uruguay in the News",
+    headline:    "Uruguay in the News",
+    subtitle:    "Discover the latest stories and insights that showcase Uruguay's potential as an investment destination and cultural hub.",
     viewAll:     "View all articles",
     readArticle: "Read article",
     articles: [
@@ -611,7 +611,7 @@ const en: SiteTranslations = {
     },
     contact: {
       title:    "Contact",
-      location: "Montevideo, Carrasco",
+      location: "Carrasco, Montevideo",
       email:    "ines@sacramentumcapital.com",
     },
     legal: {
@@ -839,18 +839,18 @@ const es: SiteTranslations = {
         },
         {
           id:    "eleanor",
-          image: "/images/Eleanor.webp",
-          name:  "Eleanor Parks",
-          role:  "Sostenibilidad y Sistemas del Futuro",
-          bio:   "Directora de sostenibilidad. Todo empieza con una idea. Tal vez quieras comenzar un negocio o convertir un pasatiempo en algo más.",
+          image: "/images/PaulinaFernandez.JPG",
+          name:  "Paulina Fernandez Rubio",
+          role:  "Ventas de Inversión y Gestión de Patrimonio",
+          bio:   "Paulina es una destacada profesional de ventas de inversión con un historial sobresaliente en corretaje de productos de inversión y gestión de patrimonio personal en Europa y América del Sur. Con un talento natural para las ventas y habilidades excepcionales para construir relaciones, Paulina se destaca al conectar con individuos de alto patrimonio neto. Aporta una amplia experiencia en servicios financieros multinacionales en instituciones de primer nivel como Citibank, Merrill Lynch y Lloyds TSB, respaldada por una licenciatura en Administración de Empresas con énfasis en finanzas. Una verdadera ciudadana global, Paulina habla con fluidez español, inglés, portugués, francés y alemán. Sus estudios y conexiones profesionales se extienden por Estados Unidos, Suiza, España y América del Sur, especialmente en Argentina, Brasil y Uruguay. Casada con un ejecutivo de marketing expatriado, la dinámica carrera de Paulina la ha llevado por todo el mundo, habiendo vivido en Montevideo, Lima, Dubái, Río de Janeiro, Zúrich y Barcelona entre 2003 y 2017.",
         },
       ],
     },
   },
 
   news: {
-    eyebrow:     "Uruguay News",
-    headline:    "Uruguay News",
+    eyebrow:     "Uruguay in the News",
+    headline:    "Uruguay in the News",
     subtitle:    "Una selección curada de historias y señales que marcan el ascenso de Uruguay como destino estratégico para la inversión, el estilo de vida y el acceso regional a largo plazo.",
     viewAll:     "Ver todos los artículos",
     readArticle: "Leer artículo",
@@ -1017,7 +1017,7 @@ const es: SiteTranslations = {
     },
     contact: {
       title:    "Contacto",
-      location: "Montevideo, Carrasco",
+      location: "Carrasco, Montevideo",
       email:    "ines@sacramentumcapital.com",
     },
     legal: {
