@@ -230,6 +230,36 @@ export default function TextsPanel() {
 
   return (
     <div>
+
+      {/* ── Toast ── */}
+      {saved && (
+        <div style={{
+          position:      "fixed",
+          bottom:        "2rem",
+          left:          "50%",
+          transform:     "translateX(-50%)",
+          backgroundColor: "#111F30",
+          color:         "white",
+          padding:       "0.875rem 1.75rem",
+          borderRadius:  50,
+          fontSize:      "0.85rem",
+          fontWeight:    500,
+          letterSpacing: "0.02em",
+          boxShadow:     "0 8px 32px rgba(0,0,0,0.22)",
+          zIndex:        9999,
+          display:       "flex",
+          alignItems:    "center",
+          gap:           "0.6rem",
+          pointerEvents: "none",
+        }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="7" stroke="#CCA87C" strokeWidth="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="#CCA87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          Guardado correctamente
+        </div>
+      )}
+
       {/* Top bar: save + lang toggle */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "2rem", gap: "1rem" }}>
 
