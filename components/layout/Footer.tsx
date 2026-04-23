@@ -222,37 +222,6 @@ export default function Footer() {
               {copy.brand.tagline}
             </p>
 
-            {/* Location + email chips */}
-            <div className="flex flex-col gap-3 mt-7">
-              <div
-                className="flex items-center gap-2.5"
-                style={{ color: "rgba(250,250,248,0.38)", fontSize: "0.78rem" }}
-              >
-                <IconLocation />
-                <span>{copy.contact.location}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span style={{ color: "rgba(250,250,248,0.38)" }}>
-                  <IconMail />
-                </span>
-                <a
-                  href={`mailto:${copy.contact.email}`}
-                  style={{
-                    color:      "rgba(250,250,248,0.38)",
-                    fontSize:   "0.78rem",
-                    transition: "color 0.2s ease",
-                  }}
-                  onMouseEnter={e =>
-                    ((e.currentTarget as HTMLElement).style.color = "var(--color-warm)")
-                  }
-                  onMouseLeave={e =>
-                    ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.38)")
-                  }
-                >
-                  {copy.contact.email}
-                </a>
-              </div>
-            </div>
           </motion.div>
 
           {/* ── Col 2: Navigation ─────────────────────────── */}

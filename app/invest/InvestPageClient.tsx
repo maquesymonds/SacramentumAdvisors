@@ -32,7 +32,7 @@ const CHAPTERS = [
     en: {
       eyebrow:   "01 · Real Estate",
       headline:  "Invest where you can live: The Lifestyle Assets Concept",
-      body:      "An asset shouldn't just be a number in a bank account. We identify properties that serve a dual purpose: capital preservation (productive farmland, estancias, premium real estate) and immediate quality of life.\n\nWe believe the most resilient portfolio is one you can experience. These are assets that preserve and grow your capital while remaining livable, enjoyable and productive. Uruguay's real estate market offers legal certainty, dollar-denominated transactions and unrestricted foreign ownership.",
+      body:      "We believe the most resilient portfolio is one you can experience. Assets that preserve and grow your capital while remaining livable, enjoyable and productive.\n\nWe will help you find properties that serve a dual purpose: capital preservation (productive farmland, estancias, premium real estate) and immediate quality of life.\n\nUruguay's real estate market offers legal certainty, dollar-denominated transactions and unrestricted foreign ownership.",
       stat:      { value: "0%", label: "Restrictions on foreign ownership" },
       secondary: "Residential · Commercial · Coastal · Heritage",
       cta:       "Ask about our farmland, agricultural and coastal property listings",
@@ -40,7 +40,7 @@ const CHAPTERS = [
     es: {
       eyebrow:   "01 · Bienes Raíces",
       headline:  "Invierta donde pueda vivir: El concepto de Lifestyle Assets",
-      body:      "Un activo no debería ser solo un número en una cuenta bancaria. Seleccionamos propiedades que cumplen una doble función: preservación de capital (campos productivos, estancias, real estate premium) y calidad de vida inmediata.\n\nActivos que al mismo tiempo que preservan su capital y aumentan de valor, son vivibles, disfrutables y productivos. El mercado inmobiliario de Uruguay ofrece certeza jurídica, transacciones en dólares y propiedad extranjera sin restricciones.",
+      body:      "Creemos que la cartera más sólida es aquella que también puede disfrutarse en la vida real. Activos que preservan y hacen crecer su capital, al tiempo que resultan habitables, disfrutables y productivos.\n\nLe ayudamos a identificar propiedades con un doble propósito: preservación de capital (campos productivos, estancias y bienes raíces premium) y calidad de vida inmediata.\n\nEl mercado inmobiliario de Uruguay ofrece seguridad jurídica, transacciones denominadas en dólares y propiedad sin restricciones para inversores extranjeros.",
       stat:      { value: "0%", label: "Restricciones a propietarios extranjeros" },
       secondary: "Residencial · Comercial · Costero · Patrimonial",
       cta:       "Consúltenos para conocer nuestros listings de campos agrícolas, ganaderos y forestales, chacras serranas o propiedades costeras",
@@ -337,12 +337,12 @@ export default function InvestPageClient() {
                 {locale === "en" ? (
                   <>
                     <p>Discover investment opportunities in one of the most stable and attractive countries in Latin America.</p>
-                    <p>In recent years, Uruguay has experienced significant progress in the development of its road, rail, and energy infrastructure. These advancements have created tangible opportunities for strategic players across key sectors such as real estate, infrastructure, and logistics.</p>
+                    <p>In recent years, Uruguay has experienced significant progress in the development of its road, rail, and energy infrastructure. These advancements have created tangible opportunities for strategic players across key sectors such as real estate, infrastructure, logistics, agriculture, forestry, and renewables.</p>
                   </>
                 ) : (
                   <>
-                    <p>Descubre las oportunidades de inversión en uno de los países más estables y atractivos de América Latina.</p>
-                    <p>En los últimos años, Uruguay ha experimentado un avance significativo en el desarrollo de su infraestructura vial, ferroviaria y energética. Estos avances han generado oportunidades concretas para la participación de players estratégicos en sectores clave como el sector agro-forestal, infraestructura y logística.</p>
+                    <p>Descubra las oportunidades de inversión en Uruguay, uno de los países más estables y atractivos de América Latina.</p>
+                    <p>En los últimos años, Uruguay ha experimentado un avance significativo en el desarrollo de su infraestructura vial, ferroviaria y energética. Estos avances han generado oportunidades concretas para la participación de players estratégicos en sectores clave como el agro-forestal, agroindustrial, infraestructura y logística, así como en energías renovables.</p>
                   </>
                 )}
               </motion.div>
@@ -414,14 +414,14 @@ export default function InvestPageClient() {
                   {"pillars" in copy ? (
                     /* ── Technology: intro + three pillars ── */
                     <>
-                      <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "0.95rem", lineHeight: 1.65, maxWidth: "52ch", marginBottom: "1.25rem" }}>
+                      <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.65, maxWidth: "52ch", marginBottom: "1.25rem" }}>
                         {copy.intro}
                       </p>
                       <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem", marginBottom: "1.25rem" }}>
                         {copy.pillars.map((p: { heading: string; body: string }) => (
                           <div key={p.heading}>
-                            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.35rem" }}>{p.heading}</p>
-                            <p style={{ color: "rgba(255,255,255,0.62)", fontSize: "0.9rem", lineHeight: 1.65 }}>{p.body}</p>
+                            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.35rem" }}>{p.heading}</p>
+                            <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.65 }}>{p.body}</p>
                           </div>
                         ))}
                       </div>
@@ -435,17 +435,17 @@ export default function InvestPageClient() {
                   ) : "keyDrivers" in copy ? (
                     /* ── Agriculture: key drivers + downloads ── */
                     <>
-                      <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "0.95rem", lineHeight: 1.65, maxWidth: "52ch", marginBottom: "1.25rem" }}>{copy.body}</p>
+                      <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.65, maxWidth: "52ch", marginBottom: "1.25rem" }}>{copy.body}</p>
                       <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.25rem" }}>
                         {[
                           { heading: locale === "en" ? "Key Factors" : "Factores Clave", items: copy.keyDrivers },
                           { heading: locale === "en" ? "Highlights" : "Aspectos del Mercado", items: copy.marketHighlights },
                         ].map(({ heading, items }) => (
                           <div key={heading}>
-                            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{heading}</p>
+                            <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{heading}</p>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                               {items.map((item: string) => (
-                                <li key={item} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start", color: "rgba(255,255,255,0.62)", fontSize: "0.82rem", lineHeight: 1.5 }}>
+                                <li key={item} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
                                   <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0, marginTop: "0.25rem" }}>—</span>{item}
                                 </li>
                               ))}
@@ -453,7 +453,7 @@ export default function InvestPageClient() {
                           </div>
                         ))}
                       </div>
-                      <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem", lineHeight: 1.5, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.875rem", marginBottom: "1.25rem", maxWidth: "52ch" }}>{copy.legalNote}</p>
+                      <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: 1.5, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.875rem", marginBottom: "1.25rem", maxWidth: "52ch" }}>{copy.legalNote}</p>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "1.5rem" }}>
                         {copy.downloads.map((dl: { label: string; href: string }) => (
                           <a key={dl.label} href={dl.href} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(255,255,255,0.75)", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, border: "1px solid rgba(255,255,255,0.18)", borderRadius: "50px", padding: "0.45rem 1rem", transition: "all 0.25s ease" }}
@@ -474,7 +474,7 @@ export default function InvestPageClient() {
                   ) : (
                     /* ── Default: body + stat + cta ── */
                     <>
-                      <div style={{ color: "rgba(255,255,255,0.68)", fontSize: "1rem", lineHeight: 1.75, maxWidth: "52ch", marginBottom: "2.25rem" }}>
+                      <div style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.75, maxWidth: "52ch", marginBottom: "2.25rem" }}>
                         {copy.body.split("\n\n").map((para: string, pi: number, arr: string[]) => (
                           <p key={pi} style={{ marginBottom: pi < arr.length - 1 ? "1rem" : 0 }}>{para}</p>
                         ))}
@@ -555,9 +555,9 @@ export default function InvestPageClient() {
                   {copy.headline}
                 </h2>
                 {"intro" in copy
-                  ? <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: "1.5rem" }}>{copy.intro}</p>
+                  ? <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: "1.5rem" }}>{copy.intro}</p>
                   : "body" in copy
-                    ? <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: "1.5rem" }}>{copy.body}</p>
+                    ? <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: "1.5rem" }}>{copy.body}</p>
                     : null
                 }
                 {"keyDrivers" in copy ? (
@@ -567,17 +567,17 @@ export default function InvestPageClient() {
                       { heading: locale === "en" ? "Highlights" : "Aspectos del Mercado", items: copy.marketHighlights },
                     ].map(({ heading, items }) => (
                       <div key={heading} style={{ marginBottom: "1.25rem" }}>
-                        <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}>{heading}</p>
+                        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}>{heading}</p>
                         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                           {items.map((item: string) => (
-                            <li key={item} style={{ display: "flex", gap: "0.5rem", color: "rgba(255,255,255,0.6)", fontSize: "0.82rem", lineHeight: 1.5 }}>
+                            <li key={item} style={{ display: "flex", gap: "0.5rem", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
                               <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0 }}>—</span>{item}
                             </li>
                           ))}
                         </ul>
                       </div>
                     ))}
-                    <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.72rem", lineHeight: 1.6, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.75rem", marginBottom: "1.25rem" }}>
+                    <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: 1.6, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.75rem", marginBottom: "1.25rem" }}>
                       {copy.legalNote}
                     </p>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>

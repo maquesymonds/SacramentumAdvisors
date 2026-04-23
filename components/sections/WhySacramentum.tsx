@@ -218,7 +218,7 @@ export default function WhySacramentum() {
                 lineHeight:    1.08,
               }}
             >
-              {locale === "en" ? <>Why<br />Sacramentum?</> : <>¿Por qué<br />Sacramentum?</>}
+              {locale === "en" ? <>Why<br />Sacramentum?</> : <>¿Por qué Sacramentum?</>}
             </h1>
           </div>
           <p className="text-body text-ink-muted leading-relaxed lg:pb-2">

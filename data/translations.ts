@@ -730,7 +730,7 @@ const es: SiteTranslations = {
 
   howWeSupport: {
     eyebrow:     "Nuestro Asesoramiento",
-    headline:    "Cómo te acompañamos",
+    headline:    "Cómo le acompañamos",
     subheadline: "Desde inteligencia de mercado y estructuración de transacciones hasta residencia, establecimiento local y posicionamiento de capital a largo plazo, nuestro equipo lo acompaña en cada etapa de su proceso.",
     cta:         "Agendar una llamada de asesoría privada",
     cards: [
