@@ -95,7 +95,7 @@ function MobileCarousel({ cards }: { cards: SacramentumCard[] }) {
             key={card.id}
             style={{
               flexShrink:      0,
-              width:           "76vw",
+              width:           "min(76vw, 400px)",
               scrollSnapAlign: "start",
               background:     "#FFFFFF",
               border:         "1px solid rgba(31,41,51,0.06)",
@@ -238,12 +238,12 @@ export default function WhySacramentum() {
           paddingBottom:      "var(--section-padding-y)",
         }}
       >
-        {/* Mobile carousel */}
-        <div className="sm:hidden mb-8">
+        {/* Mobile + tablet carousel */}
+        <div className="lg:hidden mb-8">
           <MobileCarousel cards={cards} />
         </div>
 
-        <div className="container-site hidden sm:block">
+        <div className="container-site hidden lg:block">
           <div
             style={{
               position:       "relative",
