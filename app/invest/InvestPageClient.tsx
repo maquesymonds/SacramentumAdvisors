@@ -271,11 +271,8 @@ export default function InvestPageClient() {
           const curr = textPanelRefs.current[i];
           const next = textPanelRefs.current[i + 1];
           const seg = gsap.timeline();
-          // Wipe current image up
           seg.to(imageRefs.current[i], { clipPath: "inset(0 0 100% 0)", duration: 1, ease: "none" }, 0);
-          // Fade out current text panel
           seg.to(curr, { opacity: 0, y: -24, duration: 0.35, ease: "power2.in" }, 0);
-          // Fade in next text panel
           seg.fromTo(
             next,
             { opacity: 0, y: 30 },

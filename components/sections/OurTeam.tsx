@@ -135,7 +135,7 @@ function PersonCard({ image, name, role, bio, index, locale, roleAbove }: Person
             sizes="180px"
           />
         </div>
-        <div className="flex flex-col pt-1">
+        <div className="flex flex-col pt-1" style={{ height: expanded ? "auto" : "240px", overflow: "hidden" }}>
           {!roleAbove && <div className="flex items-center gap-3 mb-4">
             <span className="block h-px w-7 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
             <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{role}</span>
@@ -144,15 +144,12 @@ function PersonCard({ image, name, role, bio, index, locale, roleAbove }: Person
             style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
             {name}
           </h3>
-          <span className="block mb-4" style={{ height: 1, width: "2.5rem", backgroundColor: "rgba(31,41,51,0.12)" }} />
           <div
             className="text-ink-muted leading-relaxed"
             style={expanded ? {
               fontSize: "0.875rem", display: "flex", flexDirection: "column", gap: "0.75rem",
             } : {
-              fontSize: "0.875rem", overflow: "hidden",
-              display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" as const,
-              minHeight: "4.35rem",
+              fontSize: "0.875rem", overflow: "hidden", flex: 1,
             }}
           >
             {bio.split("\n\n").map((para, i) => <p key={i} style={{ margin: 0 }}>{para}</p>)}
@@ -160,7 +157,7 @@ function PersonCard({ image, name, role, bio, index, locale, roleAbove }: Person
           <button
             onClick={() => setExpanded(e => !e)}
             style={{
-              marginTop: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.3rem",
+              flexShrink: 0, marginTop: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.3rem",
               color: "var(--color-warm)", fontSize: "0.72rem", letterSpacing: "0.08em",
               textTransform: "uppercase" as const, fontWeight: 500,
               background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "inherit",

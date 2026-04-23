@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef }  from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import Image               from "next/image";
 import Link                from "next/link";
 import { motion }          from "framer-motion";
@@ -143,6 +143,15 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
   const preview       = source.slice(0, 3);
   const mobilePreview = source.slice(0, 4);
   const h1Ref         = useRef<HTMLHeadingElement>(null);
+  const prevHeadline  = useRef("");
+
+  useLayoutEffect(() => {
+    if (!h1Ref.current) return;
+    if (copy.headline === prevHeadline.current) return;
+    prevHeadline.current = copy.headline;
+    h1Ref.current.textContent = copy.headline;
+  }, [copy.headline]);
+
   useCharReveal(h1Ref);
 
   return (
@@ -155,9 +164,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
-            <h1 ref={h1Ref} className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}>
-              {copy.headline}
-            </h1>
+            <h1 ref={h1Ref} className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }} />
           </div>
           <p className="text-body text-ink-muted leading-relaxed lg:pb-2">{copy.subtitle}</p>
         </div>

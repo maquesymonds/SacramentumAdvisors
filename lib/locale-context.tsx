@@ -61,7 +61,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     fetch("/api/translations")
       .then(r => r.json())
-      .then(data => { if (data && typeof data === "object") setOverrides(data); })
+      .then(data => { if (data && typeof data === "object" && Object.keys(data).length > 0) setOverrides(data); })
       .catch(() => {});
   }, []);
 
