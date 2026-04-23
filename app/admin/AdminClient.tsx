@@ -11,10 +11,14 @@ type Article = {
   inlineImages?: InlineImage[];
 };
 type TeamMember = {
-  id: string; image: string; name: string; role: string; bio: string;
+  id: string; image: string; name: string; role: string; bio: string; hidden?: boolean; group?: "leadership" | "advisory";
 };
 type Category = { id: string; label: string; color: string };
-type Content = { articles: Article[]; team: TeamMember[]; categories: Category[] };
+type BlogPost = {
+  id: string; title: string; date: string; excerpt: string; body: string;
+  image?: string; slug: string; linkedinUrl?: string;
+};
+type Content = { articles: Article[]; team: TeamMember[]; categories: Category[]; blog: BlogPost[] };
 
 const DEFAULT_CATEGORIES: Category[] = [
   { id: "economy",    label: "Economy",    color: "#2980B9" },
@@ -126,6 +130,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
 function Sidebar({ tab, setTab, onLogout }: { tab: string; setTab: (t: string) => void; onLogout: () => void }) {
   const items = [
     { id: "articles",   label: "Noticias",   icon: "◈" },
+    { id: "blog",       label: "Blog",       icon: "◧" },
     { id: "team",       label: "Equipo",     icon: "◉" },
     { id: "categories", label: "Categorías", icon: "◐" },
   ];
@@ -563,17 +568,182 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
   );
 }
 
+// ── Blog Panel ────────────────────────────────────────────────────────────────
+function BlogPanel({ posts, onSave, saving }: {
+  posts: BlogPost[]; onSave: (p: BlogPost[]) => void; saving: boolean;
+}) {
+  const [selected, setSelected] = useState<BlogPost | null>(null);
+  const [draft, setDraft]       = useState<BlogPost | null>(null);
+  const [isNew, setIsNew]       = useState(false);
+
+  const openPost = (p: BlogPost) => { setSelected(p); setDraft({ ...p }); setIsNew(false); };
+
+  const newPost = () => {
+    const blank: BlogPost = {
+      id: `post-${Date.now()}`, title: "", date: new Date().toISOString().split("T")[0],
+      excerpt: "", body: "", image: "", slug: "", linkedinUrl: "",
+    };
+    setSelected(blank); setDraft({ ...blank }); setIsNew(true);
+  };
+
+  const save = () => {
+    if (!draft) return;
+    const updated = draft.slug ? draft : { ...draft, slug: slugify(draft.title) };
+    const next = isNew
+      ? [...posts, updated]
+      : posts.map(p => p.id === updated.id ? updated : p);
+    onSave(next);
+    setSelected(updated); setDraft(updated); setIsNew(false);
+  };
+
+  const del = () => {
+    if (!selected) return;
+    onSave(posts.filter(p => p.id !== selected.id));
+    setSelected(null); setDraft(null);
+  };
+
+  const update = (field: keyof BlogPost, val: string) =>
+    setDraft(d => d ? { ...d, [field]: val } : d);
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", minHeight: "calc(100vh - 60px - 3.5rem)", gap: "1.5rem" }}>
+      {/* Left: List */}
+      <div style={{ backgroundColor: "white", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: "calc(100vh - 60px - 3.5rem)", position: "sticky", top: "calc(60px + 1.75rem)" }}>
+        <div style={{ padding: "1rem 1.25rem", borderBottom: "1px solid rgba(31,41,51,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)" }}>
+            {posts.length} posts
+          </span>
+          <button onClick={newPost} style={{ ...S.btnWarm, padding: "0.4rem 0.875rem", fontSize: "0.7rem" }}>
+            + Nuevo
+          </button>
+        </div>
+        <div style={{ overflowY: "auto", flex: 1 }}>
+          {posts.map(p => (
+            <div key={p.id} onClick={() => openPost(p)}
+              style={{
+                display: "flex", alignItems: "flex-start", gap: "0.75rem",
+                padding: "0.875rem 1.25rem", cursor: "pointer",
+                backgroundColor: selected?.id === p.id ? "rgba(204,168,124,0.08)" : "transparent",
+                borderLeft: selected?.id === p.id ? "2px solid #CCA87C" : "2px solid transparent",
+                borderBottom: "1px solid rgba(31,41,51,0.05)",
+                transition: "all 0.15s ease",
+              }}>
+              <div style={{ width: 44, height: 44, borderRadius: 8, overflow: "hidden", flexShrink: 0, backgroundColor: "#f0ede6" }}>
+                {p.image && <img src={p.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ fontSize: "0.82rem", fontWeight: 500, color: "#111F30", lineHeight: 1.3, marginBottom: "0.3rem",
+                  overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {p.title || "Sin título"}
+                </p>
+                <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)" }}>{p.date}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right: Edit form */}
+      {draft ? (
+        <div style={{ backgroundColor: "white", borderRadius: 16, padding: "2rem", overflowY: "auto" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.75rem" }}>
+            <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: 0 }}>
+              {isNew ? "Nuevo post" : "Editar post"}
+            </h3>
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              {!isNew && <button onClick={del} style={S.btnDanger}>Eliminar</button>}
+              <button onClick={() => { setSelected(null); setDraft(null); }} style={S.btnGhost}>Cancelar</button>
+              <button onClick={save} disabled={saving} style={S.btnPrimary}>
+                {saving ? "Guardando..." : "Guardar"}
+              </button>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gap: "1.25rem" }}>
+            <div>
+              <label style={S.label}>Título</label>
+              <input value={draft.title} onChange={e => update("title", e.target.value)} style={S.input} placeholder="Título del post" />
+            </div>
+
+            <div>
+              <label style={S.label}>Fecha</label>
+              <input type="date" value={draft.date} onChange={e => update("date", e.target.value)} style={S.input} />
+            </div>
+
+            <div>
+              <label style={S.label}>Extracto <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "rgba(31,41,51,0.35)" }}>(texto preview que aparece en la card)</span></label>
+              <textarea value={draft.excerpt} onChange={e => update("excerpt", e.target.value)}
+                style={{ ...S.textarea, minHeight: 80 }} placeholder="Descripción breve del post..." />
+            </div>
+
+            <div>
+              <label style={S.label}>Contenido</label>
+              <textarea value={draft.body} onChange={e => update("body", e.target.value)}
+                style={{ ...S.textarea, minHeight: 260 }} placeholder={"Escribí el contenido aquí.\n\nCada línea en blanco crea un párrafo nuevo."} />
+            </div>
+
+            <div>
+              <label style={S.label}>Imagen de portada (opcional)</label>
+              <ImageUploader value={draft.image ?? ""} onChange={v => update("image", v)} aspect="16/9" />
+            </div>
+
+            <div>
+              <label style={S.label}>URL de LinkedIn (opcional)</label>
+              <input value={draft.linkedinUrl ?? ""} onChange={e => update("linkedinUrl", e.target.value)}
+                style={S.input} placeholder="https://www.linkedin.com/posts/..." />
+            </div>
+
+            <div>
+              <label style={S.label}>Slug (URL)</label>
+              <input value={draft.slug || slugify(draft.title)} onChange={e => update("slug", e.target.value)}
+                style={{ ...S.input, color: "rgba(31,41,51,0.5)", fontSize: "0.82rem" }}
+                placeholder="se-genera-automaticamente" />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div style={{ backgroundColor: "white", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ textAlign: "center", color: "rgba(31,41,51,0.25)" }}>
+            <p style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>◧</p>
+            <p style={{ fontSize: "0.85rem" }}>Seleccioná un post para editar</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Team Panel ────────────────────────────────────────────────────────────────
 function TeamPanel({ team, onSave, saving }: {
   team: TeamMember[]; onSave: (t: TeamMember[]) => void; saving: boolean;
 }) {
   const [drafts, setDrafts] = useState<TeamMember[]>(team);
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved]   = useState(false);
 
   useEffect(() => { setDrafts(team); }, [team]);
 
   const update = (id: string, field: keyof TeamMember, val: string) =>
     setDrafts(ds => ds.map(d => d.id === id ? { ...d, [field]: val } : d));
+
+  const toggleHidden = (id: string) =>
+    setDrafts(ds => ds.map(d => d.id === id ? { ...d, hidden: !d.hidden } : d));
+
+  const deleteMember = (id: string) => {
+    if (!confirm("¿Eliminar este participante?")) return;
+    setDrafts(ds => ds.filter(d => d.id !== id));
+  };
+
+  const addMember = (group: "leadership" | "advisory") => {
+    const newMember: TeamMember = {
+      id:    `member-${Date.now()}`,
+      name:  "Nuevo participante",
+      role:  "",
+      image: "",
+      bio:   "",
+      group,
+    };
+    setDrafts(ds => [...ds, newMember]);
+  };
 
   const save = () => {
     onSave(drafts);
@@ -581,52 +751,69 @@ function TeamPanel({ team, onSave, saving }: {
     setTimeout(() => setSaved(false), 2500);
   };
 
+  const renderGroup = (group: "leadership" | "advisory") => {
+    const label = group === "leadership" ? "Equipo" : "Advisory Board";
+    const members = drafts.filter(d => (d.group ?? "advisory") === group);
+    return (
+      <div style={{ marginBottom: "2.5rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
+          <h3 style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)", margin: 0 }}>{label}</h3>
+          <button onClick={() => addMember(group)} style={{ ...S.btnPrimary, background: "rgba(31,41,51,0.08)", color: "#111F30", fontSize: "0.75rem", padding: "0.4rem 0.85rem" }}>
+            + Agregar
+          </button>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.5rem" }}>
+          {members.map(member => {
+            const draft = drafts.find(d => d.id === member.id)!;
+            return renderCard(draft);
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  const renderCard = (member: TeamMember) => (
+    <div key={member.id} style={{
+      backgroundColor: "white", borderRadius: 16, padding: "1.75rem",
+      display: "flex", flexDirection: "column", gap: "1.25rem",
+      opacity: member.hidden ? 0.5 : 1,
+      border: member.hidden ? "1.5px dashed rgba(31,41,51,0.2)" : "1.5px solid transparent",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+        <div style={{ width: 56, height: 56, borderRadius: 12, overflow: "hidden", flexShrink: 0, backgroundColor: "#f0ede6" }}>
+          {member.image && <img src={member.image} alt={member.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", filter: "grayscale(100%)" }} />}
+        </div>
+        <div style={{ flex: 1 }}>
+          <p style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", marginBottom: "0.15rem" }}>{member.name}</p>
+          {member.hidden && <span style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.9)", background: "rgba(31,41,51,0.5)", borderRadius: 4, padding: "0.1rem 0.45rem", letterSpacing: "0.06em", textTransform: "uppercase" }}>Oculto</span>}
+        </div>
+        <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
+          <button onClick={() => toggleHidden(member.id)} title={member.hidden ? "Mostrar en sitio" : "Ocultar del sitio"}
+            style={{ background: "none", border: "1px solid rgba(31,41,51,0.2)", borderRadius: 8, padding: "0.35rem 0.6rem", cursor: "pointer", fontSize: "0.78rem", color: "#111F30", fontWeight: 500 }}>
+            {member.hidden ? "Mostrar" : "Ocultar"}
+          </button>
+          <button onClick={() => deleteMember(member.id)} title="Eliminar participante"
+            style={{ background: "none", border: "1px solid rgba(200,50,50,0.2)", borderRadius: 8, padding: "0.35rem 0.6rem", cursor: "pointer", fontSize: "0.85rem", color: "#c03030" }}>
+            Eliminar
+          </button>
+        </div>
+      </div>
+      <div><label style={S.label}>Nombre</label><input value={member.name} onChange={e => update(member.id, "name", e.target.value)} style={S.input} /></div>
+      <div><label style={S.label}>Cargo</label><input value={member.role} onChange={e => update(member.id, "role", e.target.value)} style={S.input} /></div>
+      <div><label style={S.label}>Imagen</label><ImageUploader value={member.image} onChange={v => update(member.id, "image", v)} aspect="3/4" /></div>
+      <div><label style={S.label}>Biografía</label><textarea value={member.bio} onChange={e => update(member.id, "bio", e.target.value)} style={{ ...S.textarea, minHeight: 140 }} /></div>
+    </div>
+  );
+
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "1.5rem" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "2rem" }}>
         <button onClick={save} disabled={saving} style={S.btnPrimary}>
           {saving ? "Guardando..." : saved ? "✓ Guardado" : "Guardar cambios"}
         </button>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "1.5rem" }}>
-        {drafts.map(member => (
-          <div key={member.id} style={{ backgroundColor: "white", borderRadius: 16, padding: "1.75rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-            {/* Header */}
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div style={{ width: 56, height: 56, borderRadius: 12, overflow: "hidden", flexShrink: 0, backgroundColor: "#f0ede6" }}>
-                <img src={member.image} alt={member.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", filter: "grayscale(100%)" }} />
-              </div>
-              <div>
-                <p style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", marginBottom: "0.15rem" }}>{member.name}</p>
-                <p style={{ fontSize: "0.75rem", color: "rgba(31,41,51,0.4)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{member.id}</p>
-              </div>
-            </div>
-
-            <div>
-              <label style={S.label}>Cargo</label>
-              <input value={drafts.find(d => d.id === member.id)?.role ?? ""}
-                onChange={e => update(member.id, "role", e.target.value)} style={S.input} />
-            </div>
-
-            <div>
-              <label style={S.label}>Imagen</label>
-              <ImageUploader
-                value={drafts.find(d => d.id === member.id)?.image ?? ""}
-                onChange={v => update(member.id, "image", v)}
-                aspect="3/4"
-              />
-            </div>
-
-            <div>
-              <label style={S.label}>Biografía</label>
-              <textarea value={drafts.find(d => d.id === member.id)?.bio ?? ""}
-                onChange={e => update(member.id, "bio", e.target.value)}
-                style={{ ...S.textarea, minHeight: 140 }} />
-            </div>
-          </div>
-        ))}
-      </div>
+      {renderGroup("leadership")}
+      {renderGroup("advisory")}
     </div>
   );
 }
@@ -647,7 +834,7 @@ export default function AdminClient() {
         return res.json();
       })
       .then(data => {
-        if (data) { setAuth("yes"); setContent({ ...data, categories: data.categories ?? DEFAULT_CATEGORIES }); }
+        if (data) { setAuth("yes"); setContent({ ...data, categories: data.categories ?? DEFAULT_CATEGORIES, blog: data.blog ?? [] }); }
         else { setAuth("no"); }
       })
       .catch(() => setAuth("no"));
@@ -695,7 +882,7 @@ export default function AdminClient() {
         {/* Top bar sticky */}
         <div style={{ position: "sticky", top: 0, zIndex: 10, height: 60, backgroundColor: "white", borderBottom: "1px solid rgba(31,41,51,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem" }}>
           <span style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)" }}>
-            {tab === "articles" ? "Noticias" : tab === "team" ? "Equipo" : "Categorías"}
+            {tab === "articles" ? "Noticias" : tab === "blog" ? "Blog" : tab === "team" ? "Equipo" : "Categorías"}
           </span>
           {saveMsg && (
             <span style={{ fontSize: "0.8rem", color: saveMsg.startsWith("✓") ? "#27AE60" : "#C0392B", fontWeight: 500 }}>
@@ -715,6 +902,12 @@ export default function AdminClient() {
               articles={content.articles}
               categories={content.categories}
               onSave={articles => handleSave({ ...content, articles })}
+              saving={saving}
+            />
+          ) : tab === "blog" ? (
+            <BlogPanel
+              posts={content.blog}
+              onSave={blog => handleSave({ ...content, blog })}
               saving={saving}
             />
           ) : tab === "team" ? (

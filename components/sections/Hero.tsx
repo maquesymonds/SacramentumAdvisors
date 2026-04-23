@@ -93,12 +93,12 @@ export default function Hero() {
       {/* ── Content ─────────────────────────────────────────────────────── */}
       <div className="relative z-10 h-full flex items-center">
         <div className="container-site w-full">
-          <div className="max-w-[720px]">
+          <div>
 
             {/* 1. Headline — letter by letter from mask */}
             <h1
               className={[
-                "font-light text-white leading-[1.06] mb-5",
+                "font-light text-white leading-[1.06] mb-5 max-w-[720px]",
                 "text-[2.4rem] sm:text-[3rem] md:text-[3.6rem] lg:text-[4rem]",
                 "tracking-[-0.03em]",
               ].join(" ")}
@@ -112,7 +112,7 @@ export default function Hero() {
                 initial={{ y: "105%", opacity: 0 }}
                 animate={{ y: "0%",   opacity: 1 }}
                 transition={{ duration: 0.9, ease: EASE, delay: headlineEnd }}
-                className="text-body text-white/65 leading-relaxed max-w-[500px]"
+                style={{ fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: "72ch" }}
               >
                 {copy.hero.subheadline}
               </motion.p>

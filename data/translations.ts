@@ -21,6 +21,7 @@ export interface SiteTranslations {
     sectors:    string;
     team:       string;
     news:       string;
+    blog:       string;
     contact:    string;
     langToggle: string;
   };
@@ -228,14 +229,15 @@ const en: SiteTranslations = {
     sectors:    "Services",
     team:       "Team",
     news:       "News",
+    blog:       "Blog",
     contact:    "Contact",
     langToggle: "ES",
   },
 
   hero: {
     eyebrow:     "Strategic Asset Acquisition",
-    headline:    "The advisory firm for your strategic positioning in Uruguay.",
-    subheadline: "We structure real estate, residency, and capital strategy for families and investors entering Latin America through its most stable country.",
+    headline:    "We help you establish your strategic footprint in Uruguay.",
+    subheadline: "Bespoke residency, real estate, and capital structuring for those seeking a foundational base in Latin America's premier haven.",
     cta:         "Schedule a call",
     ctaSecondary:"Explore Uruguay",
     scrollLabel: "Scroll to explore",
@@ -347,7 +349,7 @@ const en: SiteTranslations = {
         id:          "investment-banking",
         image:       "/images/bandera.webp",
         title:       "Investment banking boutique",
-        description: "Through Sacramentum Capital, we provide professional advisory across M&A, capital markets, advisor institutional relationships, and investment law, supporting sophisticated transactions with precision and strategic clarity.",
+        description: "Through Sacramentum Capital, we provide professional advisory across M&A, capital markets advisory, institutional relationships, and investment proyects law, supporting sophisticated transactions with precision and strategic clarity.",
       },
     ],
   },
@@ -421,21 +423,21 @@ const en: SiteTranslations = {
           id:    "omar",
           image: "/images/omar.webp",
           name:  "Omar Paganini",
-          role:  "Infrastructure, Energy & Public Leadership",
+          role:  "Energy & Public Policy",
           bio:   "Electrical engineer, academic, and Uruguayan politician with a distinguished career in the public and private sectors. He served as Uruguay's Minister of Industry, Energy and Mining (2020–2023), and subsequently as Minister of Foreign Affairs (2023–2025). His deep expertise in energy, technology, and telecommunications, combined with strategic vision and experience in public and private management, make him a key reference and high-value advisor on development and innovation.",
         },
         {
           id:    "guillermo",
           image: "/images/guillermo.webp",
           name:  "Guillermo Javier Dietrich",
-          role:  "Infrastructure, Mobility & Regional Strategy",
+          role:  "Infrastructure & Mobility",
           bio:   "Economist from the Universidad Católica Argentina with an MBA from IAE. Entrepreneur, businessman, and politician with extensive experience in public and private management. From 2009 to 2015 he led the transformation of Buenos Aires City's transit and transportation systems. He served as Argentina's Minister of Transport (2015–2019), leading one of the largest ministries in government. Currently a member of the PRO party council, leads G25, and advises organizations across the private and public sectors.",
         },
         {
           id:    "eleanor",
           image: "/images/PaulinaFernandez.JPG",
           name:  "Paulina Fernandez Rubio",
-          role:  "Investment Sales & Wealth Management",
+          role:  "Investment Sales & Wealth",
           bio:   "Paulina is a distinguished investment sales professional with a stellar track record in investment product brokerage and personal wealth management across Europe and South America. With a natural talent for sales and exceptional relationship-building skills, Paulina excels at connecting with high-net-worth individuals. She brings extensive multinational financial services experience from top-tier institutions like Citibank, Merrill Lynch, and Lloyds TSB, all backed by a Business Administration degree with a finance emphasis. A true global citizen, Paulina is fluent in Spanish, English, Portuguese, French, and German. Her studies and professional connections extend across the USA, Switzerland, Spain, and South America, particularly in Argentina, Brazil, and Uruguay. Married to an expatriate marketing executive, Paulina's dynamic career has taken her across the globe, living in Montevideo, Lima, Dubai, Rio de Janeiro, Zurich, and Barcelona between 2003–2017.",
         },
       ],
@@ -634,6 +636,7 @@ const es: SiteTranslations = {
     sectors:    "Servicios",
     team:       "Equipo",
     news:       "Noticias",
+    blog:       "Blog",
     contact:    "Contacto",
     langToggle: "EN",
   },
@@ -641,7 +644,7 @@ const es: SiteTranslations = {
   hero: {
     eyebrow:     "Adquisición de Activos Estratégicos",
     headline:    "La firma de asesoría detrás de su llegada a Uruguay.",
-    subheadline: "Estructuramos real estate, residencia y estrategia de capital para familias e inversores que llegan al país más estable de América Latina.",
+    subheadline: "Asesoramos en Real Estate, adquisición de tierra y empresas. Guiamos en obtención de residencia y la estrategia de capital para familias e inversores.",
     cta:         "Agendar una consulta",
     ctaSecondary:"Explorar Uruguay",
     scrollLabel: "Explorar",
@@ -650,7 +653,7 @@ const es: SiteTranslations = {
   whyUruguay: {
     eyebrow:     "Por qué Uruguay",
     headline:    "¿Por qué invertir en Uruguay?",
-    subheadline: "Una plataforma estable y globalmente conectada para la preservación del capital, expansión regional y posicionamiento familiar a largo plazo.",
+    subheadline: "Un lugar estable, globalmente conectado donde puede alcanzar sus objetivos de diversificación y resguardo de capital, expansión regional y posicionamiento familiar a largo plazo.",
     stats: [
       { value: "#1",   label: "Menos corrupción en América Latina" },
       { value: "97%",  label: "Energía renovable" },
@@ -726,7 +729,7 @@ const es: SiteTranslations = {
   },
 
   howWeSupport: {
-    eyebrow:     "Nuestro Apoyo",
+    eyebrow:     "Nuestro Asesoramiento",
     headline:    "Cómo te acompañamos",
     subheadline: "Desde inteligencia de mercado y estructuración de transacciones hasta residencia, establecimiento local y posicionamiento de capital a largo plazo, nuestro equipo lo acompaña en cada etapa de su proceso.",
     cta:         "Agendar una llamada de asesoría privada",
@@ -753,7 +756,7 @@ const es: SiteTranslations = {
         id:          "strategic-advisory",
         image:       "/images/writing.webp",
         title:       "Asesoría Estratégica",
-        description: "Nuestros expertos legales y financieros ayudan a identificar oportunidades, estructurar operaciones y planificar un aterrizaje sólido en Uruguay y la región. Acompañamos procesos de adquisición, asociación e inversión con visión de largo plazo.",
+        description: "Nuestros socios legales y financieros ayudan a identificar oportunidades, estructurar operaciones y planificar un aterrizaje sólido en Uruguay y la región. Acompañamos procesos de adquisición, asociación e inversión con visión de largo plazo.",
       },
     ],
   },
@@ -827,21 +830,21 @@ const es: SiteTranslations = {
           id:    "omar",
           image: "/images/omar.webp",
           name:  "Omar Paganini",
-          role:  "Infraestructura, Energía y Liderazgo Público",
+          role:  "Energía & Políticas Públicas",
           bio:   "Ingeniero electricista, académico y político uruguayo con una destacada trayectoria en los sectores público y privado. Se desempeñó como Ministro de Industria, Energía y Minería de Uruguay entre 2020 y 2023, y posteriormente como Ministro de Relaciones Exteriores (2023–2025). Su profundo conocimiento en energía, tecnología y telecomunicaciones, junto con una visión estratégica y experiencia en gestión pública y privada, lo convierten en un referente clave y asesor de alto valor en temas de desarrollo e innovación.",
         },
         {
           id:    "guillermo",
           image: "/images/guillermo.webp",
           name:  "Guillermo Javier Dietrich",
-          role:  "Infraestructura, Movilidad y Estrategia Regional",
+          role:  "Infraestructura & Movilidad",
           bio:   "Economista de la Universidad Católica Argentina con MBA del IAE. Emprendedor, empresario y político con amplia experiencia en gestión pública y privada. Entre 2009 y 2015 lideró la transformación del tránsito y transporte de la Ciudad de Buenos Aires. Se desempeñó como Ministro de Transporte de la Nación Argentina entre 2015 y 2019, liderando uno de los ministerios de mayor dimensión del gobierno. Actualmente es miembro del consejo del partido PRO, lidera G25, y asesora organizaciones del ámbito privado y público.",
         },
         {
           id:    "eleanor",
           image: "/images/PaulinaFernandez.JPG",
           name:  "Paulina Fernandez Rubio",
-          role:  "Ventas de Inversión y Gestión de Patrimonio",
+          role:  "Ventas & Wealth Management",
           bio:   "Paulina es una destacada profesional de ventas de inversión con un historial sobresaliente en corretaje de productos de inversión y gestión de patrimonio personal en Europa y América del Sur. Con un talento natural para las ventas y habilidades excepcionales para construir relaciones, Paulina se destaca al conectar con individuos de alto patrimonio neto. Aporta una amplia experiencia en servicios financieros multinacionales en instituciones de primer nivel como Citibank, Merrill Lynch y Lloyds TSB, respaldada por una licenciatura en Administración de Empresas con énfasis en finanzas. Una verdadera ciudadana global, Paulina habla con fluidez español, inglés, portugués, francés y alemán. Sus estudios y conexiones profesionales se extienden por Estados Unidos, Suiza, España y América del Sur, especialmente en Argentina, Brasil y Uruguay. Casada con un ejecutivo de marketing expatriado, la dinámica carrera de Paulina la ha llevado por todo el mundo, habiendo vivido en Montevideo, Lima, Dubái, Río de Janeiro, Zúrich y Barcelona entre 2003 y 2017.",
         },
       ],

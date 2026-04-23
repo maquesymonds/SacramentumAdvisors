@@ -19,15 +19,16 @@ const fadeUp = (delay = 0) => ({
 
 // ── Unified person card (Inés/Pablo style for everyone) ───────────────────────
 interface PersonCardProps {
-  image:  string;
-  name:   string;
-  role:   string;
-  bio:    string;
-  index:  number;
-  locale: "en" | "es";
+  image:     string;
+  name:      string;
+  role:      string;
+  bio:       string;
+  index:     number;
+  locale:    "en" | "es";
+  roleAbove?: boolean;
 }
 
-function PersonCard({ image, name, role, bio, index, locale }: PersonCardProps) {
+function PersonCard({ image, name, role, bio, index, locale, roleAbove }: PersonCardProps) {
   const [expanded, setExpanded] = useState(false);
   const readMore = locale === "es" ? "Leer más" : "Read more";
   const readLess = locale === "es" ? "Leer menos" : "Read less";
@@ -119,8 +120,15 @@ function PersonCard({ image, name, role, bio, index, locale }: PersonCardProps) 
         </div>
       </div>
 
-      {/* ── Desktop layout (unchanged) ── */}
-      <div className="hidden sm:grid grid-cols-[180px_1fr] gap-6 items-start">
+      {/* ── Desktop layout ── */}
+      <div className="hidden sm:flex flex-col gap-4">
+        {roleAbove && (
+          <div className="flex items-center gap-3">
+            <span className="block h-px w-7 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
+            <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{role}</span>
+          </div>
+        )}
+        <div className="grid gap-6 items-start" style={{ gridTemplateColumns: "180px 1fr" }}>
         <div className="relative overflow-hidden rounded-lg flex-shrink-0" style={{ aspectRatio: "3/4" }}>
           <Image src={image} alt={name} fill quality={90}
             className="object-cover object-top"
@@ -129,10 +137,10 @@ function PersonCard({ image, name, role, bio, index, locale }: PersonCardProps) 
           />
         </div>
         <div className="flex flex-col pt-1">
-          <div className="flex items-center gap-3 mb-4">
+          {!roleAbove && <div className="flex items-center gap-3 mb-4">
             <span className="block h-px w-7 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
             <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{role}</span>
-          </div>
+          </div>}
           <h3 className="font-normal text-ink mb-3"
             style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
             {name}
@@ -144,7 +152,8 @@ function PersonCard({ image, name, role, bio, index, locale }: PersonCardProps) 
               fontSize: "0.875rem", display: "flex", flexDirection: "column", gap: "0.75rem",
             } : {
               fontSize: "0.875rem", overflow: "hidden",
-              display: "-webkit-box", WebkitLineClamp: 5, WebkitBoxOrient: "vertical" as const,
+              display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical" as const,
+              minHeight: "4.35rem",
             }}
           >
             {bio.split("\n\n").map((para, i) => <p key={i} style={{ margin: 0 }}>{para}</p>)}
@@ -165,6 +174,7 @@ function PersonCard({ image, name, role, bio, index, locale }: PersonCardProps) 
             </svg>
           </button>
         </div>
+        </div>
       </div>
 
     </motion.article>
@@ -176,23 +186,46 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
   const { locale } = useLocale();
   const copy       = t(locale).team;
 
-  const translationMembers = [...copy.leadership, ...copy.advisory.members];
   const h1Ref = useRef<HTMLHeadingElement>(null);
   useCharReveal(h1Ref);
 
-  // If admin has saved data, merge image/role overrides but keep locale bio/role from translations
-  const everyone = adminTeam
-    ? translationMembers.map(member => {
-        const override = adminTeam.find(m => m.id === member.id);
-        return override ? { ...member, image: override.image } : member;
-      })
-    : translationMembers;
+  const allTranslationIds = new Set([
+    ...copy.leadership.map(m => m.id),
+    ...copy.advisory.members.map(m => m.id),
+  ]);
+
+  const mergeGroup = (
+    translationList: typeof copy.leadership,
+    adminGroup: "leadership" | "advisory"
+  ) => {
+    const base = adminTeam
+      ? translationList
+          .map(m => {
+            const override = adminTeam.find(a => a.id === m.id);
+            if (override?.hidden) return null;
+            return override ? { ...m, image: override.image } : m;
+          })
+          .filter(Boolean) as typeof translationList
+      : translationList;
+
+    // Only include truly new members (not in any translation list) with explicit group
+    const extraFromAdmin = adminTeam
+      ? adminTeam
+          .filter(a => !a.hidden && a.group === adminGroup && !allTranslationIds.has(a.id))
+          .map(a => ({ id: a.id, image: a.image, name: a.name, role: a.role, bio: a.bio }))
+      : [];
+
+    return [...base, ...extraFromAdmin];
+  };
+
+  const leadershipMembers = mergeGroup(copy.leadership, "leadership");
+  const advisoryMembers   = mergeGroup(copy.advisory.members, "advisory");
 
   return (
     <section id="team" aria-label="Our Team" className="bg-surface section-padding" style={{ paddingBottom: "0.5rem" }}>
       <div className="container-site">
 
-        {/* ── Header ──────────────────────────────────────────────── */}
+        {/* ── Our Team header ─────────────────────────────────────── */}
         <div
           className="grid lg:grid-cols-2 lg:items-end gap-10 pb-10 mb-12"
           style={{ borderBottom: "1px solid rgba(31,41,51,0.08)" }}
@@ -205,34 +238,47 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
             <h1
               ref={h1Ref}
               className="font-normal text-ink"
-              style={{
-                fontSize:      "clamp(2.8rem, 5vw, 4.5rem)",
-                letterSpacing: "-0.03em",
-                lineHeight:    1.08,
-              }}
+              style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
             >
               {copy.headline}
             </h1>
           </div>
-          <p className="text-body text-ink-muted leading-relaxed lg:pb-2">
-            {copy.advisory.subheadline}
-          </p>
         </div>
 
-        {/* ── All 5 people ─────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-16">
-          {everyone.map((person, i) => (
-            <PersonCard
-              key={person.id}
-              image={person.image}
-              name={person.name}
-              role={person.role}
-              bio={person.bio}
-              index={i}
-              locale={locale}
-            />
-          ))}
-        </div>
+        {/* ── Leadership (Inés & Pablo) ────────────────────────────── */}
+        {leadershipMembers.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-16 mb-20">
+            {leadershipMembers.map((person, i) => (
+              <PersonCard key={person.id} image={person.image} name={person.name} role={person.role} bio={person.bio} index={i} locale={locale} />
+            ))}
+          </div>
+        )}
+
+        {/* ── Advisory Board ───────────────────────────────────────── */}
+        {advisoryMembers.length > 0 && (
+          <>
+            <div
+              className="pb-8 mb-12"
+              style={{ borderBottom: "1px solid rgba(31,41,51,0.08)" }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
+                <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.advisory.eyebrow}</span>
+              </div>
+              <h2 className="font-normal text-ink" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}>
+                {copy.advisory.headline}
+              </h2>
+              <p className="text-body text-ink-muted leading-relaxed mt-4" style={{ maxWidth: "60ch" }}>
+                {copy.advisory.subheadline}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16">
+              {advisoryMembers.map((person, i) => (
+                <PersonCard key={person.id} image={person.image} name={person.name} role={person.role} bio={person.bio} index={i} locale={locale} roleAbove />
+              ))}
+            </div>
+          </>
+        )}
 
       </div>
     </section>

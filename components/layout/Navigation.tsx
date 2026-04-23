@@ -17,7 +17,7 @@ export default function Navigation() {
   const pathname = usePathname();
   const { navigate } = usePageTransition();
 
-  const forceDark = pathname === "/contact" || pathname === "/services" || pathname === "/news" || pathname === "/invest" || pathname.startsWith("/news/");
+  const forceDark = pathname === "/contact" || pathname === "/services" || pathname === "/news" || pathname === "/invest" || pathname.startsWith("/news/") || pathname === "/blog" || pathname.startsWith("/blog/");
 
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [introVisible,setIntroVisible]= useState(() => pathname !== "/");
@@ -115,6 +115,7 @@ export default function Navigation() {
     { label: copy.nav.whyUruguay, id: "invest",      href: "/invest"  },
     { label: copy.nav.sectors,    id: "services",    href: "/services"},
     { label: copy.nav.news,       id: "news",        href: "/news"    },
+    { label: copy.nav.blog,       id: "blog",        href: "/blog"    },
     { label: copy.nav.contact,    id: "contact",     href: "/contact" },
   ];
 

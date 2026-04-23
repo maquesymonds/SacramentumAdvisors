@@ -31,19 +31,19 @@ const CHAPTERS = [
     image: "/images/RealEstate.webp",
     en: {
       eyebrow:   "01 · Real Estate",
-      headline:  "Real Estate, Infrastructure & Logistics",
-      body:      "We work with a strong network of trusted real estate professionals, coordinating development opportunities and acting as a reliable bridge between investors, local brokers, developers, and construction firms.\n\nUruguay's real estate sector has been significantly supported by Housing Promotion Law No. 18,795, which provides important tax incentives for developers and investors.\n\nInquiries welcome regarding income-producing commercial assets currently available for sale.",
+      headline:  "Invest where you can live: The Lifestyle Assets Concept",
+      body:      "An asset shouldn't just be a number in a bank account. We identify properties that serve a dual purpose: capital preservation (productive farmland, estancias, premium real estate) and immediate quality of life.\n\nWe believe the most resilient portfolio is one you can experience. These are assets that preserve and grow your capital while remaining livable, enjoyable and productive. Uruguay's real estate market offers legal certainty, dollar-denominated transactions and unrestricted foreign ownership.",
       stat:      { value: "0%", label: "Restrictions on foreign ownership" },
       secondary: "Residential · Commercial · Coastal · Heritage",
-      cta:       "Discuss a property acquisition",
+      cta:       "Ask about our farmland, agricultural and coastal property listings",
     },
     es: {
       eyebrow:   "01 · Bienes Raíces",
-      headline:  "Propiedades premium en el mercado más estable de Sudamérica",
-      body:      "El mercado inmobiliario de Uruguay ofrece a los inversores una convergencia excepcional: certeza jurídica, transacciones en dólares y propiedad extranjera sin restricciones.",
+      headline:  "Invierta donde pueda vivir: El concepto de Lifestyle Assets",
+      body:      "Un activo no debería ser solo un número en una cuenta bancaria. Seleccionamos propiedades que cumplen una doble función: preservación de capital (campos productivos, estancias, real estate premium) y calidad de vida inmediata.\n\nActivos que al mismo tiempo que preservan su capital y aumentan de valor, son vivibles, disfrutables y productivos. El mercado inmobiliario de Uruguay ofrece certeza jurídica, transacciones en dólares y propiedad extranjera sin restricciones.",
       stat:      { value: "0%", label: "Restricciones a propietarios extranjeros" },
       secondary: "Residencial · Comercial · Costero · Patrimonial",
-      cta:       "Hablar sobre una adquisición",
+      cta:       "Consúltenos para conocer nuestros listings de campos agrícolas, ganaderos y forestales, chacras serranas o propiedades costeras",
     },
   },
   {
@@ -69,7 +69,7 @@ const CHAPTERS = [
         { heading: "Reconocimiento Regional", body: "Uruguay es ampliamente reconocido por su desarrollo digital, estabilidad regulatoria y capital humano de alta calidad, convirtiéndolo en una plataforma atractiva para operaciones regionales." },
         { heading: "Próxima Fase",            body: "Expansión en IA, servicios de software, fintech, infraestructura de datos y tecnologías emergentes, reforzando el rol de Uruguay como puerta de entrada a la innovación en Sudamérica." },
       ],
-      cta: "Explorar oportunidades tecnológicas",
+      cta: "Contáctenos para conectar con el ecosistema emprendedor y de VC regional",
     },
   },
   {
@@ -81,7 +81,7 @@ const CHAPTERS = [
       body:       "Uruguay is a country with deep agricultural tradition. With more than 90% of its land suitable for productive use, it stands as a reliable global food supplier.",
       stat:       { value: "90%+", label: "Of land suitable for productive use" },
       secondary:  "Livestock · Arable · Forestry · Viticulture",
-      cta:        "Inquire about land acquisition",
+      cta:        "Contact us about properties for sale",
       keyDrivers: [
         "Preservation of large natural areas",
         "Policies focused on environmental sustainability",
@@ -94,18 +94,17 @@ const CHAPTERS = [
       ],
       legalNote: "Forestry Law No. 15,939 provides a robust legal framework for responsible investment.",
       downloads: [
-        { label: "Download Forestry Report",          href: "#" },
-        { label: "Download Agriculture Outlook 2024", href: "#" },
-        { label: "Request CERES Report",              href: "#" },
+        { label: "Download Forestry Report",          href: "https://www.uruguayxxi.gub.uy/en/information-center/article/forestry-sector-in-uruguay/" },
+        { label: "Download Agriculture Outlook 2024", href: "https://www.uruguayxxi.gub.uy/en/information-center/article/agriculture-report-2024/" },
       ],
     },
     es: {
-      eyebrow:    "03 · Agricultura y Forestación",
-      headline:   "Agricultura y Forestación",
-      body:       "Con profunda tradición agrícola y más del 90% de su territorio apto para uso productivo, Uruguay sigue siendo una de las plataformas más confiables del mundo para la producción de alimentos, la inversión forestal y las estrategias sostenibles de uso de la tierra.",
+      eyebrow:    "03 · Sector Agropecuario y Forestal",
+      headline:   "Sector Agropecuario y Forestal",
+      body:       "Con profunda tradición agropecuaria y más del 90% de su territorio apto para uso productivo, Uruguay sigue siendo una de las plataformas más confiables del mundo para la producción de alimentos, la inversión forestal y las estrategias sostenibles de uso de la tierra.",
       stat:       { value: "90%+", label: "Del territorio apto para uso productivo" },
       secondary:  "Ganadería · Arable · Forestación · Viticultura",
-      cta:        "Consultar sobre adquisición de tierras",
+      cta:        "Consúltenos por propiedades a la venta",
       keyDrivers: [
         "Conservación de tierras a gran escala y gestión responsable",
         "Políticas ambientales orientadas a la sostenibilidad",
@@ -120,9 +119,8 @@ const CHAPTERS = [
       ],
       legalNote: "La Ley Forestal N.° 15.939 proporciona un marco regulatorio sólido para la inversión forestal responsable a largo plazo.",
       downloads: [
-        { label: "Descargar Informe Forestal",          href: "#" },
-        { label: "Descargar Perspectivas Agrícolas 2024", href: "#" },
-        { label: "Solicitar Informe CERES",               href: "#" },
+        { label: "Descargar Informe Forestal",          href: "https://www.uruguayxxi.gub.uy/es/centro-informacion/articulo/sector-forestal-en-uruguay/" },
+        { label: "Descargar Perspectivas Agrícolas 2024", href: "https://www.uruguayxxi.gub.uy/es/centro-informacion/articulo/informe-agricola-2024/" },
       ],
     },
   },
@@ -132,7 +130,7 @@ const CHAPTERS = [
     en: {
       eyebrow:  "04 · Special Projects",
       headline: "Special Projects",
-      intro:    "At SACRAMENTUM ADVISING, we hold mandates and access to select special projects representing opportunities for strategic investors.",
+      intro:    "At SACRAMENTUM CAPITAL, we hold mandates and access to select special projects representing opportunities for strategic investors.",
       pillars: [
         {
           heading: "Specialized Approach",
@@ -152,7 +150,7 @@ const CHAPTERS = [
     es: {
       eyebrow:  "04 · Proyectos Especiales",
       headline: "Proyectos Especiales",
-      intro:    "En SACRAMENTUM ADVISING contamos con mandatos y acceso a proyectos especiales seleccionados que representan oportunidades para inversores estratégicos.",
+      intro:    "En SACRAMENTUM CAPITAL contamos con mandatos y acceso a proyectos especiales seleccionados que representan oportunidades para inversores estratégicos.",
       pillars: [
         {
           heading: "Enfoque Especializado",
@@ -241,11 +239,11 @@ export default function InvestPageClient() {
             start:   "top top",
             end:     `+=${(CHAPTERS.length - 1) * 100}%`,
             pin:     true,
-            scrub:   2,
+            scrub:   0.3,
             snap: {
               snapTo:    1 / (CHAPTERS.length - 1),
-              duration:  { min: 0.6, max: 1.2 },
-              delay:     0.5,
+              duration:  { min: 0.5, max: 0.9 },
+              delay:     0.08,
               ease:      "power2.inOut",
               inertia:   false,
             },
@@ -344,7 +342,7 @@ export default function InvestPageClient() {
                 ) : (
                   <>
                     <p>Descubre las oportunidades de inversión en uno de los países más estables y atractivos de América Latina.</p>
-                    <p>En los últimos años, Uruguay ha experimentado un avance significativo en el desarrollo de su infraestructura vial, ferroviaria y energética. Estos avances han generado oportunidades concretas para la participación de players estratégicos en sectores clave como real estate, infraestructura y logística.</p>
+                    <p>En los últimos años, Uruguay ha experimentado un avance significativo en el desarrollo de su infraestructura vial, ferroviaria y energética. Estos avances han generado oportunidades concretas para la participación de players estratégicos en sectores clave como el sector agro-forestal, infraestructura y logística.</p>
                   </>
                 )}
               </motion.div>
@@ -386,11 +384,11 @@ export default function InvestPageClient() {
                     display:       "flex",
                     flexDirection: "column",
                     justifyContent:"flex-start",
-                    padding:       "clamp(7rem, 10vw, 10rem) clamp(2rem, 5vw, 5rem) clamp(4rem, 6vw, 6rem)",
+                    padding:       "clamp(5rem, 7vw, 7rem) clamp(2rem, 5vw, 5rem) clamp(2rem, 3vw, 3rem)",
                     overflowY:     "auto",
                   }}
                 >
-                  <p className="text-eyebrow mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
+                  <p className="text-eyebrow mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
                     {copy.eyebrow}
                   </p>
 
@@ -402,7 +400,7 @@ export default function InvestPageClient() {
                       letterSpacing: "-0.025em",
                       lineHeight:    1.1,
                       maxWidth:      "22ch",
-                      marginBottom:  "0.75rem",
+                      marginBottom:  "0.5rem",
                     }}
                   >
                     {copy.headline}
@@ -410,16 +408,16 @@ export default function InvestPageClient() {
 
                   <span
                     aria-hidden="true"
-                    style={{ display: "block", width: "2.5rem", height: 1, backgroundColor: "rgba(255,255,255,0.2)", marginBottom: "1rem" }}
+                    style={{ display: "block", width: "2.5rem", height: 1, backgroundColor: "rgba(255,255,255,0.2)", marginBottom: "0.75rem" }}
                   />
 
                   {"pillars" in copy ? (
                     /* ── Technology: intro + three pillars ── */
                     <>
-                      <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "1rem", lineHeight: 1.75, maxWidth: "52ch", marginBottom: "2rem" }}>
+                      <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "0.95rem", lineHeight: 1.65, maxWidth: "52ch", marginBottom: "1.25rem" }}>
                         {copy.intro}
                       </p>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginBottom: "2rem" }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem", marginBottom: "1.25rem" }}>
                         {copy.pillars.map((p: { heading: string; body: string }) => (
                           <div key={p.heading}>
                             <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.35rem" }}>{p.heading}</p>
@@ -437,8 +435,8 @@ export default function InvestPageClient() {
                   ) : "keyDrivers" in copy ? (
                     /* ── Agriculture: key drivers + downloads ── */
                     <>
-                      <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "1rem", lineHeight: 1.75, maxWidth: "52ch", marginBottom: "2rem" }}>{copy.body}</p>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "1.75rem" }}>
+                      <p style={{ color: "rgba(255,255,255,0.68)", fontSize: "0.95rem", lineHeight: 1.65, maxWidth: "52ch", marginBottom: "1.25rem" }}>{copy.body}</p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.25rem" }}>
                         {[
                           { heading: locale === "en" ? "Key Factors" : "Factores Clave", items: copy.keyDrivers },
                           { heading: locale === "en" ? "Highlights" : "Aspectos del Mercado", items: copy.marketHighlights },
@@ -455,10 +453,10 @@ export default function InvestPageClient() {
                           </div>
                         ))}
                       </div>
-                      <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.75rem", lineHeight: 1.6, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.875rem", marginBottom: "1.75rem", maxWidth: "52ch" }}>{copy.legalNote}</p>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
+                      <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.72rem", lineHeight: 1.5, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.875rem", marginBottom: "1.25rem", maxWidth: "52ch" }}>{copy.legalNote}</p>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "1.5rem" }}>
                         {copy.downloads.map((dl: { label: string; href: string }) => (
-                          <a key={dl.label} href={dl.href} style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(255,255,255,0.75)", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, border: "1px solid rgba(255,255,255,0.18)", borderRadius: "50px", padding: "0.45rem 1rem", transition: "all 0.25s ease" }}
+                          <a key={dl.label} href={dl.href} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(255,255,255,0.75)", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, border: "1px solid rgba(255,255,255,0.18)", borderRadius: "50px", padding: "0.45rem 1rem", transition: "all 0.25s ease" }}
                             onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(204,168,124,0.6)"; e.currentTarget.style.color = "rgba(204,168,124,0.9)"; }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.18)"; e.currentTarget.style.color = "rgba(255,255,255,0.75)"; }}>
                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v6M2 5l3 3 3-3M1 9h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -466,6 +464,12 @@ export default function InvestPageClient() {
                           </a>
                         ))}
                       </div>
+                      <a href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
+                        onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
+                        onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
+                        {copy.cta}
+                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </a>
                     </>
                   ) : (
                     /* ── Default: body + stat + cta ── */

@@ -30,6 +30,8 @@ export type AdminTeamMember = {
   name: string;
   role: string;
   bio: string;
+  hidden?: boolean;
+  group?: "leadership" | "advisory";
 };
 
 export type AdminCategory = {
@@ -44,10 +46,22 @@ export const DEFAULT_CATEGORIES: AdminCategory[] = [
   { id: "investment", label: "Investment", color: "#8E44AD" },
 ];
 
+export type AdminBlogPost = {
+  id:          string;
+  title:       string;
+  date:        string;
+  excerpt:     string;
+  body:        string;
+  image?:      string;
+  slug:        string;
+  linkedinUrl?: string;
+};
+
 export type AdminContent = {
   articles?:   AdminArticle[];
   team?:       AdminTeamMember[];
   categories?: AdminCategory[];
+  blog?:       AdminBlogPost[];
 };
 
 export function readAdminContent(): AdminContent {
@@ -88,13 +102,23 @@ export function getFullAdminContent(): AdminContent {
   const saved = readAdminContent();
   const en = t("en");
   const allMembers: AdminTeamMember[] = [
-    ...(en.team.leadership as AdminTeamMember[]),
-    ...(en.team.advisory.members as AdminTeamMember[]),
+    ...(en.team.leadership as AdminTeamMember[]).map(m => ({ ...m, group: "leadership" as const })),
+    ...(en.team.advisory.members as AdminTeamMember[]).map(m => ({ ...m, group: "advisory" as const })),
   ];
+
+  const team = saved.team
+    ? saved.team.map(m => {
+        if (m.group) return m;
+        const defaultGroup = allMembers.find(am => am.id === m.id)?.group;
+        return { ...m, group: defaultGroup ?? "advisory" as const };
+      })
+    : allMembers;
+
   return {
     articles:   saved.articles   ?? (en.news.articles as AdminArticle[]),
-    team:       saved.team       ?? allMembers,
+    team,
     categories: saved.categories ?? DEFAULT_CATEGORIES,
+    blog:       saved.blog       ?? [],
   };
 }
 
