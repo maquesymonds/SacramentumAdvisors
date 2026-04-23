@@ -7,8 +7,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion }    from "framer-motion";
-import { useLocale } from "@/lib/locale-context";
-import { t }         from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import Navigation    from "@/components/layout/Navigation";
 import Footer        from "@/components/layout/Footer";
 import { lenisRef }  from "@/lib/lenis-ref";
@@ -142,7 +141,7 @@ function Field({ label, required, children }: { label: string; required?: boolea
 // ── Main component ────────────────────────────────────────────────────────────
 export default function ContactPageClient() {
   const { locale } = useLocale();
-  const copy       = t(locale).contactPage;
+  const copy       = useT().contactPage;
 
   useEffect(() => {
     const lenis = lenisRef.current;

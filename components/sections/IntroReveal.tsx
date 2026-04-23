@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap }          from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lenisRef }      from "@/lib/lenis-ref";
-import { useLocale }     from "@/lib/locale-context";
-import { t }             from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 // ── Mobile static hero (shown instead of the animation on < 1024px) ──────────
 function MobileHero() {
   const { locale } = useLocale();
-  const copy   = t(locale);
+  const copy   = useT();
   const router = useRouter();
 
   useEffect(() => {
@@ -107,7 +106,7 @@ function MobileHero() {
 
 export default function IntroReveal() {
   const { locale } = useLocale();
-  const copy   = t(locale);
+  const copy   = useT();
   const router = useRouter();
 
   const outerRef   = useRef<HTMLDivElement>(null);

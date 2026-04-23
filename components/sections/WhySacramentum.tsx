@@ -2,9 +2,8 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 import { useCharReveal } from "@/hooks/useCharReveal";
-import { t } from "@/data/translations";
 
 const CARD_W = 340;
 const CARD_H = 500;
@@ -173,7 +172,7 @@ function MobileCarousel({ cards }: { cards: SacramentumCard[] }) {
 
 export default function WhySacramentum() {
   const { locale } = useLocale();
-  const copy  = t(locale).whySacramentum;
+  const copy  = useT().whySacramentum;
   const cards = copy.cards;
 
   const [isSpread, setIsSpread] = useState(false);

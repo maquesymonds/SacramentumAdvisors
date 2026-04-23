@@ -4,8 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { gsap }          from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLocale }     from "@/lib/locale-context";
-import { t }             from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import StatItem          from "@/components/ui/StatItem";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { useCharReveal }   from "@/hooks/useCharReveal";
@@ -219,7 +218,7 @@ function MobileCarousel({ cards }: { cards: CarouselCard[] }) {
 // ── Section ───────────────────────────────────────────────────────────────────
 export default function WhyUruguay() {
   const { locale } = useLocale();
-  const copy = t(locale).whyUruguay;
+  const copy = useT().whyUruguay;
 
   const statsRef = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
   const gridRef  = useRef<HTMLDivElement>(null);

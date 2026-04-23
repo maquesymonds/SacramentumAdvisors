@@ -7,8 +7,7 @@ import { motion, AnimatePresence }  from "framer-motion";
 import Navigation                   from "@/components/layout/Navigation";
 import Footer                       from "@/components/layout/Footer";
 import CategoryPill                 from "@/components/ui/CategoryPill";
-import { useLocale }                from "@/lib/locale-context";
-import { t }                        from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -225,7 +224,7 @@ type AdminArticle = { id: string; image: string; category: string; title: string
 
 export default function NewsPageClient({ adminArticles }: { adminArticles?: AdminArticle[] | null }) {
   const { locale } = useLocale();
-  const copy = t(locale).news;
+  const copy = useT().news;
 
   const articles: AdminArticle[] = adminArticles ?? (copy.articles as AdminArticle[]);
   const [activeFilter, setActiveFilter] = useState<string>("all");

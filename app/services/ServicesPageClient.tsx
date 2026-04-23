@@ -7,8 +7,7 @@ import { ScrollTrigger }   from "gsap/ScrollTrigger";
 import { useSearchParams } from "next/navigation";
 import Navigation          from "@/components/layout/Navigation";
 import Footer              from "@/components/layout/Footer";
-import { useLocale }       from "@/lib/locale-context";
-import { t }               from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import { lenisRef }        from "@/lib/lenis-ref";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -440,7 +439,7 @@ function ServiceCarousel({ cards, locale, initialCard }: { cards: { id: string; 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function ServicesPageClient() {
   const { locale }  = useLocale();
-  const copy        = t(locale);
+  const copy        = useT();
   const searchParams = useSearchParams();
   const initialCard  = searchParams.get("card");
 

@@ -13,8 +13,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 import { motion }    from "framer-motion";
-import { useLocale } from "@/lib/locale-context";
-import { t }         from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -28,7 +27,7 @@ const fadeUp = (delay = 0) => ({
 
 export default function ClosingCTA() {
   const { locale } = useLocale();
-  const copy       = t(locale).closingCta;
+  const copy       = useT().closingCta;
 
   return (
     <section

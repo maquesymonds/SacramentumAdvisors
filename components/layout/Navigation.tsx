@@ -3,8 +3,7 @@
 import React, { useState, useEffect, useLayoutEffect, useCallback } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useLocale } from "@/lib/locale-context";
-import { t } from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import { scrollToSection } from "@/lib/utils";
 import { pendingScroll } from "@/lib/pending-scroll";
 import { usePageTransition } from "@/lib/transition-context";
@@ -12,7 +11,7 @@ import { usePageTransition } from "@/lib/transition-context";
 
 export default function Navigation() {
   const { locale, toggleLocale } = useLocale();
-  const copy = t(locale);
+  const copy = useT();
 
   const pathname = usePathname();
   const { navigate } = usePageTransition();

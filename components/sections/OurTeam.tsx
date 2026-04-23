@@ -3,8 +3,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useLocale } from "@/lib/locale-context";
-import { t } from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import type { AdminTeamMember } from "@/lib/admin-content";
 import { useCharReveal } from "@/hooks/useCharReveal";
 
@@ -184,7 +183,7 @@ function PersonCard({ image, name, role, bio, index, locale, roleAbove }: Person
 // ─── Section ──────────────────────────────────────────────────────────────────
 export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] | null }) {
   const { locale } = useLocale();
-  const copy       = t(locale).team;
+  const copy       = useT().team;
 
   const h1Ref = useRef<HTMLHeadingElement>(null);
   useCharReveal(h1Ref);

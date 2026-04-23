@@ -22,8 +22,7 @@
 
 import Image       from "next/image";
 import { motion }  from "framer-motion";
-import { useLocale } from "@/lib/locale-context";
-import { t }         from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 
 import { useRouter, usePathname } from "next/navigation";
 import { scrollToSection } from "@/lib/utils";
@@ -135,7 +134,7 @@ function FooterLink({
 // ── Footer ────────────────────────────────────────────────────────────────────
 export default function Footer() {
   const { locale } = useLocale();
-  const copy       = t(locale).footer;
+  const copy       = useT().footer;
 
   const router   = useRouter();
   const pathname = usePathname();

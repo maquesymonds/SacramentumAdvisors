@@ -5,8 +5,7 @@ import Link        from "next/link";
 import Navigation  from "@/components/layout/Navigation";
 import Footer      from "@/components/layout/Footer";
 import CategoryPill from "@/components/ui/CategoryPill";
-import { useLocale } from "@/lib/locale-context";
-import { t }         from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import { articleBodies } from "@/data/article-bodies";
 import { motion }    from "framer-motion";
 import { useEffect }  from "react";
@@ -42,7 +41,7 @@ export default function ArticlePageClient({
   }, []);
 
   const { locale } = useLocale();
-  const copy       = t(locale).news;
+  const copy       = useT().news;
 
   const source  = adminArticles ?? (copy.articles as RawArticle[]);
   const article = source.find(a => a.id === id) as RawArticle | undefined;

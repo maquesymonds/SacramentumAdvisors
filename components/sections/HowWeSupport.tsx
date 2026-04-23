@@ -3,8 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import { gsap }          from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLocale }     from "@/lib/locale-context";
-import { t }             from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import { padStart } from "@/lib/utils";
 import { useRouter }    from "next/navigation";
 import { useCharReveal } from "@/hooks/useCharReveal";
@@ -14,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HowWeSupport() {
   const { locale } = useLocale();
   const router = useRouter();
-  const copy  = t(locale).howWeSupport;
+  const copy  = useT().howWeSupport;
   const cards = copy.cards;
 
   const outerRef       = useRef<HTMLDivElement>(null);

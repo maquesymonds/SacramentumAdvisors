@@ -4,8 +4,7 @@ import React, { useRef }  from "react";
 import Image               from "next/image";
 import Link                from "next/link";
 import { motion }          from "framer-motion";
-import { useLocale }       from "@/lib/locale-context";
-import { t }               from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import CategoryPill        from "@/components/ui/CategoryPill";
 import { useRouter }       from "next/navigation";
 import { useCharReveal }   from "@/hooks/useCharReveal";
@@ -138,7 +137,7 @@ function MobileNewsCard({ id, image, category, title, excerpt, readLabel }: Pick
 
 export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Article[] | null }) {
   const { locale } = useLocale();
-  const copy       = t(locale).news;
+  const copy       = useT().news;
   const router     = useRouter();
 
   const source        = (adminArticles ?? copy.articles) as Article[];

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import TextsPanel from "./TextsPanel";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
@@ -133,6 +134,7 @@ function Sidebar({ tab, setTab, onLogout }: { tab: string; setTab: (t: string) =
     { id: "blog",       label: "Blog",       icon: "◧" },
     { id: "team",       label: "Equipo",     icon: "◉" },
     { id: "categories", label: "Categorías", icon: "◐" },
+    { id: "texts",      label: "Textos",     icon: "✎" },
   ];
   return (
     <aside style={{ width: 220, height: "100%", backgroundColor: "#1A2530", display: "flex", flexDirection: "column" }}>
@@ -882,7 +884,7 @@ export default function AdminClient() {
         {/* Top bar sticky */}
         <div style={{ position: "sticky", top: 0, zIndex: 10, height: 60, backgroundColor: "white", borderBottom: "1px solid rgba(31,41,51,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem" }}>
           <span style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)" }}>
-            {tab === "articles" ? "Noticias" : tab === "blog" ? "Blog" : tab === "team" ? "Equipo" : "Categorías"}
+            {tab === "articles" ? "Noticias" : tab === "blog" ? "Blog" : tab === "team" ? "Equipo" : tab === "texts" ? "Textos" : "Categorías"}
           </span>
           {saveMsg && (
             <span style={{ fontSize: "0.8rem", color: saveMsg.startsWith("✓") ? "#27AE60" : "#C0392B", fontWeight: 500 }}>
@@ -916,6 +918,8 @@ export default function AdminClient() {
               onSave={team => handleSave({ ...content, team })}
               saving={saving}
             />
+          ) : tab === "texts" ? (
+            <TextsPanel />
           ) : (
             <CategoriesPanel
               categories={content.categories}

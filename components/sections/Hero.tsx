@@ -3,8 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useLocale } from "@/lib/locale-context";
-import { t } from "@/data/translations";
+import { useLocale, useT } from "@/lib/locale-context";
 import { scrollToSection } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -44,7 +43,7 @@ function MaskedChars({
 
 export default function Hero() {
   const { locale } = useLocale();
-  const copy = t(locale);
+  const copy = useT();
 
   const headline = copy.hero.headline;
   // Rough end time of headline animation: delay + chars * stagger + duration
