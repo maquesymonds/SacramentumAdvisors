@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useLocale, useT } from "@/lib/locale-context";
+import { useT } from "@/lib/locale-context";
 import { scrollToSection } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -42,7 +42,6 @@ function MaskedChars({
 }
 
 export default function Hero() {
-  const { locale } = useLocale();
   const copy = useT();
 
   const headline = copy.hero.headline;
