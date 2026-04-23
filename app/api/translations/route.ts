@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { list } from "@vercel/blob";
 
+export const dynamic = "force-dynamic";
+
 const BLOB_PREFIX = "admin/translations";
 
 export async function GET() {
@@ -12,7 +14,11 @@ export async function GET() {
       new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
     )[0];
     const res = await fetch(newest.url, { cache: "no-store" });
-    if (res.ok) return NextResponse.json(await res.json());
+    if (res.ok) {
+      return NextResponse.json(await res.json(), {
+        headers: { "Cache-Control": "no-store, max-age=0" },
+      });
+    }
   } catch {}
-  return NextResponse.json({});
+  return NextResponse.json({}, { headers: { "Cache-Control": "no-store, max-age=0" } });
 }
