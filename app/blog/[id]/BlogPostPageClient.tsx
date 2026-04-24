@@ -13,7 +13,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 type BlogPost = {
   id: string; title: string; date: string; excerpt: string;
-  body: string; image?: string; slug: string; linkedinUrl?: string;
+  body: string; image?: string; slug: string; linkedinUrl?: string; video?: string;
 };
 
 function formatDate(dateStr: string, locale: "en" | "es") {
@@ -132,6 +132,23 @@ export default function BlogPostPageClient({ post }: { post: BlogPost }) {
             >
               {post.excerpt}
             </motion.p>
+
+            {/* Video */}
+            {post.video && (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, ease: EASE, delay: 0.28 }}
+                style={{ marginBottom: "2.5rem", borderRadius: 12, overflow: "hidden", backgroundColor: "#000", aspectRatio: "16/9" }}
+              >
+                <video
+                  src={post.video}
+                  controls
+                  playsInline
+                  style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                />
+              </motion.div>
+            )}
 
             {/* Body */}
             {body.map((para, i) => (

@@ -17,7 +17,7 @@ type TeamMember = {
 type Category = { id: string; label: string; color: string };
 type BlogPost = {
   id: string; title: string; date: string; excerpt: string; body: string;
-  image?: string; slug: string; linkedinUrl?: string;
+  image?: string; slug: string; linkedinUrl?: string; published?: boolean; video?: string;
 };
 type Content = { articles: Article[]; team: TeamMember[]; categories: Category[]; blog: BlogPost[] };
 
@@ -331,6 +331,81 @@ function ImageUploader({
   );
 }
 
+// ── Video Uploader ────────────────────────────────────────────────────────────
+function VideoUploader({ value, onChange }: { value: string; onChange: (url: string) => void }) {
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress]   = useState(0);
+  const [error, setError]         = useState("");
+
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 200 * 1024 * 1024) { setError("El video supera el límite de 200 MB"); return; }
+    setUploading(true); setError(""); setProgress(0);
+    try {
+      const fd  = new FormData();
+      fd.append("file", file);
+      // Use XMLHttpRequest for progress tracking
+      await new Promise<void>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/admin/upload-video");
+        xhr.upload.onprogress = (ev) => {
+          if (ev.lengthComputable) setProgress(Math.round((ev.loaded / ev.total) * 100));
+        };
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            onChange(data.url);
+            resolve();
+          } else {
+            const data = JSON.parse(xhr.responseText);
+            setError(data.error ?? `Error ${xhr.status}`);
+            reject();
+          }
+        };
+        xhr.onerror = () => { setError("Error de red"); reject(); };
+        xhr.send(fd);
+      });
+    } catch {}
+    setUploading(false);
+    setProgress(0);
+    e.target.value = "";
+  };
+
+  return (
+    <div>
+      {value && (
+        <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: "0.75rem", backgroundColor: "#000", aspectRatio: "16/9", maxHeight: 300 }}>
+          <video src={value} controls style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        </div>
+      )}
+      <div style={{ display: "flex", gap: "0.6rem", alignItems: "center", flexWrap: "wrap" }}>
+        <label style={{ ...S.btnWarm, cursor: "pointer", display: "inline-block", opacity: uploading ? 0.6 : 1 }}>
+          {uploading ? `Subiendo ${progress}%…` : "↑ Subir video"}
+          <input type="file" accept="video/*" onChange={handleFile} style={{ display: "none" }} disabled={uploading} />
+        </label>
+        <input
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          style={{ ...S.input, flex: 1, minWidth: 0, fontSize: "0.8rem", color: "rgba(31,41,51,0.5)" }}
+          placeholder="o pegá una URL de video..."
+        />
+        {value && (
+          <button onClick={() => onChange("")} style={{ ...S.btnDanger, padding: "0.5rem 0.75rem", fontSize: "0.72rem", flexShrink: 0 }}>
+            Quitar
+          </button>
+        )}
+      </div>
+      {uploading && (
+        <div style={{ marginTop: "0.5rem", height: 4, borderRadius: 2, backgroundColor: "rgba(31,41,51,0.08)", overflow: "hidden" }}>
+          <div style={{ height: "100%", width: `${progress}%`, backgroundColor: "#CCA87C", transition: "width 0.2s ease", borderRadius: 2 }} />
+        </div>
+      )}
+      {error && <p style={{ color: "#C0392B", fontSize: "0.78rem", marginTop: "0.4rem" }}>{error}</p>}
+    </div>
+  );
+}
+
 // ── Articles Panel ────────────────────────────────────────────────────────────
 function ArticlesPanel({ articles, categories, onSave, saving }: {
   articles: Article[]; categories: Category[]; onSave: (a: Article[]) => void; saving: boolean;
@@ -577,25 +652,36 @@ function BlogPanel({ posts, onSave, saving }: {
   const [selected, setSelected] = useState<BlogPost | null>(null);
   const [draft, setDraft]       = useState<BlogPost | null>(null);
   const [isNew, setIsNew]       = useState(false);
+  const [toast, setToast]       = useState<{ msg: string; type: "draft" | "publish" } | null>(null);
+
+  const showToast = (msg: string, type: "draft" | "publish") => {
+    setToast({ msg, type });
+    setTimeout(() => setToast(null), 3500);
+  };
 
   const openPost = (p: BlogPost) => { setSelected(p); setDraft({ ...p }); setIsNew(false); };
 
   const newPost = () => {
     const blank: BlogPost = {
       id: `post-${Date.now()}`, title: "", date: new Date().toISOString().split("T")[0],
-      excerpt: "", body: "", image: "", slug: "", linkedinUrl: "",
+      excerpt: "", body: "", image: "", slug: "", linkedinUrl: "", published: false,
     };
     setSelected(blank); setDraft({ ...blank }); setIsNew(true);
   };
 
-  const save = () => {
+  const commit = (published: boolean) => {
     if (!draft) return;
-    const updated = draft.slug ? draft : { ...draft, slug: slugify(draft.title) };
+    const updated = { ...(draft.slug ? draft : { ...draft, slug: slugify(draft.title) }), published };
     const next = isNew
       ? [...posts, updated]
       : posts.map(p => p.id === updated.id ? updated : p);
     onSave(next);
     setSelected(updated); setDraft(updated); setIsNew(false);
+    if (published) {
+      showToast("¡Publicado en el sitio!", "publish");
+    } else {
+      showToast("Borrador guardado correctamente", "draft");
+    }
   };
 
   const del = () => {
@@ -607,8 +693,29 @@ function BlogPanel({ posts, onSave, saving }: {
   const update = (field: keyof BlogPost, val: string) =>
     setDraft(d => d ? { ...d, [field]: val } : d);
 
+  const isDraft = draft?.published === false;
+
   return (
     <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", minHeight: "calc(100vh - 60px - 3.5rem)", gap: "1.5rem" }}>
+
+      {/* ── Toast ── */}
+      {toast && (
+        <div style={{
+          position: "fixed", bottom: "2rem", left: "50%", transform: "translateX(-50%)",
+          backgroundColor: toast.type === "publish" ? "#111F30" : "#4a5568",
+          color: "white", padding: "0.875rem 1.75rem", borderRadius: 50,
+          fontSize: "0.85rem", fontWeight: 500, letterSpacing: "0.02em",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.22)", zIndex: 9999,
+          display: "flex", alignItems: "center", gap: "0.6rem", pointerEvents: "none",
+        }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="#CCA87C" strokeWidth="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="#CCA87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          {toast.msg}
+        </div>
+      )}
+
       {/* Left: List */}
       <div style={{ backgroundColor: "white", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: "calc(100vh - 60px - 3.5rem)", position: "sticky", top: "calc(60px + 1.75rem)" }}>
         <div style={{ padding: "1rem 1.25rem", borderBottom: "1px solid rgba(31,41,51,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -638,7 +745,19 @@ function BlogPanel({ posts, onSave, saving }: {
                   overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {p.title || "Sin título"}
                 </p>
-                <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)" }}>{p.date}</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                  <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)" }}>{p.date}</span>
+                  {p.published === false && (
+                    <span style={{
+                      fontSize: "0.58rem", fontWeight: 700, letterSpacing: "0.07em",
+                      textTransform: "uppercase", padding: "0.1rem 0.4rem",
+                      borderRadius: 4, backgroundColor: "rgba(31,41,51,0.08)",
+                      color: "rgba(31,41,51,0.45)",
+                    }}>
+                      Borrador
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           ))}
@@ -648,15 +767,30 @@ function BlogPanel({ posts, onSave, saving }: {
       {/* Right: Edit form */}
       {draft ? (
         <div style={{ backgroundColor: "white", borderRadius: 16, padding: "2rem", overflowY: "auto" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.75rem" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: 0 }}>
-              {isNew ? "Nuevo post" : "Editar post"}
-            </h3>
-            <div style={{ display: "flex", gap: "0.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.75rem", flexWrap: "wrap", gap: "0.75rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: 0 }}>
+                {isNew ? "Nuevo post" : "Editar post"}
+              </h3>
+              {isDraft && (
+                <span style={{
+                  fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.07em",
+                  textTransform: "uppercase", padding: "0.2rem 0.6rem",
+                  borderRadius: 4, backgroundColor: "rgba(31,41,51,0.07)",
+                  color: "rgba(31,41,51,0.5)",
+                }}>
+                  Borrador
+                </span>
+              )}
+            </div>
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               {!isNew && <button onClick={del} style={S.btnDanger}>Eliminar</button>}
               <button onClick={() => { setSelected(null); setDraft(null); }} style={S.btnGhost}>Cancelar</button>
-              <button onClick={save} disabled={saving} style={S.btnPrimary}>
-                {saving ? "Guardando..." : "Guardar"}
+              <button onClick={() => commit(false)} disabled={saving} style={S.btnGhost}>
+                {saving ? "Guardando..." : "Guardar borrador"}
+              </button>
+              <button onClick={() => commit(true)} disabled={saving} style={S.btnPrimary}>
+                {saving ? "Publicando..." : isDraft ? "Publicar" : "Guardar y publicar"}
               </button>
             </div>
           </div>
@@ -687,6 +821,11 @@ function BlogPanel({ posts, onSave, saving }: {
             <div>
               <label style={S.label}>Imagen de portada (opcional)</label>
               <ImageUploader value={draft.image ?? ""} onChange={v => update("image", v)} aspect="16/9" />
+            </div>
+
+            <div>
+              <label style={S.label}>Video (opcional)</label>
+              <VideoUploader value={draft.video ?? ""} onChange={v => update("video", v)} />
             </div>
 
             <div>

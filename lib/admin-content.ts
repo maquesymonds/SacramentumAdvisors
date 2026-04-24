@@ -47,14 +47,16 @@ export const DEFAULT_CATEGORIES: AdminCategory[] = [
 ];
 
 export type AdminBlogPost = {
-  id:          string;
-  title:       string;
-  date:        string;
-  excerpt:     string;
-  body:        string;
-  image?:      string;
-  slug:        string;
+  id:           string;
+  title:        string;
+  date:         string;
+  excerpt:      string;
+  body:         string;
+  image?:       string;
+  slug:         string;
   linkedinUrl?: string;
+  published?:   boolean; // undefined = published (backwards compat), false = draft
+  video?:       string;
 };
 
 export type AdminContent = {
