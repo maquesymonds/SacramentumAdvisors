@@ -199,7 +199,10 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
           .map(m => {
             const override = adminTeam.find(a => a.id === m.id);
             if (override?.hidden) return null;
-            return override ? { ...m, image: override.image } : m;
+            // Only use admin image if it's set and doesn't reference the old placeholder
+            const adminImg = override?.image;
+            const useAdminImg = adminImg && !adminImg.toLowerCase().includes("eleanor");
+            return override ? { ...m, ...(useAdminImg ? { image: adminImg } : {}) } : m;
           })
           .filter(Boolean) as typeof translationList
       : translationList;

@@ -11,5 +11,6 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const content = await fetchAdminContent();
-  return <BlogPageClient posts={content.blog ?? []} />;
+  const published = (content.blog ?? []).filter(p => p.published !== false);
+  return <BlogPageClient posts={published} />;
 }
