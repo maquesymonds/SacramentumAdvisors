@@ -13,15 +13,15 @@ export type InlineImage = {
 };
 
 export type AdminArticle = {
-  id:       string;
-  image:    string;
-  title:    string;
-  link?:    string; // external article URL
-  // legacy fields kept for backwards compat
-  category?: string;
-  excerpt?:  string;
-  slug?:     string;
-  date?:     string;
+  id:         string;
+  image:      string;
+  title:      string;
+  link?:      string;
+  published?: boolean; // undefined = published (backwards compat), false = draft
+  category?:  string;
+  excerpt?:   string;
+  slug?:      string;
+  date?:      string;
 };
 
 export type AdminTeamMember = {
@@ -64,6 +64,7 @@ export type AdminContent = {
   team?:       AdminTeamMember[];
   categories?: AdminCategory[];
   blog?:       AdminBlogPost[];
+  olasTop?:    number;
 };
 
 export function readAdminContent(): AdminContent {

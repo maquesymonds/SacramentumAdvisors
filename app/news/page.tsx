@@ -12,5 +12,6 @@ export const metadata: Metadata = {
 
 export default async function NewsPage() {
   const content = await fetchAdminContent();
-  return <NewsPageClient adminArticles={content.articles ?? null} />;
+  const published = (content.articles ?? []).filter(a => a.published !== false);
+  return <NewsPageClient adminArticles={published.length ? published : null} />;
 }

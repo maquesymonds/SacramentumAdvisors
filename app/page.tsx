@@ -21,7 +21,9 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const content       = await fetchAdminContent();
-  const adminArticles = content.articles ?? null;
+  const _articles = (content.articles ?? []).filter(a => a.published !== false);
+  const adminArticles = _articles.length ? _articles : null;
+  const olasTop = content.olasTop ?? 720;
   const adminTeam     = content.team     ?? null;
 
   return (
@@ -49,7 +51,7 @@ export default async function HomePage() {
             className="hidden lg:block"
             style={{
               position:      "absolute",
-              top:           "720px",
+              top:           `${olasTop}px`,
               left:          0,
               width:         "100%",
               height:        "auto",

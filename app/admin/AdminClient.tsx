@@ -7,7 +7,7 @@ import TextsPanel from "./TextsPanel";
 // ── Types ─────────────────────────────────────────────────────────────────────
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
 type Article = {
-  id: string; image: string; title: string; link?: string;
+  id: string; image: string; title: string; link?: string; published?: boolean;
   category?: string; excerpt?: string; body?: string; slug?: string; date?: string;
   inlineImages?: InlineImage[];
 };
@@ -19,7 +19,7 @@ type BlogPost = {
   id: string; title: string; date: string; excerpt: string; body: string;
   image?: string; slug: string; linkedinUrl?: string; published?: boolean; video?: string;
 };
-type Content = { articles: Article[]; team: TeamMember[]; categories: Category[]; blog: BlogPost[] };
+type Content = { articles: Article[]; team: TeamMember[]; categories: Category[]; blog: BlogPost[]; olasTop: number };
 
 const DEFAULT_CATEGORIES: Category[] = [
   { id: "economy",    label: "Economy",    color: "#2980B9" },
@@ -135,6 +135,7 @@ function Sidebar({ tab, setTab, onLogout }: { tab: string; setTab: (t: string) =
     { id: "team",       label: "Equipo",     icon: "◉" },
     { id: "categories", label: "Categorías", icon: "◐" },
     { id: "texts",      label: "Textos",     icon: "✎" },
+    { id: "design",     label: "Diseño",     icon: "⊡" },
   ];
   return (
     <aside style={{ width: 220, height: "100%", backgroundColor: "#1A2530", display: "flex", flexDirection: "column" }}>
@@ -395,6 +396,79 @@ function VideoUploader({ value, onChange }: { value: string; onChange: (url: str
   );
 }
 
+// ── Design Panel ─────────────────────────────────────────────────────────────
+function DesignPanel({ olasTop, onSave, saving }: {
+  olasTop: number; onSave: (v: number) => void; saving: boolean;
+}) {
+  const [value, setValue] = useState(olasTop);
+  const [toast, setToast] = useState(false);
+
+  useEffect(() => { setValue(olasTop); }, [olasTop]);
+
+  const save = () => {
+    onSave(value);
+    setToast(true);
+    setTimeout(() => setToast(false), 3500);
+  };
+
+  return (
+    <div style={{ maxWidth: 560 }}>
+      {toast && (
+        <div style={{
+          position: "fixed", bottom: "2rem", left: "50%", transform: "translateX(-50%)",
+          backgroundColor: "#111F30", color: "white", padding: "0.875rem 1.75rem", borderRadius: 50,
+          fontSize: "0.85rem", fontWeight: 500, boxShadow: "0 8px 32px rgba(0,0,0,0.22)",
+          zIndex: 9999, display: "flex", alignItems: "center", gap: "0.6rem", pointerEvents: "none",
+        }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="#CCA87C" strokeWidth="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="#CCA87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          Guardado correctamente
+        </div>
+      )}
+
+      <div style={{ backgroundColor: "white", borderRadius: 16, padding: "2rem" }}>
+        <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: "0 0 0.4rem" }}>
+          Imagen de fondo — olas
+        </h3>
+        <p style={{ fontSize: "0.8rem", color: "rgba(31,41,51,0.4)", marginBottom: "2rem" }}>
+          Ajustá la posición vertical de la imagen de olas en el landing.
+        </p>
+
+        <div style={{ marginBottom: "2rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.75rem" }}>
+            <label style={S.label}>Posición vertical</label>
+            <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "#CCA87C" }}>{value}px</span>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={1400}
+            step={10}
+            value={value}
+            onChange={e => setValue(Number(e.target.value))}
+            style={{ width: "100%", accentColor: "#CCA87C", cursor: "pointer", height: 4 }}
+          />
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "0.4rem" }}>
+            <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.3)" }}>Más arriba</span>
+            <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.3)" }}>Más abajo</span>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: "0.75rem" }}>
+          <button onClick={() => setValue(720)} style={{ ...S.btnGhost, fontSize: "0.75rem" }}>
+            Resetear
+          </button>
+          <button onClick={save} disabled={saving} style={S.btnPrimary}>
+            {saving ? "Guardando..." : "Guardar"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Articles Panel ────────────────────────────────────────────────────────────
 function ArticlesPanel({ articles, onSave, saving }: {
   articles: Article[]; onSave: (a: Article[]) => void; saving: boolean;
@@ -402,23 +476,30 @@ function ArticlesPanel({ articles, onSave, saving }: {
   const [selected, setSelected] = useState<Article | null>(null);
   const [draft, setDraft]       = useState<Article | null>(null);
   const [isNew, setIsNew]       = useState(false);
-  const [saved, setSaved]       = useState(false);
+  const [toast, setToast]       = useState<{ msg: string; type: "draft" | "publish" } | null>(null);
+
+  const showToast = (msg: string, type: "draft" | "publish") => {
+    setToast({ msg, type });
+    setTimeout(() => setToast(null), 3500);
+  };
 
   const openArticle = (a: Article) => { setSelected(a); setDraft({ ...a }); setIsNew(false); };
 
   const newArticle = () => {
-    const blank: Article = { id: newId(), image: "", title: "", link: "" };
+    const blank: Article = { id: newId(), image: "", title: "", link: "", published: false };
     setSelected(blank); setDraft({ ...blank }); setIsNew(true);
   };
 
-  const save = () => {
+  const commit = (published: boolean) => {
     if (!draft) return;
+    const updated = { ...draft, published };
     const next = isNew
-      ? [...articles, draft]
-      : articles.map(a => a.id === draft.id ? draft : a);
+      ? [...articles, updated]
+      : articles.map(a => a.id === updated.id ? updated : a);
     onSave(next);
-    setSelected(draft); setDraft({ ...draft }); setIsNew(false);
-    setSaved(true); setTimeout(() => setSaved(false), 2500);
+    setSelected(updated); setDraft(updated); setIsNew(false);
+    if (published) showToast("¡Publicado en el sitio!", "publish");
+    else           showToast("Borrador guardado correctamente", "draft");
   };
 
   const del = () => {
@@ -430,8 +511,29 @@ function ArticlesPanel({ articles, onSave, saving }: {
   const update = (field: keyof Article, val: string) =>
     setDraft(d => d ? { ...d, [field]: val } : d);
 
+  const isDraft = draft?.published === false;
+
   return (
     <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", minHeight: "calc(100vh - 60px - 3.5rem)", gap: "1.5rem" }}>
+
+      {/* ── Toast ── */}
+      {toast && (
+        <div style={{
+          position: "fixed", bottom: "2rem", left: "50%", transform: "translateX(-50%)",
+          backgroundColor: toast.type === "publish" ? "#111F30" : "#4a5568",
+          color: "white", padding: "0.875rem 1.75rem", borderRadius: 50,
+          fontSize: "0.85rem", fontWeight: 500, letterSpacing: "0.02em",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.22)", zIndex: 9999,
+          display: "flex", alignItems: "center", gap: "0.6rem", pointerEvents: "none",
+        }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="#CCA87C" strokeWidth="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="#CCA87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          {toast.msg}
+        </div>
+      )}
+
       {/* Left: List */}
       <div style={{ backgroundColor: "white", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: "calc(100vh - 60px - 3.5rem)", position: "sticky", top: "calc(60px + 1.75rem)" }}>
         <div style={{ padding: "1rem 1.25rem", borderBottom: "1px solid rgba(31,41,51,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -459,11 +561,15 @@ function ArticlesPanel({ articles, onSave, saving }: {
                   overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {a.title || "Sin título"}
                 </p>
-                {a.link && (
-                  <p style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginTop: "0.2rem" }}>
-                    {a.link}
-                  </p>
-                )}
+                <span style={{
+                  display: "inline-block", marginTop: "0.25rem",
+                  fontSize: "0.6rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase",
+                  padding: "0.1rem 0.45rem", borderRadius: 50,
+                  backgroundColor: a.published === false ? "rgba(31,41,51,0.07)" : "rgba(39,174,96,0.12)",
+                  color: a.published === false ? "rgba(31,41,51,0.4)" : "#27AE60",
+                }}>
+                  {a.published === false ? "Borrador" : "Publicado"}
+                </span>
               </div>
             </div>
           ))}
@@ -474,14 +580,27 @@ function ArticlesPanel({ articles, onSave, saving }: {
       {draft ? (
         <div style={{ backgroundColor: "white", borderRadius: 16, padding: "2rem" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.75rem" }}>
-            <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: 0 }}>
-              {isNew ? "Nueva noticia" : "Editar noticia"}
-            </h3>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: 0 }}>
+                {isNew ? "Nueva noticia" : "Editar noticia"}
+              </h3>
+              <span style={{
+                fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase",
+                padding: "0.2rem 0.6rem", borderRadius: 50,
+                backgroundColor: isDraft ? "rgba(31,41,51,0.07)" : "rgba(39,174,96,0.12)",
+                color: isDraft ? "rgba(31,41,51,0.4)" : "#27AE60",
+              }}>
+                {isDraft ? "Borrador" : "Publicado"}
+              </span>
+            </div>
             <div style={{ display: "flex", gap: "0.5rem" }}>
               {!isNew && <button onClick={del} style={S.btnDanger}>Eliminar</button>}
               <button onClick={() => { setSelected(null); setDraft(null); }} style={S.btnGhost}>Cancelar</button>
-              <button onClick={save} disabled={saving} style={S.btnPrimary}>
-                {saving ? "Guardando..." : saved ? "✓ Guardado" : "Guardar"}
+              <button onClick={() => commit(false)} disabled={saving} style={S.btnGhost}>
+                {saving ? "Guardando..." : "Guardar borrador"}
+              </button>
+              <button onClick={() => commit(true)} disabled={saving} style={S.btnPrimary}>
+                {saving ? "Publicando..." : isDraft ? "Publicar" : "Guardar y publicar"}
               </button>
             </div>
           </div>
@@ -845,7 +964,7 @@ export default function AdminClient() {
         return res.json();
       })
       .then(data => {
-        if (data) { setAuth("yes"); setContent({ ...data, categories: data.categories ?? DEFAULT_CATEGORIES, blog: data.blog ?? [] }); }
+        if (data) { setAuth("yes"); setContent({ ...data, categories: data.categories ?? DEFAULT_CATEGORIES, blog: data.blog ?? [], olasTop: data.olasTop ?? 720 }); }
         else { setAuth("no"); }
       })
       .catch(() => setAuth("no"));
@@ -893,7 +1012,7 @@ export default function AdminClient() {
         {/* Top bar sticky */}
         <div style={{ position: "sticky", top: 0, zIndex: 10, height: 60, backgroundColor: "white", borderBottom: "1px solid rgba(31,41,51,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem" }}>
           <span style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)" }}>
-            {tab === "articles" ? "Noticias" : tab === "blog" ? "Blog" : tab === "team" ? "Equipo" : tab === "texts" ? "Textos" : "Categorías"}
+            {tab === "articles" ? "Noticias" : tab === "blog" ? "Blog" : tab === "team" ? "Equipo" : tab === "texts" ? "Textos" : tab === "design" ? "Diseño" : "Categorías"}
           </span>
           {saveMsg && (
             <span style={{ fontSize: "0.8rem", color: saveMsg.startsWith("✓") ? "#27AE60" : "#C0392B", fontWeight: 500 }}>
@@ -928,6 +1047,12 @@ export default function AdminClient() {
             />
           ) : tab === "texts" ? (
             <TextsPanel />
+          ) : tab === "design" ? (
+            <DesignPanel
+              olasTop={content.olasTop}
+              onSave={olasTop => handleSave({ ...content, olasTop })}
+              saving={saving}
+            />
           ) : (
             <CategoriesPanel
               categories={content.categories}
