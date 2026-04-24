@@ -14,7 +14,7 @@ import { lenisRef }   from "@/lib/lenis-ref";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
-type RawArticle = { id: string; image: string; category: string; title: string; excerpt: string; body?: string; slug: string; date: string; inlineImages?: InlineImage[] };
+type RawArticle = { id: string; image: string; category?: string; title: string; excerpt?: string; body?: string; slug?: string; date?: string; inlineImages?: InlineImage[]; link?: string };
 
 function formatDate(dateStr: string, locale: "en" | "es") {
   return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-US" : "es-UY", {
@@ -137,16 +137,18 @@ export default function ArticlePageClient({
               transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
               style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}
             >
-              <CategoryPill category={article.category} />
-              <span
-                style={{
-                  color:         "rgba(31,41,51,0.4)",
-                  fontSize:      "0.75rem",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                {formatDate(article.date, locale)}
-              </span>
+              {article.category && <CategoryPill category={article.category} />}
+              {article.date && (
+                <span
+                  style={{
+                    color:         "rgba(31,41,51,0.4)",
+                    fontSize:      "0.75rem",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {formatDate(article.date, locale)}
+                </span>
+              )}
             </motion.div>
 
             {/* Title */}

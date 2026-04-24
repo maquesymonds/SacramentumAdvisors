@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import Image                        from "next/image";
-import Link                         from "next/link";
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence }  from "framer-motion";
 import Navigation                   from "@/components/layout/Navigation";
 import Footer                       from "@/components/layout/Footer";
-import CategoryPill                 from "@/components/ui/CategoryPill";
-import { useLocale, useT } from "@/lib/locale-context";
+import { useT } from "@/lib/locale-context";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -25,218 +23,131 @@ const fadeIn = (delay = 0) => ({
   transition:  { duration: 0.75, ease: EASE, delay },
 });
 
-interface ArticleCardProps {
-  id:        string;
-  image:     string;
-  category:  string;
-  title:     string;
-  excerpt:   string;
-  readLabel: string;
-}
+type AdminArticle = { id: string; image: string; title: string; link?: string; category?: string; excerpt?: string; slug?: string; date?: string };
 
-function ArticleCard({ id, image, category, title, excerpt, readLabel }: ArticleCardProps) {
-  return (
-    <Link href={`/news/${id}`} style={{ textDecoration: "none", display: "flex", height: "100%" }}>
-      <motion.article
-        layout
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 12 }}
-        transition={{ duration: 0.55, ease: EASE }}
-        whileHover={{ y: -6, transition: { duration: 0.4, ease: EASE } }}
-        className="group flex flex-col bg-surface-card"
-        style={{ cursor: "pointer", borderRadius: 16, overflow: "hidden", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", width: "100%" }}
-      >
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 10" }}>
-          <Image
-            src={image}
-            alt={title}
-            fill
-            quality={85}
-            className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
-            style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
-            style={{ background: "linear-gradient(to top, rgba(255,255,255,0.08), transparent)" }}
-          />
-        </div>
+function ArticleCard({ article, visitLabel }: { article: AdminArticle; visitLabel: string }) {
+  const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
+  const href = article.link ?? null;
 
-        <div className="flex flex-col flex-grow" style={{ padding: "1.75rem 1.75rem 2rem" }}>
-          <div className="mb-4">
-            <CategoryPill category={category} />
-          </div>
+  const setPos = (e: React.MouseEvent) => setCursor({ x: e.clientX, y: e.clientY });
 
-          <h3
-            className="font-normal text-ink mb-3 leading-snug"
-            style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.25rem)", letterSpacing: "-0.015em", lineHeight: 1.3 }}
-          >
-            {title}
-          </h3>
+  const tooltip = cursor && typeof document !== "undefined"
+    ? createPortal(
+        <div style={{
+          position: "fixed", left: cursor.x + 14, top: cursor.y,
+          transform: "translateY(-50%)",
+          pointerEvents: "none", zIndex: 9999,
+          backgroundColor: "#111F30", color: "white",
+          padding: "0.4rem 1rem", borderRadius: 50,
+          fontSize: "0.7rem", fontWeight: 600,
+          letterSpacing: "0.08em", textTransform: "uppercase",
+          whiteSpace: "nowrap", boxShadow: "0 4px 16px rgba(0,0,0,0.22)",
+          display: "flex", alignItems: "center", gap: "0.4rem",
+        }}>
+          {visitLabel}
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>,
+        document.body
+      )
+    : null;
 
-          <span
-            aria-hidden="true"
-            className="block mb-4"
-            style={{ height: 1, width: "2.5rem", backgroundColor: "rgba(31,41,51,0.1)" }}
-          />
-
-          <p
-            className="text-small text-ink-subtle leading-relaxed flex-grow"
-            style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}
-          >
-            {excerpt}
-          </p>
-
-          <div className="mt-6 pt-5" style={{ borderTop: "1px solid rgba(31,41,51,0.07)" }}>
-            <span
-              className="inline-flex items-center gap-1.5 text-eyebrow group-hover:gap-2.5 transition-all duration-300"
-              style={{ color: "var(--color-warm)", fontSize: "0.7rem", letterSpacing: "0.08em" }}
-            >
-              {readLabel}
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-                <path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </span>
-          </div>
-        </div>
-      </motion.article>
-    </Link>
-  );
-}
-
-function FilterPill({ label, active, count, onClick }: { label: string; active: boolean; count: number; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        display:         "inline-flex",
-        alignItems:      "center",
-        gap:             "0.4rem",
-        padding:         "0.45rem 1rem",
-        border:          active ? "1px solid var(--color-dark)" : "1px solid rgba(31,41,51,0.18)",
-        backgroundColor: active ? "var(--color-dark)" : "transparent",
-        color:           active ? "rgba(250,250,248,0.9)" : "rgba(31,41,51,0.55)",
-        fontSize:        "0.72rem",
-        letterSpacing:   "0.08em",
-        textTransform:   "uppercase",
-        fontWeight:      500,
-        transition:      "all 0.2s ease",
-        cursor:          "pointer",
-        whiteSpace:      "nowrap",
-      }}
+  const inner = (
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.55, ease: EASE }}
+      onMouseEnter={setPos}
+      onMouseMove={setPos}
+      onMouseLeave={() => setCursor(null)}
+      style={{ cursor: href ? "none" : "default", borderRadius: 16, overflow: "hidden",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.08)", width: "100%", backgroundColor: "#f0ede6" }}
     >
-      {label}
-      <span
-        style={{
-          display:         "inline-flex",
-          alignItems:      "center",
-          justifyContent:  "center",
-          width:           "1.2rem",
-          height:          "1.2rem",
-          borderRadius:    "9999px",
-          fontSize:        "0.6rem",
-          backgroundColor: active ? "rgba(250,250,248,0.15)" : "rgba(31,41,51,0.08)",
-          color:           active ? "rgba(250,250,248,0.7)" : "rgba(31,41,51,0.4)",
-        }}
-      >
-        {count}
-      </span>
-    </button>
+      <div style={{ position: "relative", aspectRatio: "16 / 10", overflow: "hidden" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={article.image}
+          alt={article.title}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center",
+            transform: cursor ? "scale(1.04)" : "scale(1)",
+            transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)" }}
+        />
+      </div>
+      <div style={{ padding: "1.1rem 1.25rem 1.35rem" }}>
+        <h3 style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.35,
+          color: "var(--color-ink)", margin: 0,
+          display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>
+          {article.title}
+        </h3>
+      </div>
+    </motion.article>
+  );
+
+  return (
+    <>
+      {tooltip}
+      {href
+        ? <a href={href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "flex", height: "100%", cursor: "none" }}>{inner}</a>
+        : <div style={{ display: "flex", height: "100%" }}>{inner}</div>
+      }
+    </>
   );
 }
 
-function MobileNewsCard({ id, image, category, title, excerpt, readLabel }: { id: string; image: string; category: string; title: string; excerpt: string; readLabel: string }) {
-  return (
-    <Link href={`/news/${id}`} style={{ textDecoration: "none", display: "block" }}>
-      <motion.article
-        layout
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.45, ease: EASE }}
-        style={{
-          borderRadius:  12,
-          overflow:      "hidden",
-          background:    "white",
-          boxShadow:     "0 2px 12px rgba(0,0,0,0.07)",
-          cursor:        "pointer",
-        }}
-      >
-        {/* Square image */}
-        <div style={{ position: "relative", aspectRatio: "1 / 1", overflow: "hidden" }}>
-          <Image
-            src={image}
-            alt={title}
-            fill
-            quality={80}
-            className="object-cover object-center"
-            sizes="50vw"
-          />
-          {/* Category badge over image */}
-          <div style={{ position: "absolute", top: "0.6rem", left: "0.6rem" }}>
-            <CategoryPill category={category} />
-          </div>
-        </div>
+function MobileNewsCard({ article, visitLabel }: { article: AdminArticle; visitLabel: string }) {
+  const href = article.link ?? null;
 
-        {/* Text */}
-        <div style={{ padding: "0.75rem 0.85rem 1rem" }}>
-          <h3 style={{
-            fontSize:      "0.82rem",
-            fontWeight:    400,
-            letterSpacing: "-0.01em",
-            lineHeight:    1.3,
-            color:         "var(--color-ink)",
-            marginBottom:  "0.35rem",
-            display:       "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow:      "hidden",
-          }}>
-            {title}
-          </h3>
-          <p style={{
-            fontSize:      "0.7rem",
-            lineHeight:    1.5,
-            color:         "var(--color-ink-subtle)",
-            display:       "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow:      "hidden",
-            margin:        0,
-          }}>
-            {excerpt}
-          </p>
-          <span style={{ marginTop: "0.4rem", display: "inline-flex", alignItems: "center", gap: "0.3rem", color: "var(--color-warm)", fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500 }}>
-            {readLabel}
-            <svg width="10" height="10" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-              <path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+  const inner = (
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.45, ease: EASE }}
+      style={{ borderRadius: 12, overflow: "hidden", background: "white",
+        boxShadow: "0 2px 12px rgba(0,0,0,0.07)", cursor: href ? "pointer" : "default" }}
+    >
+      <div style={{ position: "relative", aspectRatio: "1 / 1", overflow: "hidden" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={article.image} alt={article.title}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+      </div>
+      <div style={{ padding: "0.75rem 0.85rem 1rem" }}>
+        <h3 style={{ fontSize: "0.82rem", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.3,
+          color: "var(--color-ink)", margin: 0,
+          display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" as const, overflow: "hidden" }}>
+          {article.title}
+        </h3>
+        {href && (
+          <span style={{ marginTop: "0.5rem", display: "inline-flex", alignItems: "center", gap: "0.3rem",
+            color: "var(--color-warm)", fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase" as const, fontWeight: 500 }}>
+            {visitLabel}
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </span>
-        </div>
-      </motion.article>
-    </Link>
+        )}
+      </div>
+    </motion.article>
   );
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
+        {inner}
+      </a>
+    );
+  }
+  return <div>{inner}</div>;
 }
 
-type AdminArticle = { id: string; image: string; category: string; title: string; excerpt: string; slug: string; date: string };
-
 export default function NewsPageClient({ adminArticles }: { adminArticles?: AdminArticle[] | null }) {
-  const { locale } = useLocale();
   const copy = useT().news;
 
   const articles: AdminArticle[] = adminArticles ?? (copy.articles as AdminArticle[]);
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-
-  const categories = useMemo(() => Array.from(new Set(articles.map(a => a.category))), [articles]);
-  const countFor   = (cat: string) => articles.filter(a => a.category === cat).length;
-  const filtered   = useMemo(
-    () => activeFilter === "all" ? articles : articles.filter(a => a.category === activeFilter),
-    [articles, activeFilter]
-  );
-
-  const allLabel = locale === "en" ? "All" : "Todos";
 
   return (
     <>
@@ -273,32 +184,11 @@ export default function NewsPageClient({ adminArticles }: { adminArticles?: Admi
         <section style={{ backgroundColor: "#FFFFFF", paddingTop: "clamp(2.5rem, 4vw, 3.5rem)", paddingBottom: "clamp(5rem, 9vw, 8rem)" }}>
           <div className="container-site">
 
-            <div className="flex flex-wrap items-center gap-2.5 mb-12">
-              <FilterPill label={allLabel} active={activeFilter === "all"} count={articles.length} onClick={() => setActiveFilter("all")} />
-              {categories.map(cat => (
-                <FilterPill key={cat} label={cat} active={activeFilter === cat} count={countFor(cat)} onClick={() => setActiveFilter(cat)} />
-              ))}
-            </div>
-
-            <p className="text-eyebrow mb-8" style={{ color: "rgba(31,41,51,0.35)", fontSize: "0.68rem", letterSpacing: "0.1em" }}>
-              {filtered.length === articles.length
-                ? (locale === "en" ? `${filtered.length} articles` : `${filtered.length} artículos`)
-                : (locale === "en" ? `${filtered.length} of ${articles.length} articles` : `${filtered.length} de ${articles.length} artículos`)}
-            </p>
-
             {/* Mobile: compact 2-col grid */}
             <AnimatePresence mode="popLayout">
               <motion.div layout className="sm:hidden grid grid-cols-2 gap-3">
-                {filtered.map(article => (
-                  <MobileNewsCard
-                    key={article.id}
-                    id={article.id}
-                    image={article.image}
-                    category={article.category}
-                    title={article.title}
-                    excerpt={article.excerpt}
-                    readLabel={copy.readArticle}
-                  />
+                {articles.map(article => (
+                  <MobileNewsCard key={article.id} article={article} visitLabel={copy.readArticle} />
                 ))}
               </motion.div>
             </AnimatePresence>
@@ -306,16 +196,8 @@ export default function NewsPageClient({ adminArticles }: { adminArticles?: Admi
             {/* Tablet + desktop: full cards */}
             <AnimatePresence mode="popLayout">
               <motion.div layout className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10" style={{ alignItems: "stretch" }}>
-                {filtered.map(article => (
-                  <ArticleCard
-                    key={article.id}
-                    id={article.id}
-                    image={article.image}
-                    category={article.category}
-                    title={article.title}
-                    excerpt={article.excerpt}
-                    readLabel={copy.readArticle}
-                  />
+                {articles.map(article => (
+                  <ArticleCard key={article.id} article={article} visitLabel={copy.readArticle} />
                 ))}
               </motion.div>
             </AnimatePresence>

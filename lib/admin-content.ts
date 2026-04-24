@@ -13,15 +13,15 @@ export type InlineImage = {
 };
 
 export type AdminArticle = {
-  id:            string;
-  image:         string;
-  category:      string;
-  title:         string;
-  excerpt:       string;
-  body?:         string;
-  slug:          string;
-  date:          string;
-  inlineImages?: InlineImage[];
+  id:       string;
+  image:    string;
+  title:    string;
+  link?:    string; // external article URL
+  // legacy fields kept for backwards compat
+  category?: string;
+  excerpt?:  string;
+  slug?:     string;
+  date?:     string;
 };
 
 export type AdminTeamMember = {

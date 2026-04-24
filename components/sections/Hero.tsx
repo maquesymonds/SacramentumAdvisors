@@ -87,6 +87,8 @@ export default function Hero() {
         />
       </motion.div>
 
+      {/* ── Dark overlay ────────────────────────────────────────────────── */}
+      <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} aria-hidden="true" />
 
       {/* ── Content ─────────────────────────────────────────────────────── */}
       <div className="relative z-10 h-full flex items-center">

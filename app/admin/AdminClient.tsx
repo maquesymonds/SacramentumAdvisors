@@ -7,8 +7,8 @@ import TextsPanel from "./TextsPanel";
 // ── Types ─────────────────────────────────────────────────────────────────────
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
 type Article = {
-  id: string; image: string; category: string;
-  title: string; excerpt: string; body?: string; slug: string; date: string;
+  id: string; image: string; title: string; link?: string;
+  category?: string; excerpt?: string; body?: string; slug?: string; date?: string;
   inlineImages?: InlineImage[];
 };
 type TeamMember = {
@@ -185,17 +185,6 @@ function Sidebar({ tab, setTab, onLogout }: { tab: string; setTab: (t: string) =
   );
 }
 
-// ── Category Badge ────────────────────────────────────────────────────────────
-function CatBadge({ cat, categories }: { cat: string; categories?: Category[] }) {
-  const color = categories?.find(c => c.label === cat)?.color ?? "#888";
-  return (
-    <span style={{
-      fontSize: "0.62rem", fontWeight: 600, letterSpacing: "0.07em",
-      textTransform: "uppercase", padding: "0.2rem 0.55rem",
-      borderRadius: 50, backgroundColor: color, color: "white",
-    }}>{cat}</span>
-  );
-}
 
 // ── Categories Panel ──────────────────────────────────────────────────────────
 function CategoriesPanel({ categories, onSave, saving }: {
@@ -407,32 +396,29 @@ function VideoUploader({ value, onChange }: { value: string; onChange: (url: str
 }
 
 // ── Articles Panel ────────────────────────────────────────────────────────────
-function ArticlesPanel({ articles, categories, onSave, saving }: {
-  articles: Article[]; categories: Category[]; onSave: (a: Article[]) => void; saving: boolean;
+function ArticlesPanel({ articles, onSave, saving }: {
+  articles: Article[]; onSave: (a: Article[]) => void; saving: boolean;
 }) {
   const [selected, setSelected] = useState<Article | null>(null);
-  const [draft, setDraft] = useState<Article | null>(null);
-  const [isNew, setIsNew] = useState(false);
+  const [draft, setDraft]       = useState<Article | null>(null);
+  const [isNew, setIsNew]       = useState(false);
+  const [saved, setSaved]       = useState(false);
 
   const openArticle = (a: Article) => { setSelected(a); setDraft({ ...a }); setIsNew(false); };
 
-  const firstCat = categories[0]?.label ?? "";
   const newArticle = () => {
-    const blank: Article = {
-      id: newId(), image: "", category: firstCat,
-      title: "", excerpt: "", slug: "", date: new Date().toISOString().split("T")[0],
-    };
+    const blank: Article = { id: newId(), image: "", title: "", link: "" };
     setSelected(blank); setDraft({ ...blank }); setIsNew(true);
   };
 
   const save = () => {
     if (!draft) return;
-    const updated = draft.slug ? draft : { ...draft, slug: slugify(draft.title) };
     const next = isNew
-      ? [...articles, updated]
-      : articles.map(a => a.id === updated.id ? updated : a);
+      ? [...articles, draft]
+      : articles.map(a => a.id === draft.id ? draft : a);
     onSave(next);
-    setSelected(updated); setDraft(updated); setIsNew(false);
+    setSelected(draft); setDraft({ ...draft }); setIsNew(false);
+    setSaved(true); setTimeout(() => setSaved(false), 2500);
   };
 
   const del = () => {
@@ -450,38 +436,34 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
       <div style={{ backgroundColor: "white", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column", maxHeight: "calc(100vh - 60px - 3.5rem)", position: "sticky", top: "calc(60px + 1.75rem)" }}>
         <div style={{ padding: "1rem 1.25rem", borderBottom: "1px solid rgba(31,41,51,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)" }}>
-            {articles.length} artículos
+            {articles.length} noticias
           </span>
-          <button onClick={newArticle} style={{ ...S.btnWarm, padding: "0.4rem 0.875rem", fontSize: "0.7rem" }}>
-            + Nuevo
-          </button>
+          <button onClick={newArticle} style={{ ...S.btnWarm, padding: "0.4rem 0.875rem", fontSize: "0.7rem" }}>+ Nueva</button>
         </div>
         <div style={{ overflowY: "auto", flex: 1 }}>
           {articles.map(a => (
             <div key={a.id} onClick={() => openArticle(a)}
               style={{
-                display: "flex", alignItems: "flex-start", gap: "0.75rem",
+                display: "flex", alignItems: "center", gap: "0.75rem",
                 padding: "0.875rem 1.25rem", cursor: "pointer",
                 backgroundColor: selected?.id === a.id ? "rgba(204,168,124,0.08)" : "transparent",
                 borderLeft: selected?.id === a.id ? "2px solid #CCA87C" : "2px solid transparent",
                 borderBottom: "1px solid rgba(31,41,51,0.05)",
                 transition: "all 0.15s ease",
               }}>
-              {/* Thumbnail */}
               <div style={{ width: 44, height: 44, borderRadius: 8, overflow: "hidden", flexShrink: 0, backgroundColor: "#f0ede6" }}>
-                {a.image && (
-                  <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                )}
+                {a.image && <img src={a.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontSize: "0.82rem", fontWeight: 500, color: "#111F30", lineHeight: 1.3, marginBottom: "0.3rem",
+                <p style={{ fontSize: "0.82rem", fontWeight: 500, color: "#111F30", lineHeight: 1.3,
                   overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {a.title || "Sin título"}
                 </p>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <CatBadge cat={a.category} categories={categories} />
-                  <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)" }}>{a.date}</span>
-                </div>
+                {a.link && (
+                  <p style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginTop: "0.2rem" }}>
+                    {a.link}
+                  </p>
+                )}
               </div>
             </div>
           ))}
@@ -490,7 +472,7 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
 
       {/* Right: Edit form */}
       {draft ? (
-        <div style={{ backgroundColor: "white", borderRadius: 16, padding: "2rem", overflowY: "auto" }}>
+        <div style={{ backgroundColor: "white", borderRadius: 16, padding: "2rem" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.75rem" }}>
             <h3 style={{ fontSize: "1rem", fontWeight: 500, color: "#111F30", margin: 0 }}>
               {isNew ? "Nueva noticia" : "Editar noticia"}
@@ -499,145 +481,33 @@ function ArticlesPanel({ articles, categories, onSave, saving }: {
               {!isNew && <button onClick={del} style={S.btnDanger}>Eliminar</button>}
               <button onClick={() => { setSelected(null); setDraft(null); }} style={S.btnGhost}>Cancelar</button>
               <button onClick={save} disabled={saving} style={S.btnPrimary}>
-                {saving ? "Guardando..." : "Guardar"}
+                {saving ? "Guardando..." : saved ? "✓ Guardado" : "Guardar"}
               </button>
             </div>
           </div>
 
-          <div style={{ display: "grid", gap: "1.25rem" }}>
+          <div style={{ display: "grid", gap: "1.5rem", maxWidth: 640 }}>
             <div>
               <label style={S.label}>Título</label>
-              <input value={draft.title} onChange={e => update("title", e.target.value)} style={S.input} placeholder="Título del artículo" />
+              <input value={draft.title} onChange={e => update("title", e.target.value)}
+                style={S.input} placeholder="Título de la noticia" />
             </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-              <div style={{ position: "relative" }}>
-                <label style={S.label}>Categoría</label>
-                <select value={draft.category} onChange={e => update("category", e.target.value)}
-                  style={{ ...S.input, appearance: "none" as const, paddingRight: "2.25rem", cursor: "pointer" }}>
-                  {categories.map(c => <option key={c.id} value={c.label}>{c.label}</option>)}
-                </select>
-                <span style={{ position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(4px)", pointerEvents: "none", color: "rgba(31,41,51,0.4)", fontSize: "0.75rem" }}>▾</span>
-              </div>
-              <div>
-                <label style={S.label}>Fecha</label>
-                <input type="date" value={draft.date} onChange={e => update("date", e.target.value)} style={S.input} />
-              </div>
-            </div>
-
             <div>
-              <label style={S.label}>Extracto <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "rgba(31,41,51,0.35)" }}>(texto preview que aparece en la card)</span></label>
-              <textarea value={draft.excerpt} onChange={e => update("excerpt", e.target.value)}
-                style={{ ...S.textarea, minHeight: 80 }} placeholder="Descripción breve del artículo..." />
+              <label style={S.label}>Link al artículo <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "rgba(31,41,51,0.35)" }}>(URL externa — se abre en nueva pestaña)</span></label>
+              <input value={draft.link ?? ""} onChange={e => update("link", e.target.value)}
+                style={S.input} placeholder="https://..." />
             </div>
-
             <div>
-              <label style={S.label}>Contenido</label>
-              <textarea value={draft.body ?? ""} onChange={e => update("body", e.target.value)}
-                style={{ ...S.textarea, minHeight: 220 }} placeholder={"Escribí el cuerpo del artículo aquí.\n\nCada línea en blanco crea un párrafo nuevo."} />
-            </div>
-
-            <div>
-              <label style={S.label}>Imagen</label>
+              <label style={S.label}>Imagen de portada</label>
               <ImageUploader value={draft.image} onChange={v => update("image", v)} aspect="16/9" />
             </div>
-
-            <div>
-              <label style={S.label}>Slug (URL)</label>
-              <input value={draft.slug || slugify(draft.title)} onChange={e => update("slug", e.target.value)}
-                style={{ ...S.input, color: "rgba(31,41,51,0.5)", fontSize: "0.82rem" }}
-                placeholder="se-genera-automaticamente" />
-            </div>
-
-            {/* ── Inline images ── */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
-                <label style={S.label}>Imágenes adicionales</label>
-                <button
-                  onClick={() => setDraft(d => d ? { ...d, inlineImages: [...(d.inlineImages ?? []), { url: "", afterParagraph: 1, caption: "" }] } : d)}
-                  style={{ ...S.btnWarm, padding: "0.3rem 0.75rem", fontSize: "0.68rem" }}
-                >
-                  + Agregar imagen
-                </button>
-              </div>
-              {(draft.inlineImages ?? []).length === 0 && (
-                <p style={{ fontSize: "0.78rem", color: "rgba(31,41,51,0.3)", fontStyle: "italic" }}>
-                  Sin imágenes adicionales. Las imágenes se insertan entre párrafos del artículo.
-                </p>
-              )}
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {(draft.inlineImages ?? []).map((img, i) => (
-                  <div key={i} style={{ border: "1px solid rgba(31,41,51,0.1)", borderRadius: 12, padding: "1rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                      <span style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(31,41,51,0.4)" }}>
-                        Imagen {i + 1}
-                      </span>
-                      <button
-                        onClick={() => setDraft(d => d ? { ...d, inlineImages: (d.inlineImages ?? []).filter((_, j) => j !== i) } : d)}
-                        style={{ ...S.btnDanger, padding: "0.2rem 0.6rem", fontSize: "0.68rem" }}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                    <ImageUploader
-                      value={img.url}
-                      onChange={v => setDraft(d => {
-                        if (!d) return d;
-                        const imgs = [...(d.inlineImages ?? [])];
-                        imgs[i] = { ...imgs[i], url: v };
-                        return { ...d, inlineImages: imgs };
-                      })}
-                      aspect="16/9"
-                      showPreview={false}
-                    />
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
-                      <div>
-                        <label style={S.label}>Después del párrafo N°</label>
-                        <input
-                          type="number" min={0} value={img.afterParagraph}
-                          onChange={e => setDraft(d => {
-                            if (!d) return d;
-                            const imgs = [...(d.inlineImages ?? [])];
-                            imgs[i] = { ...imgs[i], afterParagraph: Number(e.target.value) };
-                            return { ...d, inlineImages: imgs };
-                          })}
-                          style={S.input}
-                          placeholder="1"
-                        />
-                        <span style={{ fontSize: "0.65rem", color: "rgba(31,41,51,0.35)", marginTop: "0.25rem", display: "block" }}>
-                          0 = antes del primer párrafo
-                        </span>
-                      </div>
-                      <div>
-                        <label style={S.label}>Caption (opcional)</label>
-                        <input
-                          value={img.caption ?? ""}
-                          onChange={e => setDraft(d => {
-                            if (!d) return d;
-                            const imgs = [...(d.inlineImages ?? [])];
-                            imgs[i] = { ...imgs[i], caption: e.target.value };
-                            return { ...d, inlineImages: imgs };
-                          })}
-                          style={S.input}
-                          placeholder="Descripción de la imagen..."
-                        />
-                      </div>
-                    </div>
-                    {img.url && (
-                      <img src={img.url} alt="" style={{ width: "100%", maxHeight: 160, objectFit: "cover", borderRadius: 8 }} />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
           </div>
         </div>
       ) : (
         <div style={{ backgroundColor: "white", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ textAlign: "center", color: "rgba(31,41,51,0.25)" }}>
             <p style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>◈</p>
-            <p style={{ fontSize: "0.85rem" }}>Seleccioná un artículo para editar</p>
+            <p style={{ fontSize: "0.85rem" }}>Seleccioná una noticia para editar</p>
           </div>
         </div>
       )}
@@ -1041,7 +911,6 @@ export default function AdminClient() {
           ) : tab === "articles" ? (
             <ArticlesPanel
               articles={content.articles}
-              categories={content.categories}
               onSave={articles => handleSave({ ...content, articles })}
               saving={saving}
             />

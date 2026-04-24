@@ -435,7 +435,7 @@ const en: SiteTranslations = {
         },
         {
           id:    "eleanor",
-          image: "/images/PaulinaFernandez.JPG",
+          image: "/images/PaulinaFernandez.jpg",
           name:  "Paulina Fernandez Rubio",
           role:  "Investment Sales & Wealth",
           bio:   "Paulina is a distinguished investment sales professional with a stellar track record in investment product brokerage and personal wealth management across Europe and South America. With a natural talent for sales and exceptional relationship-building skills, Paulina excels at connecting with high-net-worth individuals. She brings extensive multinational financial services experience from top-tier institutions like Citibank, Merrill Lynch, and Lloyds TSB, all backed by a Business Administration degree with a finance emphasis. A true global citizen, Paulina is fluent in Spanish, English, Portuguese, French, and German. Her studies and professional connections extend across the USA, Switzerland, Spain, and South America, particularly in Argentina, Brazil, and Uruguay. Married to an expatriate marketing executive, Paulina's dynamic career has taken her across the globe, living in Montevideo, Lima, Dubai, Rio de Janeiro, Zurich, and Barcelona between 2003–2017.",
@@ -449,7 +449,7 @@ const en: SiteTranslations = {
     headline:    "Uruguay in the News",
     subtitle:    "Discover the latest stories and insights that showcase Uruguay's potential as an investment destination and cultural hub.",
     viewAll:     "View all articles",
-    readArticle: "Read article",
+    readArticle: "Visit article",
     articles: [
       {
         id:       "port",
@@ -842,7 +842,7 @@ const es: SiteTranslations = {
         },
         {
           id:    "eleanor",
-          image: "/images/PaulinaFernandez.JPG",
+          image: "/images/PaulinaFernandez.jpg",
           name:  "Paulina Fernandez Rubio",
           role:  "Ventas & Wealth Management",
           bio:   "Paulina es una destacada profesional de ventas de inversión con un historial sobresaliente en corretaje de productos de inversión y gestión de patrimonio personal en Europa y América del Sur. Con un talento natural para las ventas y habilidades excepcionales para construir relaciones, Paulina se destaca al conectar con individuos de alto patrimonio neto. Aporta una amplia experiencia en servicios financieros multinacionales en instituciones de primer nivel como Citibank, Merrill Lynch y Lloyds TSB, respaldada por una licenciatura en Administración de Empresas con énfasis en finanzas. Una verdadera ciudadana global, Paulina habla con fluidez español, inglés, portugués, francés y alemán. Sus estudios y conexiones profesionales se extienden por Estados Unidos, Suiza, España y América del Sur, especialmente en Argentina, Brasil y Uruguay. Casada con un ejecutivo de marketing expatriado, la dinámica carrera de Paulina la ha llevado por todo el mundo, habiendo vivido en Montevideo, Lima, Dubái, Río de Janeiro, Zúrich y Barcelona entre 2003 y 2017.",
@@ -856,7 +856,7 @@ const es: SiteTranslations = {
     headline:    "Uruguay en los Medios",
     subtitle:    "Una selección curada de historias y señales que marcan el ascenso de Uruguay como destino estratégico para la inversión, la calidad de vida y el posicionamiento como hub a largo plazo.",
     viewAll:     "Ver todos los artículos",
-    readArticle: "Leer artículo",
+    readArticle: "Visitar artículo",
     articles: [
       {
         id:       "port",
