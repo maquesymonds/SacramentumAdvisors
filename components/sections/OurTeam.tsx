@@ -199,7 +199,8 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
           .map(m => {
             const override = adminTeam.find(a => a.id === m.id);
             if (override?.hidden) return null;
-            // Only use admin image if it's set and doesn't reference the old placeholder
+            // For Paulina (id "eleanor"), always use the local image — never trust admin override
+            if (m.id === "eleanor") return { ...m, ...(override ? { name: override.name, role: override.role, bio: override.bio } : {}) };
             const adminImg = override?.image;
             const useAdminImg = adminImg && !adminImg.toLowerCase().includes("eleanor");
             return override ? { ...m, ...(useAdminImg ? { image: adminImg } : {}) } : m;

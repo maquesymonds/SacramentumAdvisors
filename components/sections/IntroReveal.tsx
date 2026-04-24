@@ -38,8 +38,8 @@ function MobileHero() {
         padding:            "0 clamp(1.25rem, 5vw, 4rem)",
       }}
     >
-      {/* Subtle dark overlay */}
-      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(10,18,30,0.18)", zIndex: 0 }} />
+      {/* Dark overlay */}
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 0 }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "min(90vw, 680px)", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: "9rem" }}>
 
@@ -107,10 +107,11 @@ export default function IntroReveal() {
   const copy   = useT();
   const router = useRouter();
 
-  const outerRef   = useRef<HTMLDivElement>(null);
-  const bgRef      = useRef<HTMLDivElement>(null);
-  const windowRef  = useRef<HTMLImageElement>(null);
-  const textRef    = useRef<HTMLDivElement>(null);
+  const outerRef      = useRef<HTMLDivElement>(null);
+  const bgRef         = useRef<HTMLDivElement>(null);
+  const overlayRef    = useRef<HTMLDivElement>(null);
+  const windowRef     = useRef<HTMLImageElement>(null);
+  const textRef       = useRef<HTMLDivElement>(null);
   const scrollHintRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -174,6 +175,10 @@ export default function IntroReveal() {
           transformOrigin: "center center",
           ease:            "power1.inOut",
         }, 0)
+        .to(overlayRef.current, {
+          opacity: 1,
+          ease:    "power1.inOut",
+        }, 0)
         .to(text, {
           opacity:  1,
           y:        0,
@@ -212,6 +217,9 @@ export default function IntroReveal() {
             backgroundPosition: "center 26%",
           }}
         />
+
+        {/* Dark overlay — fades in with scroll */}
+        <div ref={overlayRef} aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 1, opacity: 0 }} />
 
         {/* Window frame — zooms in with perspective */}
         <div style={{ position: "absolute", inset: 0, zIndex: 2, perspective: "500px", overflow: "hidden" }}>
