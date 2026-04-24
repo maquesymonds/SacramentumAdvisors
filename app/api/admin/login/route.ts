@@ -15,5 +15,12 @@ export async function POST(req: NextRequest) {
     maxAge: 60 * 60 * 24 * 7,
     sameSite: "strict",
   });
+  // Non-httpOnly cookie so client JS can detect admin UI mode
+  res.cookies.set("admin_ui", "1", {
+    httpOnly: false,
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+    sameSite: "strict",
+  });
   return res;
 }

@@ -183,32 +183,28 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
           <button
             onClick={() => router.push("/news")}
             style={{
-              display:              "inline-flex",
-              alignItems:           "center",
-              justifyContent:       "center",
-              gap:                  "0.5rem",
-              minWidth:             "220px",
-              padding:              "0.875rem 2rem",
-              borderRadius:         "50px",
-              backdropFilter:       "blur(18px)",
-              WebkitBackdropFilter: "blur(18px)",
-              background:           "rgba(255,255,255,0.12)",
-              border:               "1px solid rgba(255,255,255,0.22)",
-              color:                "rgba(255,255,255,0.9)",
-              fontSize:             "0.875rem",
-              fontWeight:           500,
-              letterSpacing:        "0.04em",
-              textTransform:        "uppercase",
-              cursor:               "pointer",
-              transition:           "background 0.3s ease, border-color 0.3s ease",
+              display:       "inline-flex",
+              alignItems:    "center",
+              justifyContent:"center",
+              gap:           "0.5rem",
+              minWidth:      "220px",
+              padding:       "0.875rem 2rem",
+              borderRadius:  "50px",
+              background:    "#111F30",
+              border:        "1px solid #111F30",
+              color:         "white",
+              fontSize:      "0.875rem",
+              fontWeight:    500,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              cursor:        "pointer",
+              transition:    "background 0.3s ease, border-color 0.3s ease",
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.2)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+              e.currentTarget.style.background = "#1e2e40";
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.12)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)";
+              e.currentTarget.style.background = "#111F30";
             }}
           >
             {copy.viewAll}

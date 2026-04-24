@@ -15,6 +15,7 @@ import {
   UruguayInTheNews,
   ClosingCTA,
 } from "@/components/sections";
+import OlasBackground from "@/components/OlasBackground";
 import { fetchAdminContent } from "@/lib/admin-content";
 
 export const dynamic = "force-dynamic";
@@ -23,7 +24,7 @@ export default async function HomePage() {
   const content       = await fetchAdminContent();
   const _articles = (content.articles ?? []).filter(a => a.published !== false);
   const adminArticles = _articles.length ? _articles : null;
-  const olasTop = content.olasTop ?? 720;
+  const olasTop = content.olasTop ?? 840;
   const adminTeam     = content.team     ?? null;
 
   return (
@@ -43,23 +44,7 @@ export default async function HomePage() {
 
         {/* olas.png spans bottom half of news section through ClosingCTA */}
         <div className="news-cta-wrapper" style={{ position: "relative", overflow: "hidden" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/olas.webp"
-            alt=""
-            aria-hidden="true"
-            className="hidden lg:block"
-            style={{
-              position:      "absolute",
-              top:           `${olasTop}px`,
-              left:          0,
-              width:         "100%",
-              height:        "auto",
-              zIndex:        0,
-              pointerEvents: "none",
-              userSelect:    "none",
-            }}
-          />
+          <OlasBackground initialTop={olasTop} />
           <div style={{ position: "relative", zIndex: 1 }}>
             <UruguayInTheNews adminArticles={adminArticles} />
             <ClosingCTA />
