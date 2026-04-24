@@ -3,6 +3,7 @@ import { put, list, del } from "@vercel/blob";
 import fs from "fs";
 import path from "path";
 import { getFullAdminContent } from "@/lib/admin-content";
+import { t } from "@/data/translations";
 
 const BLOB_PREFIX  = "admin/content";
 const CONTENT_FILE = path.join(process.cwd(), "data/admin-content.json");
@@ -27,12 +28,32 @@ async function readFromBlob(): Promise<object | null> {
   return null;
 }
 
+function enrichTeamGroups(data: Record<string, unknown>): Record<string, unknown> {
+  const en = t("en");
+  const leadershipIds = new Set((en.team.leadership as { id: string }[]).map(m => m.id));
+  const advisoryIds   = new Set((en.team.advisory.members as { id: string }[]).map(m => m.id));
+
+  const team = data.team as ({ id: string; group?: string } | undefined)[] | undefined;
+  if (!team) return data;
+
+  return {
+    ...data,
+    team: team.map(m => {
+      if (!m) return m;
+      if (m.group) return m;
+      if (leadershipIds.has(m.id)) return { ...m, group: "leadership" };
+      if (advisoryIds.has(m.id))   return { ...m, group: "advisory" };
+      return m;
+    }),
+  };
+}
+
 export async function GET(req: NextRequest) {
   if (!isAuth(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   if (USE_BLOB) {
     const data = await readFromBlob();
-    if (data) return NextResponse.json(data);
+    if (data) return NextResponse.json(enrichTeamGroups(data as Record<string, unknown>));
   }
 
   return NextResponse.json(getFullAdminContent());
