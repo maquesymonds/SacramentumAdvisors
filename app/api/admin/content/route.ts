@@ -16,7 +16,7 @@ function isAuth(req: NextRequest) {
 // Always get the most recently uploaded blob — never hits CDN cache
 async function readFromBlob(): Promise<object | null> {
   try {
-    const { blobs } = await list({ prefix: BLOB_PREFIX, limit: 10 });
+    const { blobs } = await list({ prefix: BLOB_PREFIX, limit: 500 });
     if (!blobs.length) return null;
     // Sort by uploadedAt descending, take newest
     const newest = blobs.sort((a, b) =>
@@ -70,13 +70,15 @@ export async function POST(req: NextRequest) {
       access:      "public",
       contentType: "application/json",
     });
-    // Clean up old blobs (keep only the one we just created)
+    // Clean up all old blobs (keep only the one we just created)
     try {
-      const { blobs } = await list({ prefix: BLOB_PREFIX, limit: 20 });
+      const { blobs } = await list({ prefix: BLOB_PREFIX, limit: 500 });
       const toDelete = blobs
         .sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime())
         .slice(1); // keep newest, delete the rest
-      if (toDelete.length) await del(toDelete.map(b => b.url));
+      for (const blob of toDelete) {
+        try { await del(blob.url); } catch {}
+      }
     } catch {}
   } else {
     fs.writeFileSync(CONTENT_FILE, JSON.stringify(body, null, 2));

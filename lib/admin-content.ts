@@ -83,7 +83,7 @@ export async function fetchAdminContent(): Promise<AdminContent> {
   noStore();
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
-      const { blobs } = await list({ prefix: "admin/content", limit: 10 });
+      const { blobs } = await list({ prefix: "admin/content", limit: 500 });
       if (blobs.length) {
         const newest = blobs.sort((a, b) =>
           new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
