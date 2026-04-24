@@ -904,14 +904,15 @@ export default function AdminClient() {
   const handleSave = async (updated: Content) => {
     setSaving(true);
     try {
-      await fetch("/api/admin/content", {
+      const res = await fetch("/api/admin/content", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated),
       });
+      if (!res.ok) throw new Error(`Server error ${res.status}`);
       setContent(updated);
       setSaveMsg("✓ Guardado correctamente");
       setTimeout(() => setSaveMsg(""), 3000);
-    } catch { setSaveMsg("Error al guardar"); }
+    } catch (err) { setSaveMsg(`Error al guardar: ${err instanceof Error ? err.message : "intente de nuevo"}`); }
     setSaving(false);
   };
 

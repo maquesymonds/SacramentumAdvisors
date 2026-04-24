@@ -88,7 +88,7 @@ export async function fetchAdminContent(): Promise<AdminContent> {
         const newest = blobs.sort((a, b) =>
           new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
         )[0];
-        const res = await fetch(newest.url, { cache: "no-store" });
+        const res = await fetch(`${newest.url}?t=${Date.now()}`, { cache: "no-store" });
         if (res.ok) return await res.json();
       }
     } catch {}

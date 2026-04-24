@@ -209,10 +209,13 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
       : translationList;
 
     // Only include truly new members (not in any translation list) with explicit group
+    // Also deduplicate by name to guard against stale admin data with renamed entries
+    const baseNames = new Set(base.map(m => m?.name?.trim().toLowerCase()).filter(Boolean));
     const extraFromAdmin = adminTeam
       ? adminTeam
           .filter(a => !a.hidden && a.group === adminGroup && !allTranslationIds.has(a.id))
           .map(a => ({ id: a.id, image: a.image, name: a.name, role: a.role, bio: a.bio }))
+          .filter(a => !baseNames.has(a.name?.trim().toLowerCase()))
       : [];
 
     return [...base, ...extraFromAdmin];
