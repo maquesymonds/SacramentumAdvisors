@@ -65,6 +65,7 @@ export type AdminContent = {
   categories?: AdminCategory[];
   blog?:       AdminBlogPost[];
   olasTop?:    number;
+  olasHeight?: number;
 };
 
 export function readAdminContent(): AdminContent {

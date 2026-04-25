@@ -24,7 +24,8 @@ export default async function HomePage() {
   const content       = await fetchAdminContent();
   const _articles = (content.articles ?? []).filter(a => a.published !== false);
   const adminArticles = _articles.length ? _articles : null;
-  const olasTop = content.olasTop ?? 840;
+  const olasTop    = 870;
+  const olasHeight = 1757;
   const adminTeam     = content.team     ?? null;
 
   return (
@@ -44,7 +45,7 @@ export default async function HomePage() {
 
         {/* olas.png spans bottom half of news section through ClosingCTA */}
         <div className="news-cta-wrapper" style={{ position: "relative", overflow: "hidden" }}>
-          <OlasBackground initialTop={olasTop} />
+          <OlasBackground initialTop={olasTop} initialHeight={olasHeight} />
           <div style={{ position: "relative", zIndex: 1 }}>
             <UruguayInTheNews adminArticles={adminArticles} />
             <ClosingCTA />
