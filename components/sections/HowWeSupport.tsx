@@ -213,7 +213,7 @@ export default function HowWeSupport() {
         {/* ── Header ──────────────────────────────────────────────────────── */}
         <div
           className="container-site flex-shrink-0"
-          style={{ paddingTop: "clamp(3rem, 5vw, 5rem)", paddingBottom: "2.5rem" }}
+          style={{ paddingTop: "clamp(1.5rem, 3vh, 3.5rem)", paddingBottom: "clamp(1rem, 2vh, 2rem)" }}
         >
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-24">
             <div>
@@ -266,8 +266,8 @@ export default function HowWeSupport() {
                 cursor:        "pointer",
               }}
             >
-              {/* Image */}
-              <div style={{ position: "relative", paddingBottom: "56%", overflow: "hidden", flexShrink: 0 }}>
+              {/* Image — height capped in vh so it never overflows the sticky 100vh container */}
+              <div style={{ position: "relative", height: "clamp(140px, 28vh, 300px)", overflow: "hidden", flexShrink: 0 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={card.image}
