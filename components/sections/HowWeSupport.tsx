@@ -246,7 +246,7 @@ export default function HowWeSupport() {
             paddingRight: "clamp(1.25rem, 3.5vw, 3rem)",
             width:        "max-content",
             flex:         1,
-            alignItems:   "stretch",
+            alignItems:   "flex-start",
             paddingBottom:"clamp(2.5rem, 4vw, 4rem)",
           }}
         >
@@ -256,6 +256,7 @@ export default function HowWeSupport() {
               onClick={() => router.push("/contact")}
               style={{
                 width:         "clamp(300px, 50vw, 580px)",
+                maxHeight:     "clamp(420px, 72vh, 580px)",
                 flexShrink:    0,
                 borderRadius:  16,
                 overflow:      "hidden",
