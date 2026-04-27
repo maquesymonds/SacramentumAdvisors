@@ -258,7 +258,7 @@ export default function HowWeSupport() {
               onClick={() => router.push("/contact")}
               style={{
                 width:         "clamp(300px, 50vw, 580px)",
-                maxHeight:     "clamp(420px, 72vh, 580px)",
+                height:        "clamp(360px, 55vh, 480px)",
                 flexShrink:    0,
                 borderRadius:  16,
                 overflow:      "hidden",
@@ -270,7 +270,7 @@ export default function HowWeSupport() {
               }}
             >
               {/* Image — height capped in vh so it never overflows the sticky 100vh container */}
-              <div style={{ position: "relative", height: "clamp(140px, 28vh, 300px)", overflow: "hidden", flexShrink: 0 }}>
+              <div style={{ position: "relative", height: "clamp(160px, 30vh, 290px)", overflow: "hidden", flexShrink: 0 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={card.image}
