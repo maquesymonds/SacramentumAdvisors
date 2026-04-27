@@ -213,7 +213,7 @@ export default function HowWeSupport() {
         {/* ── Header ──────────────────────────────────────────────────────── */}
         <div
           className="container-site flex-shrink-0"
-          style={{ paddingTop: "clamp(1.5rem, 3vh, 3.5rem)", paddingBottom: "clamp(1rem, 2vh, 2rem)" }}
+          style={{ paddingTop: "clamp(3rem, 5vw, 5rem)", paddingBottom: "2rem" }}
         >
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-24">
             <div>
