@@ -178,7 +178,7 @@ export default function WhySacramentum() {
   const [isSpread, setIsSpread] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const h1Ref      = useRef<HTMLHeadingElement>(null);
-  useCharReveal(h1Ref);
+  useCharReveal(h1Ref, locale);
 
   useEffect(() => {
     const el = sectionRef.current;

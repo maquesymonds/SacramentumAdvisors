@@ -223,7 +223,7 @@ export default function WhyUruguay() {
   const gridRef  = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
   const h1Ref    = useRef<HTMLHeadingElement>(null);
-  useCharReveal(h1Ref);
+  useCharReveal(h1Ref, copy.headline);
 
   useEffect(() => {
     const cards = cardRefs.current.filter((c): c is HTMLElement => c !== null);

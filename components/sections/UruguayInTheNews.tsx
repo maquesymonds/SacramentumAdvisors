@@ -141,7 +141,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
     h1Ref.current.textContent = copy.headline;
   }, [copy.headline]);
 
-  useCharReveal(h1Ref);
+  useCharReveal(h1Ref, copy.headline);
 
   const visitLabel = copy.readArticle ?? "Visit article";
 

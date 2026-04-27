@@ -183,7 +183,7 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
   const copy       = useT().team;
 
   const h1Ref = useRef<HTMLHeadingElement>(null);
-  useCharReveal(h1Ref);
+  useCharReveal(h1Ref, copy.headline);
 
   const allTranslationIds = new Set([
     ...copy.leadership.map(m => m.id),

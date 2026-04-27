@@ -21,8 +21,8 @@ export default function HowWeSupport() {
   const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const h1MobileRef    = useRef<HTMLHeadingElement>(null);
   const h1DesktopRef   = useRef<HTMLHeadingElement>(null);
-  useCharReveal(h1MobileRef);
-  useCharReveal(h1DesktopRef);
+  useCharReveal(h1MobileRef, copy.headline);
+  useCharReveal(h1DesktopRef, copy.headline);
 
   // Mobile scroll-reveal for each step card
   useEffect(() => {
