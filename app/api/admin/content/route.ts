@@ -66,16 +66,15 @@ export async function POST(req: NextRequest) {
   if (USE_BLOB) {
     // Save with random suffix → brand new URL, CDN has never seen it
     const filename = `${BLOB_PREFIX}-${Date.now()}.json`;
-    await put(filename, JSON.stringify(body, null, 2), {
+    const newBlob = await put(filename, JSON.stringify(body, null, 2), {
       access:      "public",
       contentType: "application/json",
     });
-    // Clean up all old blobs (keep only the one we just created)
+    // Clean up old blobs — use the exact URL we just got back, not a timestamp
+    // sort, to avoid a race where list() returns before the new blob is indexed
     try {
       const { blobs } = await list({ prefix: BLOB_PREFIX, limit: 500 });
-      const toDelete = blobs
-        .sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime())
-        .slice(1); // keep newest, delete the rest
+      const toDelete = blobs.filter(b => b.url !== newBlob.url);
       for (const blob of toDelete) {
         try { await del(blob.url); } catch {}
       }

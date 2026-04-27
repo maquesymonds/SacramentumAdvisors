@@ -199,8 +199,12 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
           .map(m => {
             const override = adminTeam.find(a => a.id === m.id);
             if (override?.hidden) return null;
-            // For Paulina (id "eleanor"), always use the local image — never trust admin override
-            if (m.id === "eleanor") return { ...m, ...(override ? { name: override.name, role: override.role, bio: override.bio } : {}) };
+            // For Paulina (id "eleanor"), use translation as base.
+            // Ignore stale blob data where name is still the old placeholder "Eleanor Parks".
+            if (m.id === "eleanor") {
+              if (!override || override.name === "Eleanor Parks") return m;
+              return { ...m, name: override.name, role: override.role, bio: override.bio };
+            }
             const adminImg = override?.image;
             const useAdminImg = adminImg && !adminImg.toLowerCase().includes("eleanor");
             return override ? { ...m, ...(useAdminImg ? { image: adminImg } : {}) } : m;
