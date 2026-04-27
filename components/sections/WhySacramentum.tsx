@@ -209,6 +209,7 @@ export default function WhySacramentum() {
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
             <h1
+              key={locale}
               ref={h1Ref}
               className="font-normal text-ink"
               style={{

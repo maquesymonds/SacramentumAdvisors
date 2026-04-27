@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion }          from "framer-motion";
 import { useT } from "@/lib/locale-context";
@@ -131,15 +131,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
   const source        = (adminArticles ?? copy.articles) as Article[];
   const preview       = source.slice(0, 3);
   const mobilePreview = source.slice(0, 4);
-  const h1Ref         = useRef<HTMLHeadingElement>(null);
-  const prevHeadline  = useRef("");
-
-  useLayoutEffect(() => {
-    if (!h1Ref.current) return;
-    if (copy.headline === prevHeadline.current) return;
-    prevHeadline.current = copy.headline;
-    h1Ref.current.textContent = copy.headline;
-  }, [copy.headline]);
+  const h1Ref = useRef<HTMLHeadingElement>(null);
 
   useCharReveal(h1Ref, copy.headline);
 
@@ -155,7 +147,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
-            <h1 ref={h1Ref} className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }} />
+            <h1 key={copy.headline} ref={h1Ref} className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}>{copy.headline}</h1>
           </div>
           <p className="text-body text-ink-muted leading-relaxed lg:pb-2">{copy.subtitle}</p>
         </div>

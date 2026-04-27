@@ -116,6 +116,7 @@ export default function HowWeSupport() {
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
             <h1
+              key={copy.headline}
               ref={h1MobileRef}
               className="font-normal text-ink"
               style={{ fontSize: "clamp(2.2rem, 8vw, 3.2rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
@@ -222,6 +223,7 @@ export default function HowWeSupport() {
                 <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
               </div>
               <h1
+                key={copy.headline}
                 ref={h1DesktopRef}
                 className="font-normal text-ink"
                 style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}

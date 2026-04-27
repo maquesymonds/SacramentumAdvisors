@@ -239,6 +239,7 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
             <h1
+              key={copy.headline}
               ref={h1Ref}
               className="font-normal text-ink"
               style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
