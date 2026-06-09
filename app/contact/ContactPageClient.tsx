@@ -7,7 +7,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion }    from "framer-motion";
-import { useLocale, useT } from "@/lib/locale-context";
+import { useT } from "@/lib/locale-context";
 import Navigation    from "@/components/layout/Navigation";
 import Footer        from "@/components/layout/Footer";
 import { lenisRef }  from "@/lib/lenis-ref";
@@ -140,7 +140,6 @@ function Field({ label, required, children }: { label: string; required?: boolea
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function ContactPageClient() {
-  const { locale } = useLocale();
   const copy       = useT().contactPage;
 
   useEffect(() => {
@@ -177,11 +176,11 @@ export default function ContactPageClient() {
         setStatus("success");
       } else {
         setStatus("idle");
-        alert(locale === "en" ? "Something went wrong. Please try again." : "Algo salió mal. Por favor intentá de nuevo.");
+        alert(copy.errorMessage);
       }
     } catch {
       setStatus("idle");
-      alert(locale === "en" ? "Something went wrong. Please try again." : "Algo salió mal. Por favor intentá de nuevo.");
+      alert(copy.errorMessage);
     }
   };
 
@@ -414,9 +413,7 @@ export default function ContactPageClient() {
                         className="text-caption text-ink-ghost mt-4"
                         style={{ letterSpacing: "0.05em" }}
                       >
-                        {locale === "en"
-                          ? "We respond within 1–2 business days. All enquiries are fully confidential."
-                          : "Respondemos en 1–2 días hábiles. Toda consulta es completamente confidencial."}
+                        {copy.disclaimer}
                       </p>
                     </div>
                   </div>
@@ -487,12 +484,10 @@ export default function ContactPageClient() {
               {/* Optional secondary note */}
               <div className="mt-10 pt-8" style={{ borderTop: "1px solid rgba(31,41,51,0.06)" }}>
                 <p className="text-eyebrow mb-3" style={{ color: "var(--color-ink-ghost)", fontSize: "0.63rem", letterSpacing: "0.1em" }}>
-                  {locale === "en" ? "Working with us" : "Trabajar con nosotros"}
+                  {copy.secondary.eyebrow}
                 </p>
                 <p style={{ fontSize: "0.875rem", color: "var(--color-ink-subtle)", lineHeight: 1.7 }}>
-                  {locale === "en"
-                    ? "We work with a select number of clients at any given time to ensure the depth of attention each engagement deserves."
-                    : "Trabajamos con un número selecto de clientes en todo momento para garantizar la profundidad de atención que cada compromiso merece."}
+                  {copy.secondary.body}
                 </p>
               </div>
             </motion.aside>

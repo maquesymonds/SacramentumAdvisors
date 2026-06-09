@@ -33,7 +33,8 @@ const fadeIn = (delay = 0) => ({
 });
 
 // ── Mobile Timeline ───────────────────────────────────────────────────────────
-function MobileServiceTimeline({ cards, locale }: { cards: { id: string; image: string; title: string; description: string }[]; locale: string }) {
+function MobileServiceTimeline({ cards }: { cards: { id: string; image: string; title: string; description: string }[]; locale?: string }) {
+  const stepWord = useT().services.step;
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -87,9 +88,7 @@ function MobileServiceTimeline({ cards, locale }: { cards: { id: string; image: 
 
           <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
             {cards.map((card, i) => {
-              const stepLabel = locale === "en"
-                ? `Step ${String(i + 1).padStart(2, "0")}`
-                : `Paso ${String(i + 1).padStart(2, "0")}`;
+              const stepLabel = `${stepWord} ${String(i + 1).padStart(2, "0")}`;
 
               return (
                 <div
@@ -190,7 +189,8 @@ function MobileServiceTimeline({ cards, locale }: { cards: { id: string; image: 
 }
 
 // ── 3D Carousel ───────────────────────────────────────────────────────────────
-function ServiceCarousel({ cards, locale, initialCard }: { cards: { id: string; image: string; title: string; description: string }[]; locale: string; initialCard?: string | null }) {
+function ServiceCarousel({ cards, initialCard }: { cards: { id: string; image: string; title: string; description: string }[]; locale?: string; initialCard?: string | null }) {
+  const stepWord    = useT().services.step;
   const outerRef    = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const sectionRef  = useRef<HTMLElement>(null);
@@ -414,7 +414,7 @@ function ServiceCarousel({ cards, locale, initialCard }: { cards: { id: string; 
                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                       <span style={{ display: "block", height: 1, width: "1.5rem", flexShrink: 0, backgroundColor: "var(--color-warm)" }} />
                       <span style={{ color: "var(--color-warm)", fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 500 }}>
-                        {locale === "en" ? `Step ${String(card.originalIndex + 1).padStart(2, "0")}` : `Paso ${String(card.originalIndex + 1).padStart(2, "0")}`}
+                        {`${stepWord} ${String(card.originalIndex + 1).padStart(2, "0")}`}
                       </span>
                     </div>
                     <h3 style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.375rem)", fontWeight: 400, letterSpacing: "-0.015em", lineHeight: 1.25, color: "var(--color-ink)", margin: 0 }}>

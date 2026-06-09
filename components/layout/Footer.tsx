@@ -22,7 +22,7 @@
 
 import Image       from "next/image";
 import { motion }  from "framer-motion";
-import { useLocale, useT } from "@/lib/locale-context";
+import { useT } from "@/lib/locale-context";
 
 import { useRouter, usePathname } from "next/navigation";
 import { scrollToSection } from "@/lib/utils";
@@ -133,7 +133,6 @@ function FooterLink({
 
 // ── Footer ────────────────────────────────────────────────────────────────────
 export default function Footer() {
-  const { locale } = useLocale();
   const copy       = useT().footer;
 
   const router   = useRouter();
@@ -330,7 +329,7 @@ export default function Footer() {
                   el.style.backgroundColor = "transparent";
                 }}
               >
-                {locale === "en" ? "Book a consultation" : "Reservar consulta"}
+                {copy.cta}
               </button>
             </div>
           </motion.div>

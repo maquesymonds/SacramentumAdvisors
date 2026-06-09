@@ -126,7 +126,7 @@ export default function ArticlePageClient({
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M11 7H3M3 7L6.5 3.5M3 7L6.5 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                {locale === "en" ? "Back to news" : "Volver a noticias"}
+                {copy.backLabel}
               </Link>
             </motion.div>
 

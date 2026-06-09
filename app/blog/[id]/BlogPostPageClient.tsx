@@ -4,7 +4,7 @@ import Image      from "next/image";
 import Link       from "next/link";
 import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 import { motion }    from "framer-motion";
 import { useEffect } from "react";
 import { lenisRef }  from "@/lib/lenis-ref";
@@ -39,8 +39,9 @@ export default function BlogPostPageClient({ post }: { post: BlogPost }) {
     ? post.body.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
     : [];
 
-  const backLabel    = locale === "en" ? "Back to blog" : "Volver al blog";
-  const linkedinText = locale === "en" ? "View original post on LinkedIn" : "Ver publicación original en LinkedIn";
+  const blog         = useT().blog;
+  const backLabel    = blog.backLabel;
+  const linkedinText = blog.linkedinText;
 
   return (
     <>

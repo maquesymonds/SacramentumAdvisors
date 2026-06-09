@@ -251,7 +251,7 @@ export default function IntroReveal() {
           }}
         >
           <span style={{ fontSize: "0.6rem", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
-            Scroll
+            {copy.hero.scrollLabel}
           </span>
           <div style={{ width: 1, height: "2.5rem", background: "linear-gradient(to bottom, rgba(255,255,255,0.7), transparent)", animation: "scrollPulse 1.8s ease-in-out infinite" }} />
         </div>

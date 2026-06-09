@@ -128,6 +128,7 @@ export interface SiteTranslations {
     subtitle:   string;
     viewAll:    string;
     readArticle:string;
+    backLabel:  string;
     articles: Array<{
       id:       string;
       image:    string;
@@ -154,6 +155,12 @@ export interface SiteTranslations {
     eyebrow:  string;
     headline: string;
     intro:    string;
+    disclaimer:   string;
+    errorMessage: string;
+    secondary: {
+      eyebrow: string;
+      body:    string;
+    };
     form: {
       nameLabel:           string;
       namePlaceholder:     string;
@@ -192,6 +199,68 @@ export interface SiteTranslations {
     cta:      string;
   };
 
+  investRealEstate: {
+    eyebrow:   string;
+    headline:  string;
+    body:      string;
+    statValue: string;
+    statLabel: string;
+    cta:       string;
+  };
+
+  investTechnology: {
+    eyebrow:  string;
+    headline: string;
+    intro:    string;
+    pillars:  Array<{ heading: string; body: string }>;
+    cta:      string;
+  };
+
+  investAgriculture: {
+    eyebrow:          string;
+    headline:         string;
+    body:             string;
+    statValue:        string;
+    statLabel:        string;
+    cta:              string;
+    keyFactorsLabel:  string;
+    highlightsLabel:  string;
+    keyDrivers:       Array<{ text: string }>;
+    marketHighlights: Array<{ text: string }>;
+    legalNote:        string;
+    downloads:        Array<{ label: string; href: string }>;
+  };
+
+  investHero: {
+    eyebrow:     string;
+    headline:    string;
+    intro1:      string;
+    intro2:      string;
+    scrollLabel: string;
+  };
+
+  blog: {
+    eyebrow:      string;
+    headline:     string;
+    subtitle:     string;
+    readLabel:    string;
+    empty:        string;
+    backLabel:    string;
+    linkedinText: string;
+  };
+
+  services: {
+    step: string;
+  };
+
+  investSpecial: {
+    eyebrow:  string;
+    headline: string;
+    intro:    string;
+    pillars:  Array<{ heading: string; body: string }>;
+    cta:      string;
+  };
+
   footer: {
     brand: {
       tagline: string;
@@ -214,6 +283,7 @@ export interface SiteTranslations {
       privacy:   string;
       terms:     string;
     };
+    cta: string;
   };
 }
 
@@ -450,6 +520,7 @@ const en: SiteTranslations = {
     subtitle:    "Discover the latest stories and insights that showcase Uruguay's potential as an investment destination and cultural hub.",
     viewAll:     "View all articles",
     readArticle: "Visit article",
+    backLabel:   "Back to news",
     articles: [
       {
         id:       "port",
@@ -548,6 +619,12 @@ const en: SiteTranslations = {
     eyebrow:  "Private Consultation",
     headline: "Connect with our team.",
     intro:    "Connect with our team in Uruguay to discuss residency, strategic asset acquisition, lifestyle assets, or long-term positioning in the region.",
+    disclaimer:   "We respond within 1–2 business days. All enquiries are fully confidential.",
+    errorMessage: "Something went wrong. Please try again.",
+    secondary: {
+      eyebrow: "Working with us",
+      body:    "We work with a select number of clients at any given time to ensure the depth of attention each engagement deserves.",
+    },
     form: {
       nameLabel:           "Full Name",
       namePlaceholder:     "Your full name",
@@ -621,6 +698,88 @@ const en: SiteTranslations = {
       privacy:   "Privacy Policy",
       terms:     "Terms of Service",
     },
+    cta: "Book a consultation",
+  },
+
+  investRealEstate: {
+    eyebrow:   "01 · Real Estate",
+    headline:  "Invest where you can live: The Lifestyle Assets Concept",
+    body:      "We believe the most resilient portfolio is one you can experience. Assets that preserve and grow your capital while remaining livable, enjoyable and productive.\n\nWe will help you find properties that serve a dual purpose: capital preservation (productive farmland, estancias, premium real estate) and immediate quality of life.\n\nUruguay's real estate market offers legal certainty, dollar-denominated transactions and unrestricted foreign ownership.",
+    statValue: "0%",
+    statLabel: "Restrictions on foreign ownership",
+    cta:       "Ask about our farmland, agricultural and coastal property listings",
+  },
+
+  investTechnology: {
+    eyebrow:  "02 · Technology",
+    headline: "IT, Innovation & Emerging Technologies",
+    intro:    "Uruguay has positioned itself as one of Latin America's most stable and forward-looking technology hubs, combining institutional reliability, skilled talent, and a business-friendly environment for digital growth.",
+    pillars: [
+      { heading: "Strategic Ecosystem",  body: "A mature technology sector supported by strong education, public-private collaboration, and a growing network of startups, global companies, and innovation-driven ventures." },
+      { heading: "Regional Recognition", body: "Uruguay is widely recognized for its digital development, regulatory stability, and high-quality human capital, making it an attractive platform for regional operations." },
+      { heading: "Next Phase",           body: "Expansion across AI, software services, fintech, data infrastructure, and emerging technologies, reinforcing Uruguay's role as a gateway for innovation in South America." },
+    ],
+    cta: "Explore technology opportunities",
+  },
+
+  investAgriculture: {
+    eyebrow:    "03 · Agriculture & Forestry",
+    headline:   "Agriculture & Forestry",
+    body:       "Uruguay is a country with deep agricultural tradition. With more than 90% of its land suitable for productive use, it stands as a reliable global food supplier.",
+    statValue:  "90%+",
+    statLabel:  "Of land suitable for productive use",
+    cta:        "Contact us about properties for sale",
+    keyFactorsLabel: "Key Factors",
+    highlightsLabel: "Highlights",
+    keyDrivers: [
+      { text: "Preservation of large natural areas" },
+      { text: "Policies focused on environmental sustainability" },
+      { text: "Technology and sustainable management practices" },
+    ],
+    marketHighlights: [
+      { text: "Food production capacity for 30–50 million people" },
+      { text: "Country free from deforestation" },
+      { text: "Tax incentives for forestry investment" },
+    ],
+    legalNote: "Forestry Law No. 15,939 provides a robust legal framework for responsible investment.",
+    downloads: [
+      { label: "Download Forestry Report",          href: "https://www.uruguayxxi.gub.uy/en/information-center/article/forestry-sector-in-uruguay/" },
+      { label: "Download Agriculture Outlook 2024", href: "https://www.uruguayxxi.gub.uy/en/information-center/article/agriculture-report-2024/" },
+    ],
+  },
+
+  investSpecial: {
+    eyebrow:  "04 · Special Projects",
+    headline: "Special Projects",
+    intro:    "At SACRAMENTUM CAPITAL, we hold mandates and access to select special projects representing opportunities for strategic investors.",
+    pillars: [
+      { heading: "Specialized Approach", body: "Projects involving complexity such as restructurings, distressed situations, refinancing processes, or scenarios requiring discreet expert guidance." },
+      { heading: "Key Sectors",          body: "Logistics & transport · Port infrastructure · Urban development · Exclusive Real Estate" },
+      { heading: "Confidential Access",  body: "Direct and confidential management of selected projects for sophisticated investors. To learn more about these opportunities, please contact our team directly." },
+    ],
+    cta: "Contact our team",
+  },
+
+  investHero: {
+    eyebrow:     "Investment Sectors",
+    headline:    "Invest in Uruguay",
+    intro1:      "Discover investment opportunities in one of the most stable and attractive countries in Latin America.",
+    intro2:      "In recent years, Uruguay has experienced significant progress in the development of its road, rail, and energy infrastructure. These advancements have created tangible opportunities for strategic players across key sectors such as real estate, infrastructure, logistics, agriculture, forestry, and renewables.",
+    scrollLabel: "Scroll to explore",
+  },
+
+  blog: {
+    eyebrow:      "Insights",
+    headline:     "Blog",
+    subtitle:     "Perspectives on Uruguay's investment landscape, real estate, and strategic relocation from the Sacramentum team.",
+    readLabel:    "READ POST",
+    empty:        "No posts yet — check back soon.",
+    backLabel:    "Back to blog",
+    linkedinText: "View original post on LinkedIn",
+  },
+
+  services: {
+    step: "Step",
   },
 };
 
@@ -857,6 +1016,7 @@ const es: SiteTranslations = {
     subtitle:    "Una selección curada de historias y señales que marcan el ascenso de Uruguay como destino estratégico para la inversión, la calidad de vida y el posicionamiento como hub a largo plazo.",
     viewAll:     "Ver todos los artículos",
     readArticle: "Visitar artículo",
+    backLabel:   "Volver a noticias",
     articles: [
       {
         id:       "port",
@@ -955,6 +1115,12 @@ const es: SiteTranslations = {
     eyebrow:  "Consulta Privada",
     headline: "Conéctese con nuestro equipo.",
     intro:    "Conéctese con nuestro equipo en Uruguay para hablar sobre residencia, adquisición estratégica de activos, activos de estilo de vida o posicionamiento a largo plazo en la región.",
+    disclaimer:   "Respondemos en 1–2 días hábiles. Toda consulta es completamente confidencial.",
+    errorMessage: "Algo salió mal. Por favor intentá de nuevo.",
+    secondary: {
+      eyebrow: "Trabajar con nosotros",
+      body:    "Trabajamos con un número selecto de clientes en todo momento para garantizar la profundidad de atención que cada compromiso merece.",
+    },
     form: {
       nameLabel:           "Nombre Completo",
       namePlaceholder:     "Su nombre completo",
@@ -1028,6 +1194,90 @@ const es: SiteTranslations = {
       privacy:   "Política de Privacidad",
       terms:     "Términos de Servicio",
     },
+    cta: "Reservar consulta",
+  },
+
+  investRealEstate: {
+    eyebrow:   "01 · Bienes Raíces",
+    headline:  "Invierta donde pueda vivir: El concepto de Lifestyle Assets",
+    body:      "Creemos que la cartera más sólida es aquella que también puede disfrutarse en la vida real. Activos que preservan y hacen crecer su capital, al tiempo que resultan habitables, disfrutables y productivos.\n\nLe ayudamos a identificar propiedades con un doble propósito: preservación de capital (campos productivos, estancias y bienes raíces premium) y calidad de vida inmediata.\n\nEl mercado inmobiliario de Uruguay ofrece seguridad jurídica, transacciones denominadas en dólares y propiedad sin restricciones para inversores extranjeros.",
+    statValue: "0%",
+    statLabel: "Restricciones a propietarios extranjeros",
+    cta:       "Consúltenos para conocer nuestros listings de campos agrícolas, ganaderos y forestales, chacras serranas o propiedades costeras",
+  },
+
+  investTechnology: {
+    eyebrow:  "02 · Tecnología",
+    headline: "IT, Innovación y Tecnologías Emergentes",
+    intro:    "Uruguay se ha posicionado como uno de los hubs tecnológicos más estables y con mayor visión de futuro de América Latina, combinando fiabilidad institucional, talento calificado y un entorno favorable para el crecimiento digital.",
+    pillars: [
+      { heading: "Ecosistema Estratégico",  body: "Un sector tecnológico maduro respaldado por una sólida educación, colaboración público-privada y una creciente red de startups, empresas globales y emprendimientos orientados a la innovación." },
+      { heading: "Reconocimiento Regional", body: "Uruguay es ampliamente reconocido por su desarrollo digital, estabilidad regulatoria y capital humano de alta calidad, convirtiéndolo en una plataforma atractiva para operaciones regionales." },
+      { heading: "Próxima Fase",            body: "Expansión en IA, servicios de software, fintech, infraestructura de datos y tecnologías emergentes, reforzando el rol de Uruguay como puerta de entrada a la innovación en Sudamérica." },
+    ],
+    cta: "Contáctenos para conectar con el ecosistema emprendedor y de VC regional",
+  },
+
+  investAgriculture: {
+    eyebrow:    "03 · Sector Agropecuario y Forestal",
+    headline:   "Sector Agropecuario y Forestal",
+    body:       "Con profunda tradición agropecuaria y más del 90% de su territorio apto para uso productivo, Uruguay sigue siendo una de las plataformas más confiables del mundo para la producción de alimentos, la inversión forestal y las estrategias sostenibles de uso de la tierra.",
+    statValue:  "90%+",
+    statLabel:  "Del territorio apto para uso productivo",
+    cta:        "Consúltenos por propiedades a la venta",
+    keyFactorsLabel: "Factores Clave",
+    highlightsLabel: "Aspectos del Mercado",
+    keyDrivers: [
+      { text: "Conservación de tierras a gran escala y gestión responsable" },
+      { text: "Políticas ambientales orientadas a la sostenibilidad" },
+      { text: "Tecnologías agrícolas y forestales avanzadas" },
+      { text: "Sólida infraestructura exportadora y sistemas de trazabilidad" },
+    ],
+    marketHighlights: [
+      { text: "Capacidad alimentaria para 30–50 millones de personas" },
+      { text: "País libre de deforestación" },
+      { text: "Incentivos fiscales para inversión forestal" },
+      { text: "Fuerte apoyo institucional al uso sostenible de la tierra" },
+    ],
+    legalNote: "La Ley Forestal N.° 15.939 proporciona un marco regulatorio sólido para la inversión forestal responsable a largo plazo.",
+    downloads: [
+      { label: "Descargar Informe Forestal",          href: "https://www.uruguayxxi.gub.uy/es/centro-informacion/articulo/sector-forestal-en-uruguay/" },
+      { label: "Descargar Perspectivas Agrícolas 2024", href: "https://www.uruguayxxi.gub.uy/es/centro-informacion/articulo/informe-agricola-2024/" },
+    ],
+  },
+
+  investSpecial: {
+    eyebrow:  "04 · Proyectos Especiales",
+    headline: "Proyectos Especiales",
+    intro:    "En SACRAMENTUM CAPITAL contamos con mandatos y acceso a proyectos especiales seleccionados que representan oportunidades para inversores estratégicos.",
+    pillars: [
+      { heading: "Enfoque Especializado", body: "Proyectos que involucran complejidad como reestructuraciones, situaciones de activos en dificultad, procesos de refinanciamiento o escenarios que requieren orientación experta discreta." },
+      { heading: "Sectores Clave",        body: "Logística y transporte · Infraestructura portuaria · Desarrollo urbano · Real Estate exclusivo" },
+      { heading: "Acceso Confidencial",   body: "Gestión directa y confidencial de proyectos seleccionados para inversores sofisticados. Para conocer más sobre estas oportunidades, contacte directamente a nuestro equipo." },
+    ],
+    cta: "Contactar al equipo",
+  },
+
+  investHero: {
+    eyebrow:     "Sectores de Inversión",
+    headline:    "Invertir en Uruguay",
+    intro1:      "Descubra las oportunidades de inversión en Uruguay, uno de los países más estables y atractivos de América Latina.",
+    intro2:      "En los últimos años, Uruguay ha experimentado un avance significativo en el desarrollo de su infraestructura vial, ferroviaria y energética. Estos avances han generado oportunidades concretas para la participación de players estratégicos en sectores clave como el agro-forestal, agroindustrial, infraestructura y logística, así como en energías renovables.",
+    scrollLabel: "Desplazar para explorar",
+  },
+
+  blog: {
+    eyebrow:      "Perspectivas",
+    headline:     "Blog",
+    subtitle:     "Perspectivas del equipo de Sacramentum sobre inversión, real estate y relocalización estratégica en Uruguay.",
+    readLabel:    "LEER POST",
+    empty:        "Próximamente nuevos posts.",
+    backLabel:    "Volver al blog",
+    linkedinText: "Ver publicación original en LinkedIn",
+  },
+
+  services: {
+    step: "Paso",
   },
 };
 

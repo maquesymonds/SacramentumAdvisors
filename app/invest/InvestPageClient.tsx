@@ -6,7 +6,7 @@ import { gsap }               from "gsap";
 import { ScrollTrigger }      from "gsap/ScrollTrigger";
 import Navigation             from "@/components/layout/Navigation";
 import Footer                 from "@/components/layout/Footer";
-import { useLocale }          from "@/lib/locale-context";
+import { useT }               from "@/lib/locale-context";
 import { lenisRef }           from "@/lib/lenis-ref";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,149 +25,15 @@ function lerpColor(a: string, b: string, t: number): string {
   return `rgb(${Math.round(r1+(r2-r1)*t)},${Math.round(g1+(g2-g1)*t)},${Math.round(b1+(b2-b1)*t)})`;
 }
 
+// Static metadata for each chapter. The editable text copy lives in
+// data/translations.ts (sections investRealEstate / investTechnology /
+// investAgriculture / investSpecial) and is pulled in via useT() so the
+// admin "Textos" panel can edit it. Images, colours and order stay in code.
 const CHAPTERS = [
-  {
-    id: "real-estate",
-    image: "/images/RealEstate.webp",
-    en: {
-      eyebrow:   "01 · Real Estate",
-      headline:  "Invest where you can live: The Lifestyle Assets Concept",
-      body:      "We believe the most resilient portfolio is one you can experience. Assets that preserve and grow your capital while remaining livable, enjoyable and productive.\n\nWe will help you find properties that serve a dual purpose: capital preservation (productive farmland, estancias, premium real estate) and immediate quality of life.\n\nUruguay's real estate market offers legal certainty, dollar-denominated transactions and unrestricted foreign ownership.",
-      stat:      { value: "0%", label: "Restrictions on foreign ownership" },
-      secondary: "Residential · Commercial · Coastal · Heritage",
-      cta:       "Ask about our farmland, agricultural and coastal property listings",
-    },
-    es: {
-      eyebrow:   "01 · Bienes Raíces",
-      headline:  "Invierta donde pueda vivir: El concepto de Lifestyle Assets",
-      body:      "Creemos que la cartera más sólida es aquella que también puede disfrutarse en la vida real. Activos que preservan y hacen crecer su capital, al tiempo que resultan habitables, disfrutables y productivos.\n\nLe ayudamos a identificar propiedades con un doble propósito: preservación de capital (campos productivos, estancias y bienes raíces premium) y calidad de vida inmediata.\n\nEl mercado inmobiliario de Uruguay ofrece seguridad jurídica, transacciones denominadas en dólares y propiedad sin restricciones para inversores extranjeros.",
-      stat:      { value: "0%", label: "Restricciones a propietarios extranjeros" },
-      secondary: "Residencial · Comercial · Costero · Patrimonial",
-      cta:       "Consúltenos para conocer nuestros listings de campos agrícolas, ganaderos y forestales, chacras serranas o propiedades costeras",
-    },
-  },
-  {
-    id: "technology",
-    image: "/images/tech.avif",
-    en: {
-      eyebrow:  "02 · Technology",
-      headline: "IT, Innovation & Emerging Technologies",
-      intro:    "Uruguay has positioned itself as one of Latin America's most stable and forward-looking technology hubs, combining institutional reliability, skilled talent, and a business-friendly environment for digital growth.",
-      pillars: [
-        { heading: "Strategic Ecosystem",  body: "A mature technology sector supported by strong education, public-private collaboration, and a growing network of startups, global companies, and innovation-driven ventures." },
-        { heading: "Regional Recognition", body: "Uruguay is widely recognized for its digital development, regulatory stability, and high-quality human capital, making it an attractive platform for regional operations." },
-        { heading: "Next Phase",           body: "Expansion across AI, software services, fintech, data infrastructure, and emerging technologies, reinforcing Uruguay's role as a gateway for innovation in South America." },
-      ],
-      cta: "Explore technology opportunities",
-    },
-    es: {
-      eyebrow:  "02 · Tecnología",
-      headline: "IT, Innovación y Tecnologías Emergentes",
-      intro:    "Uruguay se ha posicionado como uno de los hubs tecnológicos más estables y con mayor visión de futuro de América Latina, combinando fiabilidad institucional, talento calificado y un entorno favorable para el crecimiento digital.",
-      pillars: [
-        { heading: "Ecosistema Estratégico",  body: "Un sector tecnológico maduro respaldado por una sólida educación, colaboración público-privada y una creciente red de startups, empresas globales y emprendimientos orientados a la innovación." },
-        { heading: "Reconocimiento Regional", body: "Uruguay es ampliamente reconocido por su desarrollo digital, estabilidad regulatoria y capital humano de alta calidad, convirtiéndolo en una plataforma atractiva para operaciones regionales." },
-        { heading: "Próxima Fase",            body: "Expansión en IA, servicios de software, fintech, infraestructura de datos y tecnologías emergentes, reforzando el rol de Uruguay como puerta de entrada a la innovación en Sudamérica." },
-      ],
-      cta: "Contáctenos para conectar con el ecosistema emprendedor y de VC regional",
-    },
-  },
-  {
-    id: "agriculture",
-    image: "/images/woods.avif",
-    en: {
-      eyebrow:    "03 · Agriculture & Forestry",
-      headline:   "Agriculture & Forestry",
-      body:       "Uruguay is a country with deep agricultural tradition. With more than 90% of its land suitable for productive use, it stands as a reliable global food supplier.",
-      stat:       { value: "90%+", label: "Of land suitable for productive use" },
-      secondary:  "Livestock · Arable · Forestry · Viticulture",
-      cta:        "Contact us about properties for sale",
-      keyDrivers: [
-        "Preservation of large natural areas",
-        "Policies focused on environmental sustainability",
-        "Technology and sustainable management practices",
-      ],
-      marketHighlights: [
-        "Food production capacity for 30–50 million people",
-        "Country free from deforestation",
-        "Tax incentives for forestry investment",
-      ],
-      legalNote: "Forestry Law No. 15,939 provides a robust legal framework for responsible investment.",
-      downloads: [
-        { label: "Download Forestry Report",          href: "https://www.uruguayxxi.gub.uy/en/information-center/article/forestry-sector-in-uruguay/" },
-        { label: "Download Agriculture Outlook 2024", href: "https://www.uruguayxxi.gub.uy/en/information-center/article/agriculture-report-2024/" },
-      ],
-    },
-    es: {
-      eyebrow:    "03 · Sector Agropecuario y Forestal",
-      headline:   "Sector Agropecuario y Forestal",
-      body:       "Con profunda tradición agropecuaria y más del 90% de su territorio apto para uso productivo, Uruguay sigue siendo una de las plataformas más confiables del mundo para la producción de alimentos, la inversión forestal y las estrategias sostenibles de uso de la tierra.",
-      stat:       { value: "90%+", label: "Del territorio apto para uso productivo" },
-      secondary:  "Ganadería · Arable · Forestación · Viticultura",
-      cta:        "Consúltenos por propiedades a la venta",
-      keyDrivers: [
-        "Conservación de tierras a gran escala y gestión responsable",
-        "Políticas ambientales orientadas a la sostenibilidad",
-        "Tecnologías agrícolas y forestales avanzadas",
-        "Sólida infraestructura exportadora y sistemas de trazabilidad",
-      ],
-      marketHighlights: [
-        "Capacidad alimentaria para 30–50 millones de personas",
-        "País libre de deforestación",
-        "Incentivos fiscales para inversión forestal",
-        "Fuerte apoyo institucional al uso sostenible de la tierra",
-      ],
-      legalNote: "La Ley Forestal N.° 15.939 proporciona un marco regulatorio sólido para la inversión forestal responsable a largo plazo.",
-      downloads: [
-        { label: "Descargar Informe Forestal",          href: "https://www.uruguayxxi.gub.uy/es/centro-informacion/articulo/sector-forestal-en-uruguay/" },
-        { label: "Descargar Perspectivas Agrícolas 2024", href: "https://www.uruguayxxi.gub.uy/es/centro-informacion/articulo/informe-agricola-2024/" },
-      ],
-    },
-  },
-  {
-    id: "special-situations",
-    image: "/placeholders/colonia.avif",
-    en: {
-      eyebrow:  "04 · Special Projects",
-      headline: "Special Projects",
-      intro:    "At SACRAMENTUM CAPITAL, we hold mandates and access to select special projects representing opportunities for strategic investors.",
-      pillars: [
-        {
-          heading: "Specialized Approach",
-          body:    "Projects involving complexity such as restructurings, distressed situations, refinancing processes, or scenarios requiring discreet expert guidance.",
-        },
-        {
-          heading: "Key Sectors",
-          body:    "Logistics & transport · Port infrastructure · Urban development · Exclusive Real Estate",
-        },
-        {
-          heading: "Confidential Access",
-          body:    "Direct and confidential management of selected projects for sophisticated investors. To learn more about these opportunities, please contact our team directly.",
-        },
-      ],
-      cta: "Contact our team",
-    },
-    es: {
-      eyebrow:  "04 · Proyectos Especiales",
-      headline: "Proyectos Especiales",
-      intro:    "En SACRAMENTUM CAPITAL contamos con mandatos y acceso a proyectos especiales seleccionados que representan oportunidades para inversores estratégicos.",
-      pillars: [
-        {
-          heading: "Enfoque Especializado",
-          body:    "Proyectos que involucran complejidad como reestructuraciones, situaciones de activos en dificultad, procesos de refinanciamiento o escenarios que requieren orientación experta discreta.",
-        },
-        {
-          heading: "Sectores Clave",
-          body:    "Logística y transporte · Infraestructura portuaria · Desarrollo urbano · Real Estate exclusivo",
-        },
-        {
-          heading: "Acceso Confidencial",
-          body:    "Gestión directa y confidencial de proyectos seleccionados para inversores sofisticados. Para conocer más sobre estas oportunidades, contacte directamente a nuestro equipo.",
-        },
-      ],
-      cta: "Contactar al equipo",
-    },
-  },
+  { id: "real-estate",        image: "/images/RealEstate.webp",    key: "investRealEstate"  },
+  { id: "technology",         image: "/images/tech.avif",          key: "investTechnology"  },
+  { id: "agriculture",        image: "/images/woods.avif",         key: "investAgriculture" },
+  { id: "special-situations", image: "/placeholders/colonia.avif", key: "investSpecial"     },
 ] as const;
 
 const fadeUp = (delay = 0) => ({
@@ -185,7 +51,8 @@ const fadeIn = (delay = 0) => ({
 });
 
 export default function InvestPageClient() {
-  const { locale } = useLocale();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tr = useT() as any;
 
   // ── Refs ───────────────────────────────────────────────────────────────────
   const chaptersSection = useRef<HTMLDivElement>(null);
@@ -313,7 +180,7 @@ export default function InvestPageClient() {
             <motion.div {...fadeIn(0)} className="flex items-center gap-4 mb-5">
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>
-                {locale === "en" ? "Investment Sectors" : "Sectores de Inversión"}
+                {tr.investHero.eyebrow}
               </span>
             </motion.div>
 
@@ -327,27 +194,18 @@ export default function InvestPageClient() {
                   lineHeight:    1.08,
                 }}
               >
-                {locale === "en" ? "Invest in Uruguay" : "Invertir en Uruguay"}
+                {tr.investHero.headline}
               </motion.h1>
 
               <motion.div {...fadeUp(0.12)} className="text-body text-ink-muted leading-relaxed lg:pb-2 flex flex-col gap-4">
-                {locale === "en" ? (
-                  <>
-                    <p>Discover investment opportunities in one of the most stable and attractive countries in Latin America.</p>
-                    <p>In recent years, Uruguay has experienced significant progress in the development of its road, rail, and energy infrastructure. These advancements have created tangible opportunities for strategic players across key sectors such as real estate, infrastructure, logistics, agriculture, forestry, and renewables.</p>
-                  </>
-                ) : (
-                  <>
-                    <p>Descubra las oportunidades de inversión en Uruguay, uno de los países más estables y atractivos de América Latina.</p>
-                    <p>En los últimos años, Uruguay ha experimentado un avance significativo en el desarrollo de su infraestructura vial, ferroviaria y energética. Estos avances han generado oportunidades concretas para la participación de players estratégicos en sectores clave como el agro-forestal, agroindustrial, infraestructura y logística, así como en energías renovables.</p>
-                  </>
-                )}
+                <p>{tr.investHero.intro1}</p>
+                <p>{tr.investHero.intro2}</p>
               </motion.div>
             </div>
 
             <motion.div {...fadeIn(0.3)} className="flex items-center gap-3 mt-8">
               <span className="text-ink-muted" style={{ fontSize: "0.75rem", letterSpacing: "0.06em" }}>
-                {locale === "en" ? "Scroll to explore" : "Desplazar para explorar"}
+                {tr.investHero.scrollLabel}
               </span>
               <span style={{ display: "block", height: 1, width: "3rem", backgroundColor: "rgba(31,41,51,0.2)" }} />
             </motion.div>
@@ -370,7 +228,7 @@ export default function InvestPageClient() {
           {/* Left: absolutely stacked text panels */}
           <div style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
             {CHAPTERS.map((chapter, i) => {
-              const copy = chapter[locale];
+              const copy = tr[chapter.key];
               return (
                 <div
                   key={chapter.id}
@@ -435,15 +293,15 @@ export default function InvestPageClient() {
                       <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.65, maxWidth: "52ch", marginBottom: "1.25rem" }}>{copy.body}</p>
                       <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.25rem" }}>
                         {[
-                          { heading: locale === "en" ? "Key Factors" : "Factores Clave", items: copy.keyDrivers },
-                          { heading: locale === "en" ? "Highlights" : "Aspectos del Mercado", items: copy.marketHighlights },
+                          { heading: copy.keyFactorsLabel, items: copy.keyDrivers },
+                          { heading: copy.highlightsLabel, items: copy.marketHighlights },
                         ].map(({ heading, items }) => (
                           <div key={heading}>
                             <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.75rem" }}>{heading}</p>
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                              {items.map((item: string) => (
-                                <li key={item} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
-                                  <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0, marginTop: "0.25rem" }}>—</span>{item}
+                              {items.map((item: { text: string }) => (
+                                <li key={item.text} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
+                                  <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0, marginTop: "0.25rem" }}>—</span>{item.text}
                                 </li>
                               ))}
                             </ul>
@@ -476,10 +334,10 @@ export default function InvestPageClient() {
                           <p key={pi} style={{ marginBottom: pi < arr.length - 1 ? "1rem" : 0 }}>{para}</p>
                         ))}
                       </div>
-                      {"stat" in copy && (
+                      {copy.statValue && (
                         <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", padding: "1.25rem 1.5rem", borderLeft: "2px solid rgba(255,255,255,0.2)", backgroundColor: "rgba(255,255,255,0.06)", marginBottom: "2rem" }}>
-                          <span style={{ color: "rgba(255,255,255,0.95)", fontSize: "clamp(1.8rem, 3vw, 2.5rem)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1 }}>{copy.stat.value}</span>
-                          <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", letterSpacing: "0.04em", maxWidth: "24ch", lineHeight: 1.4 }}>{copy.stat.label}</span>
+                          <span style={{ color: "rgba(255,255,255,0.95)", fontSize: "clamp(1.8rem, 3vw, 2.5rem)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1 }}>{copy.statValue}</span>
+                          <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", letterSpacing: "0.04em", maxWidth: "24ch", lineHeight: 1.4 }}>{copy.statLabel}</span>
                         </div>
                       )}
                       <a href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
@@ -509,7 +367,7 @@ export default function InvestPageClient() {
                 <img
                   ref={(el) => { imageInnerRefs.current[i] = el; }}
                   src={chapter.image}
-                  alt={chapter.en.eyebrow}
+                  alt={tr[chapter.key].eyebrow}
                   style={{ width: "100%", height: "115%", objectFit: "cover", marginTop: "-7.5%", display: "block" }}
                 />
                 <div
@@ -538,7 +396,7 @@ export default function InvestPageClient() {
         {/* ── Chapters — Mobile stacked ────────────────────────────────────── */}
         <div className="lg:hidden">
           {CHAPTERS.map((chapter, i) => {
-            const copy = chapter[locale];
+            const copy = tr[chapter.key];
             return (
               <div
                 key={chapter.id}
@@ -560,15 +418,15 @@ export default function InvestPageClient() {
                 {"keyDrivers" in copy ? (
                   <>
                     {[
-                      { heading: locale === "en" ? "Key Factors" : "Factores Clave", items: copy.keyDrivers },
-                      { heading: locale === "en" ? "Highlights" : "Aspectos del Mercado", items: copy.marketHighlights },
+                      { heading: copy.keyFactorsLabel, items: copy.keyDrivers },
+                      { heading: copy.highlightsLabel, items: copy.marketHighlights },
                     ].map(({ heading, items }) => (
                       <div key={heading} style={{ marginBottom: "1.25rem" }}>
                         <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}>{heading}</p>
                         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                          {items.map((item: string) => (
-                            <li key={item} style={{ display: "flex", gap: "0.5rem", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
-                              <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0 }}>—</span>{item}
+                          {items.map((item: { text: string }) => (
+                            <li key={item.text} style={{ display: "flex", gap: "0.5rem", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
+                              <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0 }}>—</span>{item.text}
                             </li>
                           ))}
                         </ul>

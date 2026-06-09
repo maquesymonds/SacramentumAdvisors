@@ -6,7 +6,7 @@ import Link  from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
-import { useLocale } from "@/lib/locale-context";
+import { useLocale, useT } from "@/lib/locale-context";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -154,14 +154,13 @@ function MobileBlogCard({ post, readLabel, locale }: { post: BlogPost; readLabel
 
 export default function BlogPageClient({ posts }: { posts: BlogPost[] }) {
   const { locale } = useLocale();
+  const blog       = useT().blog;
 
-  const eyebrow   = locale === "en" ? "Insights" : "Perspectivas";
-  const headline  = locale === "en" ? "Blog" : "Blog";
-  const subtitle  = locale === "en"
-    ? "Perspectives on Uruguay's investment landscape, real estate, and strategic relocation from the Sacramentum team."
-    : "Perspectivas del equipo de Sacramentum sobre inversión, real estate y relocalización estratégica en Uruguay.";
-  const readLabel = locale === "en" ? "READ POST" : "LEER POST";
-  const emptyMsg  = locale === "en" ? "No posts yet — check back soon." : "Próximamente nuevos posts.";
+  const eyebrow   = blog.eyebrow;
+  const headline  = blog.headline;
+  const subtitle  = blog.subtitle;
+  const readLabel = blog.readLabel;
+  const emptyMsg  = blog.empty;
 
   const sorted = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
