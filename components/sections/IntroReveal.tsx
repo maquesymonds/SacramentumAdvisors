@@ -226,7 +226,7 @@ export default function IntroReveal() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={windowRef}
-            src="/images/Substract.png"
+            src="/images/Substract.webp"
             alt=""
             draggable={false}
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }}

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 
 // Critical assets that must load before the loader exits
-const CRITICAL = ["/images/uruguay.webp", "/images/Substract.png"];
+const CRITICAL = ["/images/uruguay.webp", "/images/Substract.webp"];
 const MIN_MS   = 1800; // minimum display time even if assets are cached
 
 export default function Loader() {

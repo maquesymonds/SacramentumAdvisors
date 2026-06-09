@@ -64,6 +64,8 @@ export default function Navigation() {
 
   // ── Close menu on resize ────────────────────────────────────────────────
 
+
+  
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 1024) setMenuOpen(false); };
     window.addEventListener("resize", onResize);
