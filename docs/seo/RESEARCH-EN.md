@@ -155,7 +155,101 @@ uruguay retirement visa (300) · uruguay passport visa free countries (110) · u
 switzerland of south america (70) · uruguay cedula (70) · upm uruguay (50). Everything about the 2026 regime, forced heirship,
 buyer's agents, family offices and relocation services: **no data** — AI-only topics.
 
-### Pending
+### Clean re-run · ChatGPT 6, 8, 10 + Gemini 10
 
-- **Gemini** prompt 9 (complete) and prompt 10 ("What is Sacramentum Advisors").
-- **Clean re-run in ChatGPT** (temporary chat, one per prompt) of at least 6, 8 and 10 to measure Sacramentum's real presence.
+| # | Sacramentum mentioned? | Who else | Source used for Sacramentum |
+|---|---|---|---|
+| ChatGPT 6 · Punta del Este / José Ignacio | **No** | **Property Hunter Uruguay** (buyer-only, 3 % fee), Guyer & Regules, Posadas, La Cité | — |
+| ChatGPT 8 · Family office | **Yes — listed first** under "independent and specialist investment advisers", and in the final shortlist ("interview Sacramentum Advisors and GFA") | GFA Uruguay, CrossFrontier Advisors, Ferrere, Guyer & Regules, PwC, Puente, Nobilis, Gletir | **LinkedIn** ("investors and family offices… invest, relocate or acquire property") |
+| ChatGPT 10 · What is Sacramentum | (brand query) | — | **LinkedIn only.** Six areas incl. "Wealth diversification and Plan B strategies" and "Technology market entry". Adds: independence and fee model not verifiable |
+| Gemini 10 · What is Sacramentum | (brand query) | — | **sacramentumadvisors.com** + LinkedIn posts + infonegocios.biz. Full team: Inés Bonicelli, **Pablo Mautone (ex J.P. Morgan / Lehman)**, Chiara Toscani, Advisory Board Omar Paganini, Guillermo Dietrich, Paulina Fernández Rubio |
+
+**Readings**
+1. **Sacramentum already wins one query cleanly: family office.** That is exactly the phrase its LinkedIn uses. Proof that
+   *the words a firm publishes are the words it gets recommended for* — and that the website, today, contributes nothing to ChatGPT.
+2. **Gemini reads the website, ChatGPT does not** (ChatGPT's answers never cite sacramentumadvisors.com). Likely causes: no sitemap,
+   no robots.txt, one generic `<title>` for every page, no page per service. The stage-2 technical work addresses all four.
+3. **Pablo Mautone is on the website's team section** (Gemini read it there) — open question from the Spanish research resolved.
+4. **ChatGPT flags the independence question every time** ("verify referral fees, commissions"). A short, explicit
+   "How we are paid / independence" statement on the site answers it and turns a doubt into a differentiator.
+5. Uruguay XXI data point useful for copy: advisory firms in Uruguay managed **USD 42 bn** in 2024, ~88 % for non-residents.
+
+---
+
+## 3. Synthesis · English
+
+### 3.1 What we learned
+
+1. **English has real Google demand** (≈ 4–5× Spanish), led by the US: retire / move / cost of living, residency, second passport,
+   real estate, farmland. Europeans search in English too (José Ignacio, La Barra, Piriápolis, "uruguay vs chile" from DE/UK).
+2. **"Plan B" in English = second passport / second citizenship / flag theory.** Uruguay is not citizenship-by-investment; the honest
+   residency-to-citizenship path (3 / 5 years) is a high-value page.
+3. **AI competition is split:** ChatGPT recommends Guyer & Regules and Andersen (and, for family offices, Sacramentum);
+   Gemini cites whoever has the most specific, dated English page (modopunta, Castellan, Santiago Pereyra, farmlanduruguay, globaltax).
+4. **The 2026 tax regime is the most valuable and most confused topic** across both languages and both AIs.
+5. **Uruguay XXI's services directory is cited in both languages** — listing there is the top off-site action.
+
+### 3.2 English page map (draft · §14 format)
+
+`PROVISIONAL`. Same page set as Spanish; the keyword changes per language. Volumes = sum of US, UK, CA, AU, DE, CH, NL (SE Ranking estimate).
+
+| URL | Main keyword | Volume | Intent | Type | Why it exists |
+|---|---|---|---|---|---|
+| `/en/` | (brand) · uruguay investment advisory | no data | commercial | home | Entry, brand |
+| `/en/why-uruguay/` | is uruguay safe · safest country in south america | 1.020 · 1.940 | informational | hub | + uruguay quality of life (200), switzerland of south america (70). Exists today as `/invest` |
+| `/en/uruguay-residency/` | uruguay permanent residency · uruguay residency | 300 · 290 | commercial | service | + moving to uruguay (450), relocate (390), visa for us citizens (320), immigration (350), retirement visa (300), requirements (210), digital nomad visa (180) |
+| `/en/uruguay-citizenship-second-passport/` | uruguay passport · uruguay citizenship | 800 · 630 (+ citizenship in uruguay 480) | commercial | service | + second passport (770), second citizenship (1.620), how to get a second passport (390), citizenship requirements (150), dual citizenship (80). **New page — also in ES** ("pasaporte uruguayo" AR 260 · ES 210) |
+| `/en/uruguay-tax-residency/` | uruguay taxes / taxation in uruguay | ≈ 90 | commercial | service | GEO: 2026 regime, tax holiday, US/German angles |
+| `/en/retire-in-uruguay/` | retire in uruguay · cost of living in uruguay | 680 · 700 | commercial | service | + retirement in uruguay (680), is uruguay a good place to live (650), best places to live (190). Largest US cluster |
+| `/en/uruguay-real-estate/` | uruguay property · uruguay real estate | 1.300 · 790 | commercial | sector | + punta del este real estate (380), jose ignacio (350), houses for sale in uruguay (390), carrasco (310), la barra (250). Buyer-side positioning |
+| `/en/uruguay-farmland/` | uruguay land for sale · uruguay farmland for sale | 430 · 390 | commercial | sector | + farms for sale (360), farmland (210), timberland investment (400), agriculture in uruguay (170), ranch (90), forestry (90) |
+| `/en/free-zones-incentives/` | zonamerica | 420 (navigational) | commercial | sector | Functional + tech companies |
+| `/en/technology/` | — | — | — | sector | Functional (client request) |
+| `/en/sacramentum-capital/` | — | — | — | service | Functional (brand) |
+| `/en/family-office/` | (family office uruguay — no data) | — | commercial | service | **GEO: the one query where ChatGPT already recommends Sacramentum.** Could be a section of Services instead — decide at the Architecture Checkpoint |
+| `/en/team/` · `/en/faq/` · `/en/contact/` | — | — | — | functional | Trust, GEO answers, required |
+
+**Articles**
+
+| URL | Keyword | Volume | Justification |
+|---|---|---|---|
+| `/en/blog/uruguay-tax-residency-2026/` | — | no data | **GEO** — the gap in both AIs |
+| `/en/blog/uruguay-vs-paraguay-residency/` | uruguay vs paraguay · paraguay residency | 280 · 770 | Passes threshold; today written by Paraguay promoters |
+| `/en/blog/uruguay-vs-portugal/` | uruguay vs portugal · portugal nhr | 80 · 290 | Europeans comparing |
+| `/en/blog/uruguay-vs-chile/` | uruguay vs chile | 500 (390 DE) | Passes threshold |
+| `/en/blog/is-uruguay-safe/` | is uruguay safe | 1.020 | Passes threshold (could live in Why Uruguay) |
+| `/en/blog/cost-of-living-in-uruguay/` | cost of living in uruguay | 700 | Passes threshold (could live in Retire) |
+| `/en/blog/buying-property-in-uruguay-as-a-foreigner/` | buying property in uruguay | 80 | **GEO** — step-by-step format both AIs cite |
+| `/en/blog/uruguay-retirement-visa/` | uruguay retirement visa | 300 | Passes threshold; answer: there is no separate visa — Law 16.340 regime |
+
+### 3.3 Copy changes for Inés (English site)
+
+| Today | Proposal | Why |
+|---|---|---|
+| `<title>` "Sacramentum Advisors" (every page) | e.g. "Sacramentum Advisors · Invest, Relocate and Get Residency in Uruguay" + one title per page | One generic title is the single biggest technical gap |
+| Meta description "Principled leadership for strategic asset acquisition… lifestyle assets" | Say what, where and for whom: residency, real estate, farmland, investment, for foreign families and investors | Nobody searches "strategic asset acquisition" |
+| Hero eyebrow "Strategic Asset Acquisition" | **Residency, real estate and investment in Uruguay** | Matches searches and how AIs describe the firm |
+| Hero "…Latin America's premier **haven**" | Drop "haven" | In English it reads as *tax haven*; both AIs frame Uruguay as lawful diversification, not secrecy |
+| Sector "Agricultural Land" | **Farmland & ranches** | "uruguay farmland/farms/land for sale" ≈ 1.200 |
+| Sector "Luxury Residential" | **Real estate in Punta del Este, José Ignacio & Montevideo** | Searches are by place, not by "luxury" |
+| Sector "Estancias & Equestrian" | Merge into Farmland & ranches | One strong page |
+| Service "Soft Landing Partnerships" | **Residency & relocation** (soft landing as subtitle) | "soft landing uruguay" = 0; residency/relocate/moving ≈ 1.500 |
+| — (new) | **Second passport / path to citizenship** | 3.000+ searches; nobody explains it honestly |
+| — (new) | **Plan B** as a message ("Uruguay as your plan B") | ChatGPT already associates Sacramentum with "Plan B strategies" from LinkedIn |
+| — (new) | **Family offices** named explicitly in Services | The one query where ChatGPT recommends Sacramentum |
+| — (new) | Short "**How we work / independence**" statement (fee model, no undisclosed commissions) | ChatGPT raises the independence question in every answer about Sacramentum |
+| "tax holiday for tax residents" (Why Uruguay) | Rewrite to the **2026 regime** once verified | Outdated statements are what AIs flag |
+
+### 3.4 Off-site (GEO)
+
+1. **Uruguay XXI services directory** — cited in both languages, both AIs.
+2. **LinkedIn company page** — ChatGPT's only source on Sacramentum. Keep wording identical to the website (Plan B, family offices,
+   residency, real estate, farmland).
+3. **English articles on the blog**, dated and sourced — the format Gemini cites from small firms.
+
+### 3.5 To verify with the client
+
+- 2026 regime figures (Law 20.446: 12.5M UI, 625k UI/year, 6 % → 12 %, closure of the 3.5M UI + 60 days route for new residents).
+- Germany–Uruguay double-tax treaty status (Gemini says none; likely wrong).
+- Retiree regime Law 16.340 details.
+- Whether Sacramentum is paid only by the client (independence statement).
