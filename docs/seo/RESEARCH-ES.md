@@ -81,6 +81,26 @@ arrendamiento USD 133/ha/año, ITP 2 %, costos de compra 7,5–9 %), **procesos 
 5. **Dato a verificar antes de usar:** ChatGPT menciona que desde el 1/1/2026 Uruguay grava ciertas rentas del exterior de
    residentes fiscales. Si es así, cambia el mensaje de residencia fiscal — confirmar con la clienta.
 
+### Vocabulario de las IAs medido en SE Ranking
+
+61 términos sacados de las respuestas 1–4, medidos en AR / ES / UY. Datos: [`data/serank-es-ai-vocab.csv`](data/serank-es-ai-vocab.csv).
+
+| Con volumen en Google | AR | ES | UY | Uso |
+|---|---|---|---|---|
+| wealth management | 260 | 760 | – | Keyword secundaria de Servicios |
+| vivienda promovida | – | – | 390 | Keyword de la página Real Estate |
+| instituto nacional de colonizacion | – | 260 | 10 | H2/FAQ en Campo |
+| asesor inmobiliario independiente · asesor independiente | – | 50 · 30 | – | Posicionamiento, bajo volumen |
+| alquiler anual punta del este | – | 20 | 50 | Sección en Real Estate |
+
+**55 de 61 sin datos.** Conclusión: el vocabulario de las IAs (CONEAT, fideicomiso forestal, estudio de títulos, ITP,
+gastos comunes, asesoramiento independiente…) **no se busca en Google, pero es lo que la IA usa para armar la respuesta**.
+Va en el *cuerpo* de las páginas (para que la IA nos cite), no en títulos ni URLs.
+
+Regla que sale de esto:
+- **Títulos, URLs, H1** → keywords con volumen de SE Ranking (chacras, campos en venta, residencia, Punta del Este, vivienda promovida).
+- **Cuerpo, H2, FAQs** → vocabulario y preguntas de las IAs, con datos concretos y fuente.
+
 ### Prompts 5–12
 
 _Pendientes._
