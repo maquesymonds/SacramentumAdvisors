@@ -137,6 +137,52 @@ ARCA / perder la residencia fiscal argentina, nuevos residentes fiscales 2026.
    exactamente ese lugar: el que coordina a contador, escribano, banco y migración.
 4. Confirmado por segunda vez: **cambio de 2026 en el régimen de nuevos residentes fiscales** (cita IMPO). Verificar con la clienta.
 
-### Prompts 6–12
+### Prompts 6 y 7 · Residencia fiscal (argentino) · Mudarse con la familia (español)
+
+**Sacramentum no aparece.**
+
+**Las IAs se contradicen sobre el régimen fiscal 2026 — esta es la oportunidad más grande hasta ahora.**
+- Gemini (6 y 7) repite el régimen viejo: *tax holiday* de 11 años al 0 % sobre rentas de capital del exterior, después 7 % o 12 %.
+- ChatGPT (6 y 7) dice que **desde el 1/1/2026** Uruguay grava además rentas inmobiliarias y ganancias patrimoniales del exterior,
+  y que hay un **nuevo régimen de impatriados** (no residente fiscal en los 2 años previos + inversión inmobiliaria > 12.500.000 UI,
+  o aporte ≥ 625.000 UI/año a fondos de inversión productiva, o > 183 días cada año).
+- Una página clara, actualizada a 2026 y con fuentes (DGI, IMPO) es lo que las IAs necesitan y hoy no encuentran.
+  **Hay que verificar los datos con la clienta / un contador antes de publicar.**
+
+**Webs que citan las IAs (competencia de contenido en GEO):** blog de **Uruguay Sotheby's Realty**
+("Residencia fiscal en Uruguay: lo que todo extranjero debería saber"), **liveinuruguay.uy**, EY Uruguay, Andersen Uruguay,
+Global Tax, Brañas, Biz Latin Hub, Murblz, Holafly, Nómadas Fiscales, PPV. Además de gub.uy (Migración, DGI), IMPO, ARCA,
+Agencia Tributaria y BOE (convenio España–Uruguay).
+→ Una **inmobiliaria** consigue que la IA la cite con un artículo de blog sobre residencia fiscal. Sacramentum tiene blog: puede hacer lo mismo, mejor.
+
+**Estructura de contenido que arman las IAs:**
+- Residencia fiscal: tabla de **vías** (183 días · inversión inmobiliaria 3,5 M UI + 60 días · 15 M UI · actividad económica ·
+  intereses vitales) → trámite (Formulario 5202 ante DGI) → beneficios → **qué pasa con ARCA / Hacienda** → "¿cuándo te conviene?"
+  (tabla por situación).
+- Mudanza familiar: **residencia legal · residencia fiscal · seguridad social** son tres cosas distintas → documentación
+  apostillada (checklist) → dónde vivir (Carrasco, Pocitos, Ciudad de la Costa, Punta del Este) → impuestos por tipo de ingreso →
+  salud y colegios → hoja de ruta por etapas.
+- Dato a respetar en ES: **España no accede a la residencia Mercosur**; va por residencia permanente ordinaria.
+
+**Medido en SE Ranking** ([`data/serank-es-ai67.csv`](data/serank-es-ai67.csv)) — 40 términos, 25 sin datos:
+
+| Con volumen | AR | ES | UY | Uso |
+|---|---|---|---|---|
+| irpf uruguay | – | 30 | 390 | FAQ en Residencia fiscal |
+| vivir en uruguay siendo español | – | 50 | – | Keyword de la versión para españoles |
+| impuestos (en) uruguay | – | 20 + 20 | – | Sección impuestos |
+| convenio doble imposición españa uruguay / argentina uruguay | – | 20 / 10 | – | H2 en Residencia fiscal |
+| emigrar a uruguay (desde españa) | 20 | 10 + 10 | 10 | Keyword secundaria |
+| residencia fiscal uruguay beneficios | 10 | – | – | H2 |
+| tax holiday · impatriados · formulario 5202 · certificado de residencia fiscal | – | – | – | Sin datos: solo para el cuerpo del texto |
+
+**Hallazgos accionables:**
+1. **Artículo / página "Residencia fiscal en Uruguay 2026"**, con el régimen nuevo explicado y las fuentes. Es el tema donde
+   las IAs están peor informadas — quien publique lo correcto primero es quien van a citar.
+2. **Dos versiones del mismo tema según origen:** argentinos (Mercosur, ARCA) y españoles (residencia ordinaria, AEAT,
+   convenio España–Uruguay). Las IAs ya responden distinto; la web también debería.
+3. La frase "residencia legal ≠ residencia fiscal" aparece en las cuatro respuestas: se confirma como mensaje central para Inés.
+
+### Prompts 8–12
 
 _Pendientes._
