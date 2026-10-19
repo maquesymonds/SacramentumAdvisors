@@ -101,6 +101,42 @@ Regla que sale de esto:
 - **Títulos, URLs, H1** → keywords con volumen de SE Ranking (chacras, campos en venta, residencia, Punta del Este, vivienda promovida).
 - **Cuerpo, H2, FAQs** → vocabulario y preguntas de las IAs, con datos concretos y fuente.
 
-### Prompts 5–12
+### Prompt 5 · "Soy argentino y quiero armar un plan B en Uruguay"
+
+**Sacramentum no aparece.** Ninguna IA recomienda una firma: mandan a fuentes oficiales (gub.uy / Migración, DGI, ARCA,
+BROU, Ventanilla Única de Inversiones, IMPO) y a perfiles genéricos: "contador binacional primero, **no una inmobiliaria**",
+después abogado migratorio y "asesor patrimonial independiente". **El lugar está vacío.**
+
+**Estructura que usan (sirve como estructura de página):**
+- ChatGPT: *"Tener residencia uruguaya, tener dinero en Uruguay y ser residente fiscal uruguayo son tres cosas diferentes."*
+  Cuatro pilares — **residencia legal · banca y patrimonio · base física · planificación fiscal Argentina–Uruguay** — y una
+  **hoja de ruta de 90 días**. Es casi el índice de una página "Plan B / Mudarse a Uruguay".
+- Gemini: pasos 1–4 (documentación apostillada → residencia Mercosur → cuenta bancaria → costo de vida).
+
+**Vocabulario:** residencia Mercosur (permanente / temporaria), cédula uruguaya, apostillar, BPS, origen de fondos,
+cuenta para no residentes, costo de vida, 183 días, intereses vitales o económicos, inversión inmobiliaria + presencia física,
+ARCA / perder la residencia fiscal argentina, nuevos residentes fiscales 2026.
+
+**Medido en SE Ranking** ([`data/serank-es-ai5.csv`](data/serank-es-ai5.csv)) — 40 términos, 30 sin datos:
+
+| Con volumen | AR | ES | UY | Uso |
+|---|---|---|---|---|
+| residencia mercosur uruguay | 30 | 10 | 140 | Keyword secundaria de Residencia |
+| alquilar en montevideo | – | 110 | – | Sección "base física" |
+| argentinos en uruguay | 50 | – | – | Keyword secundaria |
+| bancos en uruguay | – | 50 | 20 | Sección banca |
+| costo de vida / cuánto cuesta vivir en uruguay | 10 | 20 | – | FAQ |
+| plan b | 9.900 | 18.100 | – | ⚠️ **No sirve**: es la píldora anticonceptiva. "Plan B" funciona como *mensaje*, no como keyword |
+
+**Hallazgos accionables:**
+1. **Página "Residencia y plan B"** con la estructura de 4 pilares + hoja de ruta. Es el formato que las IAs ya están
+   armando solas; si la página existe con esa forma y datos, es lo que van a citar.
+2. **La frase "residencia legal ≠ residencia fiscal ≠ tener dinero en Uruguay"** es la explicación que más ayuda
+   al lector y la que más se repite. Va en el copy (para Inés).
+3. **Ninguna IA nombra un servicio integral** (residencia + banca + inversión + fiscalidad). Sacramentum puede ocupar
+   exactamente ese lugar: el que coordina a contador, escribano, banco y migración.
+4. Confirmado por segunda vez: **cambio de 2026 en el régimen de nuevos residentes fiscales** (cita IMPO). Verificar con la clienta.
+
+### Prompts 6–12
 
 _Pendientes._
