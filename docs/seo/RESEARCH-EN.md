@@ -105,7 +105,57 @@ structure are usable. **Sacramentum's mentions (prompts 6 and 8) are not** — t
 Without data: uruguay naturalization (10), carta de ciudadania, us expat taxes uruguay, uruguay health insurance for expats,
 jose ignacio vs punta del este, uruguay free zone benefits, family office uruguay/latin america, employer of record uruguay (20).
 
+### Gemini · prompts 1–9 (19.10.2026)
+
+Prompt 9 arrived truncated, prompt 10 not yet received. Answer 8 came back in Spanish.
+
+**Sacramentum does not appear in any of the nine.**
+
+Gemini lists its sources for every paragraph, which shows **which pages win in English AI answers.** Almost none are big law firms:
+they are small firms, relocation services and blogs that publish **specific, dated English articles** ("2026 guide", "step-by-step",
+"what changed").
+
+| # | Topic | Firms recommended | Pages cited (the GEO competition) |
+|---|---|---|---|
+| 1 | US citizen, plan B | — | liveandinvestoverseas.com, henleyglobal.com, **guyer.com.uy (post on 2026 regime)**, nicolasdemodena.com/blog, **modopunta.com "Tax residency in Uruguay 2026 – guide for foreign buyers"**, globaltax.com.uy (several), thewanderinginvestor.com, murblz.com, nomadcapitalist.com, taxsummaries.pwc.com, a LinkedIn post, taxfreeresidency.com |
+| 2 | Retire | Uruguay Relocation Companion (relocationuy.com, packages $850–1.800), Aldo's Relocation, **Expat Services Uruguay ("vetted by Uruguay XXI")**, AAF / uruguayrelocation.uy | propertyinuruguay.com, liveandinvestoverseas.com, uruwhy.uy, citycost.org, goresident.com, expatsi.com, getwherenext.com, bullseyeretirement.com, smartasset.com, **uruguayxxi.gub.uy services directory** |
+| 3 | Second passport | — | immigrantinvest.com, libertymundo.com, globaltax.com.uy, **rva.com.uy**, luxurypunta.com, uyresidencias.com, gub.uy |
+| 4 | German entrepreneur | — | uy.andersen.com, **castellan.com.uy "keys to decide before and after Jan 1 2026"**, outboundinvestment.com, globaltax.com.uy, flytorelocation.com "moving from Germany to Uruguay", uruguaysothebysrealty.com/en/blog "what changed under the 2026 regulations", taxsummaries.pwc.com, irglobal.com, ferrere.com, rva.com.uy, clg.com.uy |
+| 5 | Uruguay vs Portugal vs Paraguay | — | paraguaysovereign.com, paraguayexplained.com, nomadsignal.io, imidaily.com, ipanemapartners.com, YouTube, Facebook groups |
+| 6 | Punta del Este / José Ignacio | **Property Hunter Uruguay (buyer's agent)**, INGAR, Andersen | laciteuruguay.com, janushermes.com "buying property in Uruguay as a foreigner 2026", **santiagopereyra.com.uy**, ingar.com.uy, nicolasdemodena.com, van-bevern.com |
+| 7 | Farmland / forestry | — | **farmlanduruguay.com**, **camposonline.com.uy (EN articles)**, uy.andersen.com, escritorioarrospide.com.uy, investinag.com, uyresidencias.com |
+| 8 | Family office | The Private Advisors, Three Sixty MFO, CLG, FDI, Southeast WM, CKC, IBF Negocios, BDA Foderé, Dentons, Alpadis, EY | alpadis.com, dentons.com (2022 article), becaadvisors.com, Zonamerica interviews, **uruguayxxi.gub.uy services directory** |
+| 9 | European tech company | — | uruguayxxi.gub.uy (investor guide, startups article, services directory), wtcmontevideofreezone.com, zonamerica.com, rva.com.uy, vui.gub.uy, globaltax.com.uy |
+
+**Readings**
+
+1. **ChatGPT recommends big firms (Guyer & Regules, Andersen); Gemini cites whoever wrote the most specific page.** Sacramentum
+   can compete in Gemini (and in Google's AI Overviews, same engine) now — with articles — while building the reputation ChatGPT relies on.
+2. **Small players win with one good English article:** modopunta.com, nicolasdemodena.com, castellan.com.uy, santiagopereyra.com.uy,
+   farmlanduruguay.com, globaltax.com.uy (which has a page per question). This is the model for Sacramentum's English blog.
+3. **Uruguay XXI's services directory is cited a third time** (Gemini 2, 8, 9), and Gemini calls Expat Services Uruguay "vetted by
+   Uruguay XXI" because it is listed. Confirmed as the single most valuable off-site action.
+4. **The 2026 tax regime is now described in detail — and still inconsistently.**
+   - Gemini 4 (citing PwC, Castellan, Sotheby's, Global Tax): **Law 20.446**, in force 1/1/2026; tax holiday for new residents requires
+     real estate ≥ **12.5M UI (~USD 2M)**, or **625k UI/year (~USD 100k)** into approved funds, or > 183 days; the old
+     **3.5M UI + 60 days route is closed to new residents**; after 11 years a 5-year phase at **6 %**, then **12 %**; foreign rents and
+     capital gains now in scope.
+   - Gemini 6 still lists the 3.5M UI + 60 days route as available; Gemini 2 still says "0 % for over a decade" without conditions.
+   - → A precise, sourced, dated page is still missing from the market. **Verify every figure with the client before publishing.**
+5. **New audience-specific facts (to verify):** German exit tax (*Wegzugsbesteuerung*) for ≥ 1 % shareholdings when leaving the EU/EEA,
+   and Gemini claims there is no Germany–Uruguay double-tax treaty that solves it (**check — may be wrong**); forced heirship
+   (*porción legítima*) on assets located in Uruguay; AML / source-of-funds documentation; retiree regime **Law 16.340**
+   (USD 1.500/month + USD 100k home or bonds → duty-free household goods and car); "Uruguay has no separate retirement visa"
+   while people search "uruguay retirement visa" (300).
+6. **Comparison content is owned by Paraguay promoters** (paraguaysovereign.com, paraguayexplained.com): Uruguay is described from
+   its competitors' point of view. A Uruguay-side comparison page fills that gap.
+
+**Gemini vocabulary measured** ([`data/serank-en-gemini-vocab.csv`](data/serank-en-gemini-vocab.csv)) — 50 terms, 37 without data:
+uruguay retirement visa (300) · uruguay passport visa free countries (110) · uruguay dual citizenship (80) ·
+switzerland of south america (70) · uruguay cedula (70) · upm uruguay (50). Everything about the 2026 regime, forced heirship,
+buyer's agents, family offices and relocation services: **no data** — AI-only topics.
+
 ### Pending
 
-- **Gemini**, prompts 1–10.
+- **Gemini** prompt 9 (complete) and prompt 10 ("What is Sacramentum Advisors").
 - **Clean re-run in ChatGPT** (temporary chat, one per prompt) of at least 6, 8 and 10 to measure Sacramentum's real presence.
