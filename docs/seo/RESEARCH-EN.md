@@ -46,4 +46,66 @@ market entry uruguay, uruguay family office, uruguay wealth management, uruguay 
 
 ## 2. AI answer tests
 
-_Pending — prompts in English sent to Maque for ChatGPT and Gemini._
+### ChatGPT · prompts 1–10 (19.10.2026)
+
+⚠️ **Not a clean test.** All ten prompts were run in one ChatGPT conversation that already knew about Sacramentum; ChatGPT says so
+itself ("this is not technically equivalent to ten new chats without memory"). Vocabulary, competitors, sources and answer
+structure are usable. **Sacramentum's mentions (prompts 6 and 8) are not** — to be re-run in temporary chats.
+
+| # | Prompt | Firms recommended | Sources cited |
+|---|---|---|---|
+| 1 | US citizen, $2M, plan B | Guyer & Regules, Andersen + "a US international tax attorney" | gub.uy (Migración), DGI, **IRS** |
+| 2 | Retire in Uruguay | Andersen, Guyer & Regules | RetireFinder, Andersen |
+| 3 | Second passport | — (official sources only) | gub.uy — Electoral Court, *Carta de Ciudadanía* |
+| 4 | German entrepreneur, family + wealth | Guyer & Regules, Andersen | DGI, Guyer & Regules |
+| 5 | Uruguay vs Portugal vs Paraguay | — | Portal das Finanças (PT), DGI |
+| 6 | Punta del Este / José Ignacio | Guyer & Regules, *(Sacramentum — contaminated)* | DGI, Argenprop, Forbes Uruguay |
+| 7 | Farmland / forestry | Andersen, **Atlantika Group**, Uruguay XXI | IMPO, Andersen, Uruguay XXI (2026 forestry report) |
+| 8 | Family office | Guyer & Regules, Andersen, Atlantika, *(Sacramentum — contaminated)* | **Uruguay XXI Investor's Guide**, LinkedIn |
+| 9 | European tech company | Uruguay XXI, Guyer & Regules, Andersen; Zonamerica, WTC Free Zone, Aguada Park | **Uruguay XXI — Investor Service Directory**, Uruguay XXI FAQ |
+| 10 | What is Sacramentum | — | **LinkedIn only** ("end-to-end advisory… invest, relocate, or purchase property", "2–10 employees") |
+
+**Readings**
+
+1. **In English the competition is two firms: Guyer & Regules and Andersen.** They appear in 7 of 9 thematic answers, because they
+   publish service pages for exactly these topics (residency, tax residency, relocation, farmland, private clients). Atlantika Group
+   appears for real assets. In Spanish the field was wider; in English it is concentrated — and beatable with equally specific pages.
+2. **Uruguay XXI appears again as the source for "who helps"** (Investor's Guide, Investor Service Directory). The listing there is
+   now confirmed as a priority in both languages.
+3. **ChatGPT still describes Sacramentum from LinkedIn**, not from the website (which only serves English to crawlers but has
+   generic titles and no service pages per topic).
+4. **Audience-specific angles the answers raise — each one is a section or article:**
+   - *Americans:* US citizens stay taxed on worldwide income; FBAR / foreign-account reporting; "hire a US international tax attorney".
+   - *Germans:* German exit tax on company shareholdings before moving; "coordinated German–Uruguayan team".
+   - *Second passport:* Uruguay is **not** citizenship-by-investment. Legal citizenship after 3 years (with family) or 5 (without),
+     Article 75 of the Constitution, Carta de Ciudadanía at the Electoral Court, absences > 6 months can restart the count, and the
+     **passport nationality notation** issue. Honest, precise content here is rare and highly citable.
+   - *Retirees:* monthly budget tables by lifestyle (single/couple, modest/comfortable), Montevideo vs Punta del Este vs Piriápolis,
+     "rent 3–6 months first", "high-quality, not low-cost".
+   - *Comparisons:* Portugal's NHR closed to new entrants in 2024; Paraguay = territorial and cheap but weaker institutions;
+     Uruguay = stability + coastal life + cost.
+   - *Asset protection:* framed as **lawful diversification, not secrecy** — the tone Sacramentum should use.
+5. **The 2026 tax change appears again** (answers 1, 4, 5): "neither country should be evaluated using outdated expatriate tax guides".
+
+**AI vocabulary measured in SE Ranking** ([`data/serank-en-ai-vocab.csv`](data/serank-en-ai-vocab.csv)) — 69 terms, 44 without data:
+
+| With volume (7 databases) | Total | Note | Use |
+|---|---|---|---|
+| fbar · us expat taxes · renounce us citizenship | 11.260 · 930 · 1.160 | Generic US tax topics | Mention + link out in the US-audience section; not a target |
+| paraguay residency · panama residency | 770 · 410 | Competing countries | Comparison articles ("Uruguay vs Paraguay / Panama residency") |
+| piriapolis uruguay | 470 (DE 320) | | "Where to live" section |
+| best places to live in uruguay | 190 | | Article / "where to live" |
+| portugal nhr · portugal non habitual resident | 170 · 120 | Europeans comparing | Comparison article |
+| uruguay citizenship requirements | 150 | | Second-passport page H2 |
+| exit tax germany · germany exit tax | 140 · 90 (DE) | | German page (in German: *Wegzugsbesteuerung*) |
+| american expats in uruguay | 80 | | US-audience section |
+| uruguay forestry | 90 | | Farmland page |
+| guyer regules · uruguay xxi · aguada park · comap uruguay | 50 · 40 · 30 · 20 | Brand/navigational | — |
+
+Without data: uruguay naturalization (10), carta de ciudadania, us expat taxes uruguay, uruguay health insurance for expats,
+jose ignacio vs punta del este, uruguay free zone benefits, family office uruguay/latin america, employer of record uruguay (20).
+
+### Pending
+
+- **Gemini**, prompts 1–10.
+- **Clean re-run in ChatGPT** (temporary chat, one per prompt) of at least 6, 8 and 10 to measure Sacramentum's real presence.
