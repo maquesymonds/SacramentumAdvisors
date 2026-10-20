@@ -9,8 +9,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Retire in Uruguay: Residency, Cost of Living and Where to Live",
-    metaDescription: "Retiring in Uruguay: how retirees get residency, what life really costs, where to live — Montevideo, Punta del Este or Piriápolis — and healthcare. Advice for your move.",
+    metaTitle:       "Retire in Uruguay: Residency & Costs",
+    metaDescription: "Retiring in Uruguay: residency for retirees, the real cost of living, healthcare and where to live — Montevideo, Punta del Este or Piriápolis.",
     navLabel:        "Retire in Uruguay",
     cardText:        "Residency for retirees, the real cost of living, healthcare and where to live.",
     eyebrow:         "Retirement",
@@ -70,8 +70,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Als Rentner nach Uruguay: Aufenthalt, Kosten und Wohnorte",
-    metaDescription: "Als Rentner nach Uruguay auswandern: Aufenthalt mit Rente, Lebenshaltungskosten, Krankenversicherung und die besten Wohnorte – Montevideo, Punta del Este, Piriápolis.",
+    metaTitle:       "Als Rentner nach Uruguay",
+    metaDescription: "Als Rentner nach Uruguay: Aufenthalt mit Rente, Lebenshaltungskosten, Krankenversicherung und Wohnorte – Montevideo, Punta del Este, Piriápolis.",
     navLabel:        "Als Rentner nach Uruguay",
     cardText:        "Aufenthalt mit Rente, die echten Lebenshaltungskosten, Krankenversicherung und Wohnorte.",
     eyebrow:         "Ruhestand in Uruguay",

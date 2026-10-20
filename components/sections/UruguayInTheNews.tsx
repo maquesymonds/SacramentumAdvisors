@@ -148,7 +148,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
-            <h1 key={copy.headline} ref={h1Ref} className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}>{copy.headline}</h1>
+            <h2 key={copy.headline} ref={h1Ref} className="font-normal text-ink" style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}>{copy.headline}</h2>
           </div>
           <p className="text-body text-ink-muted leading-relaxed lg:pb-2">{copy.subtitle}</p>
         </div>

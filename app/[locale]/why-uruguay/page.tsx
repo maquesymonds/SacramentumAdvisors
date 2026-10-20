@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
 import InvestPageClient from "./InvestPageClient";
-import { pageMetadata } from "@/lib/seo";
+import { coreMetadata, toLocale } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
+import { localePath } from "@/lib/i18n";
+import { t } from "@/data/translations";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  return pageMetadata("why-uruguay", params.locale, {
-  title: "Invest in Uruguay",
-  description:
-    "Discover Uruguay's most compelling investment sectors — real estate, technology, agriculture, and special situations. Premium advisory for discerning investors.",
-  openGraph: {
-    title: "Invest in Uruguay | Sacramentum Advisors",
-    description:
-      "Four asset classes. One stable sovereign. Premium advisory for strategic acquisition in Latin America's most trusted market.",
-  },
-  });
+  return coreMetadata("why-uruguay", params.locale);
 }
 
-export default function InvestPage() {
-  return <InvestPageClient />;
+export default function InvestPage({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
+  return <>
+      <InvestPageClient />
+      <JsonLd data={breadcrumbJsonLd(locale, [{ name: t(locale).nav.whyUruguay, path: localePath("why-uruguay", locale) }])} />
+    </>;
 }

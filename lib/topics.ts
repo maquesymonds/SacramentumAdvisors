@@ -25,6 +25,8 @@ export interface TopicSection {
 export interface TopicContent {
   /** <title> without the brand suffix, ~55–60 characters */
   metaTitle:       string;
+  /** Title used as-is, without the " | Sacramentum Advisors" suffix */
+  metaTitleAbsolute?: boolean;
   /** ~150–160 characters */
   metaDescription: string;
   /** Short name used in breadcrumbs, cards and the footer */

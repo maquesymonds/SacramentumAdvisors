@@ -7,8 +7,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Uruguay Farmland & Forestry: Buying Land as a Foreign Investor",
-    metaDescription: "Uruguay farmland for sale, ranches, chacras and forestry: how a foreign investor buys land in Uruguay, what to check, and how to hold it. Independent advice.",
+    metaTitle:       "Uruguay Farmland, Ranches & Forestry",
+    metaDescription: "Uruguay farmland, ranches, chacras and forestry: how a foreign investor buys land in Uruguay, what to check before buying and how to hold it.",
     navLabel:        "Farmland & forestry",
     cardText:        "Productive land, ranches, chacras and forestry — how foreign investors buy and hold land in Uruguay.",
     eyebrow:         "Agriculture & forestry",
@@ -76,8 +76,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Campos y chacras en Uruguay: comprar tierra siendo extranjero",
-    metaDescription: "Campos en venta en Uruguay, chacras, estancias y forestación: cómo compra tierra un inversor extranjero, qué revisar y cómo administrarla. Asesoramiento independiente.",
+    metaTitle:       "Campos y chacras en Uruguay",
+    metaDescription: "Campos, chacras, estancias y forestación: cómo compra tierra en Uruguay un inversor extranjero, qué revisar antes de comprar y cómo administrarla.",
     navLabel:        "Campos y chacras",
     cardText:        "Campos productivos, estancias, chacras y forestación: cómo comprar y mantener tierra en Uruguay.",
     eyebrow:         "Agro y forestación",
@@ -144,8 +144,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Landwirtschaft in Uruguay: Agrarland, Estancias und Forst",
-    metaDescription: "Agrarland, Estancias, Chacras und Forstinvestments in Uruguay: wie ausländische Investoren Land kaufen, was zu prüfen ist und wie man es von Europa aus hält.",
+    metaTitle:       "Agrarland und Estancias in Uruguay",
+    metaDescription: "Agrarland, Estancias, Chacras und Forst in Uruguay: wie ausländische Investoren Land kaufen, was vor dem Kauf zu prüfen ist und wie man es hält.",
     navLabel:        "Landwirtschaft und Forst",
     cardText:        "Agrarland, Estancias, Chacras und Forstwirtschaft – Land in Uruguay kaufen und halten.",
     eyebrow:         "Landwirtschaft und Forstwirtschaft",

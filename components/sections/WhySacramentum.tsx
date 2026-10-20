@@ -208,7 +208,7 @@ export default function WhySacramentum() {
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
-            <h1
+            <h2
               key={locale}
               ref={h1Ref}
               className="font-normal text-ink"
@@ -219,7 +219,7 @@ export default function WhySacramentum() {
               }}
             >
               {locale === "en" ? <>Why<br />Sacramentum?</> : locale === "de" ? <>Warum<br />Sacramentum?</> : <>¿Por qué Sacramentum?</>}
-            </h1>
+            </h2>
           </div>
           <p className="text-body text-ink-muted leading-relaxed lg:pb-2">
             {copy.subheadline}

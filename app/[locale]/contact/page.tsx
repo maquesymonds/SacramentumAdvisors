@@ -6,15 +6,20 @@
 
 import type { Metadata } from "next";
 import ContactPageClient from "./ContactPageClient";
-import { pageMetadata } from "@/lib/seo";
+import { coreMetadata, toLocale } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
+import { localePath } from "@/lib/i18n";
+import { t } from "@/data/translations";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  return pageMetadata("contact", params.locale, {
-  title:       "Private Consultation",
-  description: "Connect with the Sacramentum Advisors team to discuss residency, strategic asset acquisition, lifestyle assets, or long-term positioning in Uruguay.",
-  });
+  return coreMetadata("contact", params.locale);
 }
 
-export default function ContactPage() {
-  return <ContactPageClient />;
+export default function ContactPage({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
+  return <>
+      <ContactPageClient />
+      <JsonLd data={breadcrumbJsonLd(locale, [{ name: t(locale).nav.contact, path: localePath("contact", locale) }])} />
+    </>;
 }

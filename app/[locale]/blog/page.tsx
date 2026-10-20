@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
 import BlogPageClient from "./BlogPageClient";
 import { fetchAdminContent } from "@/lib/admin-content";
-import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
+import { localePath } from "@/lib/i18n";
+import { t } from "@/data/translations";
+import { coreMetadata, toLocale } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  return pageMetadata("blog", params.locale, {
-  title: "Blog",
-  description: "Insights and perspectives from Sacramentum Advisors on Uruguay's investment landscape, real estate, and strategic relocation.",
-  });
+  return coreMetadata("blog", params.locale);
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
   const content = await fetchAdminContent();
   const published = (content.blog ?? []).filter(p => p.published !== false);
-  return <BlogPageClient posts={published} />;
+  return (
+    <>
+      <BlogPageClient posts={published} />
+      <JsonLd data={breadcrumbJsonLd(locale, [{ name: t(locale).nav.blog, path: localePath("blog", locale) }])} />
+    </>
+  );
 }

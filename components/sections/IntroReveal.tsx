@@ -46,7 +46,7 @@ function MobileHero() {
 
         {/* Title + subheadline */}
         <div style={{ textAlign: "center" }}>
-          <h1
+          <p role="heading" aria-level={1}
             style={{
               fontWeight:    300,
               color:         "white",
@@ -58,7 +58,7 @@ function MobileHero() {
             }}
           >
             {copy.hero.headline}
-          </h1>
+          </p>
 
           <p
             style={{

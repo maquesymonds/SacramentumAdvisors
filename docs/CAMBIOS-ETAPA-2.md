@@ -106,3 +106,28 @@ las páginas nuevas para revisar y las 9 preguntas a confirmar. Los cambios de p
 
 **Siguen en inglés:** los títulos de Google de Por qué Uruguay, Servicios y Contacto (se resuelven en el paso 7) y los títulos
 de las noticias, que el panel guarda en un solo idioma (decisión pendiente).
+
+---
+
+## Paso 7 · SEO/GEO técnico (20.10.2026) — terminado
+
+Aplicado con la skill `web-seo-geo` y medido sobre el HTML real que se entrega.
+
+- **Títulos y descripciones de Google en los tres idiomas para todas las páginas**, medidos en píxeles (título ≤ 600 px,
+  descripción ≤ 960 px). Antes: el home decía solo "Sacramentum Advisors" y las demás páginas tenían títulos en inglés
+  también en español; los títulos de las páginas nuevas se cortaban. Ahora: 47 títulos/descripciones dentro del límite,
+  con la palabra clave primero. Archivo: `lib/page-meta.ts` (páginas existentes) y `data/topics/` (páginas nuevas).
+- Los artículos llevan su título sin la marca (para que entre completo) y su resumen se recorta solo si viene largo del panel.
+- **Un solo H1 por página.** El home tenía 8; los títulos de sección pasaron a H2 (sin cambio visual).
+- **Servicios ahora tiene su contenido en el HTML.** Antes se dibujaba solo en el navegador y Google la veía vacía
+  (0 palabras → ~500).
+- **Datos estructurados:** la empresa (Organization, solo con datos publicados: nombre, logo, email, teléfono, Montevideo),
+  el sitio por idioma, migas de pan en todas las páginas menos el home, y preguntas frecuentes en las páginas nuevas.
+- **Redes sociales:** el título y la descripción al compartir son siempre los mismos que los de Google, por idioma.
+  Sin imagen de vista previa hasta tener una real (se omite en vez de inventarla).
+
+**Pendiente / recomendado**
+- Agregar el **link al LinkedIn de la empresa** en el footer (hoy no existe) — es la fuente con la que ChatGPT describe a
+  Sacramentum; con el link se puede sumar a los datos estructurados.
+- Una **imagen para compartir** (Open Graph) por idioma.
+- Algunos **títulos de noticias** son largos para Google (ej. "Governance Premium: …"); los edita Inés desde el panel.

@@ -7,8 +7,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Uruguay Real Estate: Punta del Este, José Ignacio & Montevideo",
-    metaDescription: "Buying property in Uruguay as a foreigner: Punta del Este, José Ignacio, Montevideo and Piriápolis. Independent, buyer-side advice from search to deed.",
+    metaTitle:       "Uruguay Real Estate: Punta del Este",
+    metaDescription: "Buying property in Uruguay as a foreigner: Punta del Este, José Ignacio, Montevideo and Piriápolis. Independent advice from the buyer's side.",
     navLabel:        "Real estate",
     cardText:        "Punta del Este, José Ignacio, Montevideo and Piriápolis — advised from the buyer's side.",
     eyebrow:         "Real estate in Uruguay",
@@ -80,8 +80,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Inmobiliario en Uruguay: Punta del Este, José Ignacio y Montevideo",
-    metaDescription: "Comprar propiedad en Uruguay siendo extranjero: casas en Punta del Este, José Ignacio, Montevideo y Piriápolis. Asesoramiento independiente, del lado del comprador.",
+    metaTitle:       "Casas en Punta del Este y Montevideo",
+    metaDescription: "Comprar una propiedad en Uruguay siendo extranjero: Punta del Este, José Ignacio, Montevideo y Piriápolis. Asesoramiento del lado del comprador.",
     navLabel:        "Inmobiliario",
     cardText:        "Punta del Este, José Ignacio, Montevideo y Piriápolis, asesorados del lado del comprador.",
     eyebrow:         "Inmobiliario en Uruguay",
@@ -152,8 +152,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Haus kaufen in Uruguay: Punta del Este, José Ignacio, Piriápolis",
-    metaDescription: "Immobilien in Uruguay als Ausländer kaufen: Haus am Meer in Punta del Este, José Ignacio oder Piriápolis, Wohnung in Montevideo. Unabhängige Beratung auf Käuferseite.",
+    metaTitle:       "Haus kaufen in Uruguay",
+    metaDescription: "Immobilien in Uruguay als Ausländer kaufen: Punta del Este, José Ignacio, Piriápolis und Montevideo. Unabhängige Beratung auf der Seite des Käufers.",
     navLabel:        "Immobilien",
     cardText:        "Punta del Este, José Ignacio, Montevideo und Piriápolis – beraten auf der Seite des Käufers.",
     eyebrow:         "Immobilien in Uruguay",

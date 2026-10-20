@@ -116,14 +116,14 @@ export default function HowWeSupport() {
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
-            <h1
+            <h2
               key={copy.headline}
               ref={h1MobileRef}
               className="font-normal text-ink"
               style={{ fontSize: "clamp(2.2rem, 8vw, 3.2rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
             >
               {copy.headline}
-            </h1>
+            </h2>
           </div>
 
           {/* Timeline path + cards */}
@@ -223,14 +223,14 @@ export default function HowWeSupport() {
                 <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
                 <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
               </div>
-              <h1
+              <h2
                 key={copy.headline}
                 ref={h1DesktopRef}
                 className="font-normal text-ink"
                 style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
               >
                 {copy.headline}
-              </h1>
+              </h2>
             </div>
             <div className="hidden lg:flex items-end">
               <p className="text-body text-ink-muted leading-relaxed">{copy.subheadline}</p>

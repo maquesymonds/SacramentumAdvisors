@@ -24,6 +24,12 @@ Lista viva. Se actualiza en cada sesión.
 - [ ] Textos sueltos con solo EN/ES dentro de componentes (`locale === "es" ? … : …`) → muestran inglés en `/de/`.
 - [ ] QA: revisar que al cambiar de idioma en el home no quede un título del idioma anterior (visto una vez en una prueba encadenada, no reproducido en sesión limpia).
 
+## Recomendado (SEO/GEO)
+
+- [ ] Link al LinkedIn de la empresa en el footer → sumarlo a `sameAs` en `lib/schema.ts`.
+- [ ] Imagen Open Graph por idioma (hoy se omite).
+- [ ] Títulos de noticias largos (editoriales, desde el panel).
+
 ## Para la QA (paso 10)
 
 - [ ] Probar el guardado del panel de admin con un almacenamiento Blob separado (o con cuidado en producción tras el merge).
@@ -40,8 +46,8 @@ Lista viva. Se actualiza en cada sesión.
 3. [ ] Verificación de datos con la clienta
 4. [x] Base técnica de idiomas (`/es/ /en/ /de/`, selector, sitemap, hreflang) — commit 5df0cd5
 5. [x] Páginas y secciones nuevas (+ edición en el panel) — borradores para aprobar
-6. [ ] Copy (cambios para Inés, alemán)
-7. [ ] SEO/GEO técnico
+6. [x] Copy: documento para Inés + alemán (borrador, falta revisión nativa y aprobación de Inés)
+7. [x] SEO/GEO técnico
 8. [ ] Conversión (CTAs, guías, botón fijo, confianza)
 9. [ ] Medición (GA4, Search Console, GTM, Business Profile)
 10. [ ] QA y publicación (PR a `main`)

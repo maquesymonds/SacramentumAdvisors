@@ -13,8 +13,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Sacramentum Capital: Investment Banking Boutique in Montevideo",
-    metaDescription: "Sacramentum Capital is an investment banking boutique in Montevideo: structured finance, capital markets and cross-border M&A across the Southern Cone, senior-led.",
+    metaTitle:       "Sacramentum Capital | Investment Banking, Montevideo", metaTitleAbsolute: true,
+    metaDescription: "Sacramentum Capital, investment banking boutique in Montevideo: structured finance, capital markets and cross-border M&A in the Southern Cone.",
     navLabel:        "Sacramentum Capital",
     cardText:        "Our investment banking boutique: structured finance, capital markets and cross-border M&A.",
     eyebrow:         "Investment banking boutique",
@@ -68,8 +68,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Sacramentum Capital: boutique de banca de inversión en Montevideo",
-    metaDescription: "Sacramentum Capital es una boutique de banca de inversión en Montevideo: finanzas estructuradas, mercado de capitales y M&A transfronterizo en el Cono Sur.",
+    metaTitle:       "Sacramentum Capital | Banca de inversión, Montevideo", metaTitleAbsolute: true,
+    metaDescription: "Sacramentum Capital, boutique de banca de inversión en Montevideo: finanzas estructuradas, mercado de capitales y M&A en el Cono Sur.",
     navLabel:        "Sacramentum Capital",
     cardText:        "Nuestra boutique de banca de inversión: finanzas estructuradas, mercado de capitales y M&A transfronterizo.",
     eyebrow:         "Boutique de banca de inversión",
@@ -122,8 +122,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Sacramentum Capital: Investment-Banking-Boutique in Montevideo",
-    metaDescription: "Sacramentum Capital ist eine Investment-Banking-Boutique in Montevideo: strukturierte Finanzierungen, Kapitalmärkte und grenzüberschreitende M&A im Southern Cone.",
+    metaTitle:       "Sacramentum Capital | Investment Banking, Montevideo", metaTitleAbsolute: true,
+    metaDescription: "Sacramentum Capital, Investment-Banking-Boutique in Montevideo: strukturierte Finanzierungen, Kapitalmärkte und M&A im Southern Cone.",
     navLabel:        "Sacramentum Capital",
     cardText:        "Unsere Investment-Banking-Boutique: strukturierte Finanzierungen, Kapitalmärkte und grenzüberschreitende M&A.",
     eyebrow:         "Investment-Banking-Boutique",

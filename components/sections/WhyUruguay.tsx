@@ -364,14 +364,14 @@ export default function WhyUruguay() {
               <span className="block h-px w-8 bg-brand-warm flex-shrink-0" />
               <span className="text-eyebrow text-brand-warm">{copy.eyebrow}</span>
             </div>
-            <h1
+            <h2
               key={copy.headline}
               ref={h1Ref}
               className="font-normal text-ink"
               style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
             >
               {copy.headline}
-            </h1>
+            </h2>
           </div>
           <p className="text-body text-ink-muted leading-relaxed lg:pb-2">
             {copy.subheadline}

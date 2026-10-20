@@ -8,8 +8,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Family Office Advisory in Uruguay: Diversify and Invest",
-    metaDescription: "Advisory for family offices and international families diversifying into Uruguay: real assets, local market intelligence, relocation and a plan B — coordinated from Montevideo.",
+    metaTitle:       "Family Office Advisory in Uruguay",
+    metaDescription: "For family offices and international families diversifying into Uruguay: real assets, market intelligence, residency and a lawful plan B.",
     navLabel:        "Family offices & wealth",
     cardText:        "Diversification into Uruguay for family offices and international families — with a local partner.",
     eyebrow:         "Family offices & wealth",
@@ -69,8 +69,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Family office y patrimonio en Uruguay: diversificar e invertir",
-    metaDescription: "Asesoramiento para family offices y familias internacionales que diversifican en Uruguay: activos reales, inteligencia de mercado, residencia y plan B, coordinado desde Montevideo.",
+    metaTitle:       "Family office y patrimonio en Uruguay",
+    metaDescription: "Para family offices y familias internacionales que diversifican en Uruguay: activos reales, inteligencia de mercado, residencia y un plan B.",
     navLabel:        "Family office y patrimonio",
     cardText:        "Diversificación en Uruguay para family offices y familias internacionales, con un socio local.",
     eyebrow:         "Family office y patrimonio",
@@ -129,8 +129,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Family Office in Uruguay: Vermögen diversifizieren und schützen",
-    metaDescription: "Beratung für Family Offices und internationale Familien, die in Uruguay diversifizieren: Sachwerte, Marktanalyse, Aufenthalt und Plan B – unabhängig, koordiniert aus Montevideo.",
+    metaTitle:       "Family Office in Uruguay",
+    metaDescription: "Für Family Offices und internationale Familien, die in Uruguay diversifizieren: Sachwerte, Marktanalyse, Aufenthalt und ein rechtssicherer Plan B.",
     navLabel:        "Family Office und Vermögen",
     cardText:        "Diversifikation in Uruguay für Family Offices und internationale Familien – mit einem Partner vor Ort.",
     eyebrow:         "Family Office und Vermögen",

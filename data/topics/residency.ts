@@ -9,8 +9,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Uruguay Residency: How to Move to Uruguay With Your Family",
-    metaDescription: "How to get permanent residency in Uruguay: requirements, documents and steps for Americans, Europeans and their families. Relocation coordinated end to end.",
+    metaTitle:       "Uruguay Residency: Moving to Uruguay",
+    metaDescription: "How to get permanent residency in Uruguay: requirements, documents and steps for Americans, Europeans and their families. Your move, coordinated.",
     navLabel:        "Residency & relocation",
     cardText:        "Permanent residency, documents, banking and settling in — your move to Uruguay, coordinated.",
     eyebrow:         "Residency & relocation",
@@ -81,8 +81,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Residencia en Uruguay: cómo mudarse a Uruguay con su familia",
-    metaDescription: "Cómo obtener la residencia en Uruguay: requisitos, documentos y pasos para argentinos, españoles y sus familias. Residencia Mercosur y residencia permanente.",
+    metaTitle:       "Residencia en Uruguay: cómo mudarse",
+    metaDescription: "Cómo obtener la residencia en Uruguay: requisitos, documentos y pasos para argentinos, españoles y sus familias. Residencia Mercosur y permanente.",
     navLabel:        "Residencia en Uruguay",
     cardText:        "Residencia permanente, documentos, banco e instalación: su llegada a Uruguay, coordinada.",
     eyebrow:         "Residencia e instalación",
@@ -152,8 +152,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Auswandern nach Uruguay: Aufenthalt, Voraussetzungen und Ablauf",
-    metaDescription: "Auswandern nach Uruguay: Aufenthaltsgenehmigung, Unterlagen und Ablauf für Deutsche, Österreicher und Schweizer und ihre Familien. Begleitung aus einer Hand.",
+    metaTitle:       "Auswandern nach Uruguay: Aufenthalt",
+    metaDescription: "Auswandern nach Uruguay: Aufenthaltsgenehmigung, Unterlagen und Ablauf für Deutsche, Österreicher, Schweizer und ihre Familien.",
     navLabel:        "Auswandern nach Uruguay",
     cardText:        "Aufenthaltsgenehmigung, Unterlagen, Bank und Ankommen – Ihr Umzug nach Uruguay, koordiniert.",
     eyebrow:         "Auswandern und Aufenthalt",

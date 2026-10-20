@@ -13,6 +13,7 @@ import TransitionOverlay      from "@/components/layout/TransitionOverlay";
 import Loader                 from "@/components/layout/Loader";
 import { notFound }           from "next/navigation";
 import { getTranslationOverrides } from "@/lib/translation-overrides";
+import { siteJsonLd } from "@/lib/schema";
 import { LOCALES, OG_LOCALE, SITE_URL, isLocale, robotsFor, type Locale } from "@/lib/i18n";
 
 // ── Regola Pro ────────────────────────────────────────────────────────────────
@@ -73,7 +74,7 @@ export async function generateMetadata(
       description: "Principled leadership for strategic asset acquisition in Uruguay.",
     },
     twitter: {
-      card:  "summary_large_image",
+      card:  "summary", // no og:image yet — omitted rather than guessed
       title: "Sacramentum Advisors",
     },
     robots: robotsFor(locale),
@@ -111,6 +112,10 @@ export default async function RootLayout({
               <TransitionOverlay />
               {children}
             </LocaleProvider>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd(locale)) }}
+            />
           </TransitionProvider>
         </SmoothScrollProvider>
       </body>

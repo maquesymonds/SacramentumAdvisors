@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: { locale: string; t
   return pageMetadata(params.topic, params.locale, {
     title:       c.metaTitle,
     description: c.metaDescription,
-    openGraph:   { title: c.metaTitle, description: c.metaDescription },
+    absolute:    c.metaTitleAbsolute,
   });
 }
 

@@ -9,8 +9,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Uruguay Passport: Citizenship and a Second Passport, Explained",
-    metaDescription: "Can you get a second passport through Uruguay? Uruguay is not citizenship-by-investment: the real path from residency to legal citizenship, how long it takes and what it requires.",
+    metaTitle:       "Uruguay Passport & Second Citizenship",
+    metaDescription: "Can you get a second passport through Uruguay? Not by investment: the real path from residency to legal citizenship, how long it takes and what it needs.",
     navLabel:        "Second passport",
     cardText:        "The honest path from residency to Uruguayan citizenship — and what it takes.",
     eyebrow:         "Citizenship & second passport",
@@ -75,8 +75,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Pasaporte uruguayo: ciudadanía legal y segundo pasaporte",
-    metaDescription: "¿Se puede obtener un segundo pasaporte en Uruguay? Uruguay no vende la ciudadanía: el camino real de la residencia a la ciudadanía legal, cuánto tarda y qué exige.",
+    metaTitle:       "Pasaporte uruguayo y ciudadanía legal",
+    metaDescription: "¿Un segundo pasaporte a través de Uruguay? No por inversión: el camino real de la residencia a la ciudadanía legal, cuánto tarda y qué exige.",
     navLabel:        "Pasaporte uruguayo",
     cardText:        "El camino real de la residencia a la ciudadanía uruguaya, y lo que exige.",
     eyebrow:         "Ciudadanía y pasaporte",
@@ -140,8 +140,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Zweiter Reisepass über Uruguay: Staatsbürgerschaft erklärt",
-    metaDescription: "Zweite Staatsbürgerschaft über Uruguay? Uruguay verkauft keine Pässe: der echte Weg vom Aufenthalt zur Einbürgerung, wie lange er dauert und was er verlangt.",
+    metaTitle:       "Zweiter Reisepass über Uruguay",
+    metaDescription: "Zweite Staatsbürgerschaft über Uruguay? Nicht durch Investition: der Weg vom Aufenthalt zur Einbürgerung, wie lange er dauert und was er verlangt.",
     navLabel:        "Zweiter Reisepass",
     cardText:        "Der ehrliche Weg vom Aufenthalt zur uruguayischen Staatsbürgerschaft – und was er verlangt.",
     eyebrow:         "Staatsbürgerschaft und zweiter Pass",

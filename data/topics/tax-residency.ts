@@ -9,8 +9,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Uruguay Tax Residency: How It Works and What Changed in 2026",
-    metaDescription: "How to become a tax resident in Uruguay, how it differs from legal residency, what changed for new residents in 2026 and what to review in your home country first.",
+    metaTitle:       "Uruguay Tax Residency: 2026 Rules",
+    metaDescription: "How tax residency in Uruguay works, how it differs from legal residency, what changed for new residents in 2026 and what to review at home first.",
     navLabel:        "Tax residency",
     cardText:        "How Uruguayan tax residency works, what changed in 2026 and what to review in your home country first.",
     eyebrow:         "Tax residency",
@@ -79,8 +79,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Residencia fiscal en Uruguay: cómo funciona y qué cambió en 2026",
-    metaDescription: "Cómo obtener la residencia fiscal en Uruguay, en qué se diferencia de la residencia legal, qué cambió en 2026 y qué revisar antes en su país (Argentina, España).",
+    metaTitle:       "Residencia fiscal en Uruguay (2026)",
+    metaDescription: "Cómo obtener la residencia fiscal en Uruguay, en qué se diferencia de la legal, qué cambió en 2026 y qué revisar antes en Argentina o España.",
     navLabel:        "Residencia fiscal",
     cardText:        "Cómo funciona la residencia fiscal en Uruguay, qué cambió en 2026 y qué revisar antes en su país.",
     eyebrow:         "Residencia fiscal",
@@ -148,8 +148,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Steuern beim Auswandern nach Uruguay: Wegzug und Wohnsitz",
-    metaDescription: "Auswandern nach Uruguay und Steuern: steuerlicher Wohnsitz in Uruguay, was sich 2026 geändert hat, Wegzugsbesteuerung und erweitert beschränkte Steuerpflicht in Deutschland.",
+    metaTitle:       "Steuern beim Auswandern nach Uruguay",
+    metaDescription: "Steuerlicher Wohnsitz in Uruguay, die Änderungen 2026, Wegzugsbesteuerung und erweitert beschränkte Steuerpflicht beim Wegzug aus Deutschland.",
     navLabel:        "Steuern und Wohnsitz",
     cardText:        "Steuerlicher Wohnsitz in Uruguay, die Änderungen 2026 und der Wegzug aus Deutschland.",
     eyebrow:         "Steuern beim Auswandern",

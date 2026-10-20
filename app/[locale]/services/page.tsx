@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
-import { Suspense }       from "react";
 import ServicesPageClient from "./ServicesPageClient";
-import { pageMetadata } from "@/lib/seo";
+import { coreMetadata, toLocale } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
+import { localePath } from "@/lib/i18n";
+import { t } from "@/data/translations";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  return pageMetadata("services", params.locale, {
-  title: "Our Services",
-  description:
-    "From market intelligence and transaction structuring to residency, local establishment, and long-term capital positioning — discover how Sacramentum Advisors supports every stage of your move into Uruguay.",
-  });
+  return coreMetadata("services", params.locale);
 }
 
-export default function ServicesPage() {
+export default function ServicesPage({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
   return (
-    <Suspense>
+    <>
       <ServicesPageClient />
-    </Suspense>
+      <JsonLd data={breadcrumbJsonLd(locale, [{ name: t(locale).nav.sectors, path: localePath("services", locale) }])} />
+    </>
   );
 }

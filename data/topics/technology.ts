@@ -7,8 +7,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Technology in Uruguay: Operations, Acquisitions & Expansion",
-    metaDescription: "Uruguay's export-driven technology ecosystem: build a technology operation, acquire a software company or expand regionally from Uruguay. Advisory from Montevideo.",
+    metaTitle:       "Technology in Uruguay: Build & Acquire",
+    metaDescription: "Uruguay's export-driven tech ecosystem: build a technology operation, acquire a software company or expand across Latin America from Uruguay.",
     navLabel:        "Technology",
     cardText:        "Build a technology operation, acquire a software company or expand across the region from Uruguay.",
     eyebrow:         "Technology",
@@ -60,8 +60,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Tecnología en Uruguay: operaciones, adquisiciones y expansión",
-    metaDescription: "El ecosistema tecnológico exportador de Uruguay: instalar una operación tecnológica, adquirir una empresa de software o expandirse a la región desde Uruguay.",
+    metaTitle:       "Tecnología en Uruguay",
+    metaDescription: "El ecosistema tecnológico exportador de Uruguay: instalar una operación, adquirir una empresa de software o expandirse a la región desde Uruguay.",
     navLabel:        "Tecnología",
     cardText:        "Instalar una operación tecnológica, adquirir una empresa de software o expandirse a la región desde Uruguay.",
     eyebrow:         "Tecnología",
@@ -112,8 +112,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Technologie in Uruguay: Standortaufbau, Akquisitionen, Expansion",
-    metaDescription: "Uruguays exportstarkes Technologie-Ökosystem: einen Technologiestandort aufbauen, ein Softwareunternehmen übernehmen oder von Uruguay aus in die Region expandieren.",
+    metaTitle:       "Technologie in Uruguay",
+    metaDescription: "Uruguays exportstarkes Technologie-Ökosystem: einen Standort aufbauen, ein Softwareunternehmen übernehmen oder von Uruguay aus expandieren.",
     navLabel:        "Technologie",
     cardText:        "Technologiestandort aufbauen, Softwareunternehmen übernehmen oder von Uruguay aus expandieren.",
     eyebrow:         "Technologie",

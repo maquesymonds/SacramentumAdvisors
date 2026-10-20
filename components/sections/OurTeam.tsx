@@ -243,14 +243,14 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
               <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
               <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.eyebrow}</span>
             </div>
-            <h1
+            <h2
               key={copy.headline}
               ref={h1Ref}
               className="font-normal text-ink"
               style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)", letterSpacing: "-0.03em", lineHeight: 1.08 }}
             >
               {copy.headline}
-            </h1>
+            </h2>
           </div>
         </div>
 
@@ -274,9 +274,9 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
                 <span className="block h-px w-8 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
                 <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{copy.advisory.eyebrow}</span>
               </div>
-              <h2 className="font-normal text-ink" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}>
+              <h3 className="font-normal text-ink" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)", letterSpacing: "-0.025em", lineHeight: 1.1 }}>
                 {copy.advisory.headline}
-              </h2>
+              </h3>
               <p className="text-body text-ink-muted leading-relaxed mt-4" style={{ maxWidth: "60ch" }}>
                 {copy.advisory.subheadline}
               </p>

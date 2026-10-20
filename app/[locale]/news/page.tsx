@@ -1,20 +1,26 @@
 import type { Metadata } from "next";
 import NewsPageClient from "./NewsPageClient";
 import { fetchAdminContent } from "@/lib/admin-content";
-import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/lib/schema";
+import { localePath } from "@/lib/i18n";
+import { t } from "@/data/translations";
+import { coreMetadata, toLocale } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  return pageMetadata("news", params.locale, {
-  title: "Uruguay News",
-  description:
-    "A curated selection of stories and signals shaping Uruguay's rise as a strategic destination for investment, lifestyle, and long-term regional access.",
-  });
+  return coreMetadata("news", params.locale);
 }
 
-export default async function NewsPage() {
+export default async function NewsPage({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
   const content = await fetchAdminContent();
   const published = (content.articles ?? []).filter(a => a.published !== false);
-  return <NewsPageClient adminArticles={published.length ? published : null} />;
+  return (
+    <>
+      <NewsPageClient adminArticles={published.length ? published : null} />
+      <JsonLd data={breadcrumbJsonLd(locale, [{ name: t(locale).nav.news, path: localePath("news", locale) }])} />
+    </>
+  );
 }

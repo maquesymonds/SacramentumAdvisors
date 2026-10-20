@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion }          from "framer-motion";
 import { gsap }            from "gsap";
 import { ScrollTrigger }   from "gsap/ScrollTrigger";
-import { useSearchParams } from "next/navigation";
 import Navigation          from "@/components/layout/Navigation";
 import Footer              from "@/components/layout/Footer";
 import { useLocale, useLocalePath, useT } from "@/lib/locale-context";
@@ -466,8 +465,13 @@ function ServiceCarousel({ cards, initialCard }: { cards: { id: string; image: s
 export default function ServicesPageClient() {
   const { locale }  = useLocale();
   const copy        = useT();
-  const searchParams = useSearchParams();
-  const initialCard  = searchParams.get("card");
+  // ?card=<id> preselects a carousel card. Read after mount (not with
+  // useSearchParams) so the page is still fully rendered on the server —
+  // useSearchParams made the whole page client-only and empty for crawlers.
+  const [initialCard, setInitialCard] = useState<string | null>(null);
+  useEffect(() => {
+    setInitialCard(new URLSearchParams(window.location.search).get("card"));
+  }, []);
 
   return (
     <>

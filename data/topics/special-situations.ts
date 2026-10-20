@@ -6,8 +6,8 @@ import type { TopicCopy } from "@/lib/topics";
 
 const copy: TopicCopy = {
   en: {
-    metaTitle:       "Special Projects in Uruguay: Restructurings & Distressed Assets",
-    metaDescription: "Select special projects in Uruguay for strategic investors: restructurings, distressed situations and refinancing in logistics, ports, urban development and real estate.",
+    metaTitle:       "Special Projects in Uruguay",
+    metaDescription: "Select special projects in Uruguay for strategic investors: restructurings, distressed assets and refinancing in logistics, ports and real estate.",
     navLabel:        "Special projects",
     cardText:        "Restructurings, distressed situations and refinancing — confidential access for strategic investors.",
     eyebrow:         "Special projects",
@@ -55,8 +55,8 @@ const copy: TopicCopy = {
   },
 
   es: {
-    metaTitle:       "Proyectos especiales en Uruguay: reestructuraciones y activos en dificultad",
-    metaDescription: "Proyectos especiales seleccionados en Uruguay para inversores estratégicos: reestructuraciones, activos en dificultad y refinanciamientos en logística, puertos, desarrollo urbano y real estate.",
+    metaTitle:       "Proyectos especiales en Uruguay",
+    metaDescription: "Proyectos especiales para inversores estratégicos en Uruguay: reestructuraciones, activos en dificultad y refinanciamientos, con acceso confidencial.",
     navLabel:        "Proyectos especiales",
     cardText:        "Reestructuraciones, activos en dificultad y refinanciamientos, con acceso confidencial para inversores estratégicos.",
     eyebrow:         "Proyectos especiales",
@@ -103,8 +103,8 @@ const copy: TopicCopy = {
     },
   },
   de: {
-    metaTitle:       "Sonderprojekte in Uruguay: Restrukturierungen und Notlagen",
-    metaDescription: "Ausgewählte Sonderprojekte in Uruguay für strategische Investoren: Restrukturierungen, Notlagen und Refinanzierungen in Logistik, Häfen, Stadtentwicklung und Immobilien.",
+    metaTitle:       "Sonderprojekte in Uruguay",
+    metaDescription: "Ausgewählte Sonderprojekte in Uruguay für strategische Investoren: Restrukturierungen, Notlagen und Refinanzierungen, mit vertraulichem Zugang.",
     navLabel:        "Sonderprojekte",
     cardText:        "Restrukturierungen, Notlagen und Refinanzierungen – vertraulicher Zugang für strategische Investoren.",
     eyebrow:         "Sonderprojekte",
