@@ -24,7 +24,12 @@ Inputs: [`seo/RESEARCH-SUMMARY.md`](seo/RESEARCH-SUMMARY.md) (+ ES/EN/DE files a
 | **URLs** | **Localized keyword slugs** per language, as in §2 | Decision #1 resolved as recommended |
 | **Copy of the new pages** | **Claude drafts** from the material already gathered (research, current copy, Capital PDF, verified client facts); **Inés approves**. Tax figures wait for verification | Decision #3 resolved |
 
-Still open: #4 budget/phasing, #5 blog articles, #6 legal notice, #7 Sacramentum Capital content.
+| **Budget / phasing (#4)** | **Closed — everything is inside the agreed proposal.** No phasing | All pages in one stage |
+| **Blog articles (#5)** | **In scope.** Backlog of 8 from `seo/RESEARCH-SUMMARY.md` §2; Claude drafts, Inés approves | Article family launch count: 8 (written after the structure ships) |
+| **Admin / CMS** | The existing admin is adapted so the **new pages are editable** (EN + ES), same as today's pages | Registry + translations keys for every new page |
+| **Legal notice (#6)** | Recommended: one short **Legal notice** page in all languages (DE: *Impressum*) with company name, address, contact and tax ID — low cost, expected by German readers. **Privacy policy is required** (forms, downloads, GA4; GDPR applies to EU visitors). Client's lawyer to confirm wording | Rows "Legal notice" → PROVISIONAL (built), Privacy FIRM |
+
+Still open: #7 Sacramentum Capital — which figures and transactions may be published.
 
 ---
 
