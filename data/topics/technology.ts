@@ -67,7 +67,7 @@ const copy: TopicCopy = {
     eyebrow:         "Tecnología",
     title:           "El ecosistema tecnológico exportador de Uruguay",
     intro: [
-      "Uruguay construyó, sin hacer ruido, uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina.",
+      "Uruguay construyó, silenciosamente, uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina.",
       "En un país de apenas 3,5 millones de habitantes, el ecosistema reúne unas 500 startups, cientos de empresas de software y tecnología consolidadas, centros tecnológicos globales, empresas de producto con éxito internacional y un unicornio que cotiza en NASDAQ.",
     ],
     image: { src: "/images/tech.avif", alt: "Oficina tecnológica en Montevideo, Uruguay" },

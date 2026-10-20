@@ -1238,7 +1238,7 @@ const es: SiteTranslations = {
   investTechnology: {
     eyebrow:  "02 · Tecnología",
     headline: "El ecosistema tecnológico exportador de Uruguay",
-    intro:    "Uruguay construyó, sin hacer ruido, uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina. En un país de apenas 3,5 millones de habitantes, el ecosistema reúne unas 500 startups, cientos de empresas de software y tecnología consolidadas, centros tecnológicos globales, empresas de producto con éxito internacional y un unicornio que cotiza en NASDAQ.",
+    intro:    "Uruguay construyó, silenciosamente, uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina. En un país de apenas 3,5 millones de habitantes, el ecosistema reúne unas 500 startups, cientos de empresas de software y tecnología consolidadas, centros tecnológicos globales, empresas de producto con éxito internacional y un unicornio que cotiza en NASDAQ.",
     pillars: [
       { heading: "Instalación de operaciones estratégicas", body: "Instale una nueva operación tecnológica o amplíe una capacidad regional existente. Acompañamos el proceso desde la evaluación del mercado y el diseño del modelo operativo hasta el liderazgo local, la incorporación de talento, la instalación y la ejecución." },
       { heading: "Adquisiciones y expansión regional",      body: "Adquiera una empresa de software, un equipo de producto o una capacidad tecnológica especializada, con talento, propiedad intelectual y clientes internacionales ya existentes." },

@@ -8,12 +8,28 @@ En cada página, el selector **EN · ES · DE** arriba a la derecha cambia el id
 
 ---
 
-## 1. Tecnología (texto de la clienta)
+## Estado por sección
 
-- [ ] **Página Tecnología en inglés**: el texto exacto que aprobó la clienta → http://localhost:3100/en/technology
-- [ ] **Página Tecnología en español**: traducción mía, falta que la revise Chiara → http://localhost:3100/es/tecnologia
-- [ ] **Por qué Uruguay → bloque Tecnología**: el texto nuevo en 2 bloques reemplaza los 3 pilares viejos (bajá hasta Tecnología) → http://localhost:3100/es/por-que-uruguay
-- [ ] Efecto slide: **no está hecho**, queda para más adelante
+| Sección | Texto | Diseño |
+|---|---|---|
+| Tecnología | ✅ OK (20.10.2026) | ⏳ pendiente (ver lista abajo) |
+
+## Pendientes de diseño (se hacen todos juntos al final)
+
+**Tecnología** → http://localhost:3100/es/tecnologia
+- [ ] Título del encabezado: hoy queda en 4 renglones apretado contra la izquierda. Máximo 2-3 renglones (columna más ancha o letra más chica).
+- [ ] Números de abajo (#2, US$…, 63%, 77,6%): mucho más grandes.
+- [ ] Cifra de facturación más corta, redondeada: "US$3.7bn" / "US$3,7 mil M" / "3,7 Mrd. USD" en vez de "US$3.680 M".
+- [ ] Efecto slide que pidió la clienta.
+
+---
+
+## 1. Tecnología (texto de la clienta) — ✅ texto aprobado
+
+- [x] **Página Tecnología en inglés**: el texto exacto que aprobó la clienta → http://localhost:3100/en/technology
+- [x] **Página Tecnología en español**: traducción mía, falta que la revise Chiara → http://localhost:3100/es/tecnologia · cambiado: "sin hacer ruido" pasa a "silenciosamente"
+- [x] **Por qué Uruguay → bloque Tecnología**: el texto nuevo en 2 bloques reemplaza los 3 pilares viejos (bajá hasta Tecnología) → http://localhost:3100/es/por-que-uruguay · mismo cambio aplicado
+- [ ] Efecto slide: **no está hecho**, pasa a "Pendientes de diseño"
 
 ## 2. Sacramentum Capital
 
