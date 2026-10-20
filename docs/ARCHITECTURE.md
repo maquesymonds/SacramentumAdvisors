@@ -1,7 +1,7 @@
 # ARCHITECTURE — Sacramentum Advisors · Stage 2
 
 **Status:** proposed, awaiting approval · **Date:** 2026-10-20
-**Scope:** S2 · Service Depth · **Stack:** Next (existing, Next.js 14 App Router) · **Pages proposed:** 21 per language (+ 8 existing news articles) · **Page families:** 4
+**Scope:** S2 · Service Depth · **Stack:** Next (existing, Next.js 14 App Router) · **Pages proposed:** 18 per language (+ 8 existing news articles) — revised · **Page families:** 4
 
 > This is the Architecture Checkpoint. Implementation does not start until it is approved.
 > Stage 2 restructures the live site — it does not rebuild it. Design, motion and existing sections are reused.
@@ -9,6 +9,22 @@
 Inputs: [`seo/RESEARCH-SUMMARY.md`](seo/RESEARCH-SUMMARY.md) (+ ES/EN/DE files and `seo/data/`), the client proposal
 ("Sacramentum Final Proposal", 19 items), [`content/technology-en.md`](content/technology-en.md),
 [`content/sacramentum-capital.md`](content/sacramentum-capital.md), and the current code on `main` (3c6916c).
+
+---
+
+## Revision 1 · 2026-10-20 · decisions from Maque
+
+| Topic | Decision | Effect |
+|---|---|---|
+| **Navigation** | **Keep the current nav exactly**: Home · Why Uruguay · Services · News · Blog · Contact. No new top-level items. Add only the language switcher (ES · EN · DE, replacing the ES/EN toggle) and the fixed "Book a consultation" button (proposal) | New pages are reached from the Why Uruguay and Services pages (cards + body links) and the footer, not from the nav |
+| **Existing pages stay** | `/invest` keeps its role and content as the **Why Uruguay** page (nav label already says "Why Uruguay"); it becomes the hub that links to the four sector pages. No separate "Why Uruguay" page is created | Former row #2 removed; row #3 renamed |
+| Team page, FAQ page | **Dropped.** Team stays as the home section; FAQs live inside each topic page (visible + schema) | −2 pages per language |
+| **Admin editing** | Inés edits **EN** (and ES, as today). **German is not editable from the admin**: DE copy lives in code, updated by us when EN changes | No DE column in the "Textos" panel. Overrides still read server-side |
+| **Language on entry** | `/` (sacramentumadvisors.com) sends each visitor to **their browser's language** (ES → `/es/`, DE → `/de/`, anything else → `/en/`); a choice made in the switcher is remembered and wins next time. Pages reached by link or from Google always open in the language of their URL | Decision #2 resolved as recommended |
+| **URLs** | **Localized keyword slugs** per language, as in §2 | Decision #1 resolved as recommended |
+| **Copy of the new pages** | **Claude drafts** from the material already gathered (research, current copy, Capital PDF, verified client facts); **Inés approves**. Tax figures wait for verification | Decision #3 resolved |
+
+Still open: #4 budget/phasing, #5 blog articles, #6 legal notice, #7 Sacramentum Capital content.
 
 ---
 
@@ -65,8 +81,7 @@ Volume = searches/month (SE Ranking estimate; ES = AR+ES+UY, EN = 7 EN databases
 | # | Page | ES slug | EN slug | DE slug | Type | Family | Primary keyword (volume ES · EN · DE) | Why it exists | Mark |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | Home | `/es/` | `/en/` | `/de/` | homepage | — | invertir en uruguay (410) · brand · brand | Entry; brand | FIRM |
-| 2 | Why Uruguay | `/es/por-que-uruguay/` | `/en/why-uruguay/` | `/de/warum-uruguay/` | hub | — | — · is uruguay safe (1.020), safest country in south america (1.940) · sicherstes land südamerika (600) | Decision-stage research; hosts the "Live in Uruguay" video (proposal). Today a home section + nav label pointing to `/invest` | FIRM |
-| 3 | Invest in Uruguay (sectors hub) | `/es/invertir-en-uruguay/` | `/en/invest-in-uruguay/` | `/de/investieren-in-uruguay/` | hub | — | invertir en uruguay (410) · — · — | Replaces `/invest`; links the four sector pages; investor guide download (proposal) | FIRM |
+| 3 | Why Uruguay (= current `/invest`, sectors hub) | `/es/por-que-uruguay/` | `/en/why-uruguay/` | `/de/warum-uruguay/` | hub | — | invertir en uruguay (410) · is uruguay safe (1.020) · sicherstes land südamerika (600) | Existing page and nav item; links the four sector pages; investor guide download and "Live in Uruguay" video (proposal) | FIRM |
 | 4 | Real estate | `/es/inmobiliario-punta-del-este-montevideo/` | `/en/uruguay-real-estate/` | `/de/immobilien-uruguay/` | sector | Topic | casas en punta del este (390), vivienda promovida (390) · uruguay property (1.300), uruguay real estate (790), josé ignacio (350) · haus kaufen uruguay (≈ 480), immobilien uruguay (490), piriápolis (320) | Client sector; strongest search cluster | FIRM |
 | 5 | Farmland & forestry | `/es/campos-y-chacras-en-uruguay/` | `/en/uruguay-farmland/` | `/de/landwirtschaft-uruguay/` | sector | Topic | chacras en venta (960), campos en venta en uruguay (480) · land/farmland/farms for sale (≈ 1.200), timberland (400) · weak (estancia uruguay 60) | Client sector; Farmland document download (proposal). DE kept for language parity, links to EN | FIRM (DE: PROVISIONAL) |
 | 6 | Technology | `/es/tecnologia/` | `/en/technology/` | `/de/technologie/` | sector | Topic | no data in any language | Client sector; new client-approved copy; Technology guide download (proposal) | FIRM (functional) |
@@ -78,8 +93,6 @@ Volume = searches/month (SE Ranking estimate; ES = AR+ES+UY, EN = 7 EN databases
 | 12 | Family office & wealth | `/es/family-office-patrimonio/` | `/en/family-office-uruguay/` | `/de/family-office-uruguay/` | service | Topic | wealth management (760 ES, generic) · no data · multi family office (450), vermögensschutz (230) | **The one query where ChatGPT already recommends Sacramentum** (EN + DE); Plan B / asset protection | PROVISIONAL (GEO) |
 | 13 | Sacramentum Capital | `/es/sacramentum-capital/` | `/en/sacramentum-capital/` | `/de/sacramentum-capital/` | service | — | no data | Proposal item; trust/track record; = "Investment Banking" service. Content per decision #7 | FIRM |
 | 14 | Services (hub) | `/es/servicios/` | `/en/services/` | `/de/leistungen/` | hub | — | no data | Existing; the four service lines, each linking to its page (§8) | FIRM |
-| 15 | Team | `/es/equipo/` | `/en/team/` | `/de/team/` | about | — | no data | Trust (E-E-A-T): AIs describe Sacramentum from LinkedIn because the site has no team page; Gemini read the team from the home section | PROVISIONAL |
-| 16 | FAQ | `/es/preguntas-frecuentes/` | `/en/faq/` | `/de/faq/` | functional | — | — | GEO: citable answers; aggregates the FAQs of the topic pages (no duplicate text) | PROVISIONAL |
 | 17 | News (hub) | `/es/noticias/` | `/en/news/` | `/de/nachrichten/` | hub | Articles | — | Existing, "Uruguay in the news" | FIRM |
 | 17a | News articles (8) | `/es/noticias/[slug]/` | `/en/news/[slug]/` | `/de/nachrichten/[slug]/` | article | Articles | — | Existing; each links to its sector (proposal) | FIRM |
 | 18 | Blog (hub) | `/es/blog/` | `/en/blog/` | `/de/blog/` | hub | Articles | — | Existing, empty; home of future articles (decision #5) | FIRM |
@@ -99,7 +112,8 @@ Volume = searches/month (SE Ranking estimate; ES = AR+ES+UY, EN = 7 EN databases
 | City pages (Punta del Este, José Ignacio, Montevideo, Piriápolis) | Searches are real-estate listings intent ("casas en venta"), which portals win; Sacramentum is not a portal. They become sections of the Real Estate page. Re-evaluate after Search Console data |
 | Retire in Uruguay — ES | No measurable Spanish demand; Residency covers it |
 | Golden visa / citizenship by investment page | Generic demand for other countries (Portugal, Caribbean); Uruguay has no CBI. Covered honestly inside Second passport |
-| "Invest in Uruguay" as separate from the sector hub | Same intent — one hub (#3) |
+| Separate "Why Uruguay" and "Invest" pages | Same page today (`/invest`, nav "Why Uruguay") — kept as one (Revision 1) |
+| Team page · FAQ page | Dropped in Revision 1: team stays on the home; FAQs inside each topic page |
 | Separate "Plan B" page | "plan b" as a search term = the contraceptive pill (ES/EN); the concept lives in Residency, Second passport and Family office copy |
 | Comparison pages (vs Paraguay / Portugal / Chile) as pages | Article intent → Blog family (decision #5) |
 | Guide landing pages (one per guide) | Download happens in place via a form block; a separate page per PDF adds thin pages |
@@ -264,7 +278,7 @@ A CTA label always resolves to the same destination. Every form submission and d
 | Old URL | New URL | Status | Note |
 |---|---|---|---|
 | `/` | locale redirect (decision #2) | 302 | |
-| `/invest` | `/en/invest-in-uruguay/` | 301 | |
+| `/invest` | `/en/why-uruguay/` | 301 | |
 | `/invest#real-estate` etc. | sector pages | — | fragments are not sent to the server; the hub links to the sectors |
 | `/services` | `/en/services/` | 301 | |
 | `/services?card=soft-landing` | `/en/uruguay-residency/` | 301 | middleware reads the query |
