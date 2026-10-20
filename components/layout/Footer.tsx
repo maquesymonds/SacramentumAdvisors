@@ -6,7 +6,7 @@
    Structure:
      • Dark panel (--color-dark #1F2933)
      • 4-column grid: Brand | Navigation | Services | Contact
-     • Bottom legal bar: copyright · privacy · terms
+     • Bottom legal bar: copyright · Filamento credit · privacy · terms
      • Logo inverted to white via CSS filter
      • All copy from translations — bilingual-ready
 
@@ -369,6 +369,34 @@ export default function Footer() {
             }}
           >
             {copy.legal.copyright}
+          </p>
+
+          {/* Studio credit — Web System rule: every site links filamentolabs.com */}
+          <p
+            style={{
+              color:         "rgba(250,250,248,0.28)",
+              fontSize:      "0.72rem",
+              letterSpacing: "0.04em",
+            }}
+          >
+            {copy.legal.credit}{" "}
+            <a
+              href="https://filamentolabs.com"
+              target="_blank"
+              rel="noopener"
+              style={{
+                color:      "rgba(250,250,248,0.45)",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={e =>
+                ((e.currentTarget as HTMLElement).style.color = "var(--color-warm)")
+              }
+              onMouseLeave={e =>
+                ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.45)")
+              }
+            >
+              Filamento
+            </a>
           </p>
 
           {/* Legal links */}

@@ -283,6 +283,7 @@ export interface SiteTranslations {
       copyright: string;
       privacy:   string;
       terms:     string;
+      credit:    string;
     };
     cta: string;
   };
@@ -698,6 +699,7 @@ const en: SiteTranslations = {
       copyright: "© 2025 Sacramentum Advisors. All rights reserved.",
       privacy:   "Privacy Policy",
       terms:     "Terms of Service",
+      credit:    "Made by",
     },
     cta: "Book a consultation",
   },
@@ -1194,6 +1196,7 @@ const es: SiteTranslations = {
       copyright: "© 2025 Sacramentum Advisors. Todos los derechos reservados.",
       privacy:   "Política de Privacidad",
       terms:     "Términos de Servicio",
+      credit:    "Hecho por",
     },
     cta: "Reservar consulta",
   },
