@@ -417,11 +417,7 @@ const TOPIC_LABEL: Record<TopicId, string> = {
   "real-estate":         "Inmobiliario",
   "farmland":            "Campos y chacras",
   "technology":          "Tecnología (página)",
-  "special-situations":  "Proyectos especiales",
   "residency":           "Residencia",
-  "tax-residency":       "Residencia fiscal",
-  "second-passport":     "Pasaporte uruguayo",
-  "retire":              "Retiro (solo inglés)",
   "family-office":       "Family office",
   "sacramentum-capital": "Sacramentum Capital",
 };

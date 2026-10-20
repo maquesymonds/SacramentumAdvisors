@@ -78,6 +78,13 @@
     font-weight: 400;
     letter-spacing: -0.02em;
     color: var(--color-ink);
+    /* No orphan words: lines are balanced so the last line never holds a single word */
+    text-wrap: balance;
+  }
+
+  /* Body copy: avoid a lone word on the last line */
+  p, li, blockquote, figcaption {
+    text-wrap: pretty;
   }
 
   /* Links */

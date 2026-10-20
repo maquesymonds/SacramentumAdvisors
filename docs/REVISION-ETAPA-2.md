@@ -54,12 +54,10 @@ Mi opinión honesta está en la última columna. Ninguna está publicada, así q
 | [ ] | Inmobiliario | http://localhost:3100/es/inmobiliario-punta-del-este-montevideo | ES ~800 · EN ~2.400 · DE ~1.300 | Sí: es uno de sus 4 sectores en Por qué Uruguay | **Dejar** |
 | [ ] | Campos y chacras | http://localhost:3100/es/campos-y-chacras-en-uruguay | ES ~1.400 · EN ~1.600 · DE casi nada | Sí: es uno de sus 4 sectores | **Dejar** (la propuesta incluye una guía de campos para descargar) |
 | [ ] | Family office | http://localhost:3100/es/family-office-patrimonio | poco, pero ChatGPT ya recomienda a Sacramentum acá | Más o menos: es "Asesoría estratégica" | Opcional |
-| [ ] | Proyectos especiales | http://localhost:3100/es/proyectos-especiales | nadie lo busca | Sí, pero es confidencial | **Sacar**: alcanza con el bloque que ya está en Por qué Uruguay |
-| [ ] | Residencia fiscal | http://localhost:3100/es/residencia-fiscal-en-uruguay | ES ~700 · DE ~4.000 | No: es asesoría impositiva | **Sacar**: hay datos sin verificar y es riesgoso |
-| [ ] | Pasaporte uruguayo | http://localhost:3100/es/pasaporte-uruguayo | ES ~600 · EN ~3.000 | No | **Sacar**: se puede mencionar en Residencia como pregunta frecuente |
-| [ ] | Retirarse en Uruguay (solo EN/DE) | http://localhost:3100/en/retire-in-uruguay | EN ~1.700 · DE ~800 | No | **Sacar**: se puede mencionar en Residencia |
 
-**Mi propuesta corta:** Tecnología y Capital (las pidió), más Residencia, Inmobiliario y Campos (las vende y la gente las busca). Son 5 páginas y todas se pueden defender ante la clienta. Las otras 4 las sacamos.
+**Sacadas (20.10.2026):** Proyectos especiales, Residencia fiscal, Pasaporte uruguayo y Retirarse en Uruguay, junto con sus enlaces. El sector Proyectos especiales sigue en Por qué Uruguay, pero sin "Ver más".
+
+**Mi propuesta corta:** Tecnología y Capital (las pidió), más Residencia, Inmobiliario y Campos (las vende y la gente las busca). Son 5 páginas y todas se pueden defender ante la clienta.
 
 Desde dónde se llega a estas páginas (si sacás alguna, saco también estos enlaces):
 - [ ] Footer: columna nueva "Uruguay"

@@ -33,7 +33,7 @@ const CHAPTERS = [
   { id: "real-estate",        image: "/images/RealEstate.webp",    key: "investRealEstate",  page: "real-estate"        },
   { id: "technology",         image: "/images/tech.avif",          key: "investTechnology",  page: "technology"         },
   { id: "agriculture",        image: "/images/woods.avif",         key: "investAgriculture", page: "farmland"           },
-  { id: "special-situations", image: "/placeholders/colonia.avif", key: "investSpecial",     page: "special-situations" },
+  { id: "special-situations", image: "/placeholders/colonia.avif", key: "investSpecial",     page: null                 },
 ] as const;
 
 // Link from each chapter to its sector page (docs/ARCHITECTURE.md §8).
@@ -364,7 +364,7 @@ export default function InvestPageClient() {
                     </>
                   )}
 
-                  <SectorLink href={path(chapter.page)} label={`${MORE_LABEL[locale]}: ${copy.eyebrow.replace(/^\d+\s·\s/, "")}`} />
+                  {chapter.page && <SectorLink href={path(chapter.page)} label={`${MORE_LABEL[locale]}: ${copy.eyebrow.replace(/^\d+\s·\s/, "")}`} />}
                 </div>
               );
             })}
@@ -463,7 +463,7 @@ export default function InvestPageClient() {
                     {copy.cta}
                   </a>
                 )}
-                <div><SectorLink href={path(chapter.page)} label={`${MORE_LABEL[locale]}: ${copy.eyebrow.replace(/^\d+\s·\s/, "")}`} /></div>
+                {chapter.page && <div><SectorLink href={path(chapter.page)} label={`${MORE_LABEL[locale]}: ${copy.eyebrow.replace(/^\d+\s·\s/, "")}`} /></div>}
               </div>
             );
           })}

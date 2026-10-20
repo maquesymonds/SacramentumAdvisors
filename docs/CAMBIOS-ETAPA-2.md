@@ -152,3 +152,8 @@ Aplicado con la skill `web-seo-geo` y medido sobre el HTML real que se entrega.
 
 **Pendiente de la clienta:** monto de inversión mínima · las 3 guías en PDF · casos anónimos para la sección de confianza ·
 razón social y RUT para el aviso legal · revisión legal de la política de privacidad.
+
+## Ajuste 20.10.2026 · Páginas sacadas
+
+- Se sacaron 4 páginas que la clienta no vende o que no tienen búsquedas que las justifiquen: Proyectos especiales, Residencia fiscal, Pasaporte uruguayo y Retirarse en Uruguay. También se sacaron sus enlaces (footer, "Ver más", relacionadas, admin y sitemap).
+- Quedan 6 páginas nuevas: Tecnología, Sacramentum Capital, Residencia, Inmobiliario, Campos y chacras, y Family office.

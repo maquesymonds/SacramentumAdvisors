@@ -49,11 +49,7 @@ export type TopicCopy = Partial<Record<Locale, TopicContent>> & { en: TopicConte
 import realEstate         from "@/data/topics/real-estate";
 import farmland           from "@/data/topics/farmland";
 import technology         from "@/data/topics/technology";
-import specialSituations  from "@/data/topics/special-situations";
 import residency          from "@/data/topics/residency";
-import taxResidency       from "@/data/topics/tax-residency";
-import secondPassport     from "@/data/topics/second-passport";
-import retire             from "@/data/topics/retire";
 import familyOffice       from "@/data/topics/family-office";
 import sacramentumCapital from "@/data/topics/sacramentum-capital";
 
@@ -61,11 +57,7 @@ const TOPICS: Record<TopicId, TopicCopy> = {
   "real-estate":         realEstate,
   "farmland":            farmland,
   "technology":          technology,
-  "special-situations":  specialSituations,
   "residency":           residency,
-  "tax-residency":       taxResidency,
-  "second-passport":     secondPassport,
-  "retire":              retire,
   "family-office":       familyOffice,
   "sacramentum-capital": sacramentumCapital,
 };

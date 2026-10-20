@@ -47,9 +47,9 @@ export type PageId =
   // Functional pages (noindex, not in the sitemap)
   | "thank-you" | "privacy"
   // Sector pages (linked from Why Uruguay)
-  | "real-estate" | "farmland" | "technology" | "special-situations"
+  | "real-estate" | "farmland" | "technology"
   // Service pages (linked from Services)
-  | "residency" | "tax-residency" | "second-passport" | "retire" | "family-office" | "sacramentum-capital";
+  | "residency" | "family-office" | "sacramentum-capital";
 
 export type TopicId = Exclude<PageId, "home" | "why-uruguay" | "services" | "news" | "blog" | "contact" | "thank-you" | "privacy">;
 
@@ -75,7 +75,7 @@ export const PAGES: Record<PageId, PageDef> = {
   "real-estate": {
     route: "topic/real-estate",
     slugs: { en: "uruguay-real-estate", es: "inmobiliario-punta-del-este-montevideo", de: "immobilien-uruguay" },
-    related: ["residency", "tax-residency", "farmland"],
+    related: ["residency", "farmland", "family-office"],
   },
   "farmland": {
     route: "topic/farmland",
@@ -87,41 +87,20 @@ export const PAGES: Record<PageId, PageDef> = {
     slugs: { en: "technology", es: "tecnologia", de: "technologie" },
     related: ["sacramentum-capital", "residency", "family-office"],
   },
-  "special-situations": {
-    route: "topic/special-situations",
-    slugs: { en: "special-projects", es: "proyectos-especiales", de: "sonderprojekte" },
-    related: ["sacramentum-capital", "family-office", "real-estate"],
-  },
   "residency": {
     route: "topic/residency",
     slugs: { en: "uruguay-residency", es: "residencia-en-uruguay", de: "auswandern-nach-uruguay" },
-    related: ["tax-residency", "second-passport", "retire", "real-estate"],
-  },
-  "tax-residency": {
-    route: "topic/tax-residency",
-    slugs: { en: "uruguay-tax-residency", es: "residencia-fiscal-en-uruguay", de: "steuern-auswandern-uruguay" },
-    related: ["residency", "real-estate", "family-office"],
-  },
-  "second-passport": {
-    route: "topic/second-passport",
-    slugs: { en: "uruguay-citizenship-second-passport", es: "pasaporte-uruguayo", de: "zweiter-reisepass-uruguay" },
-    related: ["residency", "tax-residency"],
-  },
-  "retire": {
-    route: "topic/retire",
-    slugs: { en: "retire-in-uruguay", es: null, de: "als-rentner-nach-uruguay" },
-    fallback: "residency",
-    related: ["residency", "real-estate", "why-uruguay"],
+    related: ["real-estate", "farmland", "family-office"],
   },
   "family-office": {
     route: "topic/family-office",
     slugs: { en: "family-office-uruguay", es: "family-office-patrimonio", de: "family-office-uruguay" },
-    related: ["sacramentum-capital", "farmland", "real-estate", "tax-residency"],
+    related: ["sacramentum-capital", "farmland", "real-estate", "residency"],
   },
   "sacramentum-capital": {
     route: "topic/sacramentum-capital",
     slugs: { en: "sacramentum-capital", es: "sacramentum-capital", de: "sacramentum-capital" },
-    related: ["family-office", "technology", "special-situations"],
+    related: ["family-office", "technology", "real-estate"],
   },
 };
 
