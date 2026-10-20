@@ -16,6 +16,7 @@ import {
   isLocale,
   localePath,
   localizeHref,
+  pageFromAnySlug,
   pageFromRoute,
   pageFromSlug,
   type Locale,
@@ -72,11 +73,21 @@ export function middleware(req: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
-  // An internal route name used with the wrong locale → its localized slug
-  const byRoute = pageFromRoute(second);
+  // A slug from another language (/es/uruguay-residency) → this locale's slug
+  const crossLocale = pageFromAnySlug(second);
+  if (crossLocale) {
+    const url = req.nextUrl.clone();
+    url.pathname = localePath(crossLocale, locale, rest.length ? rest.join("/") : undefined);
+    return NextResponse.redirect(url, 301);
+  }
+
+  // An internal route used directly (/es/why-uruguay, /es/topic/residency)
+  // → its localized slug, so every page has exactly one public URL
+  const byRoute = pageFromRoute(second === "topic" && rest[0] ? `topic/${rest[0]}` : second);
   if (byRoute) {
     const url = req.nextUrl.clone();
-    url.pathname = localePath(byRoute, locale, rest.length ? rest.join("/") : undefined);
+    const sub = second === "topic" ? rest.slice(1) : rest;
+    url.pathname = localePath(byRoute, locale, sub.length ? sub.join("/") : undefined);
     return NextResponse.redirect(url, 301);
   }
 

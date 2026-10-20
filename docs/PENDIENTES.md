@@ -10,7 +10,8 @@ Lista viva. Se actualiza en cada sesión.
 - [ ] **Texto de Technology en español** (y alemán, o lo traducimos y lo revisa un nativo). Hoy solo está en inglés: [`content/technology-en.md`](content/technology-en.md).
 - [x] Segunda sección nueva = **Sacramentum Capital** — fuente: `~/Desktop/Sacramentum_Capital_Presentation.pdf` (ver [`content/sacramentum-capital.md`](content/sacramentum-capital.md)).
 - [ ] **Sacramentum Capital: qué transacciones y cifras se pueden publicar** (el PDF dice "Confidential"; una operación sigue en cierre).
-- [ ] Sacramentum Capital: cómo explicar la relación Capital ↔ Advisors (independencia).
+- [ ] Sacramentum Capital: cómo explicar la relación Capital ↔ Advisors (independencia). Borrador en la página: "boutique de banca de inversión de nuestra red; informamos el vínculo" — confirmar.
+- [ ] **Bio de Pablo Mautone:** la web dice "VP en J.P. Morgan y Lehman Brothers"; la presentación de Capital dice "Bozano Simonsen y JPMorgan (Executive Director)". ¿Cuál es la correcta?
 - [ ] **Hacer privado el repo de GitHub** (hoy es público: se ven el research y los docs).
 - [ ] Video "Live in Uruguay" (sección Why Uruguay).
 - [ ] Verificar los 9 datos de [`seo/RESEARCH-SUMMARY.md`](seo/RESEARCH-SUMMARY.md) §5 (régimen fiscal 2026, convenio con Alemania, quién habla alemán, cómo cobran, etc.).

@@ -684,10 +684,10 @@ const en: SiteTranslations = {
     services: {
       title: "Services",
       links: [
-        { label: "Strategic Advisory",          href: "/services?card=strategic-advisory" },
+        { label: "Strategic Advisory",          href: "page:family-office" },
         { label: "Market Intelligence",          href: "/services?card=market-intelligence" },
-        { label: "Soft Landing Partnerships",    href: "/services?card=soft-landing" },
-        { label: "Boutique Investment Banking",  href: "/services?card=investment-banking" },
+        { label: "Soft Landing Partnerships",    href: "page:residency" },
+        { label: "Boutique Investment Banking",  href: "page:sacramentum-capital" },
       ],
     },
     contact: {
@@ -715,12 +715,11 @@ const en: SiteTranslations = {
 
   investTechnology: {
     eyebrow:  "02 · Technology",
-    headline: "IT, Innovation & Emerging Technologies",
-    intro:    "Uruguay has positioned itself as one of Latin America's most stable and forward-looking technology hubs, combining institutional reliability, skilled talent, and a business-friendly environment for digital growth.",
+    headline: "Uruguay's export-driven technology ecosystem",
+    intro:    "Uruguay has quietly built one of Latin America's most export-driven technology ecosystems. In a country of just 3.5 million people, the ecosystem brings together around 500 startups, hundreds of established software and technology companies, global technology centers, internationally successful product companies, and a NASDAQ-listed unicorn.",
     pillars: [
-      { heading: "Strategic Ecosystem",  body: "A mature technology sector supported by strong education, public-private collaboration, and a growing network of startups, global companies, and innovation-driven ventures." },
-      { heading: "Regional Recognition", body: "Uruguay is widely recognized for its digital development, regulatory stability, and high-quality human capital, making it an attractive platform for regional operations." },
-      { heading: "Next Phase",           body: "Expansion across AI, software services, fintech, data infrastructure, and emerging technologies, reinforcing Uruguay's role as a gateway for innovation in South America." },
+      { heading: "Strategic Operation Buildout",      body: "Establish a new technology operation or expand an existing regional capability. We support the process from market assessment and operating-model design through local leadership, talent acquisition, establishment, and execution." },
+      { heading: "Acquisitions & Regional Expansion", body: "Acquire a software company, product team, or specialized technology capability with existing talent, intellectual property, and international clients." },
     ],
     cta: "Explore technology opportunities",
   },
@@ -1181,10 +1180,10 @@ const es: SiteTranslations = {
     services: {
       title: "Servicios",
       links: [
-        { label: "Asesoría Estratégica",           href: "/services?card=strategic-advisory" },
+        { label: "Asesoría Estratégica",           href: "page:family-office" },
         { label: "Inteligencia de Mercado",         href: "/services?card=market-intelligence" },
-        { label: "Asociaciones de Soft Landing",    href: "/services?card=soft-landing" },
-        { label: "Banca de Inversión Boutique",     href: "/services?card=investment-banking" },
+        { label: "Asociaciones de Soft Landing",    href: "page:residency" },
+        { label: "Banca de Inversión Boutique",     href: "page:sacramentum-capital" },
       ],
     },
     contact: {
@@ -1212,14 +1211,13 @@ const es: SiteTranslations = {
 
   investTechnology: {
     eyebrow:  "02 · Tecnología",
-    headline: "IT, Innovación y Tecnologías Emergentes",
-    intro:    "Uruguay se ha posicionado como uno de los hubs tecnológicos más estables y con mayor visión de futuro de América Latina, combinando fiabilidad institucional, talento calificado y un entorno favorable para el crecimiento digital.",
+    headline: "El ecosistema tecnológico exportador de Uruguay",
+    intro:    "Uruguay construyó, sin hacer ruido, uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina. En un país de apenas 3,5 millones de habitantes, el ecosistema reúne unas 500 startups, cientos de empresas de software y tecnología consolidadas, centros tecnológicos globales, empresas de producto con éxito internacional y un unicornio que cotiza en NASDAQ.",
     pillars: [
-      { heading: "Ecosistema Estratégico",  body: "Un sector tecnológico maduro respaldado por una sólida educación, colaboración público-privada y una creciente red de startups, empresas globales y emprendimientos orientados a la innovación." },
-      { heading: "Reconocimiento Regional", body: "Uruguay es ampliamente reconocido por su desarrollo digital, estabilidad regulatoria y capital humano de alta calidad, convirtiéndolo en una plataforma atractiva para operaciones regionales." },
-      { heading: "Próxima Fase",            body: "Expansión en IA, servicios de software, fintech, infraestructura de datos y tecnologías emergentes, reforzando el rol de Uruguay como puerta de entrada a la innovación en Sudamérica." },
+      { heading: "Instalación de operaciones estratégicas", body: "Instale una nueva operación tecnológica o amplíe una capacidad regional existente. Acompañamos el proceso desde la evaluación del mercado y el diseño del modelo operativo hasta el liderazgo local, la incorporación de talento, la instalación y la ejecución." },
+      { heading: "Adquisiciones y expansión regional",      body: "Adquiera una empresa de software, un equipo de producto o una capacidad tecnológica especializada, con talento, propiedad intelectual y clientes internacionales ya existentes." },
     ],
-    cta: "Contáctenos para conectar con el ecosistema emprendedor y de VC regional",
+    cta: "Explore oportunidades tecnológicas",
   },
 
   investAgriculture: {

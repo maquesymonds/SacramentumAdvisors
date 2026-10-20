@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { fetchAdminContent } from "@/lib/admin-content";
 import {
-  INDEXED_LOCALES,
   PAGES,
+  indexedLocales,
   absoluteUrl,
   localePath,
   xDefault,
@@ -15,9 +15,10 @@ export const dynamic = "force-dynamic";
 // locales are listed; each entry carries its hreflang alternates.
 function entry(id: PageId, sub?: string): MetadataRoute.Sitemap {
   const languages: Record<string, string> = {};
-  for (const l of INDEXED_LOCALES) languages[l] = absoluteUrl(localePath(id, l, sub));
+  const locales = indexedLocales(id);
+  for (const l of locales) languages[l] = absoluteUrl(localePath(id, l, sub));
   languages["x-default"] = xDefault(id, sub);
-  return INDEXED_LOCALES.map(locale => ({
+  return locales.map(locale => ({
     url:          absoluteUrl(localePath(id, locale, sub)),
     lastModified: new Date(),
     alternates:   { languages },

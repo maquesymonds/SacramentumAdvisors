@@ -30,11 +30,25 @@ function lerpColor(a: string, b: string, t: number): string {
 // investAgriculture / investSpecial) and is pulled in via useT() so the
 // admin "Textos" panel can edit it. Images, colours and order stay in code.
 const CHAPTERS = [
-  { id: "real-estate",        image: "/images/RealEstate.webp",    key: "investRealEstate"  },
-  { id: "technology",         image: "/images/tech.avif",          key: "investTechnology"  },
-  { id: "agriculture",        image: "/images/woods.avif",         key: "investAgriculture" },
-  { id: "special-situations", image: "/placeholders/colonia.avif", key: "investSpecial"     },
+  { id: "real-estate",        image: "/images/RealEstate.webp",    key: "investRealEstate",  page: "real-estate"        },
+  { id: "technology",         image: "/images/tech.avif",          key: "investTechnology",  page: "technology"         },
+  { id: "agriculture",        image: "/images/woods.avif",         key: "investAgriculture", page: "farmland"           },
+  { id: "special-situations", image: "/placeholders/colonia.avif", key: "investSpecial",     page: "special-situations" },
 ] as const;
+
+// Link from each chapter to its sector page (docs/ARCHITECTURE.md §8).
+const MORE_LABEL = { en: "Learn more", es: "Ver más", de: "Mehr erfahren" } as const;
+
+function SectorLink({ href, label }: { href: string; label: string }) {
+  return (
+    <a
+      href={href}
+      style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginTop: "1.25rem", color: "rgba(204,168,124,0.95)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, width: "fit-content" }}
+    >
+      {label} <span aria-hidden="true">→</span>
+    </a>
+  );
+}
 
 const fadeUp = (delay = 0) => ({
   initial:     { opacity: 0, y: 32 },
@@ -53,7 +67,7 @@ const fadeIn = (delay = 0) => ({
 export default function InvestPageClient() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tr = useT() as any;
-  const { path } = useLocalePath();
+  const { path, locale } = useLocalePath();
 
   // ── Refs ───────────────────────────────────────────────────────────────────
   const chaptersSection = useRef<HTMLDivElement>(null);
@@ -350,7 +364,7 @@ export default function InvestPageClient() {
                     </>
                   )}
 
-
+                  <SectorLink href={path(chapter.page)} label={`${MORE_LABEL[locale]}: ${copy.eyebrow.replace(/^\d+\s·\s/, "")}`} />
                 </div>
               );
             })}
@@ -449,6 +463,7 @@ export default function InvestPageClient() {
                     {copy.cta}
                   </a>
                 )}
+                <div><SectorLink href={path(chapter.page)} label={`${MORE_LABEL[locale]}: ${copy.eyebrow.replace(/^\d+\s·\s/, "")}`} /></div>
               </div>
             );
           })}

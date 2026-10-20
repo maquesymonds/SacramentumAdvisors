@@ -1,0 +1,83 @@
+# Etapa 2 · Registro de cambios
+
+Qué se cambió en la web, en palabras simples, en orden. Se actualiza en cada paso.
+Todo vive en la rama `etapa-2`; la web en vivo (`main`) no se toca hasta el Pull Request final.
+
+**Ver en local:** `cd ~/Projects/SacramentumAdvisors && npx next dev -p 3100` → http://localhost:3100
+
+---
+
+## Paso 1 · Research de keywords (19–20.10.2026)
+
+- Research en español, inglés y alemán con SE Ranking + pruebas en ChatGPT y Gemini.
+- Resultado: `docs/seo/RESEARCH-ES.md`, `RESEARCH-EN.md`, `RESEARCH-DE.md`, `RESEARCH-SUMMARY.md` y los datos en `docs/seo/data/`.
+- No toca la web.
+
+## Paso 2 · Arquitectura (20.10.2026)
+
+- Mapa del sitio en tres idiomas, aprobado con cambios: `docs/ARCHITECTURE.md` (ver "Revision 1").
+- Decisiones: el menú no cambia; las páginas existentes se quedan; URLs en el idioma de cada visitante;
+  entrada automática según el idioma del navegador; Inés edita inglés y español desde el panel (alemán no).
+- No toca la web.
+
+## Paso 4 · Base técnica de idiomas (20.10.2026) — commit `5df0cd5`
+
+**Lo que ve el visitante**
+- Cada idioma tiene su URL: `/es/…`, `/en/…`, `/de/…`, con la palabra clave en el idioma
+  (`/es/por-que-uruguay`, `/en/why-uruguay`, `/de/warum-uruguay`).
+- Al entrar a `sacramentumadvisors.com` la web elige el idioma del navegador (español → `/es`, alemán → `/de`, otro → `/en`).
+- Selector **EN · ES · DE** en el menú (escritorio y celular): lleva a la misma página en el otro idioma y recuerda la elección.
+- El menú es el mismo de siempre: Inicio · Por qué Uruguay · Servicios · Noticias · Blog · Contacto.
+- Las direcciones viejas (`/invest`, `/services`, `/contact`, `/news/…`) redirigen solas a las nuevas.
+- Página 404 en los tres idiomas.
+
+**Lo que ve Google**
+- La versión en español ahora llega en español desde el servidor (antes Google solo veía inglés).
+- Cada página declara su versión en el otro idioma (hreflang) y su URL oficial (canonical).
+- Nuevos `sitemap.xml` y `robots.txt`, generados automáticamente.
+- Menú y footer son enlaces reales (antes eran botones que Google no seguía).
+- La página de Contacto ahora se puede indexar (antes estaba oculta).
+- El alemán usa por ahora el texto en inglés y está oculto para Google hasta tener su texto propio.
+
+**Panel de admin**
+- Sigue funcionando igual. Lo que Inés edita ahora se lee desde el servidor: lo ve Google y se actualiza al guardar.
+
+---
+
+## Paso 5 · Páginas nuevas (20.10.2026) — en curso
+
+**10 páginas nuevas, en inglés y español** (el alemán usa el inglés hasta el paso 6). Todas son **borradores para que Inés apruebe**.
+
+| Página | Español | Inglés |
+|---|---|---|
+| Inmobiliario | `/es/inmobiliario-punta-del-este-montevideo` | `/en/uruguay-real-estate` |
+| Campos y chacras | `/es/campos-y-chacras-en-uruguay` | `/en/uruguay-farmland` |
+| Tecnología (texto nuevo de la clienta) | `/es/tecnologia` | `/en/technology` |
+| Proyectos especiales | `/es/proyectos-especiales` | `/en/special-projects` |
+| Residencia | `/es/residencia-en-uruguay` | `/en/uruguay-residency` |
+| Residencia fiscal | `/es/residencia-fiscal-en-uruguay` | `/en/uruguay-tax-residency` |
+| Pasaporte uruguayo | `/es/pasaporte-uruguayo` | `/en/uruguay-citizenship-second-passport` |
+| Retiro (solo EN/DE; en ES lleva a Residencia) | — | `/en/retire-in-uruguay` |
+| Family office | `/es/family-office-patrimonio` | `/en/family-office-uruguay` |
+| Sacramentum Capital | `/es/sacramentum-capital` | `/en/sacramentum-capital` |
+
+**Cómo es cada página:** encabezado como el de "Por qué Uruguay", foto, datos clave (solo verificados), secciones,
+pasos, preguntas frecuentes (en acordeón y con datos estructurados para Google), páginas relacionadas y botón de consulta.
+
+**Contenido**
+- Sectores: parten del texto ya aprobado de la etapa 1, con secciones nuevas basadas en el research.
+- Tecnología: el texto nuevo de la clienta, sin cambios en inglés; el español es traducción para revisar.
+- Sin cifras no verificadas: nada del régimen fiscal 2026 ni números de la presentación confidencial de Capital.
+- La bio de Pablo usa solo lo que coincide entre la web y la presentación (J.P. Morgan) hasta que se confirme.
+
+**Cambios en páginas existentes**
+- Por qué Uruguay: cada sector tiene un enlace "Ver más" a su página. El bloque de Tecnología muestra el texto nuevo de la clienta.
+- Servicios: cada tarjeta tiene "Ver más" (Soft Landing → Residencia, Banca de inversión → Sacramentum Capital,
+  Asesoría estratégica → Family office).
+- Footer: nueva columna "Uruguay" con las páginas nuevas; los enlaces de servicios llevan a sus páginas.
+- El menú no cambió.
+
+**Para Google:** el sitemap pasó de 16 a 47 direcciones; cada página tiene título, descripción, URL oficial,
+hreflang, migas de pan y preguntas frecuentes estructuradas. URLs viejas o de otro idioma redirigen a la correcta.
+
+**Falta en este paso:** que las páginas nuevas se puedan editar desde el panel de admin (EN/ES).

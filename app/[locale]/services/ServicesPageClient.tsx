@@ -7,7 +7,31 @@ import { ScrollTrigger }   from "gsap/ScrollTrigger";
 import { useSearchParams } from "next/navigation";
 import Navigation          from "@/components/layout/Navigation";
 import Footer              from "@/components/layout/Footer";
-import { useLocale, useT } from "@/lib/locale-context";
+import { useLocale, useLocalePath, useT } from "@/lib/locale-context";
+import type { PageId } from "@/lib/i18n";
+
+// Each service card links to the page that develops it (docs/ARCHITECTURE.md §8).
+const SERVICE_PAGE: Record<string, PageId> = {
+  "soft-landing":        "residency",
+  "investment-banking":  "sacramentum-capital",
+  "strategic-advisory":  "family-office",
+  "market-intelligence": "family-office",
+};
+const MORE_LABEL = { en: "Learn more", es: "Ver más", de: "Mehr erfahren" } as const;
+
+function ServiceLink({ id }: { id: string }) {
+  const { path, locale } = useLocalePath();
+  const page = SERVICE_PAGE[id];
+  if (!page) return null;
+  return (
+    <a
+      href={path(page)}
+      style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", marginTop: "1rem", color: "var(--color-warm)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500 }}
+    >
+      {MORE_LABEL[locale]} <span aria-hidden="true">→</span>
+    </a>
+  );
+}
 import { lenisRef }        from "@/lib/lenis-ref";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -176,6 +200,7 @@ function MobileServiceTimeline({ cards }: { cards: { id: string; image: string; 
                       }}>
                         {card.description}
                       </p>
+                      <ServiceLink id={card.id} />
                     </div>
                   </div>
                 </div>
@@ -423,6 +448,7 @@ function ServiceCarousel({ cards, initialCard }: { cards: { id: string; image: s
                     <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--color-ink-muted)", flex: 1 }}>
                       {card.description}
                     </p>
+                    <ServiceLink id={card.id} />
                   </div>
                 </article>
               );

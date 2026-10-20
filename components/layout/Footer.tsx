@@ -23,7 +23,8 @@
 import Image       from "next/image";
 import { motion }  from "framer-motion";
 import { useLocalePath, useT } from "@/lib/locale-context";
-import { isHomePath } from "@/lib/i18n";
+import { isHomePath, pageLocales } from "@/lib/i18n";
+import { FOOTER_TOPICS, FOOTER_TOPICS_TITLE } from "@/lib/topic-links";
 
 import { useRouter, usePathname } from "next/navigation";
 import { scrollToSection } from "@/lib/utils";
@@ -145,7 +146,7 @@ export default function Footer() {
 
   const router   = useRouter();
   const pathname = usePathname();
-  const { path, href: localize } = useLocalePath();
+  const { path, href: localize, locale } = useLocalePath();
   const isHome   = isHomePath(pathname);
 
   const handleNavClick = (href: string) => {
@@ -185,7 +186,7 @@ export default function Footer() {
         <div
           className="grid grid-cols-1 gap-12
                      sm:grid-cols-2
-                     lg:grid-cols-[2fr_1fr_1.4fr_1.6fr]
+                     lg:grid-cols-[1.8fr_1fr_1.3fr_1.3fr_1.5fr]
                      lg:gap-10"
         >
           {/* ── Col 1: Brand ──────────────────────────────── */}
@@ -258,7 +259,17 @@ export default function Footer() {
             ))}
           </motion.div>
 
-          {/* ── Col 4: Contact ────────────────────────────── */}
+          {/* ── Col 4: Uruguay topics ─────────────────────── */}
+          <motion.div {...fadeUp(0.17)}>
+            <ColHeading>{FOOTER_TOPICS_TITLE[locale]}</ColHeading>
+            {FOOTER_TOPICS.filter(t => pageLocales(t.id).includes(locale)).map(t => (
+              <FooterLink key={t.id} href={path(t.id)} onClick={() => router.push(path(t.id))}>
+                {t.label[locale]}
+              </FooterLink>
+            ))}
+          </motion.div>
+
+          {/* ── Col 5: Contact ────────────────────────────── */}
           <motion.div {...fadeUp(0.2)}>
             <ColHeading>{copy.contact.title}</ColHeading>
 
