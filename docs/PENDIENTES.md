@@ -15,6 +15,14 @@ Lista viva. Se actualiza en cada sesión.
 - [ ] Video "Live in Uruguay" (sección Why Uruguay).
 - [ ] Verificar los 9 datos de [`seo/RESEARCH-SUMMARY.md`](seo/RESEARCH-SUMMARY.md) §5 (régimen fiscal 2026, convenio con Alemania, quién habla alemán, cómo cobran, etc.).
 
+## Detectado en el paso 4 (para los pasos 6–7)
+
+- [ ] Títulos y descripciones de Google siguen en inglés en `/es/` (se traducen en el paso 7).
+- [ ] El home tiene **8 títulos H1**; debe tener uno solo (paso 7).
+- [ ] `/de/` usa el texto en inglés y está en `noindex`: se activa en Google cuando exista el alemán (`INDEXED_LOCALES` en `lib/i18n.ts`).
+- [ ] Textos sueltos con solo EN/ES dentro de componentes (`locale === "es" ? … : …`) → muestran inglés en `/de/`.
+- [ ] QA: revisar que al cambiar de idioma en el home no quede un título del idioma anterior (visto una vez en una prueba encadenada, no reproducido en sesión limpia).
+
 ## Para después de la arquitectura
 
 - [ ] **Efecto de las slides de Technology** (imagen y texto que se desplazan): la clienta pide una presentación más directa. Revisar con `web-design-motion`.
@@ -22,9 +30,9 @@ Lista viva. Se actualiza en cada sesión.
 ## Pasos de la etapa 2
 
 1. [x] Research de keywords ES / EN / DE → `docs/seo/`
-2. [ ] Arquitectura (Architecture Checkpoint) — en curso
+2. [x] Arquitectura (Architecture Checkpoint) → `docs/ARCHITECTURE.md` (aprobada con Revision 1)
 3. [ ] Verificación de datos con la clienta
-4. [ ] Base técnica de idiomas (`/es/ /en/ /de/`, selector, sitemap, hreflang)
+4. [x] Base técnica de idiomas (`/es/ /en/ /de/`, selector, sitemap, hreflang) — commit 5df0cd5
 5. [ ] Páginas y secciones nuevas
 6. [ ] Copy (cambios para Inés, alemán)
 7. [ ] SEO/GEO técnico
