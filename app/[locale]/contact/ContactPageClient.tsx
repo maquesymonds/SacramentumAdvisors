@@ -8,7 +8,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion }    from "framer-motion";
 import { useLocalePath, useT } from "@/lib/locale-context";
-import { useRouter } from "next/navigation";
+import { usePageTransition } from "@/lib/transition-context";
 import Navigation    from "@/components/layout/Navigation";
 import Footer        from "@/components/layout/Footer";
 import { lenisRef }  from "@/lib/lenis-ref";
@@ -159,7 +159,7 @@ export default function ContactPageClient() {
   const site    = useT();
   const trust   = site.contactTrust;
   const leaders = site.team.leadership;
-  const router   = useRouter();
+  const { navigate } = usePageTransition();
   const { path } = useLocalePath();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -181,7 +181,7 @@ export default function ContactPageClient() {
       if (res.ok) {
         // Dedicated thank-you page = a trackable conversion (GA4/GTM, step 9)
         setStatus("success");
-        router.push(path("thank-you"));
+        navigate(path("thank-you"));
       } else {
         setStatus("idle");
         alert(copy.errorMessage);

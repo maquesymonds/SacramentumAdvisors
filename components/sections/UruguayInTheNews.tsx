@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion }          from "framer-motion";
 import { useT, useLocalePath } from "@/lib/locale-context";
-import { useRouter }       from "next/navigation";
+import { usePageTransition } from "@/lib/transition-context";
 import { useCharReveal }   from "@/hooks/useCharReveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -126,7 +126,7 @@ function MobileNewsCard({ article, visitLabel }: { article: Article; visitLabel:
 
 export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Article[] | null }) {
   const copy       = useT().news;
-  const router     = useRouter();
+  const { navigate } = usePageTransition();
   const { path } = useLocalePath();
 
   const source        = (adminArticles ?? copy.articles) as Article[];
@@ -174,7 +174,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
 
         <div className="mt-14 flex justify-center">
           <button
-            onClick={() => router.push(path("news"))}
+            onClick={() => navigate(path("news"))}
             style={{
               display:       "inline-flex",
               alignItems:    "center",

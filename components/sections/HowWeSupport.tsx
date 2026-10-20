@@ -5,13 +5,13 @@ import { gsap }          from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useT, useLocalePath } from "@/lib/locale-context";
 import { padStart } from "@/lib/utils";
-import { useRouter }    from "next/navigation";
+import { usePageTransition } from "@/lib/transition-context";
 import { useCharReveal } from "@/hooks/useCharReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HowWeSupport() {
-  const router = useRouter();
+  const { navigate } = usePageTransition();
   const { path } = useLocalePath();
   const copy  = useT().howWeSupport;
   const cards = copy.cards;
@@ -161,7 +161,7 @@ export default function HowWeSupport() {
                   }} />
 
                   <article
-                    onClick={() => router.push(path("contact"))}
+                    onClick={() => navigate(path("contact"))}
                     style={{
                       display:       "flex",
                       flexDirection: "row",
@@ -256,7 +256,7 @@ export default function HowWeSupport() {
           {cards.map((card, i) => (
             <article
               key={card.id}
-              onClick={() => router.push(path("contact"))}
+              onClick={() => navigate(path("contact"))}
               style={{
                 width:         "clamp(300px, 50vw, 580px)",
                 height:        "clamp(360px, 55vh, 480px)",
@@ -313,7 +313,7 @@ export default function HowWeSupport() {
             <p className="text-body text-ink-muted max-w-[440px]">
               Every engagement begins with a private, no-commitment conversation about your objectives.
             </p>
-            <button onClick={() => router.push(path("contact"))} className="btn-primary whitespace-nowrap flex-shrink-0">
+            <button onClick={() => navigate(path("contact"))} className="btn-primary whitespace-nowrap flex-shrink-0">
               {copy.cta}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -26,7 +26,8 @@ import { useLocalePath, useT } from "@/lib/locale-context";
 import { isHomePath, pageLocales } from "@/lib/i18n";
 import { FOOTER_TOPICS, FOOTER_TOPICS_TITLE } from "@/lib/topic-links";
 
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { usePageTransition } from "@/lib/transition-context";
 import { scrollToSection } from "@/lib/utils";
 import { pendingScroll }   from "@/lib/pending-scroll";
 
@@ -144,7 +145,7 @@ function FooterLink({
 export default function Footer() {
   const copy       = useT().footer;
 
-  const router   = useRouter();
+  const { navigate } = usePageTransition();
   const pathname = usePathname();
   const { path, href: localize, locale } = useLocalePath();
   const isHome   = isHomePath(pathname);
@@ -155,7 +156,7 @@ export default function Footer() {
         scrollToSection("home");
       } else {
         sessionStorage.setItem("skipIntro", "1");
-        router.push(path("home"));
+        navigate(path("home"));
       }
     } else if (href.startsWith("/#")) {
       const id = href.slice(2);
@@ -163,10 +164,10 @@ export default function Footer() {
         scrollToSection(id);
       } else {
         pendingScroll.current = id;
-        router.push(path("home"));
+        navigate(path("home"));
       }
     } else {
-      router.push(localize(href));
+      navigate(localize(href));
     }
   };
 
@@ -253,7 +254,7 @@ export default function Footer() {
           <motion.div {...fadeUp(0.14)}>
             <ColHeading>{copy.services.title}</ColHeading>
             {copy.services.links.map((link) => (
-              <FooterLink key={link.label} href={localize(link.href)} onClick={() => router.push(localize(link.href))}>
+              <FooterLink key={link.label} href={localize(link.href)} onClick={() => navigate(localize(link.href))}>
                 {link.label}
               </FooterLink>
             ))}
@@ -263,7 +264,7 @@ export default function Footer() {
           <motion.div {...fadeUp(0.17)}>
             <ColHeading>{FOOTER_TOPICS_TITLE[locale]}</ColHeading>
             {FOOTER_TOPICS.filter(t => pageLocales(t.id).includes(locale)).map(t => (
-              <FooterLink key={t.id} href={path(t.id)} onClick={() => router.push(path(t.id))}>
+              <FooterLink key={t.id} href={path(t.id)} onClick={() => navigate(path(t.id))}>
                 {t.label[locale]}
               </FooterLink>
             ))}
@@ -324,7 +325,7 @@ export default function Footer() {
             <div className="mt-8">
               <button
                 type="button"
-                onClick={() => router.push(path("contact"))}
+                onClick={() => navigate(path("contact"))}
                 style={{
                   display:         "inline-block",
                   padding:         "0.65rem 1.4rem",

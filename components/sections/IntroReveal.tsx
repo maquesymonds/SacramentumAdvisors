@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { lenisRef }      from "@/lib/lenis-ref";
 import { useT, useLocalePath } from "@/lib/locale-context";
-import { useRouter } from "next/navigation";
+import { usePageTransition } from "@/lib/transition-context";
 
 // ── Home hero — static, one layout for every width ───────────────────────────
 // Replaced the scroll-driven "window" intro: the H1 is visible on first paint
 // and the background goes through next/image (sized per screen, preloaded).
 export default function IntroReveal() {
   const copy   = useT();
-  const router = useRouter();
+  const { navigate } = usePageTransition();
   const { path } = useLocalePath();
 
   useEffect(() => {
@@ -107,7 +107,7 @@ export default function IntroReveal() {
         </p>
 
         <button
-          onClick={() => router.push(path("contact"))}
+          onClick={() => navigate(path("contact"))}
           className="hero-cta"
           style={{
             display:        "inline-flex",

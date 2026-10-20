@@ -60,7 +60,9 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
   const navigate = useCallback((href: string) => {
     if (isAnimating.current) return;
     const el = overlayPathRef.current;
-    if (!el) { router.push(href); return; }
+    // Same page (only the hash or query changes): no new page to reveal
+    const samePage = new URL(href, window.location.href).pathname === window.location.pathname;
+    if (!el || samePage) { router.push(href); return; }
 
     isAnimating.current = true;
     setIsRevealed(false);
@@ -77,6 +79,25 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
         },
       });
   }, [router]);
+
+  // Every internal link gets the page transition, whatever rendered it
+  // (<a>, next/link, a card). Capture phase so it runs before next/link's own
+  // handler. Opt out with data-no-transition.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+      if (!a || a.hasAttribute("download") || a.hasAttribute("data-no-transition")) return;
+      if (a.target && a.target !== "_self") return;
+      const url = new URL(a.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname === window.location.pathname) return;
+      e.preventDefault();
+      navigate(url.pathname + url.search + url.hash);
+    };
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, [navigate]);
 
   return (
     <TransitionContext.Provider value={{ navigate, isRevealed, overlayPathRef }}>
