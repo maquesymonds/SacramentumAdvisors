@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useLayoutEffect, useCallback } from "react";
+import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLocalePath, useT } from "@/lib/locale-context";
@@ -9,6 +9,84 @@ import { scrollToSection } from "@/lib/utils";
 import { pendingScroll } from "@/lib/pending-scroll";
 import { usePageTransition } from "@/lib/transition-context";
 
+const LOCALE_NAMES: Record<Locale, string> = { en: "English", es: "Español", de: "Deutsch" };
+
+// ── Language menu: globe button that opens the three languages ───────────────
+function LanguageMenu({
+  locale,
+  isDark,
+  onSelect,
+}: {
+  locale:   Locale;
+  isDark:   boolean;
+  onSelect: (l: Locale) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(v => !v)}
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-label={`Language: ${LOCALE_NAMES[locale]}`}
+        className={[
+          "flex items-center gap-1.5 p-2 text-sm font-medium tracking-[0.1em] uppercase transition-colors duration-300",
+          isDark ? "text-ink-muted hover:text-brand-dark" : "text-white/80 hover:text-white",
+        ].join(" ")}
+      >
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.3"/>
+          <path d="M2 10h16M10 2c2.2 2.3 3.2 5 3.2 8s-1 5.7-3.2 8c-2.2-2.3-3.2-5-3.2-8s1-5.7 3.2-8Z"
+            stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+        </svg>
+        {locale}
+      </button>
+
+      <ul
+        className={[
+          "absolute right-0 top-full mt-2 min-w-[9rem] py-1.5 rounded-lg bg-white",
+          "shadow-[0_8px_30px_rgba(17,31,48,0.18)] transition-all duration-200",
+          open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none",
+        ].join(" ")}
+      >
+        {LOCALES.map(l => (
+          <li key={l}>
+            <button
+              type="button"
+              lang={l}
+              tabIndex={open ? 0 : -1}
+              aria-current={l === locale ? "true" : undefined}
+              onClick={() => { setOpen(false); onSelect(l); }}
+              className={[
+                "w-full text-left px-4 py-2 text-[0.95rem] transition-colors duration-200",
+                l === locale ? "text-brand-dark font-medium" : "text-ink-muted hover:text-brand-dark hover:bg-black/[0.03]",
+              ].join(" ")}
+            >
+              {LOCALE_NAMES[l]}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Navigation() {
   const { locale, path } = useLocalePath();
@@ -157,7 +235,7 @@ export default function Navigation() {
         }}
       >
         <div
-          className="container-site w-full flex items-center justify-between"
+          className="container-site w-full flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]"
           style={{ paddingLeft: "1.25rem", paddingRight: "1.25rem" }}
         >
 
@@ -172,7 +250,7 @@ export default function Navigation() {
                 navigate(path("home"));
               }
             }}
-            className="relative flex-shrink-0 focus:outline-none focus-visible:outline focus-visible:outline-brand-blue"
+            className="relative flex-shrink-0 justify-self-start focus:outline-none focus-visible:outline focus-visible:outline-brand-blue"
             aria-label="Sacramentum Advisors — back to top"
           >
             <Image
@@ -223,7 +301,7 @@ export default function Navigation() {
               href={path("contact")}
               data-cta="nav-consultation"
               onClick={(e) => onLinkClick(e, "contact", path("contact"))}
-              className="text-sm font-medium tracking-[0.02em] px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap"
+              className="text-[0.95rem] xl:text-base font-medium tracking-[0.03em] px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap"
               style={{
                 // Adapts to what is behind the nav: white on dark backgrounds,
                 // navy with white text on light backgrounds.
@@ -235,56 +313,14 @@ export default function Navigation() {
               {copy.footer.cta}
             </a>
 
-            {/* Language switcher */}
-            <div className="flex items-center" role="group" aria-label="Language">
-              {LOCALES.map(l => (
-                <button
-                  key={l}
-                  onClick={() => switchTo(l)}
-                  lang={l}
-                  aria-current={l === locale ? "true" : undefined}
-                  className={[
-                    "text-sm font-medium tracking-[0.1em] uppercase px-2.5 py-1.5 border transition-all duration-300 -ml-px first:ml-0",
-                    isDark
-                      ? (l === locale ? "border-ink/40 text-brand-dark" : "border-ink/20 text-ink-muted hover:text-brand-blue")
-                      : (l === locale ? "border-white/70 text-white" : "border-white/30 text-white/60 hover:text-white"),
-                  ].join(" ")}
-                >
-                  {l}
-                </button>
-              ))}
-            </div>
           </nav>
 
-          {/* ── Mobile: lang toggle + hamburger ─────────────────────────── */}
-          <div className="lg:hidden flex items-center gap-2">
-            <div className="flex items-center" role="group" aria-label="Language">
-              {LOCALES.map(l => (
-                <button
-                  key={l}
-                  onClick={() => switchTo(l)}
-                  lang={l}
-                  aria-current={l === locale ? "true" : undefined}
-                  className="text-xs font-medium tracking-[0.1em] uppercase border transition-all duration-300 -ml-px first:ml-0"
-                  style={{
-                    borderColor:    isDark ? "rgba(31,41,51,0.25)" : "rgba(255,255,255,0.35)",
-                    color:          l === locale
-                      ? (isDark ? "rgba(31,41,51,0.95)" : "rgba(255,255,255,1)")
-                      : (isDark ? "rgba(31,41,51,0.5)"  : "rgba(255,255,255,0.6)"),
-                    width:          "2.2rem",
-                    height:         "2.2rem",
-                    display:        "inline-flex",
-                    alignItems:     "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {l}
-                </button>
-              ))}
-            </div>
+          {/* ── Language (desktop: right column · mobile: next to the hamburger) */}
+          <div className="flex items-center gap-2 lg:justify-self-end">
+            <LanguageMenu locale={locale} isDark={isDark} onSelect={switchTo} />
 
             <button
-              className="flex flex-col gap-1.5 p-2 focus:outline-none"
+              className="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none"
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
