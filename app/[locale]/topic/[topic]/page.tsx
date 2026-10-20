@@ -4,6 +4,7 @@ import TopicPage from "@/components/topic/TopicPage";
 import { LOCALES, TOPIC_IDS, isTopicId, pageLocales } from "@/lib/i18n";
 import { topicContent } from "@/lib/topics";
 import { pageMetadata, toLocale } from "@/lib/seo";
+import { getTranslationOverrides } from "@/lib/translation-overrides";
 
 // Reached only through the middleware rewrite of a localized slug
 // (/es/residencia-en-uruguay → /es/topic/residency).
@@ -15,9 +16,9 @@ export function generateStaticParams() {
 
 export const dynamicParams = false;
 
-export function generateMetadata({ params }: { params: { locale: string; topic: string } }): Metadata {
+export async function generateMetadata({ params }: { params: { locale: string; topic: string } }): Promise<Metadata> {
   if (!isTopicId(params.topic)) return {};
-  const c = topicContent(params.topic, toLocale(params.locale));
+  const c = topicContent(params.topic, toLocale(params.locale), await getTranslationOverrides());
   return pageMetadata(params.topic, params.locale, {
     title:       c.metaTitle,
     description: c.metaDescription,

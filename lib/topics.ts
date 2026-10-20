@@ -68,7 +68,98 @@ const TOPICS: Record<TopicId, TopicCopy> = {
   "sacramentum-capital": sacramentumCapital,
 };
 
-export function topicContent(id: TopicId, locale: Locale): TopicContent {
+export function topicContent(id: TopicId, locale: Locale, overrides?: Overrides): TopicContent {
+  const copy = TOPICS[id];
+  const base = copy[locale] ?? copy.en;
+  const over = overrides?.[locale]?.[adminKey(id)];
+  return over && typeof over === "object" ? applyTopicEdits(base, over as FlatTopic) : base;
+}
+
+// ── Admin editing ────────────────────────────────────────────────────────────
+// The admin "Textos" panel edits flat string fields, so topic copy is shown
+// there flattened (paragraphs separated by a blank line, bullets one per line)
+// and saved under overrides[locale]["topic:<id>"].
+
+export type Overrides = Record<string, Record<string, unknown>>;
+
+export const adminKey = (id: TopicId) => `topic:${id}`;
+
+export interface FlatTopic {
+  metaTitle?:       string;
+  metaDescription?: string;
+  navLabel?:        string;
+  cardText?:        string;
+  eyebrow?:         string;
+  title?:           string;
+  intro?:           string;
+  imageAlt?:        string;
+  facts?:           { value?: string; label?: string }[];
+  sections?:        { heading?: string; body?: string; bullets?: string }[];
+  stepsHeading?:    string;
+  steps?:           { title?: string; body?: string }[];
+  faqs?:            { q?: string; a?: string }[];
+  ctaHeading?:      string;
+  ctaBody?:         string;
+  ctaLabel?:        string;
+}
+
+const paras = (text: string) => text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+const lines = (text: string) => text.split("\n").map(l => l.trim()).filter(Boolean);
+
+export function flattenTopic(c: TopicContent): FlatTopic {
+  return {
+    metaTitle:       c.metaTitle,
+    metaDescription: c.metaDescription,
+    navLabel:        c.navLabel,
+    cardText:        c.cardText,
+    eyebrow:         c.eyebrow,
+    title:           c.title,
+    intro:           c.intro.join("\n\n"),
+    imageAlt:        c.image.alt,
+    facts:           (c.facts ?? []).map(f => ({ value: f.value, label: f.label })),
+    sections:        c.sections.map(s => ({ heading: s.heading, body: s.body.join("\n\n"), bullets: (s.bullets ?? []).join("\n") })),
+    stepsHeading:    c.steps?.heading ?? "",
+    steps:           (c.steps?.items ?? []).map(i => ({ title: i.title, body: i.body })),
+    faqs:            c.faqs.map(f => ({ q: f.q, a: f.a })),
+    ctaHeading:      c.cta.heading,
+    ctaBody:         c.cta.body,
+    ctaLabel:        c.cta.label,
+  };
+}
+
+/** Apply admin edits onto the code copy. Empty strings never blank out copy. */
+export function applyTopicEdits(c: TopicContent, o: FlatTopic): TopicContent {
+  const str = (v: unknown, fallback: string) => (typeof v === "string" && v.trim() ? v : fallback);
+  return {
+    ...c,
+    metaTitle:       str(o.metaTitle, c.metaTitle),
+    metaDescription: str(o.metaDescription, c.metaDescription),
+    navLabel:        str(o.navLabel, c.navLabel),
+    cardText:        str(o.cardText, c.cardText),
+    eyebrow:         str(o.eyebrow, c.eyebrow),
+    title:           str(o.title, c.title),
+    intro:           o.intro?.trim() ? paras(o.intro) : c.intro,
+    image:           { ...c.image, alt: str(o.imageAlt, c.image.alt) },
+    facts:           c.facts?.map((f, i) => ({ ...f, value: str(o.facts?.[i]?.value, f.value), label: str(o.facts?.[i]?.label, f.label) })),
+    sections:        c.sections.map((sec, i) => {
+      const e = o.sections?.[i];
+      return {
+        heading: str(e?.heading, sec.heading),
+        body:    e?.body?.trim() ? paras(e.body) : sec.body,
+        bullets: e?.bullets?.trim() ? lines(e.bullets) : sec.bullets,
+      };
+    }),
+    steps: c.steps && {
+      heading: str(o.stepsHeading, c.steps.heading),
+      items:   c.steps.items.map((it, i) => ({ title: str(o.steps?.[i]?.title, it.title), body: str(o.steps?.[i]?.body, it.body) })),
+    },
+    faqs: c.faqs.map((f, i) => ({ q: str(o.faqs?.[i]?.q, f.q), a: str(o.faqs?.[i]?.a, f.a) })),
+    cta:  { heading: str(o.ctaHeading, c.cta.heading), body: str(o.ctaBody, c.cta.body), label: str(o.ctaLabel, c.cta.label) },
+  };
+}
+
+/** Code copy for the admin panel (both editable locales; Retire has no ES). */
+export function topicCodeCopy(id: TopicId, locale: Locale): TopicContent {
   const copy = TOPICS[id];
   return copy[locale] ?? copy.en;
 }

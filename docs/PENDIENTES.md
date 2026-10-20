@@ -24,6 +24,11 @@ Lista viva. Se actualiza en cada sesión.
 - [ ] Textos sueltos con solo EN/ES dentro de componentes (`locale === "es" ? … : …`) → muestran inglés en `/de/`.
 - [ ] QA: revisar que al cambiar de idioma en el home no quede un título del idioma anterior (visto una vez en una prueba encadenada, no reproducido en sesión limpia).
 
+## Para la QA (paso 10)
+
+- [ ] Probar el guardado del panel de admin con un almacenamiento Blob separado (o con cuidado en producción tras el merge).
+- [ ] Confirmar si la versión de prueba de Vercel usa el mismo Blob que producción (variable `BLOB_READ_WRITE_TOKEN` en Preview).
+
 ## Para después de la arquitectura
 
 - [ ] **Efecto de las slides de Technology** (imagen y texto que se desplazan): la clienta pide una presentación más directa. Revisar con `web-design-motion`.
@@ -34,7 +39,7 @@ Lista viva. Se actualiza en cada sesión.
 2. [x] Arquitectura (Architecture Checkpoint) → `docs/ARCHITECTURE.md` (aprobada con Revision 1)
 3. [ ] Verificación de datos con la clienta
 4. [x] Base técnica de idiomas (`/es/ /en/ /de/`, selector, sitemap, hreflang) — commit 5df0cd5
-5. [ ] Páginas y secciones nuevas
+5. [x] Páginas y secciones nuevas (+ edición en el panel) — borradores para aprobar
 6. [ ] Copy (cambios para Inés, alemán)
 7. [ ] SEO/GEO técnico
 8. [ ] Conversión (CTAs, guías, botón fijo, confianza)

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { put, list, del } from "@vercel/blob";
 import { revalidateTag } from "next/cache";
-import { TRANSLATIONS_TAG } from "@/lib/translation-overrides";
+import { TRANSLATIONS_TAG, readOverridesFromBlob } from "@/lib/translation-overrides";
 
 const BLOB_PREFIX = "admin/translations";
 const USE_BLOB    = !!process.env.BLOB_READ_WRITE_TOKEN;
@@ -10,25 +10,10 @@ function isAuth(req: NextRequest) {
   return req.cookies.get("admin_auth")?.value === "1";
 }
 
-async function readFromBlob(): Promise<object | null> {
-  try {
-    const { blobs } = await list({ prefix: BLOB_PREFIX, limit: 10 });
-    if (!blobs.length) return null;
-    const newest = blobs.sort((a, b) =>
-      new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
-    )[0];
-    const res = await fetch(newest.url, { cache: "no-store" });
-    if (res.ok) return await res.json();
-  } catch {}
-  return null;
-}
-
 export async function GET(req: NextRequest) {
   if (!isAuth(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  if (USE_BLOB) {
-    const data = await readFromBlob();
-    if (data) return NextResponse.json(data);
-  }
+  // Same reader as the public site (resets applied), never cached here.
+  if (USE_BLOB) return NextResponse.json(await readOverridesFromBlob());
   return NextResponse.json({});
 }
 

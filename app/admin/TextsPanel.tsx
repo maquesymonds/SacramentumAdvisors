@@ -3,6 +3,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { t } from "@/data/translations";
+import { TOPIC_IDS, type TopicId } from "@/lib/i18n";
+import { adminKey, flattenTopic, topicCodeCopy } from "@/lib/topics";
 
 // ── Styles (shared with AdminClient) ─────────────────────────────────────────
 const S = {
@@ -200,7 +202,7 @@ const SECTIONS: SectionDef[] = [
       { key: "cta",      label: "Texto del enlace" },
     ],
     arrays: [{
-      key: "pillars", label: "Pilares", count: 3,
+      key: "pillars", label: "Bloques", count: 2,
       fields: [
         { key: "heading", label: "Subtítulo" },
         { key: "body",    label: "Descripción", multi: true },
@@ -398,10 +400,61 @@ const SECTIONS: SectionDef[] = [
   },
 ];
 
+// ── Sector & service pages (data/topics) ──────────────────────────────────────
+// Shown flattened: paragraphs separated by a blank line, bullets one per line.
+const TOPIC_LABEL: Record<TopicId, string> = {
+  "real-estate":         "Inmobiliario",
+  "farmland":            "Campos y chacras",
+  "technology":          "Tecnología (página)",
+  "special-situations":  "Proyectos especiales",
+  "residency":           "Residencia",
+  "tax-residency":       "Residencia fiscal",
+  "second-passport":     "Pasaporte uruguayo",
+  "retire":              "Retiro (solo inglés)",
+  "family-office":       "Family office",
+  "sacramentum-capital": "Sacramentum Capital",
+};
+
+function topicSection(id: TopicId): SectionDef {
+  const en = topicCodeCopy(id, "en");
+  const es = topicCodeCopy(id, "es");
+  const n = (a?: unknown[], b?: unknown[]) => Math.max(a?.length ?? 0, b?.length ?? 0);
+  const arrays: ArrayDef[] = [];
+  if (n(en.facts, es.facts)) arrays.push({ key: "facts", label: "Datos clave", count: n(en.facts, es.facts), fields: [
+    { key: "value", label: "Dato" }, { key: "label", label: "Descripción" } ] });
+  arrays.push({ key: "sections", label: "Secciones (párrafos separados por una línea en blanco; viñetas una por línea)", count: n(en.sections, es.sections), fields: [
+    { key: "heading", label: "Subtítulo" }, { key: "body", label: "Texto", multi: true }, { key: "bullets", label: "Viñetas", multi: true } ] });
+  if (n(en.steps?.items, es.steps?.items)) arrays.push({ key: "steps", label: "Hoja de ruta", count: n(en.steps?.items, es.steps?.items), fields: [
+    { key: "title", label: "Paso" }, { key: "body", label: "Descripción", multi: true } ] });
+  arrays.push({ key: "faqs", label: "Preguntas frecuentes", count: n(en.faqs, es.faqs), fields: [
+    { key: "q", label: "Pregunta" }, { key: "a", label: "Respuesta", multi: true } ] });
+  return {
+    id: adminKey(id), label: TOPIC_LABEL[id],
+    fields: [
+      { key: "title",           label: "Titular (H1)" },
+      { key: "eyebrow",         label: "Eyebrow" },
+      { key: "intro",           label: "Introducción", multi: true },
+      { key: "navLabel",        label: "Nombre corto (migas, tarjetas)" },
+      { key: "cardText",        label: "Texto de tarjeta" },
+      { key: "imageAlt",        label: "Descripción de la foto (alt)" },
+      ...(n(en.steps?.items, es.steps?.items) ? [{ key: "stepsHeading", label: "Título de la hoja de ruta" }] : []),
+      { key: "ctaHeading",      label: "Cierre: titular" },
+      { key: "ctaBody",         label: "Cierre: texto", multi: true },
+      { key: "ctaLabel",        label: "Cierre: botón" },
+      { key: "metaTitle",       label: "Google: título (máx. ~60 caracteres)" },
+      { key: "metaDescription", label: "Google: descripción (máx. ~160 caracteres)", multi: true },
+    ],
+    arrays,
+  };
+}
+
+SECTIONS.push(...TOPIC_IDS.map(topicSection));
+
 // ── Sidebar grouping: sections grouped by the page they belong to ─────────────
 const PAGES: { label: string; ids: string[] }[] = [
   { label: "Home", ids: ["hero", "whySacramentum", "whyUruguay", "howWeSupport", "lifestyleAssets", "trust", "contact", "closingCta", "team", "news"] },
-  { label: "Página Invertir", ids: ["investHero", "investRealEstate", "investTechnology", "investAgriculture", "investSpecial"] },
+  { label: "Página Por qué Uruguay", ids: ["investHero", "investRealEstate", "investTechnology", "investAgriculture", "investSpecial"] },
+  { label: "Sectores y servicios", ids: TOPIC_IDS.map(adminKey) },
   { label: "Página de Contacto", ids: ["contactPage"] },
   { label: "Blog", ids: ["blog"] },
   { label: "Servicios", ids: ["services"] },
@@ -454,11 +507,31 @@ function pick(src: any, fields: FieldDef[] = [], arrays: ArrayDef[] = []): Recor
   return r;
 }
 
+// Keep only the values that differ from the code copy, so later copy changes
+// made in code are not masked by an old snapshot. Arrays keep their positions
+// (unchanged items become null, which the site's merge skips).
+function diff(value: any, base: any): any {
+  if (Array.isArray(value)) {
+    const out = value.map((v, i) => diff(v, Array.isArray(base) ? base[i] : undefined));
+    return out.some(v => v !== undefined) ? out.map(v => (v === undefined ? null : v)) : undefined;
+  }
+  if (value && typeof value === "object") {
+    const out: Record<string, any> = {};
+    for (const k of Object.keys(value)) {
+      const d = diff(value[k], base?.[k]);
+      if (d !== undefined) out[k] = d;
+    }
+    return Object.keys(out).length ? out : undefined;
+  }
+  return value === base ? undefined : value;
+}
+
 function buildBase(locale: "en" | "es"): Record<string, any> {
   const trans = t(locale) as any;
   const result: Record<string, any> = {};
   for (const sec of SECTIONS) {
-    const src = trans[sec.id];
+    const topicId = sec.id.startsWith("topic:") ? (sec.id.slice(6) as TopicId) : null;
+    const src = topicId ? flattenTopic(topicCodeCopy(topicId, locale)) : trans[sec.id];
     result[sec.id] = pick(src, sec.fields, sec.arrays);
     for (const g of sec.groups ?? []) {
       result[sec.id][g.key] = pick(src?.[g.key], g.fields, g.arrays);
@@ -526,7 +599,10 @@ export default function TextsPanel() {
       await fetch("/api/admin/translations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          en: diff(data.en, buildBase("en")) ?? {},
+          es: diff(data.es, buildBase("es")) ?? {},
+        }),
       });
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);

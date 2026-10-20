@@ -4,6 +4,12 @@
    (instead of fetching from the browser after load) means crawlers and the
    first paint get the edited copy. Cached; the admin save route revalidates
    the tag so edits show immediately.
+
+   Resets: until 20.10.2026 the panel saved a full snapshot of every field, so
+   any copy changed later in code stayed masked by the old snapshot. Sections
+   whose copy was deliberately replaced in code are listed in RESETS: overrides
+   for them saved before that date are ignored. Since then the panel saves only
+   the fields that differ from the code copy.
    ─────────────────────────────────────────────────────────────────────────── */
 
 import { list } from "@vercel/blob";
@@ -14,7 +20,28 @@ const BLOB_PREFIX = "admin/translations";
 
 export type Overrides = Record<string, Record<string, unknown>>;
 
-async function readOverrides(): Promise<Overrides> {
+const RESETS: Record<string, string> = {
+  // New client-approved Technology copy (docs/content/technology-en.md)
+  investTechnology: "2026-10-20T00:00:00Z",
+};
+
+function applyResets(data: Overrides, savedAt: Date): Overrides {
+  const out: Overrides = {};
+  for (const [locale, sections] of Object.entries(data)) {
+    if (!sections || typeof sections !== "object") continue;
+    const kept: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(sections)) {
+      const resetAt = RESETS[key];
+      if (resetAt && savedAt < new Date(resetAt)) continue;
+      kept[key] = value;
+    }
+    out[locale] = kept;
+  }
+  return out;
+}
+
+/** Newest saved overrides from Blob, with resets applied. Uncached. */
+export async function readOverridesFromBlob(): Promise<Overrides> {
   if (!process.env.BLOB_READ_WRITE_TOKEN) return {};
   try {
     const { blobs } = await list({ prefix: BLOB_PREFIX, limit: 10 });
@@ -25,13 +52,14 @@ async function readOverrides(): Promise<Overrides> {
     const res = await fetch(newest.url, { cache: "no-store" });
     if (!res.ok) return {};
     const data = await res.json();
-    return data && typeof data === "object" ? (data as Overrides) : {};
+    if (!data || typeof data !== "object") return {};
+    return applyResets(data as Overrides, new Date(newest.uploadedAt));
   } catch {
     return {};
   }
 }
 
-export const getTranslationOverrides = unstable_cache(readOverrides, [TRANSLATIONS_TAG], {
+export const getTranslationOverrides = unstable_cache(readOverridesFromBlob, [TRANSLATIONS_TAG], {
   tags: [TRANSLATIONS_TAG],
   revalidate: 300,
 });

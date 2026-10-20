@@ -44,7 +44,7 @@ Todo vive en la rama `etapa-2`; la web en vivo (`main`) no se toca hasta el Pull
 
 ---
 
-## Paso 5 · Páginas nuevas (20.10.2026) — en curso
+## Paso 5 · Páginas nuevas (20.10.2026) — terminado
 
 **10 páginas nuevas, en inglés y español** (el alemán usa el inglés hasta el paso 6). Todas son **borradores para que Inés apruebe**.
 
@@ -80,4 +80,12 @@ pasos, preguntas frecuentes (en acordeón y con datos estructurados para Google)
 **Para Google:** el sitemap pasó de 16 a 47 direcciones; cada página tiene título, descripción, URL oficial,
 hreflang, migas de pan y preguntas frecuentes estructuradas. URLs viejas o de otro idioma redirigen a la correcta.
 
-**Falta en este paso:** que las páginas nuevas se puedan editar desde el panel de admin (EN/ES).
+**Panel de admin**
+- Nuevo grupo **"Sectores y servicios"** con las 10 páginas, editables en inglés y español: titular, intro, secciones,
+  viñetas, hoja de ruta, preguntas frecuentes, cierre y los textos que muestra Google. El alemán no se edita desde el panel.
+- "Página Invertir" pasa a llamarse "Página Por qué Uruguay"; el bloque de Tecnología ahora tiene 2 bloques (el texto nuevo).
+- **El panel guarda solo lo que Inés cambia** (antes guardaba una copia de todo, y esa copia tapaba cualquier texto
+  que se cambiara después en el código).
+- Lo guardado antes del 20.10.2026 para el bloque de Tecnología se ignora, así se ve el texto nuevo de la clienta.
+- ⚠️ El guardado no se puede probar en local. No guardar desde el panel de la versión de prueba de Vercel si comparte
+  el almacenamiento con la web en vivo: se probará en la QA (paso 10).

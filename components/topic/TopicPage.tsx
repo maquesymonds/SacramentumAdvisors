@@ -18,7 +18,8 @@ import {
   type PageId,
   type TopicId,
 } from "@/lib/i18n";
-import { PAGE_LABELS, topicContent, type TopicContent } from "@/lib/topics";
+import { PAGE_LABELS, topicContent, type Overrides, type TopicContent } from "@/lib/topics";
+import { getTranslationOverrides } from "@/lib/translation-overrides";
 
 const UI: Record<Locale, { home: string; faq: string; related: string; facts: string; source: string }> = {
   en: { home: "Home",       faq: "Frequently asked questions", related: "Related",       facts: "Key facts",      source: "Source" },
@@ -35,21 +36,23 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-function relatedCard(id: PageId, locale: Locale): { href: string; title: string; text: string } | null {
+function relatedCard(id: PageId, locale: Locale, overrides: Overrides): { href: string; title: string; text: string } | null {
   if (isTopicId(id)) {
-    const c = topicContent(id, locale);
+    const c = topicContent(id, locale, overrides);
     return { href: localePath(id, locale), title: c.navLabel, text: c.cardText };
   }
   const label = PAGE_LABELS[id]?.[locale];
   return label ? { href: localePath(id, locale), title: label.title, text: label.text } : null;
 }
 
-export default function TopicPage({ id, locale }: { id: TopicId; locale: Locale }) {
-  const c: TopicContent = topicContent(id, locale);
+export default async function TopicPage({ id, locale }: { id: TopicId; locale: Locale }) {
+  // Admin edits (EN/ES) are applied on top of the code copy.
+  const overrides = await getTranslationOverrides();
+  const c: TopicContent = topicContent(id, locale, overrides);
   const ui = UI[locale];
   const related = (PAGES[id].related ?? [])
     .filter(r => pageLocales(r).includes(locale))
-    .map(r => relatedCard(r, locale))
+    .map(r => relatedCard(r, locale, overrides))
     .filter((r): r is NonNullable<typeof r> => r !== null);
 
   const jsonLd = [
