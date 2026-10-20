@@ -168,7 +168,25 @@ There is no German copy today, so this is guidance for writing/translating it �
 - Does anyone at Sacramentum speak German? Which languages does the team serve in?
 - Legal requirements if the German site targets Germany (Impressum / Datenschutz).
 
+### ChatGPT · prompts 1–10 (20.10.2026)
+
+⚠️ **Not a clean test** — all ten in one conversation that already knew Sacramentum (ChatGPT says "sin favorecer a Sacramentum
+Advisors por haber aparecido en otra pregunta"). Its mentions in 6, 8 and 9 **do not count** until re-run in temporary chats.
+
+**Recommended:** Ferrere, CrossFrontier Advisors, PwC Uruguay, CPA Ferrere (all described from the **Uruguay XXI services directory**);
+"a German Steuerberater specialised in Wegzugsbesteuerung" + a Uruguayan firm. Sources: gesetze-im-internet.de (§ 2, § 6 AStG), IMPO,
+gub.uy (Migración, Corte Electoral, Ministerio del Interior), RetireFinder, bien.uy, INGAR, LinkedIn (for Sacramentum).
+
+**New facts to verify**
+- Law 20.446 dated **16.12.2025**; **Decree 95/026 (May 2026)** regulates the new *Régimen de Impatriados*.
+- **Passport:** since 2025 Uruguay uses the code **URY** in the nationality field for legal citizens too — if correct, the long-standing
+  "passport nationality notation" problem raised in English is solved. Strong, citable fact for the second-passport page.
+- **Germany allows dual citizenship since the 2024 reform** — removes the main objection of German applicants.
+- ChatGPT nuances safety: stable institutions **but** violent crime in some areas; recommends local data (Ministerio del Interior)
+  over country rankings. Copy should not overclaim "safest country".
+- ChatGPT does not mention the double-tax treaty at all (Gemini's "no DBA" claim remains unverified).
+
 ### Pending
 
-- **ChatGPT**, prompts 1–10 in German.
+- **Clean re-run in ChatGPT** (temporary chat, one per prompt) of 6, 8 and 9.
 - Gemini prompt 10 complete.
