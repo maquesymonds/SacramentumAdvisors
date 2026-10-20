@@ -26,6 +26,10 @@ En cada página, el selector **EN · ES · DE** arriba a la derecha cambia el id
 - [ ] 👀 Cifra de facturación redondeada: "US$3,7 MM" (con "miles de millones de dólares" en el texto de abajo) / "US$3.7bn" / "$3,7 Mrd.".
 - [ ] ⏳ Efecto slide que pidió la clienta.
 
+**Menú**
+- [ ] 👀 "Por qué Uruguay" con desplegable al pasar el mouse: Inmobiliario · Tecnología · Campos y chacras. El clic en "Por qué Uruguay" sigue llevando a su página. En celular aparecen debajo, más chicos.
+- [ ] ⏳ Desplegable de "Servicios" (Residencia · Family office · Sacramentum Capital): espera a que se confirmen Residencia y Family office.
+
 ---
 
 ## 1. Tecnología (texto de la clienta) — ✅ texto aprobado
@@ -34,6 +38,11 @@ En cada página, el selector **EN · ES · DE** arriba a la derecha cambia el id
 - [x] **Página Tecnología en español**: traducción mía, falta que la revise Chiara → http://localhost:3100/es/tecnologia · cambiado: "sin hacer ruido" pasa a "silenciosamente"
 - [x] **Por qué Uruguay → bloque Tecnología**: el texto nuevo en 2 bloques reemplaza los 3 pilares viejos (bajá hasta Tecnología) → http://localhost:3100/es/por-que-uruguay · mismo cambio aplicado
 - [ ] Efecto slide: **no está hecho**, pasa a "Pendientes de diseño"
+- [ ] **Agregado por mí, no está en el texto de Inés** (confirmar con ella o sacar):
+  - título grande "El ecosistema tecnológico exportador de Uruguay" y el título de sección "Una plataforma tecnológica natural";
+  - los 4 números destacados (salen de su texto);
+  - 3 preguntas frecuentes (una dice "igual trato al inversor extranjero" y "se coordina con Sacramentum Capital");
+  - la frase del bloque final, debajo de "Explore technology opportunities".
 
 ## 2. Sacramentum Capital
 
@@ -70,16 +79,17 @@ Mi opinión honesta está en la última columna. Ninguna está publicada, así q
 
 | ✓ | Página | Link | Búsquedas/mes | ¿Lo vende la clienta? | Mi recomendación |
 |---|---|---|---|---|---|
-| [ ] | Residencia | http://localhost:3100/es/residencia-en-uruguay | ES ~900 · EN ~1.000 · DE ~500 | Sí: es "Soft Landing" | **Dejar**. Es la más fácil de defender |
+| [ ] | Residencia | http://localhost:3100/es/residencia-en-uruguay | ES ~900 · EN ~1.000 · DE ~500 | Sí: "Soft Landing" habla de residencia, pero no pidió una página aparte | **Dejar**, confirmar con Inés |
 | [ ] | Inmobiliario | http://localhost:3100/es/inmobiliario-punta-del-este-montevideo | ES ~800 · EN ~2.400 · DE ~1.300 | Sí: es uno de sus 4 sectores en Por qué Uruguay | **Dejar** |
 | [ ] | Campos y chacras | http://localhost:3100/es/campos-y-chacras-en-uruguay | ES ~1.400 · EN ~1.600 · DE casi nada | Sí: es uno de sus 4 sectores | **Dejar** (la propuesta incluye una guía de campos para descargar) |
-| [ ] | Family office | http://localhost:3100/es/family-office-patrimonio | poco, pero ChatGPT ya recomienda a Sacramentum acá | Más o menos: es "Asesoría estratégica" | Opcional |
+| [ ] | Family office | http://localhost:3100/es/family-office-patrimonio | poco, pero ChatGPT ya recomienda a Sacramentum acá | **No lo menciona** (ni en la web ni en el PDF): es idea mía | Opcional, confirmar con Inés |
 
 **Sacadas (20.10.2026):** Proyectos especiales, Residencia fiscal, Pasaporte uruguayo y Retirarse en Uruguay, junto con sus enlaces. El sector Proyectos especiales sigue en Por qué Uruguay, pero sin "Ver más".
 
 **Mi propuesta corta:** Tecnología y Capital (las pidió), más Residencia, Inmobiliario y Campos (las vende y la gente las busca). Son 5 páginas y todas se pueden defender ante la clienta.
 
 Desde dónde se llega a estas páginas (si sacás alguna, saco también estos enlaces):
+- [ ] Menú: desplegable de "Por qué Uruguay" (Inmobiliario, Tecnología, Campos)
 - [ ] Footer: columna nueva "Uruguay"
 - [ ] Por qué Uruguay: enlace "Ver más" en cada sector
 - [ ] Servicios: enlace "Ver más" en cada tarjeta → http://localhost:3100/es/servicios

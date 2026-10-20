@@ -4,12 +4,16 @@ import React, { useState, useEffect, useLayoutEffect, useCallback, useRef } from
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLocalePath, useT } from "@/lib/locale-context";
-import { LOCALES, LOCALE_COOKIE, isHomePath, switchLocalePath, type Locale } from "@/lib/i18n";
+import { LOCALES, LOCALE_COOKIE, isHomePath, switchLocalePath, type Locale, type TopicId } from "@/lib/i18n";
+import { FOOTER_TOPICS } from "@/lib/topic-links";
 import { scrollToSection } from "@/lib/utils";
 import { pendingScroll } from "@/lib/pending-scroll";
 import { usePageTransition } from "@/lib/transition-context";
 
 const LOCALE_NAMES: Record<Locale, string> = { en: "English", es: "Español", de: "Deutsch" };
+
+// Sector pages shown under "Why Uruguay" (the client's three sectors with a page).
+const WHY_URUGUAY_SECTORS: TopicId[] = ["real-estate", "technology", "farmland"];
 
 // ── Language menu: globe button that opens the three languages ───────────────
 function LanguageMenu({
@@ -207,9 +211,14 @@ export default function Navigation() {
     handleNavClick(id, href);
   };
 
-  const navLinks = [
+  const topicLabel = (id: TopicId) => FOOTER_TOPICS.find(t => t.id === id)?.label[locale] ?? id;
+
+  const navLinks: { label: string; id: string; href: string; children?: { label: string; href: string }[] }[] = [
     // No "Home" link: the logo takes you home (client decision, 20.10.2026)
-    { label: copy.nav.whyUruguay, id: "invest",      href: path("why-uruguay") },
+    {
+      label: copy.nav.whyUruguay, id: "invest", href: path("why-uruguay"),
+      children: WHY_URUGUAY_SECTORS.map(id => ({ label: topicLabel(id), href: path(id) })),
+    },
     { label: copy.nav.sectors,    id: "services",    href: path("services")    },
     { label: copy.nav.news,       id: "news",        href: path("news")        },
     { label: copy.nav.blog,       id: "blog",        href: path("blog")        },
@@ -273,27 +282,52 @@ export default function Navigation() {
             className="hidden lg:flex items-center gap-5 xl:gap-10 2xl:gap-14"
           >
             {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={"href" in link ? link.href : path("home")}
-                onClick={(e) => onLinkClick(e, link.id, "href" in link ? link.href : undefined)}
-                className={[
-                  "text-[0.95rem] xl:text-base font-medium tracking-[0.03em] whitespace-nowrap",
-                  "transition-colors duration-300 relative group",
-                  isDark
-                    ? "text-ink-muted hover:text-brand-dark"
-                    : "text-white/80 hover:text-white",
-                ].join(" ")}
-              >
-                {link.label}
-                <span
+              <div key={link.id} className="relative group/dd">
+                <a
+                  href={link.href}
+                  onClick={(e) => onLinkClick(e, link.id, link.href)}
                   className={[
-                    "absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300",
-                    "group-hover:w-full",
-                    isDark ? "bg-brand-warm" : "bg-white/60",
+                    "flex items-center gap-1.5 text-[0.95rem] xl:text-base font-medium tracking-[0.03em] whitespace-nowrap",
+                    "transition-colors duration-300 relative group",
+                    isDark
+                      ? "text-ink-muted hover:text-brand-dark"
+                      : "text-white/80 hover:text-white",
                   ].join(" ")}
-                />
-              </a>
+                >
+                  {link.label}
+                  {link.children && (
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" className="transition-transform duration-300 group-hover/dd:rotate-180">
+                      <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  <span
+                    className={[
+                      "absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300",
+                      "group-hover:w-full",
+                      isDark ? "bg-brand-warm" : "bg-white/60",
+                    ].join(" ")}
+                  />
+                </a>
+
+                {/* Dropdown: opens on hover or keyboard focus; the parent link still goes to its page */}
+                {link.children && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 pointer-events-none translate-y-1 transition-all duration-200 group-hover/dd:opacity-100 group-hover/dd:pointer-events-auto group-hover/dd:translate-y-0 group-focus-within/dd:opacity-100 group-focus-within/dd:pointer-events-auto group-focus-within/dd:translate-y-0">
+                    <ul className="min-w-[13rem] py-2 rounded-lg bg-white shadow-[0_8px_30px_rgba(17,31,48,0.18)]">
+                      {link.children.map(child => (
+                        <li key={child.href}>
+                          <a
+                            href={child.href}
+                            onClick={(e) => onLinkClick(e, link.id, child.href)}
+                            className="block px-5 py-2.5 text-[0.95rem] text-ink-muted hover:text-brand-dark hover:bg-black/[0.03] transition-colors duration-200 whitespace-nowrap"
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             ))}
 
             {/* Fixed consultation button — always visible in the menu (proposal) */}
@@ -348,15 +382,30 @@ export default function Navigation() {
         style={{ backgroundColor: "#111F30" }}
       >
         {navLinks.map((link, i) => (
-          <a
-            key={link.id}
-            href={"href" in link ? link.href : path("home")}
-            onClick={(e) => onLinkClick(e, link.id, "href" in link ? link.href : undefined)}
-            className="text-h3 font-light text-white/80 hover:text-white transition-colors duration-300 py-3"
-            style={{ animationDelay: `${i * 60}ms` }}
-          >
-            {link.label}
-          </a>
+          <div key={link.id} className="flex flex-col items-center">
+            <a
+              href={link.href}
+              onClick={(e) => onLinkClick(e, link.id, link.href)}
+              className="text-h3 font-light text-white/80 hover:text-white transition-colors duration-300 py-3"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
+              {link.label}
+            </a>
+            {link.children && (
+              <div className="flex items-center gap-4 -mt-1 mb-2">
+                {link.children.map(child => (
+                  <a
+                    key={child.href}
+                    href={child.href}
+                    onClick={(e) => onLinkClick(e, link.id, child.href)}
+                    className="text-sm text-white/55 hover:text-white transition-colors duration-300"
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
         <a
           href={path("contact")}
