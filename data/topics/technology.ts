@@ -20,7 +20,7 @@ const copy: TopicCopy = {
     image: { src: "/images/tech.avif", alt: "Technology office in Montevideo, Uruguay" },
     facts: [
       { value: "#2",         label: "Software exporter per capita in Latin America — and the largest in South America" },
-      { value: "US$3.68bn",  label: "Technology sector revenue in 2024, equivalent to 4.5% of GDP" },
+      { value: "US$3.7bn",   label: "Technology sector revenue in 2024, equivalent to 4.5% of GDP" },
       { value: "63%",        label: "Of the sector's revenue from international sales" },
       { value: "77.6%",      label: "Of Uruguay's technology exports go to the United States" },
     ],
@@ -73,7 +73,7 @@ const copy: TopicCopy = {
     image: { src: "/images/tech.avif", alt: "Oficina tecnológica en Montevideo, Uruguay" },
     facts: [
       { value: "#2",          label: "Exportador de software per cápita de América Latina, y el primero de América del Sur" },
-      { value: "US$3.680 M",  label: "Facturación del sector tecnológico en 2024, equivalente al 4,5% del PIB" },
+      { value: "US$3,7 MM",   label: "Facturación del sector tecnológico en 2024 (miles de millones de dólares), equivalente al 4,5% del PIB" },
       { value: "63%",         label: "De la facturación del sector proviene de ventas internacionales" },
       { value: "77,6%",       label: "De las exportaciones tecnológicas de Uruguay van a Estados Unidos" },
     ],
@@ -125,7 +125,7 @@ const copy: TopicCopy = {
     image: { src: "/images/tech.avif", alt: "Technologiebüro in Montevideo, Uruguay" },
     facts: [
       { value: "#2",           label: "Softwareexporteur pro Kopf in Lateinamerika – und der größte in Südamerika" },
-      { value: "3,68 Mrd. USD", label: "Umsatz des Technologiesektors 2024, entsprechend 4,5 % des BIP" },
+      { value: "$3,7 Mrd.",    label: "Umsatz des Technologiesektors 2024, entsprechend 4,5 % des BIP" },
       { value: "63 %",          label: "Des Umsatzes stammen aus internationalen Verkäufen" },
       { value: "77,6 %",        label: "Der uruguayischen Technologieexporte gehen in die USA" },
     ],

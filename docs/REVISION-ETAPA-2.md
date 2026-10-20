@@ -10,17 +10,20 @@ En cada página, el selector **EN · ES · DE** arriba a la derecha cambia el id
 
 ## Estado por sección
 
-| Sección | Texto | Diseño |
-|---|---|---|
-| Tecnología | ✅ OK (20.10.2026) | ⏳ pendiente (ver lista abajo) |
+✅ aprobado · 👀 para revisar · ⏳ pendiente · — no aplica
 
-## Pendientes de diseño (se hacen todos juntos al final)
+| Sección | Texto ES | Texto EN | Texto DE | Diseño |
+|---|---|---|---|---|
+| Tecnología | ✅ | ✅ (texto de la clienta) | ⏳ falta revisión nativa | 👀 cambios hechos, revisar (ver abajo) |
+| Sacramentum Capital | 👀 | 👀 | ⏳ | 👀 |
 
-**Tecnología** → http://localhost:3100/es/tecnologia
-- [ ] Título del encabezado: hoy queda en 4 renglones apretado contra la izquierda. Máximo 2-3 renglones (columna más ancha o letra más chica).
-- [ ] Números de abajo (#2, US$…, 63%, 77,6%): mucho más grandes.
-- [ ] Cifra de facturación más corta, redondeada: "US$3.7bn" / "US$3,7 mil M" / "3,7 Mrd. USD" en vez de "US$3.680 M".
-- [ ] Efecto slide que pidió la clienta.
+## Diseño
+
+**Tecnología** → http://localhost:3100/es/tecnologia · http://localhost:3100/en/technology
+- [ ] 👀 Título del encabezado en su propio renglón (2 líneas, no 4); el texto va abajo a la derecha. Se aplica a todas las páginas nuevas.
+- [ ] 👀 Números de abajo mucho más grandes.
+- [ ] 👀 Cifra de facturación redondeada: "US$3,7 MM" (con "miles de millones de dólares" en el texto de abajo) / "US$3.7bn" / "$3,7 Mrd.".
+- [ ] ⏳ Efecto slide que pidió la clienta.
 
 ---
 
