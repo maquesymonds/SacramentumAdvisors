@@ -4,8 +4,9 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 
-// Critical assets that must load before the loader exits
-const CRITICAL = ["/images/uruguay.webp", "/images/Substract.webp"];
+// Critical assets that must load before the loader exits. The hero image is
+// not listed: next/image preloads it at the right size (the raw file is 2.7 MB).
+const CRITICAL: string[] = [];
 const MIN_MS   = 1800; // minimum display time even if assets are cached
 
 export default function Loader() {
