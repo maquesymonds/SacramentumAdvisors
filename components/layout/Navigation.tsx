@@ -130,7 +130,7 @@ export default function Navigation() {
   };
 
   const navLinks = [
-    { label: copy.nav.home,       id: "home"                          },
+    // No "Home" link: the logo takes you home (client decision, 20.10.2026)
     { label: copy.nav.whyUruguay, id: "invest",      href: path("why-uruguay") },
     { label: copy.nav.sectors,    id: "services",    href: path("services")    },
     { label: copy.nav.news,       id: "news",        href: path("news")        },
