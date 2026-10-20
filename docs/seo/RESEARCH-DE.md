@@ -186,7 +186,31 @@ gub.uy (Migración, Corte Electoral, Ministerio del Interior), RetireFinder, bie
   over country rankings. Copy should not overclaim "safest country".
 - ChatGPT does not mention the double-tax treaty at all (Gemini's "no DBA" claim remains unverified).
 
+### Clean re-run · ChatGPT 6, 8, 9 (temporary chats)
+
+| # | Sacramentum? | Who else | How Sacramentum is described |
+|---|---|---|---|
+| 6 · Plan B + asset protection | **Yes — listed first** | Guyer & Regules, Andersen, The Private Advisors | "Boutique-Beratung aus Montevideo … beschäftigt sich ausdrücklich mit **Plan-B-Strategien, geografischer Diversifikation und Vermögensschutz**." Caveat: link to Sacramentum Capital → "economic independence should be clarified" |
+| 8 · House by the sea | No | **Property Hunter Uruguay, Realty Hunter, Buyers Uruguay** (buyer's agents, 3 % fees published), Guyer & Regules, Estudio Mecol, local escribana | — |
+| 9 · Swiss family office | **Yes — listed first**, and in the recommended process: "Step 1, market sounding: contact Uruguay XXI and a local investment boutique **such as Sacramentum Advisors**" | Ferrere, Guyer & Regules, FDI (BCU reg. 7605), Uruguay XXI | "Investment Advisory · Family Offices · Markteintritt" |
+
+Source for Sacramentum in all cases: **LinkedIn**.
+
+**Readings**
+1. **Clean ChatGPT results across languages: Sacramentum appears for *family office* (EN, DE) and *Plan B / asset protection* (DE)** —
+   exactly the vocabulary of its LinkedIn page — and **never** for real estate, residency, tax or farmland, where firms with a
+   dedicated page win. Confirms the core GEO lesson: one topic = one page with that topic's words.
+2. **Real estate is won by buyer's-agent firms that publish their fee** (Property Hunter, Realty Hunter, Buyers Uruguay: 3 % + VAT,
+   initial fee credited). To compete, Sacramentum's real estate page must state whom it represents and how it is paid.
+3. **The independence caveat repeats** ("connection to Sacramentum Capital — clarify"). The "How we work / how we are paid" statement
+   is now a priority in all three languages.
+4. **Brand-name collision:** in answer 9 ChatGPT illustrated Sacramentum with an image from a Catholic site ("How to Request a Mass
+   Intention | Sacramentum"). "Sacramentum" alone is ambiguous → always "Sacramentum Advisors", plus Organization schema
+   (name, logo, address, sameAs LinkedIn/AHK) so engines resolve the entity.
+5. **New facts to verify:** Switzerland–Uruguay **double-tax treaty and investment-protection treaty** exist (relevant for Swiss
+   clients); **Decree 329/025** — new general investment-promotion framework (COMAP) **since 1 Feb 2026**; Uruguay XXI runs an
+   "Investment Portfolio" of concrete projects.
+
 ### Pending
 
-- **Clean re-run in ChatGPT** (temporary chat, one per prompt) of 6, 8 and 9.
-- Gemini prompt 10 complete.
+- Gemini prompt 10 complete (optional).
