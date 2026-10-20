@@ -244,7 +244,7 @@ export default function Navigation() {
         }}
       >
         <div
-          className="container-site w-full flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]"
+          className="container-site w-full flex items-center justify-between lg:grid lg:grid-cols-[auto_1fr_auto] lg:gap-6 xl:grid-cols-[1fr_auto_1fr]"
           style={{ paddingLeft: "1.25rem", paddingRight: "1.25rem" }}
         >
 
@@ -279,7 +279,7 @@ export default function Navigation() {
           <nav
             role="navigation"
             aria-label="Primary navigation"
-            className="hidden lg:flex items-center gap-5 xl:gap-10 2xl:gap-14"
+            className="hidden lg:flex lg:justify-self-center items-center gap-5 xl:gap-10 2xl:gap-14"
           >
             {navLinks.map((link) => (
               <div key={link.id} className="relative group/dd">
@@ -330,12 +330,18 @@ export default function Navigation() {
               </div>
             ))}
 
+          </nav>
+
+          {/* ── Right: language + CTA (desktop) · language + hamburger (mobile) */}
+          <div className="flex items-center gap-2 lg:gap-3 lg:justify-self-end">
+            <LanguageMenu locale={locale} isDark={isDark} onSelect={switchTo} />
+
             {/* Fixed consultation button — always visible in the menu (proposal) */}
             <a
               href={path("contact")}
               data-cta="nav-consultation"
               onClick={(e) => onLinkClick(e, "contact", path("contact"))}
-              className="text-[0.95rem] xl:text-base font-medium tracking-[0.03em] px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap"
+              className="hidden lg:inline-block text-[0.95rem] xl:text-base font-medium tracking-[0.03em] px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap"
               style={{
                 // Adapts to what is behind the nav: white on dark backgrounds,
                 // navy with white text on light backgrounds.
@@ -346,12 +352,6 @@ export default function Navigation() {
             >
               {copy.footer.cta}
             </a>
-
-          </nav>
-
-          {/* ── Language (desktop: right column · mobile: next to the hamburger) */}
-          <div className="flex items-center gap-2 lg:justify-self-end">
-            <LanguageMenu locale={locale} isDark={isDark} onSelect={switchTo} />
 
             <button
               className="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none"
