@@ -5,6 +5,7 @@
    CTA. FAQ text and FAQPage JSON-LD come from the same data (parity).
    ─────────────────────────────────────────────────────────────────────────── */
 
+import CountUp    from "@/components/ui/CountUp";
 import Image      from "next/image";
 import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
@@ -20,13 +21,6 @@ import {
 } from "@/lib/i18n";
 import { PAGE_LABELS, topicContent, type Overrides, type TopicContent } from "@/lib/topics";
 import { getTranslationOverrides } from "@/lib/translation-overrides";
-
-// "US$3,7 MM" / "$3,7 Mrd.": the unit word is set smaller so the figure fits a quarter column.
-function FactValue({ value }: { value: string }) {
-  const m = value.match(/^(.*\S)\s([A-Za-z.]+)$/);
-  if (!m) return <>{value}</>;
-  return <>{m[1]}<span style={{ fontSize: "0.5em", marginLeft: "0.15em" }}>{m[2]}</span></>;
-}
 
 const UI: Record<Locale, { home: string; faq: string; related: string; facts: string; source: string }> = {
   en: { home: "Home",       faq: "Frequently asked questions", related: "Related",       facts: "Key facts",      source: "Source" },
@@ -127,7 +121,7 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
               {c.facts.map((f, i) => (
                 <div key={i} className="flex flex-col items-center text-center gap-2">
                   <span className="text-ink" style={{ fontSize: "clamp(3rem, 4.4vw, 4.75rem)", letterSpacing: "-0.03em", lineHeight: 1, whiteSpace: "nowrap" }}>
-                    <FactValue value={f.value} />
+                    <CountUp value={f.value} />
                   </span>
                   <span className="text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.5 }}>{f.label}</span>
                   {f.source && (
