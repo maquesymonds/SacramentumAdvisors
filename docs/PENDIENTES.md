@@ -8,7 +8,10 @@ Lista viva. Se actualiza en cada sesión.
 - [ ] Guía del inversor (PDF) — Invest y antes de Contacto (propuesta).
 - [ ] Documento de Farmland (PDF) — Agricultura (propuesta).
 - [ ] **Texto de Technology en español** (y alemán, o lo traducimos y lo revisa un nativo). Hoy solo está en inglés: [`content/technology-en.md`](content/technology-en.md).
-- [ ] **Segunda sección nueva** — confirmar cuál es (¿Sacramentum Capital?) y pasar el copy.
+- [x] Segunda sección nueva = **Sacramentum Capital** — fuente: `~/Desktop/Sacramentum_Capital_Presentation.pdf` (ver [`content/sacramentum-capital.md`](content/sacramentum-capital.md)).
+- [ ] **Sacramentum Capital: qué transacciones y cifras se pueden publicar** (el PDF dice "Confidential"; una operación sigue en cierre).
+- [ ] Sacramentum Capital: cómo explicar la relación Capital ↔ Advisors (independencia).
+- [ ] **Hacer privado el repo de GitHub** (hoy es público: se ven el research y los docs).
 - [ ] Video "Live in Uruguay" (sección Why Uruguay).
 - [ ] Verificar los 9 datos de [`seo/RESEARCH-SUMMARY.md`](seo/RESEARCH-SUMMARY.md) §5 (régimen fiscal 2026, convenio con Alemania, quién habla alemán, cómo cobran, etc.).
 
