@@ -125,7 +125,7 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
           <section aria-label={ui.facts} style={{ backgroundColor: "var(--color-surface-muted)", paddingBlock: "clamp(3rem, 6vw, 5rem)" }}>
             <div className="container-site grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
               {c.facts.map((f, i) => (
-                <div key={i} className="flex flex-col gap-2">
+                <div key={i} className="flex flex-col items-center text-center gap-2">
                   <span className="text-ink" style={{ fontSize: "clamp(3rem, 4.4vw, 4.75rem)", letterSpacing: "-0.03em", lineHeight: 1, whiteSpace: "nowrap" }}>
                     <FactValue value={f.value} />
                   </span>
