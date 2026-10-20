@@ -121,6 +121,60 @@ const copy: TopicCopy = {
       label:   "Contactar al equipo",
     },
   },
+  de: {
+    metaTitle:       "Sacramentum Capital: Investment-Banking-Boutique in Montevideo",
+    metaDescription: "Sacramentum Capital ist eine Investment-Banking-Boutique in Montevideo: strukturierte Finanzierungen, Kapitalmärkte und grenzüberschreitende M&A im Southern Cone.",
+    navLabel:        "Sacramentum Capital",
+    cardText:        "Unsere Investment-Banking-Boutique: strukturierte Finanzierungen, Kapitalmärkte und grenzüberschreitende M&A.",
+    eyebrow:         "Investment-Banking-Boutique",
+    title:           "Sacramentum Capital",
+    intro: [
+      "Sacramentum Capital ist eine Investment-Banking-Boutique mit Sitz in Montevideo, spezialisiert auf strategische Finanzberatung im Southern Cone.",
+      "Wir beraten zu strukturierten Finanzierungen, Kapitalmärkten und grenzüberschreitenden M&A – für regionale Unternehmen, institutionelle Investoren und öffentliche Einrichtungen, bei Transaktionen, die fachliche Tiefe und lokales Urteilsvermögen verlangen.",
+    ],
+    image: { src: "/images/puerto.webp", alt: "Hafen von Montevideo" },
+    sections: [
+      {
+        heading: "Schwerpunkte",
+        body: [],
+        bullets: [
+          "Infrastruktur und Energie – Finanzierung von Energie-, Straßen- und Infrastrukturprojekten, einschließlich Fremdkapitalvehikeln, die bei lokalen institutionellen Investoren platziert werden.",
+          "Kapitalmärkte – Anleiheemissionen, Börsengänge, Privatplatzierungen und Liability Management für öffentliche und private Kunden.",
+          "Regionale M&A – Beratung von Käufern und Verkäufern bei grenzüberschreitenden Transaktionen in Uruguay, Brasilien, Argentinien und Chile, von Fintech und Technologie bis zu Hotellerie, Agribusiness und Versicherungen.",
+        ],
+      },
+      {
+        heading: "Umsetzung auf Partnerebene",
+        body: [
+          "Jedes Mandat wird von unserem Gründungspartner Pablo Mautone persönlich geführt – von der Anbahnung bis zum Abschluss, ohne Übergabe an Junior-Teams in kritischen Phasen.",
+          "Pablo bringt eine internationale Laufbahn im Investment Banking mit, unter anderem bei J.P. Morgan, und gründete Sacramentum Capital nach seiner Rückkehr nach Uruguay in Montevideo.",
+        ],
+      },
+      {
+        heading: "Aufgebaut auf Empfehlungen und Diskretion",
+        body: [
+          "Sacramentum Capital ist über Empfehlungen früherer Kunden, institutioneller Partner und regionaler Kollegen gewachsen und hat sektorübergreifend und über mehrere Regierungen hinweg beraten.",
+          "Die wichtigsten Transaktionen im Southern Cone machen selten Schlagzeilen. In diesem Umfeld arbeiten wir – wo Vertraulichkeit und Vertrauen ebenso zählen wie technische Umsetzung.",
+        ],
+      },
+      {
+        heading: "Sacramentum Capital und Sacramentum Advisors",
+        body: [
+          "Sacramentum Capital berät Unternehmen, Institutionen und öffentliche Einrichtungen bei Transaktionen der Unternehmensfinanzierung. Sacramentum Advisors berät internationale Investoren, Familien und Family Offices beim Investieren und Ankommen in Uruguay. Wenn ein Kunde von Sacramentum Advisors eine Transaktion von Sacramentum Capital prüft, legen wir diese Verbindung offen.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Was macht Sacramentum Capital?", a: "Eine Investment-Banking-Boutique in Montevideo, die zu strukturierten Finanzierungen, Kapitalmärkten und grenzüberschreitenden M&A im Southern Cone berät." },
+      { q: "Wer führt die Mandate von Sacramentum Capital?", a: "Jedes Mandat wird vom Gründungspartner Pablo Mautone persönlich geführt, der eine internationale Laufbahn im Investment Banking mitbringt, unter anderem bei J.P. Morgan." },
+      { q: "In welchen Ländern ist Sacramentum Capital tätig?", a: "In Uruguay, Brasilien, Argentinien und Chile, für regionale und internationale Käufer, Verkäufer und Investoren." },
+    ],
+    cta: {
+      heading: "Sie prüfen eine Transaktion im Southern Cone?",
+      body:    "Sprechen Sie mit dem Team über Finanzierung, Kapitalmärkte oder einen Kauf oder Verkauf. Jedes Gespräch ist vertraulich.",
+      label:   "Team kontaktieren",
+    },
+  },
 };
 
 export default copy;

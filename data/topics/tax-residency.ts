@@ -147,6 +147,74 @@ const copy: TopicCopy = {
       label:   "Agendar una consulta",
     },
   },
+  de: {
+    metaTitle:       "Steuern beim Auswandern nach Uruguay: Wegzug und Wohnsitz",
+    metaDescription: "Auswandern nach Uruguay und Steuern: steuerlicher Wohnsitz in Uruguay, was sich 2026 geändert hat, Wegzugsbesteuerung und erweitert beschränkte Steuerpflicht in Deutschland.",
+    navLabel:        "Steuern und Wohnsitz",
+    cardText:        "Steuerlicher Wohnsitz in Uruguay, die Änderungen 2026 und der Wegzug aus Deutschland.",
+    eyebrow:         "Steuern beim Auswandern",
+    title:           "Steuern beim Auswandern nach Uruguay",
+    intro: [
+      "Für deutsche Unternehmer und Vermögende beginnt die Frage nach Uruguay meist mit einer anderen: Was kostet der Wegzug aus Deutschland? Und welche Regeln gelten danach in Uruguay, wo sich die Bestimmungen für neue Steuerinländer zum 1. Januar 2026 geändert haben?",
+      "Wir koordinieren Ihren deutschen Steuerberater und die uruguayischen Fachleute an einem gemeinsamen Fall, damit die Entscheidung getroffen wird, bevor Vermögen bewegt oder der Wohnsitz abgemeldet wird.",
+    ],
+    image: { src: "/images/firmando.avif", alt: "Unterzeichnung von Dokumenten mit einem Berater" },
+    sections: [
+      {
+        heading: "Erst Deutschland, dann Uruguay",
+        body: [
+          "Der Wegzug aus Deutschland hat eigene steuerliche Folgen, die unabhängig davon gelten, wie günstig Uruguay für Sie ist. Die wichtigsten Stichworte:",
+        ],
+        bullets: [
+          "Wegzugsbesteuerung (§ 6 AStG): Wer an einer Kapitalgesellschaft beteiligt ist, etwa an einer GmbH, und Deutschland verlässt, kann auf die Wertsteigerung seiner Anteile besteuert werden, als hätte er sie verkauft.",
+          "Erweitert beschränkte Steuerpflicht (§ 2 AStG): Bei einem Umzug in ein Land mit niedriger Besteuerung kann Deutschland bestimmte Einkünfte noch bis zu zehn Jahre nach dem Wegzug besteuern, wenn wesentliche wirtschaftliche Interessen in Deutschland bestehen bleiben.",
+          "Abmeldung und Lebensmittelpunkt: Solange ein Wohnsitz oder der gewöhnliche Aufenthalt in Deutschland bleibt, endet die unbeschränkte Steuerpflicht nicht.",
+        ],
+      },
+      {
+        heading: "Steuerlicher Wohnsitz in Uruguay",
+        body: ["Die uruguayische Steuerbehörde (DGI) kennt mehrere Anknüpfungspunkte. Die wichtigsten sind:"],
+        bullets: [
+          "Aufenthalt: mehr als 183 Tage im Kalenderjahr in Uruguay.",
+          "Mittelpunkt der Lebensinteressen: Ihre Familie (Ehepartner und unterhaltsberechtigte Kinder) lebt in Uruguay.",
+          "Mittelpunkt der wirtschaftlichen Interessen: Ihre wesentlichen Tätigkeiten oder Einkünfte liegen in Uruguay, einschließlich bestimmter qualifizierter Investitionen unter den gesetzlichen Voraussetzungen.",
+        ],
+      },
+      {
+        heading: "Was sich 2026 geändert hat",
+        body: [
+          "Seit dem 1. Januar 2026 gelten neue Regeln für Personen, die in Uruguay steuerlich ansässig werden – unter anderem bei der Besteuerung bestimmter ausländischer Einkünfte und bei der Sonderregelung für neue Steuerinländer.",
+          "Viele Ratgeber beschreiben noch die alten Regeln. Bevor Sie eine Entscheidung auf einen Steuervorteil stützen, bestätigen wir die aktuellen Voraussetzungen schriftlich mit einem uruguayischen Steuerberater – für Ihre konkreten Einkünfte und Ihr Vermögen.",
+        ],
+      },
+      {
+        heading: "Doppelbesteuerung",
+        body: [
+          "Ob und wie ein Doppelbesteuerungsabkommen zwischen Uruguay und Ihrem Herkunftsland greift, hängt von der Art der Einkünfte ab. Das prüfen wir gemeinsam mit Ihrem Steuerberater, bevor Sie umziehen – nicht danach.",
+        ],
+      },
+    ],
+    steps: {
+      heading: "Wie wir vorgehen",
+      items: [
+        { title: "Bestandsaufnahme",          body: "Einkünfte, Beteiligungen, Vermögen, Familie und heutiger Wohnsitz." },
+        { title: "Prüfung in zwei Ländern",   body: "Deutscher Steuerberater und uruguayische Fachleute an einem Fall." },
+        { title: "Entscheidung schriftlich",  body: "Welche Grundlage gilt, was sie verlangt und was sie kostet." },
+        { title: "Umsetzung",                 body: "Gestaltung vor dem Wegzug, Abmeldung und Bescheinigung der DGI." },
+      ],
+    },
+    faqs: [
+      { q: "Muss ich beim Auswandern nach Uruguay Wegzugsteuer zahlen?", a: "Wenn Sie an einer Kapitalgesellschaft wie einer GmbH beteiligt sind und die gesetzlichen Voraussetzungen erfüllen, kann die Wegzugsbesteuerung nach § 6 AStG greifen. Das sollte ein auf internationales Steuerrecht spezialisierter Steuerberater vor dem Umzug prüfen." },
+      { q: "Wie viele Tage muss ich in Uruguay verbringen, um dort steuerlich ansässig zu sein?", a: "Mehr als 183 Tage im Kalenderjahr sind eine der Grundlagen. Es gibt weitere, je nachdem, wo Ihre Familie lebt oder wo Ihre wirtschaftlichen Interessen liegen." },
+      { q: "Ist Uruguay eine Steueroase?", a: "Nein. Uruguay wendet internationale Transparenzstandards an. Sein Vorteil sind Stabilität und ein berechenbares Steuersystem, nicht Verschwiegenheit." },
+      { q: "Gibt es den uruguayischen „Tax Holiday“ noch?", a: "Die Regelung für neue Steuerinländer wurde zum 1. Januar 2026 geändert. Viele Beschreibungen sind veraltet; wir bestätigen die aktuellen Bedingungen, bevor Sie entscheiden." },
+    ],
+    cta: {
+      heading: "Sie planen den Wegzug nach Uruguay?",
+      body:    "Beginnen Sie mit einer Prüfung in beiden Ländern. Es ist die günstigste Entscheidung des gesamten Prozesses.",
+      label:   "Beratung vereinbaren",
+    },
+  },
 };
 
 export default copy;

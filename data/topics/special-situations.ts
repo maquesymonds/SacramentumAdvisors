@@ -1,6 +1,6 @@
 import type { TopicCopy } from "@/lib/topics";
 
-// DRAFT — pending approval by Inés. Built on the stage-1 approved copy
+// DRAFT — pending approval by Inés. DE: draft by Claude, pending native review. Built on the stage-1 approved copy
 // (investSpecial, "Special Projects"). No search volume in any language: this
 // page exists because the firm offers it (functional), and for AI answers.
 
@@ -100,6 +100,54 @@ const copy: TopicCopy = {
       heading: "¿Le interesan los proyectos especiales?",
       body:    "Cuéntenos sobre su mandato. Compartimos oportunidades en forma directa y bajo confidencialidad.",
       label:   "Contactar al equipo",
+    },
+  },
+  de: {
+    metaTitle:       "Sonderprojekte in Uruguay: Restrukturierungen und Notlagen",
+    metaDescription: "Ausgewählte Sonderprojekte in Uruguay für strategische Investoren: Restrukturierungen, Notlagen und Refinanzierungen in Logistik, Häfen, Stadtentwicklung und Immobilien.",
+    navLabel:        "Sonderprojekte",
+    cardText:        "Restrukturierungen, Notlagen und Refinanzierungen – vertraulicher Zugang für strategische Investoren.",
+    eyebrow:         "Sonderprojekte",
+    title:           "Sonderprojekte für strategische Investoren",
+    intro: [
+      "Bei Sacramentum Capital verfügen wir über Mandate und Zugang zu ausgewählten Sonderprojekten, die Chancen für strategische Investoren bieten.",
+      "Es sind Situationen, in denen Komplexität Wert schafft: Sie verlangen fachliche Tiefe, lokales Urteilsvermögen und Diskretion mehr als Geschwindigkeit.",
+    ],
+    image: { src: "/placeholders/colonia.avif", alt: "Historischer Hafen von Colonia del Sacramento, Uruguay" },
+    sections: [
+      {
+        heading: "Ein spezialisierter Ansatz",
+        body: [
+          "Projekte mit besonderer Komplexität wie Restrukturierungen, Notlagen, Refinanzierungen oder Situationen, die diskrete fachkundige Begleitung erfordern.",
+        ],
+      },
+      {
+        heading: "Schlüsselsektoren",
+        body: ["Die Projekte, die wir am häufigsten sehen, liegen in Sektoren, in denen Uruguays Rolle als regionale Plattform zählt:"],
+        bullets: [
+          "Logistik und Transport",
+          "Hafeninfrastruktur",
+          "Stadtentwicklung",
+          "Exklusive Immobilien",
+        ],
+      },
+      {
+        heading: "Vertraulicher Zugang",
+        body: [
+          "Direkte und vertrauliche Betreuung ausgewählter Projekte für erfahrene Investoren. Chancen werden einzeln und vertraulich vorgestellt, sobald wir Ihr Mandat verstehen.",
+          "Für mehr Informationen wenden Sie sich bitte direkt an unser Team.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Was ist ein Sonderprojekt?", a: "Eine Transaktion mit zusätzlicher Komplexität – eine Restrukturierung, ein notleidender Vermögenswert, eine Refinanzierung oder eine Situation, die diskrete fachkundige Begleitung erfordert –, in der diese Komplexität zugleich die Chance ist." },
+      { q: "Für wen sind diese Chancen?", a: "Für erfahrene und strategische Investoren – Family Offices, Fonds und Unternehmen –, die komplexe Situationen bewerten und diskret handeln können." },
+      { q: "Wie werden Chancen vorgestellt?", a: "Direkt und vertraulich, ein Projekt nach dem anderen, nach einem ersten Gespräch über Ihr Investitionsmandat." },
+    ],
+    cta: {
+      heading: "Interesse an Sonderprojekten?",
+      body:    "Erzählen Sie uns von Ihrem Mandat. Wir stellen Chancen direkt und vertraulich vor.",
+      label:   "Team kontaktieren",
     },
   },
 };

@@ -89,3 +89,20 @@ hreflang, migas de pan y preguntas frecuentes estructuradas. URLs viejas o de ot
 - Lo guardado antes del 20.10.2026 para el bloque de Tecnología se ignora, así se ve el texto nuevo de la clienta.
 - ⚠️ El guardado no se puede probar en local. No guardar desde el panel de la versión de prueba de Vercel si comparte
   el almacenamiento con la web en vivo: se probará en la QA (paso 10).
+
+---
+
+## Paso 6 · Copy (20.10.2026) — en curso
+
+**Documento para Inés:** `docs/COPY-PARA-INES.md` — cambios de palabras propuestos en las páginas existentes (con el porqué),
+las páginas nuevas para revisar y las 9 preguntas a confirmar. Los cambios de palabras **no se aplicaron**: esperan su aprobación.
+
+**Alemán (borrador, pendiente de revisión nativa):**
+- Todos los textos de la web (`data/translations-de.ts`): inicio, Por qué Uruguay, Servicios, equipo, noticias, contacto, footer.
+- Las 10 páginas nuevas en alemán, con las búsquedas alemanas del research. Retiro existe en alemán ("Als Rentner nach Uruguay").
+  La página de impuestos en alemán cubre el impuesto de salida (Wegzugsbesteuerung, erweitert beschränkte Steuerpflicht) sin cifras.
+- Las 8 noticias traducidas al alemán.
+- `/de/` sigue oculto para Google hasta la revisión.
+
+**Siguen en inglés:** los títulos de Google de Por qué Uruguay, Servicios y Contacto (se resuelven en el paso 7) y los títulos
+de las noticias, que el panel guarda en un solo idioma (decisión pendiente).

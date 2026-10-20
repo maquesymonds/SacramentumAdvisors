@@ -1,6 +1,6 @@
 import type { TopicCopy } from "@/lib/topics";
 
-// DRAFT — pending approval by Inés. Intro keeps the stage-1 approved copy
+// DRAFT — pending approval by Inés. DE: draft by Claude, pending native review. Intro keeps the stage-1 approved copy
 // (investRealEstate); sections added from the keyword research
 // (docs/seo/RESEARCH-SUMMARY.md: uruguay property, punta del este, josé ignacio,
 // casas en punta del este, vivienda promovida, haus kaufen uruguay, piriápolis).
@@ -149,6 +149,77 @@ const copy: TopicCopy = {
       heading: "¿Está mirando una propiedad en Uruguay?",
       body:    "Cuéntenos qué busca y cómo piensa usarla. Le diremos dónde tiene sentido, y dónde no.",
       label:   "Agendar una consulta",
+    },
+  },
+  de: {
+    metaTitle:       "Haus kaufen in Uruguay: Punta del Este, José Ignacio, Piriápolis",
+    metaDescription: "Immobilien in Uruguay als Ausländer kaufen: Haus am Meer in Punta del Este, José Ignacio oder Piriápolis, Wohnung in Montevideo. Unabhängige Beratung auf Käuferseite.",
+    navLabel:        "Immobilien",
+    cardText:        "Punta del Este, José Ignacio, Montevideo und Piriápolis – beraten auf der Seite des Käufers.",
+    eyebrow:         "Immobilien in Uruguay",
+    title:           "Investieren, wo man leben kann: Immobilien in Uruguay",
+    intro: [
+      "Wir glauben, dass das widerstandsfähigste Portfolio eines ist, das man erleben kann – Werte, die Ihr Kapital erhalten und vermehren und zugleich bewohnbar, genießbar und produktiv sind.",
+      "Der uruguayische Immobilienmarkt bietet Rechtssicherheit, Transaktionen in US-Dollar und keine Beschränkungen für ausländische Eigentümer. Wir beraten auf der Seite des Käufers: was, wo, zu welchem Preis und wie Sie sicher abschließen.",
+    ],
+    image: { src: "/placeholders/pde.avif", alt: "Küste von Punta del Este, Uruguay" },
+    facts: [
+      { value: "0 %", label: "Beschränkungen für ausländische Eigentümer von Wohnimmobilien" },
+      { value: "USD", label: "Währung, in der Immobilien angeboten und gehandelt werden" },
+    ],
+    sections: [
+      {
+        heading: "Wo kaufen: die vier Märkte, nach denen man uns fragt",
+        body: [
+          "Jeder Markt an der Küste und in der Stadt funktioniert anders – bei Preis, Saison, Mietnachfrage und Wiederverkauf. Die Wahl des Ortes ist die erste Investitionsentscheidung.",
+        ],
+        bullets: [
+          "Punta del Este – der etablierteste Markt: Wohnungen und Häuser, Infrastruktur das ganze Jahr, der tiefste Miet- und Wiederverkaufsmarkt.",
+          "José Ignacio – exklusiv und weitläufig: Architektenhäuser und große Grundstücke, begrenztes Angebot, ein Markt für langfristiges Eigentum.",
+          "Montevideo – Carrasco, Pocitos und Punta Carretas: ganzjähriges Stadtleben, Schulen, medizinische Versorgung und stabile Jahresmieten.",
+          "Piriápolis – ein historischer Badeort mit niedrigeren Einstiegspreisen, gewählt für ein Haus am Meer und ein ruhiges Leben das ganze Jahr.",
+        ],
+      },
+      {
+        heading: "Können Ausländer in Uruguay ein Haus kaufen?",
+        body: [
+          "Ja. Ausländische Privatpersonen und Unternehmen können Wohnimmobilien mit denselben Rechten wie uruguayische Staatsbürger erwerben, ohne Aufenthaltsgenehmigung. Für ländliche Grundstücke und bestimmte Eigentumsstrukturen gelten besondere Regeln, die wir im Einzelfall prüfen.",
+          "Ein Immobilienkauf allein verschafft weder eine Aufenthaltsgenehmigung noch einen steuerlichen Wohnsitz. Wenn beides Teil Ihres Plans ist, strukturieren wir den Kauf von Anfang an entsprechend.",
+        ],
+      },
+      {
+        heading: "Beratung auf der Seite des Käufers",
+        body: [
+          "In Uruguay wird ein klassischer Makler meist für den Verkauf bezahlt. Wir arbeiten für den Käufer: Wir vergleichen den Markt, hinterfragen den Angebotspreis, prüfen die tatsächlichen Kosten des Eigentums und koordinieren einen unabhängigen Notar (Escribano) für die Prüfung der Eigentumsverhältnisse.",
+          "Unsere Aufgabe ist sicherzustellen, dass die Immobilie zu Ihrem Plan passt – Eigennutzung, Mieteinnahmen oder langfristiger Kapitalerhalt –, bevor Sie sich verpflichten.",
+        ],
+      },
+      {
+        heading: "Mieteinnahmen",
+        body: [
+          "Saisonvermietungen in Punta del Este konzentrieren sich auf wenige Sommerwochen, Jahresmieten in Montevideo sind stabiler. Wir rechnen die Nettorendite mit realistischer Auslastung, Nebenkosten und Steuern – nicht mit dem Preis der Hochsaison.",
+        ],
+      },
+    ],
+    steps: {
+      heading: "So läuft ein Kauf ab",
+      items: [
+        { title: "Ziel und Auswahl",            body: "Budget, Nutzung und Ort. Wir wählen Objekte verschiedener Makler und außerhalb des Marktes aus." },
+        { title: "Reservierung",                body: "Eine Reservierungsvereinbarung sichert Preis und Bedingungen während der Prüfung." },
+        { title: "Prüfung der Eigentumsrechte", body: "Ein unabhängiger Escribano prüft Eigentum, Schulden, Genehmigungen und Belastungen." },
+        { title: "Urkunde und Eintragung",      body: "Unterzeichnung, Zahlung und Eintragung – persönlich oder per Vollmacht." },
+      ],
+    },
+    faqs: [
+      { q: "Brauche ich eine Aufenthaltsgenehmigung, um in Uruguay ein Haus zu kaufen?", a: "Nein. Ausländer können Wohnimmobilien in Uruguay mit denselben Rechten wie Staatsbürger kaufen, ohne Aufenthaltsgenehmigung. Aufenthalt und steuerlicher Wohnsitz sind getrennte Verfahren, die wir parallel koordinieren können." },
+      { q: "Punta del Este, José Ignacio oder Piriápolis?", a: "Punta del Este bietet den tiefsten Miet- und Wiederverkaufsmarkt, José Ignacio Exklusivität und langfristigen Wert, Piriápolis niedrigere Einstiegspreise und ein ruhiges Leben. Die Wahl hängt davon ab, ob Sie Mieteinnahmen, Eigennutzung oder Kapitalerhalt priorisieren." },
+      { q: "Welche Kosten kommen zum Kaufpreis hinzu?", a: "Notarkosten, gegebenenfalls Maklerprovision, die Grunderwerbsteuer (ITP, berechnet auf den Katasterwert) und Eintragungskosten. Vor einem Angebot erhalten Sie von uns eine vollständige Kostenschätzung." },
+      { q: "Kann ich aus der Ferne kaufen?", a: "Ja. Mit einer Vollmacht kann der Kauf abgeschlossen werden, ohne dass Sie zur Unterzeichnung in Uruguay sein müssen." },
+    ],
+    cta: {
+      heading: "Sie interessieren sich für eine Immobilie in Uruguay?",
+      body:    "Erzählen Sie uns, was Sie suchen und wie Sie sie nutzen möchten. Wir sagen Ihnen, wo es sinnvoll ist – und wo nicht.",
+      label:   "Beratung vereinbaren",
     },
   },
 };

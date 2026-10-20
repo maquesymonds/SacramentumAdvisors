@@ -1,6 +1,6 @@
 import type { TopicCopy } from "@/lib/topics";
 
-// DRAFT — pending approval by Inés. "Plan B" in EN/DE = second passport.
+// DRAFT — pending approval by Inés. DE: draft by Claude, pending native review. "Plan B" in EN/DE = second passport.
 // Keywords: uruguay passport, uruguay citizenship, second passport, second
 // citizenship, how to get a second passport · pasaporte uruguayo, ciudadanía
 // uruguaya · zweite staatsbürgerschaft. Facts used: Constitution art. 75
@@ -137,6 +137,69 @@ const copy: TopicCopy = {
       heading: "¿Planificando un segundo pasaporte?",
       body:    "Armamos la ruta desde el primer trámite de residencia hasta la ciudadanía, y cómo se ajusta al tiempo que puede pasar en Uruguay.",
       label:   "Agendar una consulta",
+    },
+  },
+  de: {
+    metaTitle:       "Zweiter Reisepass über Uruguay: Staatsbürgerschaft erklärt",
+    metaDescription: "Zweite Staatsbürgerschaft über Uruguay? Uruguay verkauft keine Pässe: der echte Weg vom Aufenthalt zur Einbürgerung, wie lange er dauert und was er verlangt.",
+    navLabel:        "Zweiter Reisepass",
+    cardText:        "Der ehrliche Weg vom Aufenthalt zur uruguayischen Staatsbürgerschaft – und was er verlangt.",
+    eyebrow:         "Staatsbürgerschaft und zweiter Pass",
+    title:           "Ein zweiter Reisepass über Uruguay",
+    intro: [
+      "Uruguay erlaubt die mehrfache Staatsbürgerschaft, und seine gesetzliche Staatsbürgerschaft ist ein echter Weg zu einem zweiten Reisepass. Es ist aber kein Programm „Staatsbürgerschaft durch Investition“: Einen Pass bekommt man nicht durch einen Immobilienkauf oder eine Einlage.",
+      "Der Weg führt über einen echten Aufenthalt im Land. Wir planen ihn mit Ihnen ab dem ersten Aufenthaltsantrag, damit die Jahre, die Sie in Uruguay verbringen, auch zählen.",
+    ],
+    image: { src: "/images/bandera.webp", alt: "Flagge von Uruguay" },
+    sections: [
+      {
+        heading: "Keine Staatsbürgerschaft durch Investition",
+        body: [
+          "Anders als Programme einiger Karibikstaaten oder europäischer Länder vergibt Uruguay die Staatsbürgerschaft nicht gegen eine Investition. Angebote für einen schnellen uruguayischen Pass gegen Zahlung sollten Sie mit großer Vorsicht behandeln.",
+        ],
+      },
+      {
+        heading: "Wie die Einbürgerung in Uruguay funktioniert",
+        body: ["Nach Artikel 75 der uruguayischen Verfassung können Ausländer die gesetzliche Staatsbürgerschaft nach einer Zeit des gewöhnlichen Aufenthalts beantragen:"],
+        bullets: [
+          "3 Jahre Aufenthalt für Antragsteller mit in Uruguay gegründeter Familie.",
+          "5 Jahre Aufenthalt für Antragsteller ohne Familie in Uruguay.",
+          "Guter Leumund sowie Lebensunterhalt oder wirtschaftliche Bindung an das Land.",
+        ],
+      },
+      {
+        heading: "Der Aufenthalt muss echt sein",
+        body: [
+          "Die Staatsbürgerschaft wird auf Grundlage eines tatsächlichen, gewöhnlichen Aufenthalts vergeben. Längere Abwesenheiten während der Frist können die Berechnung beeinflussen – der Plan muss also zu der Zeit passen, die Sie wirklich in Uruguay verbringen können.",
+        ],
+      },
+      {
+        heading: "Den deutschen Pass behalten",
+        body: [
+          "Seit der Reform des deutschen Staatsangehörigkeitsrechts 2024 ist die Mehrstaatigkeit in Deutschland grundsätzlich erlaubt. Für Österreicher und Schweizer gelten eigene Regeln, die wir vor dem Antrag prüfen.",
+          "Gesetzliche Staatsbürgerschaft, Staatsangehörigkeit und die Angaben im Pass sind in Uruguay getrennte rechtliche Begriffe. Wir klären vorab, wie Ihr Status in den Ländern anerkannt wird, die für Sie wichtig sind.",
+        ],
+      },
+    ],
+    steps: {
+      heading: "Der Weg, Schritt für Schritt",
+      items: [
+        { title: "Aufenthalt",          body: "Aufenthaltsgenehmigung beantragen und sich in Uruguay niederlassen." },
+        { title: "Anrechnungsjahre",    body: "Drei oder fünf Jahre tatsächlicher, dokumentierter Aufenthalt." },
+        { title: "Staatsbürgerschaft",  body: "Antrag auf die Carta de Ciudadanía beim Wahlgericht (Corte Electoral)." },
+        { title: "Reisepass",           body: "Uruguayischer Personalausweis und Reisepass." },
+      ],
+    },
+    faqs: [
+      { q: "Kann man die uruguayische Staatsbürgerschaft kaufen?", a: "Nein. Uruguay hat kein Programm für Staatsbürgerschaft durch Investition. Die Einbürgerung setzt mehrere Jahre echten Aufenthalt im Land voraus." },
+      { q: "Wie lange dauert es bis zum uruguayischen Pass?", a: "Die Verfassung verlangt 3 Jahre Aufenthalt mit Familie in Uruguay und 5 Jahre ohne, zuzüglich der Bearbeitungszeit für Staatsbürgerschaft und Pass." },
+      { q: "Muss ich meine deutsche Staatsangehörigkeit aufgeben?", a: "Seit 2024 erlaubt Deutschland die Mehrstaatigkeit grundsätzlich, und auch Uruguay erlaubt mehrere Staatsbürgerschaften. Ihren konkreten Fall prüfen wir vor dem Antrag." },
+      { q: "Muss ich in Uruguay leben?", a: "Ja. Die Einbürgerung beruht auf dem gewöhnlichen Aufenthalt; lange Abwesenheiten können die Frist beeinflussen." },
+    ],
+    cta: {
+      heading: "Sie planen einen zweiten Reisepass?",
+      body:    "Wir planen den Weg vom ersten Aufenthaltsantrag bis zur Einbürgerung – passend zu der Zeit, die Sie in Uruguay verbringen können.",
+      label:   "Beratung vereinbaren",
     },
   },
 };

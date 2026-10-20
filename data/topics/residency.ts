@@ -1,6 +1,6 @@
 import type { TopicCopy } from "@/lib/topics";
 
-// DRAFT — pending approval by Inés. = "Soft Landing" service.
+// DRAFT — pending approval by Inés. DE: draft by Claude, pending native review. = "Soft Landing" service.
 // Keywords: moving to uruguay, uruguay permanent residency, uruguay visa for us
 // citizens, relocate to uruguay · residencia permanente uruguay, residencia
 // mercosur, migraciones uruguay, argentinos en uruguay, vivir en uruguay siendo
@@ -149,6 +149,84 @@ const copy: TopicCopy = {
       heading: "¿Pensando en mudarse, o en un plan B?",
       body:    "Cuéntenos desde dónde viene y qué necesita. Le armamos la ruta, los documentos y los tiempos para su familia.",
       label:   "Agendar una consulta",
+    },
+  },
+  de: {
+    metaTitle:       "Auswandern nach Uruguay: Aufenthalt, Voraussetzungen und Ablauf",
+    metaDescription: "Auswandern nach Uruguay: Aufenthaltsgenehmigung, Unterlagen und Ablauf für Deutsche, Österreicher und Schweizer und ihre Familien. Begleitung aus einer Hand.",
+    navLabel:        "Auswandern nach Uruguay",
+    cardText:        "Aufenthaltsgenehmigung, Unterlagen, Bank und Ankommen – Ihr Umzug nach Uruguay, koordiniert.",
+    eyebrow:         "Auswandern und Aufenthalt",
+    title:           "Auswandern nach Uruguay: Aufenthalt und Ankommen",
+    intro: [
+      "Uruguay bietet Ausländern einen klaren Weg zur Aufenthaltsgenehmigung, und viele Familien nutzen ihn als Plan B: einen zweiten Wohnsitz und eine zweite Rechtsordnung außerhalb der EU, bereit für den Moment, in dem sie gebraucht werden.",
+      "Wir koordinieren den gesamten Umzug – Einwanderungsbehörde, Unterlagen, Bank, Wohnung und Schulen – mit einem einzigen Ansprechpartner, damit Sie nicht fünf Berater in einer fremden Sprache steuern müssen.",
+    ],
+    image: { src: "/placeholders/hero-coast.avif", alt: "Küste von Uruguay bei Sonnenuntergang" },
+    sections: [
+      {
+        heading: "Drei Dinge, die oft verwechselt werden",
+        body: [
+          "Aufenthaltsgenehmigung, steuerlicher Wohnsitz und Vermögen in Uruguay sind drei verschiedene Dinge. Die Aufenthaltsgenehmigung ist Ihr Recht, im Land zu leben. Der steuerliche Wohnsitz entscheidet, wo Sie Steuern zahlen. Eine Immobilie oder ein Konto in Uruguay verschafft Ihnen für sich genommen keines von beiden.",
+          "Die meisten Pläne brauchen eins, zwei oder alle drei – in der richtigen Reihenfolge. Wir klären zuerst, was Sie tatsächlich brauchen.",
+        ],
+      },
+      {
+        heading: "Daueraufenthalt in Uruguay",
+        body: [
+          "Ausländer können bei der Einwanderungsbehörde (Dirección Nacional de Migración) eine befristete oder dauerhafte Aufenthaltsgenehmigung beantragen. Der Antrag wird in Uruguay gestellt; Sie können als Besucher einreisen, um ihn zu beginnen.",
+          "Mit der Antragstellung erhalten Sie einen vorläufigen Status, mit dem Sie den uruguayischen Personalausweis (Cédula) beantragen, Bankkonten eröffnen und sich einrichten können, während der Antrag bearbeitet wird.",
+          "Deutsche, Österreicher und Schweizer beantragen den Aufenthalt über das allgemeine Verfahren; die vereinfachte Mercosur-Regelung gilt nur für Bürger der Mercosur-Staaten.",
+        ],
+      },
+      {
+        heading: "Welche Unterlagen Sie brauchen",
+        body: ["Die Anforderungen hängen von Staatsangehörigkeit und Verfahren ab. Typischerweise gehören dazu:"],
+        bullets: [
+          "Gültiger Reisepass und Geburtsurkunde, bei Familien auch die Heiratsurkunde.",
+          "Ein aktuelles polizeiliches Führungszeugnis aus Ihrem Herkunftsland.",
+          "Nachweis ausreichender Mittel: Rente, Kapitalerträge, eine Anstellung oder ein Unternehmen.",
+          "Apostillierte Dokumente, bei Bedarf ins Spanische übersetzt.",
+        ],
+      },
+      {
+        heading: "Mit Familie nach Uruguay",
+        body: [
+          "Für Familien sind Schule und Wohnort die wichtigsten Entscheidungen. In Montevideo gibt es internationale und zweisprachige Schulen, darunter die Deutsche Schule Montevideo, eine der ältesten deutschen Auslandsschulen, mit Standorten in Pocitos und Carrasco.",
+          "Wir empfehlen, die Schulwahl vor der langfristigen Wohnungswahl zu treffen und die ersten Monate zur Miete zu wohnen.",
+        ],
+      },
+      {
+        heading: "Ihr Plan B in vier Teilen",
+        body: ["Ein Umzug nach Uruguay – oder ein Plan B, den Sie später aktivieren – ruht meist auf vier Säulen:"],
+        bullets: [
+          "Aufenthaltsgenehmigung für Sie und Ihre Familie.",
+          "Bankverbindung und Diversifikation eines Teils Ihres Vermögens.",
+          "Eine feste Basis: zuerst mieten oder ein Haus kaufen.",
+          "Steuerplanung zwischen Uruguay und Ihrem bisherigen Land, bevor Vermögen bewegt wird.",
+        ],
+      },
+    ],
+    steps: {
+      heading: "Ein typischer Ablauf",
+      items: [
+        { title: "Vor der Abreise",     body: "Bestandsaufnahme, steuerliche Prüfung im Herkunftsland und apostillierte Unterlagen." },
+        { title: "Erste Wochen",        body: "Antrag auf Aufenthalt, vorläufiger Ausweis, Übergangswohnung und Krankenversicherung." },
+        { title: "Monate 2–3",          body: "Bankkonten, feste Wohnung, Schulen und gegebenenfalls Ihr Unternehmen." },
+        { title: "Erstes Jahr",         body: "Aufenthalt erteilt, steuerlicher Wohnsitz geprüft, Plan angepasst." },
+      ],
+    },
+    faqs: [
+      { q: "Können Deutsche einfach nach Uruguay auswandern?", a: "Ja. Deutsche reisen als Besucher ein und beantragen in Uruguay eine befristete oder dauerhafte Aufenthaltsgenehmigung. Vor dem Umzug sollte geprüft werden, welche steuerlichen Folgen der Wegzug in Deutschland hat." },
+      { q: "Ist die Aufenthaltsgenehmigung dasselbe wie der steuerliche Wohnsitz?", a: "Nein. Die Aufenthaltsgenehmigung ist Ihr Recht, in Uruguay zu leben; der steuerliche Wohnsitz bestimmt, wo Sie besteuert werden. Beides folgt eigenen Regeln." },
+      { q: "Muss ich eine Immobilie kaufen, um in Uruguay leben zu dürfen?", a: "Nein. Grundlage der Aufenthaltsgenehmigung ist der Nachweis ausreichender Mittel, nicht ein Immobilienkauf." },
+      { q: "Kann ich in Deutschland wohnen bleiben und Uruguay als Plan B haben?", a: "Ja. Viele Kunden beantragen den Aufenthalt, eröffnen Bankverbindungen und diversifizieren einen Teil ihres Vermögens, während sie weiter in Europa leben. Wir helfen, die jeweiligen Anforderungen einzuhalten." },
+      { q: "Gibt es eine deutsche Schule in Uruguay?", a: "Ja. Die Deutsche Schule Montevideo gehört zu den ältesten deutschen Auslandsschulen und hat Standorte in Pocitos und Carrasco." },
+    ],
+    cta: {
+      heading: "Sie denken ans Auswandern – oder an einen Plan B?",
+      body:    "Erzählen Sie uns, woher Sie kommen und was Sie brauchen. Wir planen Weg, Unterlagen und Zeitrahmen für Ihre Familie.",
+      label:   "Beratung vereinbaren",
     },
   },
 };

@@ -9,6 +9,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 import type { Locale } from "@/lib/i18n";
+import { de } from "@/data/translations-de";
 export type { Locale };
 
 export interface SiteTranslations {
@@ -1284,9 +1285,9 @@ const es: SiteTranslations = {
 };
 
 // ─── Locale dictionary ────────────────────────────────────────────────────────
-// German falls back to English until the German copy exists (DE is noindex
-// meanwhile — see INDEXED_LOCALES in lib/i18n.ts).
-const translations: Record<Locale, SiteTranslations> = { en, es, de: en };
+// German copy lives in data/translations-de.ts (pending native review; DE is
+// noindex until then — see INDEXED_LOCALES in lib/i18n.ts).
+const translations: Record<Locale, SiteTranslations> = { en, es, de };
 
 export function t(locale: Locale = "en"): SiteTranslations {
   return translations[locale];

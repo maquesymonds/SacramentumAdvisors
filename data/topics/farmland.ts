@@ -1,6 +1,6 @@
 import type { TopicCopy } from "@/lib/topics";
 
-// DRAFT — pending approval by Inés. Keeps the stage-1 approved copy
+// DRAFT — pending approval by Inés. DE: draft by Claude, pending native review. Keeps the stage-1 approved copy
 // (investAgriculture: 90%+ productive land, Forestry Law 15.939); sections added
 // from research (chacras en venta, campos en venta en uruguay, uruguay farmland
 // for sale, timberland investment, CONEAT, Instituto Nacional de Colonización).
@@ -141,6 +141,74 @@ const copy: TopicCopy = {
       heading: "¿Está pensando en tierra en Uruguay?",
       body:    "Cuéntenos qué modelo está evaluando. Le ayudamos a entender las zonas, la renta real y los riesgos antes de comprar.",
       label:   "Agendar una consulta",
+    },
+  },
+  de: {
+    metaTitle:       "Landwirtschaft in Uruguay: Agrarland, Estancias und Forst",
+    metaDescription: "Agrarland, Estancias, Chacras und Forstinvestments in Uruguay: wie ausländische Investoren Land kaufen, was zu prüfen ist und wie man es von Europa aus hält.",
+    navLabel:        "Landwirtschaft und Forst",
+    cardText:        "Agrarland, Estancias, Chacras und Forstwirtschaft – Land in Uruguay kaufen und halten.",
+    eyebrow:         "Landwirtschaft und Forstwirtschaft",
+    title:           "Agrarland, Estancias und Forstwirtschaft in Uruguay",
+    intro: [
+      "Uruguay ist ein Land mit tiefer landwirtschaftlicher Tradition. Mit über 90 % produktiv nutzbarer Fläche ist es ein verlässlicher Lebensmittellieferant für die Welt.",
+      "Für Investoren ist Land ein Sachwert mit langem Horizont: verpachtetes Agrarland, eine Rinder-Estancia, ein Forstprojekt oder eine Chacra, die Land und Lebensqualität verbindet. Wir helfen bei der Wahl des Modells, bei der Suche und beim sicheren Kauf.",
+    ],
+    image: { src: "/images/campoextendido.webp", alt: "Weites Agrarland im Landesinneren Uruguays" },
+    facts: [
+      { value: "90 %+",  label: "Der Fläche Uruguays produktiv nutzbar" },
+      { value: "15.939", label: "Forstgesetz, das den rechtlichen Rahmen für Forstinvestitionen bildet" },
+    ],
+    sections: [
+      {
+        heading: "Vier Wege, in Land zu investieren",
+        body: ["Das richtige Modell hängt vom erwarteten Ertrag ab, davon, wie stark Sie sich einbringen möchten, und davon, wie lange Sie den Wert halten können."],
+        bullets: [
+          "Verpachtetes Agrarland – das passivste Modell: Ein Betreiber bewirtschaftet die Fläche, Sie erhalten die Pacht.",
+          "Rinder-Estancias – Weideland mit langer Tradition in Uruguay, oft verbunden mit Eigennutzung.",
+          "Forstwirtschaft – Eukalyptus- und Kiefernplantagen mit einer etablierten Zellstoff- und Holzindustrie und eigenem Rechtsrahmen.",
+          "Chacras – kleinere Grundstücke nahe der Küste oder der Städte, gekauft für Lebensqualität, Tourismus oder kleine Produktion.",
+        ],
+      },
+      {
+        heading: "Was vor dem Kauf zu prüfen ist",
+        body: [
+          "Land wird nach seiner Ertragskraft bewertet. Vor einem Angebot prüfen wir die Bodenqualität (den offiziellen CONEAT-Index), Wasser, Zufahrten, bestehende Pachtverträge und Umweltauflagen, zusammen mit einer vollständigen Prüfung der Eigentumsrechte durch einen unabhängigen Escribano.",
+          "Manche Flächen unterliegen einem Vorkaufsrecht des Instituto Nacional de Colonización, und für den Besitz über Gesellschaften gelten besondere Regeln. Beides klären wir früh.",
+        ],
+      },
+      {
+        heading: "Kauf durch Ausländer",
+        body: [
+          "Ausländische Privatpersonen können in Uruguay ländliche Flächen ohne Aufenthaltsgenehmigung kaufen. Der Kauf kann per Vollmacht aus der Ferne abgeschlossen werden.",
+        ],
+      },
+      {
+        heading: "Verwaltung nach dem Kauf",
+        body: [
+          "Mit dem Kauf beginnt die Arbeit erst. Wir koordinieren Betreiber oder Pächter, gegebenenfalls das Forstmanagement und die regelmäßigen Berichte, mit denen Sie Ihre Investition von Europa aus verfolgen.",
+        ],
+      },
+    ],
+    steps: {
+      heading: "Vom Ziel zur Urkunde",
+      items: [
+        { title: "Modell und Budget",       body: "Pacht, Estancia, Forst oder Chacra – und die passende Region." },
+        { title: "Auswahl und Besichtigung", body: "Flächen von ländlichen Maklern und Eigentümern, mit technischer Prüfung." },
+        { title: "Prüfung",                 body: "Boden und Wasser, Pachtverträge, Umweltauflagen, Eigentum und Vorkaufsrechte." },
+        { title: "Kauf und Start",          body: "Urkunde, Eintragung, Steuernummer und Vertrag mit Betreiber oder Verwalter." },
+      ],
+    },
+    faqs: [
+      { q: "Dürfen Ausländer in Uruguay Agrarland kaufen?", a: "Ja. Ausländische Privatpersonen können ländliche Flächen ohne Aufenthaltsgenehmigung kaufen. Für Käufe über Gesellschaften und durch ausländische Staaten gelten besondere Regeln." },
+      { q: "Was ist der CONEAT-Index?", a: "Der offizielle Index der Bodenproduktivität in Uruguay; 100 entspricht dem Landesdurchschnitt. Er gehört zu den ersten Werten, die wir bei einer Bewertung prüfen." },
+      { q: "Was ist eine Chacra?", a: "Ein kleineres ländliches Grundstück, oft nahe der Küste oder der Städte, gekauft vor allem für Lebensqualität, Tourismus oder kleine Produktion." },
+      { q: "Ist Forstwirtschaft in Uruguay eine gute Investition?", a: "Forstwirtschaft ist eine langfristige Anlage mit etablierter Industrie und eigenem Rechtsrahmen (Gesetz 15.939). Die Rendite hängt von Wachstum, Holzpreisen und Erntezeitpunkt ab; die Liquidität ist gering." },
+    ],
+    cta: {
+      heading: "Sie denken über Land in Uruguay nach?",
+      body:    "Erzählen Sie uns, welches Modell Sie prüfen. Wir erklären Regionen, reale Erträge und Risiken, bevor Sie kaufen.",
+      label:   "Beratung vereinbaren",
     },
   },
 };

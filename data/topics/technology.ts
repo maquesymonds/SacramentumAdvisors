@@ -111,6 +111,58 @@ const copy: TopicCopy = {
       label:   "Agendar una consulta",
     },
   },
+  de: {
+    metaTitle:       "Technologie in Uruguay: Standortaufbau, Akquisitionen, Expansion",
+    metaDescription: "Uruguays exportstarkes Technologie-Ökosystem: einen Technologiestandort aufbauen, ein Softwareunternehmen übernehmen oder von Uruguay aus in die Region expandieren.",
+    navLabel:        "Technologie",
+    cardText:        "Technologiestandort aufbauen, Softwareunternehmen übernehmen oder von Uruguay aus expandieren.",
+    eyebrow:         "Technologie",
+    title:           "Uruguays exportstarkes Technologie-Ökosystem",
+    intro: [
+      "Uruguay hat unauffällig eines der exportstärksten Technologie-Ökosysteme Lateinamerikas aufgebaut.",
+      "In einem Land mit nur 3,5 Millionen Einwohnern vereint das Ökosystem rund 500 Start-ups, Hunderte etablierte Software- und Technologieunternehmen, globale Technologiezentren, international erfolgreiche Produktunternehmen und ein an der NASDAQ notiertes Unicorn.",
+    ],
+    image: { src: "/images/tech.avif", alt: "Technologiebüro in Montevideo, Uruguay" },
+    facts: [
+      { value: "#2",           label: "Softwareexporteur pro Kopf in Lateinamerika – und der größte in Südamerika" },
+      { value: "3,68 Mrd. USD", label: "Umsatz des Technologiesektors 2024, entsprechend 4,5 % des BIP" },
+      { value: "63 %",          label: "Des Umsatzes stammen aus internationalen Verkäufen" },
+      { value: "77,6 %",        label: "Der uruguayischen Technologieexporte gehen in die USA" },
+    ],
+    sections: [
+      {
+        heading: "Eine natürliche Technologieplattform",
+        body: [
+          "Uruguay ist der zweitgrößte Softwareexporteur pro Kopf in Lateinamerika – und der größte in Südamerika. Der Technologiesektor erzielte 2024 einen Umsatz von 3,68 Milliarden US-Dollar, entsprechend 4,5 % des BIP; 63 % davon stammen aus internationalen Verkäufen.",
+          "Die Vereinigten Staaten sind mit 77,6 % der Technologieexporte der wichtigste Markt. Gleichzeitig machen etablierte Verbindungen nach Großbritannien, Spanien, Chile, Kanada und in weitere Märkte Uruguay zu einer natürlichen Technologieplattform zwischen Nordamerika, Lateinamerika und Europa.",
+        ],
+      },
+      {
+        heading: "Aufbau strategischer Standorte",
+        body: [
+          "Bauen Sie einen neuen Technologiestandort auf oder erweitern Sie bestehende regionale Kapazitäten. Wir begleiten den Prozess von der Marktanalyse und dem Betriebsmodell über lokale Führung und Talentgewinnung bis zur Gründung und Umsetzung.",
+          "Uruguay verbindet institutionelle Stabilität, qualifizierte Fachkräfte, eine starke digitale Infrastruktur und ein Ökosystem, das globale Technologie- und Dienstleistungsunternehmen bereits erprobt haben.",
+        ],
+      },
+      {
+        heading: "Akquisitionen und regionale Expansion",
+        body: [
+          "Übernehmen Sie ein Softwareunternehmen, ein Produktteam oder eine spezialisierte Technologiekompetenz mit bestehenden Talenten, geistigem Eigentum und internationalen Kunden.",
+          "Uruguay kann zudem als strategische Basis für die Expansion in das spanischsprachige Lateinamerika, nach Brasilien und in globale Märkte dienen – mit etablierten Investitionsregimen und Freihandelszonen.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "Warum wählen Technologieunternehmen Uruguay?", a: "Institutionelle Stabilität, qualifizierte Fachkräfte, eine starke digitale Infrastruktur und ein von globalen Unternehmen erprobtes Ökosystem – mit Zeitzonen- und Geschäftsverbindungen nach Nordamerika, Lateinamerika und Europa." },
+      { q: "Kann ein ausländisches Unternehmen ein Softwareunternehmen in Uruguay übernehmen?", a: "Ja. Ausländische Investoren werden wie inländische behandelt. Wir helfen, passende Unternehmen zu finden, und koordinieren die Transaktion mit Sacramentum Capital." },
+      { q: "Kann ein Standort in Uruguay die ganze Region bedienen?", a: "Ja. Uruguay eignet sich als Basis für das spanischsprachige Lateinamerika, Brasilien und globale Märkte, unterstützt durch Investitionsregime und Freihandelszonen." },
+    ],
+    cta: {
+      heading: "Technologiechancen entdecken",
+      body:    "Sie planen einen Standort oder suchen eine Akquisition? Sagen Sie uns, was Sie brauchen, und wir zeigen Ihnen die Optionen in Uruguay.",
+      label:   "Beratung vereinbaren",
+    },
+  },
 };
 
 export default copy;
