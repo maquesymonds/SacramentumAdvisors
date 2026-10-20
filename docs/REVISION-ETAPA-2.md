@@ -1,70 +1,76 @@
-# Etapa 2 · Lista para revisar (sí / no)
+# Etapa 2 · Checklist de revisión
 
-Cada punto es un cambio visible o una decisión. Ver en local: `cd ~/Projects/SacramentumAdvisors && npx next dev -p 3100`.
-Responder por número: "3 sí, 7 no, 12 cambiar…".
+Cómo usarla: abrí cada link, y cuando lo revisaste cambiá `[ ]` por `[x]`.
+Al lado escribí **sí / no / cambiar: …**. Lo que sea "no" lo saco, con sus enlaces.
 
-## A. Menú y navegación
+Ver en local (si no abre): `cd ~/Projects/SacramentumAdvisors && npx next dev -p 3100`
+En cada página, el selector **EN · ES · DE** arriba a la derecha cambia el idioma.
 
-1. **Selector de idioma EN · ES · DE** (reemplaza el botón "ES"). Lleva a la misma página en el otro idioma. → cualquier página
-2. **Entrada automática por idioma del navegador** al entrar a sacramentumadvisors.com (español → /es, alemán → /de, otro → /en).
-3. **Botón fijo "Reservar consulta"** en el menú (escritorio) y dentro del menú en celular.
-4. **"Inicio" quitado del menú** (el logo lleva al inicio). ¿También quitarlo del footer?
-5. **Footer: nueva columna "Uruguay"** con las páginas nuevas (Residencia, Residencia fiscal, Pasaporte, Inmobiliario, Campos, Tecnología, Family office).
-6. **Footer: los enlaces de Servicios** ahora llevan a sus páginas (Soft Landing → Residencia, Banca de inversión → Sacramentum Capital, Asesoría estratégica → Family office).
-7. **Footer: "Términos de servicio" oculto** (no llevaba a ningún lado) y "Política de privacidad" lleva a su página.
+---
 
-## B. Direcciones (URLs)
+## 1. Tecnología (texto de la clienta)
 
-8. **Cada página con URL en su idioma:** `/es/por-que-uruguay`, `/en/why-uruguay`, `/de/warum-uruguay`, etc.
-9. **Las direcciones viejas redirigen** (`/invest`, `/services`, `/contact`, `/news/...`).
+- [ ] **Página Tecnología en inglés**: el texto exacto que aprobó la clienta → http://localhost:3100/en/technology
+- [ ] **Página Tecnología en español**: traducción mía, falta que la revise Chiara → http://localhost:3100/es/tecnologia
+- [ ] **Por qué Uruguay → bloque Tecnología**: el texto nuevo en 2 bloques reemplaza los 3 pilares viejos (bajá hasta Tecnología) → http://localhost:3100/es/por-que-uruguay
+- [ ] Efecto slide: **no está hecho**, queda para más adelante
 
-## C. Páginas existentes
+## 2. Sacramentum Capital
 
-10. **Por qué Uruguay:** cada uno de los 4 sectores tiene un enlace "Ver más" a su página. → http://localhost:3100/es/por-que-uruguay
-11. **Por qué Uruguay → Tecnología:** muestra el texto nuevo de la clienta (en lugar de los 3 pilares viejos).
-12. **Servicios:** cada tarjeta tiene "Ver más" a su página. → http://localhost:3100/es/servicios
-13. **Contacto: sección de confianza** antes del formulario (Inés y Pablo, igualdad de derechos, confidencialidad). → http://localhost:3100/es/contacto
-14. **Contacto: el formulario lleva a una página de "Gracias"** al enviarse (antes mostraba el mensaje en la misma página).
-15. **Home: los títulos de sección pasaron de H1 a H2** (invisible: solo cambia para Google).
+- [ ] **Página Sacramentum Capital**: sacada del PDF, sin cifras, clientes ni montos → http://localhost:3100/es/sacramentum-capital
+- [ ] **Bio de Pablo**: puse solo "J.P. Morgan" porque la web y el PDF no coinciden → misma página
+- [ ] **Footer**: "Banca de inversión" lleva a esta página → al final de cualquier página
 
-## D. Páginas nuevas (borradores para Inés)
+## 3. Cambios en páginas que ya existían
 
-16. Inmobiliario → http://localhost:3100/es/inmobiliario-punta-del-este-montevideo
-17. Campos y chacras → http://localhost:3100/es/campos-y-chacras-en-uruguay
-18. Tecnología → http://localhost:3100/es/tecnologia
-19. Proyectos especiales → http://localhost:3100/es/proyectos-especiales
-20. Residencia → http://localhost:3100/es/residencia-en-uruguay
-21. Residencia fiscal → http://localhost:3100/es/residencia-fiscal-en-uruguay
-22. Pasaporte uruguayo → http://localhost:3100/es/pasaporte-uruguayo
-23. Retiro (solo inglés y alemán) → http://localhost:3100/en/retire-in-uruguay
-24. Family office → http://localhost:3100/es/family-office-patrimonio
-25. Sacramentum Capital (sin cifras ni clientes) → http://localhost:3100/es/sacramentum-capital
-26. **Diseño de estas páginas:** encabezado, foto, datos clave, secciones, hoja de ruta, preguntas frecuentes, relacionadas y botón.
-27. Página de Gracias → http://localhost:3100/es/gracias
-28. Política de privacidad (borrador legal) → http://localhost:3100/es/privacidad
+- [ ] **Menú sin "Inicio"** (el logo lleva al inicio). ¿Lo saco también del footer?
+- [ ] **Botón "Reservar consulta"**: blanco sobre fondo oscuro, azul sobre fondo claro, sin mayúsculas → http://localhost:3100/es
+- [ ] **Selector EN · ES · DE**: reemplaza el botón "ES"
+- [ ] **Contacto: bloque de confianza** antes del formulario (Inés y Pablo, igualdad de derechos, confidencialidad) → http://localhost:3100/es/contacto
+- [ ] **Página de gracias** después de enviar el formulario → http://localhost:3100/es/gracias
+- [ ] **Footer**: "Términos de servicio" oculto (no llevaba a nada) y "Política de privacidad" lleva a su página
+- [ ] **Política de privacidad**: borrador mío, la tiene que revisar un abogado → http://localhost:3100/es/privacidad
 
-## E. Alemán
+## 4. Alemán
 
-29. **Toda la web en alemán** (`/de/`), oculta para Google hasta revisión nativa. → http://localhost:3100/de
+- [ ] **Web completa en alemán**: traducción mía, oculta para Google hasta que la revise un nativo → http://localhost:3100/de
 
-## F. Panel de admin
+## 5. Panel de admin
 
-30. **Nuevo grupo "Sectores y servicios"** para editar las páginas nuevas (EN/ES). → http://localhost:3100/admin
-31. **Nueva sección "Confianza"** en Página de Contacto (incluye el campo de inversión mínima).
-32. **"Página Invertir" ahora se llama "Página Por qué Uruguay"**, y Tecnología tiene 2 bloques.
-33. **El panel guarda solo lo que se cambia** (invisible para Inés; evita que textos viejos tapen los nuevos).
+Link: http://localhost:3100/admin
 
-## G. Invisible (Google e IAs)
+- [ ] **Grupo nuevo "Sectores y servicios"**: se usa para editar las páginas nuevas
+- [ ] **Contacto → sección nueva "Confianza"**: incluye el campo de inversión mínima, vacío por ahora
+- [ ] **"Página Invertir" pasa a llamarse "Página Por qué Uruguay"**; Tecnología tiene 2 bloques
 
-34. Títulos y descripciones de Google en los tres idiomas, medidos para que no se corten.
-35. `sitemap.xml`, `robots.txt`, etiquetas de idioma (hreflang) y URL oficial por página.
-36. Datos estructurados: empresa, migas de pan, preguntas frecuentes.
-37. Servicios ahora tiene su contenido visible para Google (antes llegaba vacía).
-38. Menú y footer como enlaces reales (antes eran botones que Google no seguía).
-39. Contacto ahora se puede indexar en Google (antes estaba oculta).
+## 6. Páginas nuevas de sectores (la clienta NO las pidió)
 
-## H. Documentos (no tocan la web)
+Las propuse por el research de keywords. El número es cuánta gente lo busca por mes (SE Ranking).
+Mi opinión honesta está en la última columna. Ninguna está publicada, así que sacarlas no cuesta nada.
 
-40. Research de keywords ES/EN/DE → `docs/seo/`
-41. Arquitectura → `docs/ARCHITECTURE.md`
-42. Propuesta de copy para Inés → `docs/COPY-PARA-INES.md`
+| ✓ | Página | Link | Búsquedas/mes | ¿Lo vende la clienta? | Mi recomendación |
+|---|---|---|---|---|---|
+| [ ] | Residencia | http://localhost:3100/es/residencia-en-uruguay | ES ~900 · EN ~1.000 · DE ~500 | Sí: es "Soft Landing" | **Dejar**. Es la más fácil de defender |
+| [ ] | Inmobiliario | http://localhost:3100/es/inmobiliario-punta-del-este-montevideo | ES ~800 · EN ~2.400 · DE ~1.300 | Sí: es uno de sus 4 sectores en Por qué Uruguay | **Dejar** |
+| [ ] | Campos y chacras | http://localhost:3100/es/campos-y-chacras-en-uruguay | ES ~1.400 · EN ~1.600 · DE casi nada | Sí: es uno de sus 4 sectores | **Dejar** (la propuesta incluye una guía de campos para descargar) |
+| [ ] | Family office | http://localhost:3100/es/family-office-patrimonio | poco, pero ChatGPT ya recomienda a Sacramentum acá | Más o menos: es "Asesoría estratégica" | Opcional |
+| [ ] | Proyectos especiales | http://localhost:3100/es/proyectos-especiales | nadie lo busca | Sí, pero es confidencial | **Sacar**: alcanza con el bloque que ya está en Por qué Uruguay |
+| [ ] | Residencia fiscal | http://localhost:3100/es/residencia-fiscal-en-uruguay | ES ~700 · DE ~4.000 | No: es asesoría impositiva | **Sacar**: hay datos sin verificar y es riesgoso |
+| [ ] | Pasaporte uruguayo | http://localhost:3100/es/pasaporte-uruguayo | ES ~600 · EN ~3.000 | No | **Sacar**: se puede mencionar en Residencia como pregunta frecuente |
+| [ ] | Retirarse en Uruguay (solo EN/DE) | http://localhost:3100/en/retire-in-uruguay | EN ~1.700 · DE ~800 | No | **Sacar**: se puede mencionar en Residencia |
+
+**Mi propuesta corta:** Tecnología y Capital (las pidió), más Residencia, Inmobiliario y Campos (las vende y la gente las busca). Son 5 páginas y todas se pueden defender ante la clienta. Las otras 4 las sacamos.
+
+Desde dónde se llega a estas páginas (si sacás alguna, saco también estos enlaces):
+- [ ] Footer: columna nueva "Uruguay"
+- [ ] Por qué Uruguay: enlace "Ver más" en cada sector
+- [ ] Servicios: enlace "Ver más" en cada tarjeta → http://localhost:3100/es/servicios
+- [ ] Diseño de la plantilla: título, foto, datos, secciones, pasos, preguntas frecuentes, relacionadas y botón
+
+## 7. Invisible (no hace falta revisarlo visualmente, solo para que sepas)
+
+- URLs en cada idioma (`/es/por-que-uruguay`, `/en/why-uruguay`); las direcciones viejas redirigen solas
+- La web entra en el idioma del navegador
+- Títulos y descripciones de Google medidos para que no se corten; mapa del sitio → http://localhost:3100/sitemap.xml
+- Datos estructurados para Google; títulos del inicio de H1 a H2; Servicios y Contacto ahora visibles para Google
+- Docs: research en `docs/seo/`, arquitectura en `docs/ARCHITECTURE.md`, textos para Inés en `docs/COPY-PARA-INES.md`
