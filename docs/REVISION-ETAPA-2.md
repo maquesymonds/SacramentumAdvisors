@@ -28,7 +28,7 @@ En cada página, el selector **EN · ES · DE** arriba a la derecha cambia el id
 
 **Menú**
 - [ ] 👀 "Por qué Uruguay" con desplegable al pasar el mouse: Inmobiliario · Tecnología · Campos y chacras. El clic en "Por qué Uruguay" sigue llevando a su página. En celular aparecen debajo, más chicos.
-- [ ] ⏳ Desplegable de "Servicios" (Residencia · Family office · Sacramentum Capital): espera a que se confirmen Residencia y Family office.
+- [ ] 👀 "Servicios" con desplegable: las 4 tarjetas de la página de Servicios, con sus mismos nombres (Boutique de Banca de Inversión · Soft Landing Partnerships · Market Intelligence · Asesoría Estratégica). Cada una abre Servicios en esa tarjeta.
 
 ---
 

@@ -219,7 +219,11 @@ export default function Navigation() {
       label: copy.nav.whyUruguay, id: "invest", href: path("why-uruguay"),
       children: WHY_URUGUAY_SECTORS.map(id => ({ label: topicLabel(id), href: path(id) })),
     },
-    { label: copy.nav.sectors,    id: "services",    href: path("services")    },
+    {
+      // The four service cards, same titles as on the Services page; each opens its card.
+      label: copy.nav.sectors, id: "services", href: path("services"),
+      children: copy.howWeSupport.cards.map(card => ({ label: card.title, href: `${path("services")}?card=${card.id}` })),
+    },
     { label: copy.nav.news,       id: "news",        href: path("news")        },
     { label: copy.nav.blog,       id: "blog",        href: path("blog")        },
     { label: copy.nav.contact,    id: "contact",     href: path("contact")     },

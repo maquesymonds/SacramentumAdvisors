@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion }          from "framer-motion";
 import { gsap }            from "gsap";
 import { ScrollTrigger }   from "gsap/ScrollTrigger";
@@ -461,20 +462,25 @@ function ServiceCarousel({ cards, initialCard }: { cards: { id: string; image: s
   );
 }
 
+// Follows ?card=<id>, also when the nav's Services menu changes it while
+// already on this page. Isolated in its own Suspense boundary so
+// useSearchParams does not make the whole page client-only (empty for crawlers).
+function CardParam({ onChange }: { onChange: (id: string | null) => void }) {
+  const card = useSearchParams().get("card");
+  useEffect(() => { onChange(card); }, [card, onChange]);
+  return null;
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function ServicesPageClient() {
   const { locale }  = useLocale();
   const copy        = useT();
-  // ?card=<id> preselects a carousel card. Read after mount (not with
-  // useSearchParams) so the page is still fully rendered on the server —
-  // useSearchParams made the whole page client-only and empty for crawlers.
+  // ?card=<id> preselects a carousel card (see CardParam).
   const [initialCard, setInitialCard] = useState<string | null>(null);
-  useEffect(() => {
-    setInitialCard(new URLSearchParams(window.location.search).get("card"));
-  }, []);
 
   return (
     <>
+      <Suspense fallback={null}><CardParam onChange={setInitialCard} /></Suspense>
       <Navigation />
 
       <main>
