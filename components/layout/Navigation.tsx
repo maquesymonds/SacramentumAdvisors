@@ -192,7 +192,7 @@ export default function Navigation() {
           <nav
             role="navigation"
             aria-label="Primary navigation"
-            className="hidden lg:flex items-center gap-16"
+            className="hidden lg:flex items-center gap-5 xl:gap-10 2xl:gap-14"
           >
             {navLinks.map((link) => (
               <a
@@ -200,7 +200,7 @@ export default function Navigation() {
                 href={"href" in link ? link.href : path("home")}
                 onClick={(e) => onLinkClick(e, link.id, "href" in link ? link.href : undefined)}
                 className={[
-                  "text-base font-medium tracking-[0.03em]",
+                  "text-[0.95rem] xl:text-base font-medium tracking-[0.03em] whitespace-nowrap",
                   "transition-colors duration-300 relative group",
                   isDark
                     ? "text-ink-muted hover:text-brand-dark"
@@ -217,6 +217,21 @@ export default function Navigation() {
                 />
               </a>
             ))}
+
+            {/* Fixed consultation button — always visible in the menu (proposal) */}
+            <a
+              href={path("contact")}
+              data-cta="nav-consultation"
+              onClick={(e) => onLinkClick(e, "contact", path("contact"))}
+              className="text-sm font-medium tracking-[0.04em] uppercase px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap"
+              style={{
+                backgroundColor: "var(--color-warm)",
+                color:           "var(--color-dark)",
+                border:          "1px solid var(--color-warm)",
+              }}
+            >
+              {copy.footer.cta}
+            </a>
 
             {/* Language switcher */}
             <div className="flex items-center" role="group" aria-label="Language">
@@ -305,6 +320,14 @@ export default function Navigation() {
             {link.label}
           </a>
         ))}
+        <a
+          href={path("contact")}
+          data-cta="nav-consultation-mobile"
+          onClick={(e) => onLinkClick(e, "contact", path("contact"))}
+          className="btn-primary mt-6"
+        >
+          {copy.footer.cta}
+        </a>
       </div>
     </>
   );

@@ -131,3 +131,23 @@ Aplicado con la skill `web-seo-geo` y medido sobre el HTML real que se entrega.
   Sacramentum; con el link se puede sumar a los datos estructurados.
 - Una **imagen para compartir** (Open Graph) por idioma.
 - Algunos **títulos de noticias** son largos para Google (ej. "Governance Premium: …"); los edita Inés desde el panel.
+
+---
+
+## Paso 8 · Conversión (20.10.2026) — terminado (con pendientes de la clienta)
+
+- **Botón fijo "Reservar consulta"** en el menú de todas las páginas (escritorio) y dentro del menú en celular.
+  El texto es el del footer y se edita desde el panel. Probado en 1024 y 1440 px.
+- **Sección de confianza en Contacto**, justo antes del formulario: Inés y Pablo con foto y cargo, igualdad de derechos
+  para inversores extranjeros y confidencialidad / cómo trabajamos. Editable desde el panel (Página de Contacto → Confianza).
+- **Línea de inversión mínima:** preparada; aparece sola cuando se complete el monto en el panel.
+- **Página de gracias** (`/es/gracias`, `/en/thank-you`, `/de/danke`): el formulario lleva ahí al enviarse, para medir
+  la conversión en Analytics. Fuera de Google. Probado con un envío simulado (no se mandó ningún email real).
+- **Política de privacidad** (`/es/privacidad`, `/en/privacy`, `/de/datenschutz`) en los tres idiomas — **borrador
+  para revisión legal**. Describe lo que la web hace hoy (formulario por Formspree, alojamiento en Vercel, cookie de idioma).
+- Footer: "Política de privacidad" lleva a la página; "Términos de servicio" (no llevaba a ningún lado) quedó oculto
+  hasta que exista el aviso legal.
+- Botones de contacto marcados para medir clics (`data-cta`) en el paso 9.
+
+**Pendiente de la clienta:** monto de inversión mínima · las 3 guías en PDF · casos anónimos para la sección de confianza ·
+razón social y RUT para el aviso legal · revisión legal de la política de privacidad.

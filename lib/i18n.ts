@@ -44,18 +44,22 @@ export function isLocale(value: string | undefined | null): value is Locale {
 
 export type PageId =
   | "home" | "why-uruguay" | "services" | "news" | "blog" | "contact"
+  // Functional pages (noindex, not in the sitemap)
+  | "thank-you" | "privacy"
   // Sector pages (linked from Why Uruguay)
   | "real-estate" | "farmland" | "technology" | "special-situations"
   // Service pages (linked from Services)
   | "residency" | "tax-residency" | "second-passport" | "retire" | "family-office" | "sacramentum-capital";
 
-export type TopicId = Exclude<PageId, "home" | "why-uruguay" | "services" | "news" | "blog" | "contact">;
+export type TopicId = Exclude<PageId, "home" | "why-uruguay" | "services" | "news" | "blog" | "contact" | "thank-you" | "privacy">;
 
 interface PageDef {
   route:     string;
   slugs:     Record<Locale, string | null>;
   fallback?: PageId;
   related?:  PageId[];
+  /** noindex,follow — kept out of search results and the sitemap */
+  noindex?:  boolean;
 }
 
 export const PAGES: Record<PageId, PageDef> = {
@@ -65,6 +69,8 @@ export const PAGES: Record<PageId, PageDef> = {
   "news":        { route: "news",        slugs: { en: "news",        es: "noticias",        de: "nachrichten"   } },
   "blog":        { route: "blog",        slugs: { en: "blog",        es: "blog",            de: "blog"          } },
   "contact":     { route: "contact",     slugs: { en: "contact",     es: "contacto",        de: "kontakt"       } },
+  "thank-you":   { route: "thank-you",   slugs: { en: "thank-you",   es: "gracias",         de: "danke"         }, noindex: true },
+  "privacy":     { route: "privacy",     slugs: { en: "privacy",     es: "privacidad",      de: "datenschutz"   }, noindex: true },
 
   "real-estate": {
     route: "topic/real-estate",
@@ -247,6 +253,7 @@ export function pageAlternates(id: PageId, locale: Locale, sub?: string) {
 }
 
 export function robotsFor(locale: Locale, opts?: { noindex?: boolean }) {
-  const index = INDEXED_LOCALES.includes(locale) && !opts?.noindex;
-  return { index, follow: index };
+  const indexedLocale = INDEXED_LOCALES.includes(locale);
+  // noindex pages (thank-you, privacy) still let crawlers follow their links
+  return { index: indexedLocale && !opts?.noindex, follow: indexedLocale };
 }

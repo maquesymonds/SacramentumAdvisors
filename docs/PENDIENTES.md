@@ -4,6 +4,12 @@ Lista viva. Se actualiza en cada sesión.
 
 ## De la clienta
 
+- [ ] **Monto de inversión mínima** (se carga en el panel: Página de Contacto → Confianza).
+- [ ] **Casos anónimos** para la sección de confianza (opcional, 2–3 ejemplos).
+- [ ] **Razón social y RUT** para el aviso legal / Impressum.
+- [ ] **Revisión legal de la política de privacidad** (borrador en `data/legal.ts`).
+- [ ] Unificar el texto del botón: hoy conviven "Reservar consulta" (menú/footer) y "Agendar una consulta" (portada).
+
 - [ ] **Guía descargable de Tecnología (PDF)** — va debajo del texto de Technology.
 - [ ] Guía del inversor (PDF) — Invest y antes de Contacto (propuesta).
 - [ ] Documento de Farmland (PDF) — Agricultura (propuesta).
@@ -48,6 +54,6 @@ Lista viva. Se actualiza en cada sesión.
 5. [x] Páginas y secciones nuevas (+ edición en el panel) — borradores para aprobar
 6. [x] Copy: documento para Inés + alemán (borrador, falta revisión nativa y aprobación de Inés)
 7. [x] SEO/GEO técnico
-8. [ ] Conversión (CTAs, guías, botón fijo, confianza)
+8. [x] Conversión: botón fijo, confianza, gracias, privacidad (guías e inversión mínima esperan datos)
 9. [ ] Medición (GA4, Search Console, GTM, Business Profile)
 10. [ ] QA y publicación (PR a `main`)

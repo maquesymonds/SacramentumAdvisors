@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   DEFAULT_LOCALE,
   OG_LOCALE,
+  PAGES,
   absoluteUrl,
   indexedLocales,
   isLocale,
@@ -36,7 +37,7 @@ export function pageMetadata(
     ...(meta.title ? { title: meta.absolute ? { absolute: meta.title } : meta.title } : {}),
     ...(meta.description ? { description: meta.description } : {}),
     alternates: pageAlternates(id, locale, opts?.sub),
-    robots: robotsFor(locale, { noindex: opts?.noindex }),
+    robots: robotsFor(locale, { noindex: opts?.noindex || PAGES[id].noindex }),
     openGraph: {
       type:            "website",
       siteName:        BRAND,

@@ -7,7 +7,8 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion }    from "framer-motion";
-import { useT } from "@/lib/locale-context";
+import { useLocalePath, useT } from "@/lib/locale-context";
+import { useRouter } from "next/navigation";
 import Navigation    from "@/components/layout/Navigation";
 import Footer        from "@/components/layout/Footer";
 import { lenisRef }  from "@/lib/lenis-ref";
@@ -155,6 +156,11 @@ export default function ContactPageClient() {
     name: "", email: "", phone: "", country: "", interest: "", message: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const site    = useT();
+  const trust   = site.contactTrust;
+  const leaders = site.team.leadership;
+  const router   = useRouter();
+  const { path } = useLocalePath();
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange = (
@@ -173,7 +179,9 @@ export default function ContactPageClient() {
         body:    JSON.stringify(form),
       });
       if (res.ok) {
+        // Dedicated thank-you page = a trackable conversion (GA4/GTM, step 9)
         setStatus("success");
+        router.push(path("thank-you"));
       } else {
         setStatus("idle");
         alert(copy.errorMessage);
@@ -232,6 +240,44 @@ export default function ContactPageClient() {
             </motion.p>
           </div>
         </div>
+
+        {/* ── Trust: right before asking for details (proposal) ───────── */}
+        <section
+          aria-label={trust.eyebrow}
+          className="container-site"
+          style={{ paddingTop: "clamp(2.5rem, 5vw, 4rem)" }}
+        >
+          <div className="grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-16 items-start">
+            <div>
+              <p className="text-eyebrow mb-3" style={{ color: "var(--color-warm)" }}>{trust.eyebrow}</p>
+              <h2 className="font-normal text-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
+                {trust.headline}
+              </h2>
+            </div>
+            <div className="flex flex-col gap-6">
+              <ul className="flex flex-wrap gap-6">
+                {leaders.map(p => (
+                  <li key={p.id} className="flex items-center gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.image} alt={p.name} width={56} height={56} style={{ width: 56, height: 56, borderRadius: "50%", objectFit: "cover" }} />
+                    <span className="flex flex-col">
+                      <span className="text-ink" style={{ fontSize: "0.98rem" }}>{p.name}</span>
+                      <span className="text-ink-subtle" style={{ fontSize: "0.8rem" }}>{p.role}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <ul className="flex flex-col gap-3 text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
+                {[trust.legal, trust.confidentiality, trust.minimumInvestment].filter(Boolean).map(line => (
+                  <li key={line} className="flex gap-3">
+                    <span aria-hidden="true" className="mt-[0.7em] block h-px w-4 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
 
         {/* ── Form + info 2-column ──────────────────────────────────── */}
         <div

@@ -412,10 +412,11 @@ export default function Footer() {
 
           {/* Legal links */}
           <div className="flex items-center gap-6">
-            {[copy.legal.privacy, copy.legal.terms].map((label) => (
+            {/* Terms link hidden until a legal-notice page exists (docs/ARCHITECTURE.md #6) */}
+            {[{ label: copy.legal.privacy, href: path("privacy") }].map(({ label, href }) => (
               <a
                 key={label}
-                href="#"
+                href={href}
                 style={{
                   color:         "rgba(250,250,248,0.28)",
                   fontSize:      "0.72rem",

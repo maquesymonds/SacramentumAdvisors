@@ -238,7 +238,7 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
               </h2>
               <p className="mt-4" style={{ color: "rgba(250,250,248,0.7)", lineHeight: 1.7 }}>{c.cta.body}</p>
             </div>
-            <a href={localePath("contact", locale)} className="btn-primary flex-shrink-0">{c.cta.label}</a>
+            <a href={localePath("contact", locale)} data-cta={`topic-${id}`} className="btn-primary flex-shrink-0">{c.cta.label}</a>
           </div>
         </section>
 

@@ -31,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts    = (content.blog ?? []).filter(p => p.published !== false);
 
   return [
-    ...(Object.keys(PAGES) as PageId[]).flatMap(id => entry(id)),
+    ...(Object.keys(PAGES) as PageId[]).filter(id => !PAGES[id].noindex).flatMap(id => entry(id)),
     ...articles.flatMap(a => entry("news", a.id)),
     ...posts.flatMap(p => entry("blog", p.id)),
   ];

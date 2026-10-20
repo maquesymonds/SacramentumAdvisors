@@ -72,6 +72,7 @@ export default function ClosingCTA() {
           <motion.div {...fadeUp(0.22)}>
             <a
               href={path("contact")}
+              data-cta="closing-cta"
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",

@@ -317,6 +317,14 @@ export const de: SiteTranslations = {
     cta:      "Vertrauliche Beratung vereinbaren",
   },
 
+  contactTrust: {
+    eyebrow:           "Mit wem Sie sprechen",
+    headline:          "Erfahrene Berater, vom ersten Gespräch an.",
+    legal:             "Das uruguayische Recht gewährt ausländischen Investoren dieselben Rechte wie inländischen.",
+    confidentiality:   "Jedes Gespräch ist vertraulich. Vor jedem Mandat erklären wir, wie wir arbeiten und wie wir vergütet werden.",
+    minimumInvestment: "",
+  },
+
   contactPage: {
     meta: {
       title:       "Vertrauliche Beratung | Sacramentum Advisors",

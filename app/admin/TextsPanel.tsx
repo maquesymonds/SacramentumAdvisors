@@ -400,6 +400,17 @@ const SECTIONS: SectionDef[] = [
   },
 ];
 
+SECTIONS.push({
+  id: "contactTrust", label: "Confianza (antes del formulario)",
+  fields: [
+    { key: "eyebrow",           label: "Eyebrow" },
+    { key: "headline",          label: "Titular" },
+    { key: "legal",             label: "Marco legal", multi: true },
+    { key: "confidentiality",   label: "Confidencialidad / cómo trabajamos", multi: true },
+    { key: "minimumInvestment", label: "Inversión mínima (se muestra solo si está completo)", multi: true },
+  ],
+});
+
 // ── Sector & service pages (data/topics) ──────────────────────────────────────
 // Shown flattened: paragraphs separated by a blank line, bullets one per line.
 const TOPIC_LABEL: Record<TopicId, string> = {
@@ -455,7 +466,7 @@ const PAGES: { label: string; ids: string[] }[] = [
   { label: "Home", ids: ["hero", "whySacramentum", "whyUruguay", "howWeSupport", "lifestyleAssets", "trust", "contact", "closingCta", "team", "news"] },
   { label: "Página Por qué Uruguay", ids: ["investHero", "investRealEstate", "investTechnology", "investAgriculture", "investSpecial"] },
   { label: "Sectores y servicios", ids: TOPIC_IDS.map(adminKey) },
-  { label: "Página de Contacto", ids: ["contactPage"] },
+  { label: "Página de Contacto", ids: ["contactPage", "contactTrust"] },
   { label: "Blog", ids: ["blog"] },
   { label: "Servicios", ids: ["services"] },
   { label: "Global (menú + footer)", ids: ["nav", "footer"] },

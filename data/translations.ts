@@ -149,6 +149,15 @@ export interface SiteTranslations {
     cta:        string;
   };
 
+  contactTrust: {
+    eyebrow:           string;
+    headline:          string;
+    legal:             string;
+    confidentiality:   string;
+    /** Shown only when filled in (minimum investment line, proposal). */
+    minimumInvestment: string;
+  };
+
   contactPage: {
     meta: {
       title:       string;
@@ -612,6 +621,14 @@ const en: SiteTranslations = {
     headline: "Ready to explore your move into Uruguay?",
     body:     "Whether you are evaluating residency, capital deployment, family relocation, or long-term strategic establishment, our team offers discreet senior-level guidance tailored to your priorities.",
     cta:      "Book a private consultation",
+  },
+
+  contactTrust: {
+    eyebrow:           "Who you will speak with",
+    headline:          "Senior advisors, from the first conversation.",
+    legal:             "Uruguayan law gives foreign investors the same rights as local investors.",
+    confidentiality:   "Every conversation is confidential. We explain how we work and how we are paid before any engagement.",
+    minimumInvestment: "",
   },
 
   contactPage: {
@@ -1108,6 +1125,14 @@ const es: SiteTranslations = {
     headline: "¿Listo para explorar su llegada a Uruguay?",
     body:     "Ya sea que esté evaluando la residencia, el despliegue de capital, la reubicación familiar o el establecimiento estratégico a largo plazo, nuestro equipo ofrece orientación senior discreta adaptada a sus prioridades.",
     cta:      "Reservar una consulta privada",
+  },
+
+  contactTrust: {
+    eyebrow:           "Con quién va a hablar",
+    headline:          "Asesores senior, desde la primera conversación.",
+    legal:             "La ley uruguaya otorga a los inversores extranjeros los mismos derechos que a los locales.",
+    confidentiality:   "Toda conversación es confidencial. Antes de cualquier mandato explicamos cómo trabajamos y cómo cobramos.",
+    minimumInvestment: "",
   },
 
   contactPage: {
