@@ -27,7 +27,8 @@ Todo vive en la rama `etapa-2`; la web en vivo (`main`) no se toca hasta el Pull
   (`/es/por-que-uruguay`, `/en/why-uruguay`, `/de/warum-uruguay`).
 - Al entrar a `sacramentumadvisors.com` la web elige el idioma del navegador (español → `/es`, alemán → `/de`, otro → `/en`).
 - Selector **EN · ES · DE** en el menú (escritorio y celular): lleva a la misma página en el otro idioma y recuerda la elección.
-- El menú es el mismo de siempre: Inicio · Por qué Uruguay · Servicios · Noticias · Blog · Contacto.
+- Menú: Por qué Uruguay · Servicios · Noticias · Blog · Contacto ("Inicio" quitado: el logo lleva al inicio).
+- Botón "Reservar consulta" sin mayúsculas: blanco con letra azul sobre fondos oscuros, azul con letra blanca sobre fondos claros.
 - Las direcciones viejas (`/invest`, `/services`, `/contact`, `/news/…`) redirigen solas a las nuevas.
 - Página 404 en los tres idiomas.
 

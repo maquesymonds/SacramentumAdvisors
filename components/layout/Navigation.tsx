@@ -223,11 +223,13 @@ export default function Navigation() {
               href={path("contact")}
               data-cta="nav-consultation"
               onClick={(e) => onLinkClick(e, "contact", path("contact"))}
-              className="text-sm font-medium tracking-[0.04em] uppercase px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap"
+              className="text-sm font-medium tracking-[0.02em] px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap"
               style={{
-                backgroundColor: "var(--color-warm)",
-                color:           "var(--color-dark)",
-                border:          "1px solid var(--color-warm)",
+                // Adapts to what is behind the nav: white on dark backgrounds,
+                // navy with white text on light backgrounds.
+                backgroundColor: isDark ? "var(--color-dark)" : "#FFFFFF",
+                color:           isDark ? "#FFFFFF" : "var(--color-dark)",
+                border:          `1px solid ${isDark ? "var(--color-dark)" : "#FFFFFF"}`,
               }}
             >
               {copy.footer.cta}
@@ -324,7 +326,8 @@ export default function Navigation() {
           href={path("contact")}
           data-cta="nav-consultation-mobile"
           onClick={(e) => onLinkClick(e, "contact", path("contact"))}
-          className="btn-primary mt-6"
+          className="mt-6 text-base font-medium tracking-[0.02em] px-7 py-3 rounded-full"
+          style={{ backgroundColor: "#FFFFFF", color: "var(--color-dark)" }}
         >
           {copy.footer.cta}
         </a>
