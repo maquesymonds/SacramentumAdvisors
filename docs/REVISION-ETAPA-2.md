@@ -20,7 +20,8 @@ En cada página, el selector **EN · ES · DE** arriba a la derecha cambia el id
 ## Diseño
 
 **Tecnología** → http://localhost:3100/es/tecnologia · http://localhost:3100/en/technology
-- [ ] 👀 Título del encabezado en su propio renglón (2 líneas, no 4); el texto va abajo a la derecha. Se aplica a todas las páginas nuevas.
+- [ ] 👀 Título más chico, a la izquierda, con el texto a la derecha en la misma fila (2 líneas, no 4). Se aplica a todas las páginas nuevas.
+- [ ] 👀 Sin migas de pan ("Inicio / Tecnología") arriba del título, en todas las páginas nuevas.
 - [ ] 👀 Números de abajo mucho más grandes.
 - [ ] 👀 Cifra de facturación redondeada: "US$3,7 MM" (con "miles de millones de dólares" en el texto de abajo) / "US$3.7bn" / "$3,7 Mrd.".
 - [ ] ⏳ Efecto slide que pidió la clienta.

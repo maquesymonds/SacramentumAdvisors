@@ -96,25 +96,17 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
           }}
         >
           <div className="container-site">
-            <nav aria-label="Breadcrumb" className="mb-8">
-              <ol className="flex items-center gap-2 text-ink-subtle" style={{ fontSize: "0.75rem", letterSpacing: "0.06em" }}>
-                <li><a href={localePath("home", locale)} className="hover:text-ink">{ui.home}</a></li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="text-ink-muted">{c.navLabel}</li>
-              </ol>
-            </nav>
-
             <Eyebrow>{c.eyebrow}</Eyebrow>
 
-            {/* Title on its own row, so it breaks in 2 lines instead of 4 in a half column */}
-            <div className="grid lg:grid-cols-2 gap-10">
+            {/* Title left, intro right on the same row; the title size is set so it fits in 2–3 lines */}
+            <div className="grid lg:grid-cols-[7fr_5fr] lg:items-start gap-10 lg:gap-16">
               <h1
-                className="font-normal text-ink lg:col-span-2"
-                style={{ fontSize: "clamp(2.6rem, 4.6vw, 4.2rem)", letterSpacing: "-0.03em", lineHeight: 1.08, maxWidth: "26ch", textWrap: "balance" }}
+                className="font-normal text-ink"
+                style={{ fontSize: "clamp(2.4rem, 3.6vw, 3.4rem)", letterSpacing: "-0.03em", lineHeight: 1.1, textWrap: "balance" }}
               >
                 {c.title}
               </h1>
-              <div className="text-body text-ink-muted leading-relaxed lg:col-start-2 flex flex-col gap-4">
+              <div className="text-body text-ink-muted leading-relaxed lg:pt-2 flex flex-col gap-4">
                 {c.intro.map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
