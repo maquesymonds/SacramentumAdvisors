@@ -13,7 +13,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 import { motion }    from "framer-motion";
-import { useT } from "@/lib/locale-context";
+import { useT, useLocalePath } from "@/lib/locale-context";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -27,6 +27,7 @@ const fadeUp = (delay = 0) => ({
 
 export default function ClosingCTA() {
   const copy       = useT().closingCta;
+  const { path } = useLocalePath();
 
   return (
     <section
@@ -70,7 +71,7 @@ export default function ClosingCTA() {
           {/* CTA button — glassmorphism */}
           <motion.div {...fadeUp(0.22)}>
             <a
-              href="/contact"
+              href={path("contact")}
               style={{
                 display:        "inline-flex",
                 alignItems:     "center",

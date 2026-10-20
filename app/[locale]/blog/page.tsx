@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import BlogPageClient from "./BlogPageClient";
 import { fetchAdminContent } from "@/lib/admin-content";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Blog | Sacramentum Advisors",
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  return pageMetadata("blog", params.locale, {
+  title: "Blog",
   description: "Insights and perspectives from Sacramentum Advisors on Uruguay's investment landscape, real estate, and strategic relocation.",
-};
+  });
+}
 
 export default async function BlogPage() {
   const content = await fetchAdminContent();

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { put, list, del } from "@vercel/blob";
+import { revalidateTag } from "next/cache";
+import { TRANSLATIONS_TAG } from "@/lib/translation-overrides";
 
 const BLOB_PREFIX = "admin/translations";
 const USE_BLOB    = !!process.env.BLOB_READ_WRITE_TOKEN;
@@ -49,5 +51,6 @@ export async function POST(req: NextRequest) {
     } catch {}
   }
 
+  revalidateTag(TRANSLATIONS_TAG);
   return NextResponse.json({ ok: true });
 }

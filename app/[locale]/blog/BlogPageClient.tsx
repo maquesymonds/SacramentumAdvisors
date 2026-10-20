@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
 import { useLocale, useT } from "@/lib/locale-context";
+import { DATE_LOCALE, localePath, type Locale } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -29,15 +30,15 @@ type BlogPost = {
   body: string; image?: string; slug: string; linkedinUrl?: string;
 };
 
-function formatDate(dateStr: string, locale: "en" | "es") {
-  return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-US" : "es-UY", {
+function formatDate(dateStr: string, locale: Locale) {
+  return new Date(dateStr).toLocaleDateString(DATE_LOCALE[locale], {
     year: "numeric", month: "long", day: "numeric",
   });
 }
 
-function BlogCard({ post, readLabel, locale }: { post: BlogPost; readLabel: string; locale: "en" | "es" }) {
+function BlogCard({ post, readLabel, locale }: { post: BlogPost; readLabel: string; locale: Locale }) {
   return (
-    <Link href={`/blog/${post.id}`} style={{ textDecoration: "none", display: "flex", height: "100%" }}>
+    <Link href={localePath("blog", locale, post.id)} style={{ textDecoration: "none", display: "flex", height: "100%" }}>
       <motion.article
         layout
         initial={{ opacity: 0, y: 24 }}
@@ -111,9 +112,9 @@ function BlogCard({ post, readLabel, locale }: { post: BlogPost; readLabel: stri
   );
 }
 
-function MobileBlogCard({ post, readLabel, locale }: { post: BlogPost; readLabel: string; locale: "en" | "es" }) {
+function MobileBlogCard({ post, readLabel, locale }: { post: BlogPost; readLabel: string; locale: Locale }) {
   return (
-    <Link href={`/blog/${post.id}`} style={{ textDecoration: "none", display: "block" }}>
+    <Link href={localePath("blog", locale, post.id)} style={{ textDecoration: "none", display: "block" }}>
       <motion.article
         layout
         initial={{ opacity: 0, y: 16 }}

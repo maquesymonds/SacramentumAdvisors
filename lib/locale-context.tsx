@@ -4,13 +4,12 @@
 import React, {
   createContext,
   useContext,
-  useState,
-  useEffect,
   useCallback,
   useMemo,
   type ReactNode,
 } from "react";
-import { t, type Locale, type SiteTranslations } from "@/data/translations";
+import { t, type SiteTranslations } from "@/data/translations";
+import { DEFAULT_LOCALE, localePath, localizeHref, type Locale, type PageId } from "@/lib/i18n";
 
 // ── Deep merge ────────────────────────────────────────────────────────────────
 function deepMerge<T extends object>(base: T, overrides: Record<string, any>): T {
@@ -35,50 +34,30 @@ function deepMerge<T extends object>(base: T, overrides: Record<string, any>): T
 }
 
 // ── Context ───────────────────────────────────────────────────────────────────
+// The locale comes from the URL (app/[locale]/layout.tsx) and admin overrides
+// are read on the server, so the first render — and what crawlers see — is
+// already in the right language with the edited copy.
 interface LocaleContextValue {
   locale:    Locale;
-  setLocale: (locale: Locale) => void;
-  toggleLocale: () => void;
   overrides: Record<string, Record<string, any>>;
 }
 
 const LocaleContext = createContext<LocaleContextValue>({
-  locale:       "en",
-  setLocale:    () => {},
-  toggleLocale: () => {},
-  overrides:    {},
+  locale:    DEFAULT_LOCALE,
+  overrides: {},
 });
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
-  const [overrides, setOverrides] = useState<Record<string, Record<string, any>>>({});
-
-  useEffect(() => {
-    const stored = localStorage.getItem("sa-locale") as Locale | null;
-    if (stored === "es") setLocaleState(stored);
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/translations")
-      .then(r => r.json())
-      .then(data => { if (data && typeof data === "object" && Object.keys(data).length > 0) setOverrides(data); })
-      .catch(() => {});
-  }, []);
-
-  const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
-    localStorage.setItem("sa-locale", next);
-  }, []);
-
-  const toggleLocale = useCallback(() => {
-    setLocale(locale === "en" ? "es" : "en");
-  }, [locale, setLocale]);
-
-  return (
-    <LocaleContext.Provider value={{ locale, setLocale, toggleLocale, overrides }}>
-      {children}
-    </LocaleContext.Provider>
-  );
+export function LocaleProvider({
+  locale,
+  overrides,
+  children,
+}: {
+  locale:    Locale;
+  overrides: Record<string, Record<string, any>>;
+  children:  ReactNode;
+}) {
+  const value = useMemo(() => ({ locale, overrides }), [locale, overrides]);
+  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }
 
 export function useLocale(): LocaleContextValue {
@@ -92,4 +71,12 @@ export function useT(): SiteTranslations {
     () => deepMerge(t(locale), overrides[locale] ?? {}),
     [locale, overrides]
   );
+}
+
+// ── useLocalePath: localized links for the current locale ─────────────────────
+export function useLocalePath() {
+  const { locale } = useLocale();
+  const path = useCallback((id: PageId, sub?: string) => localePath(id, locale, sub), [locale]);
+  const href = useCallback((raw: string) => localizeHref(raw, locale), [locale]);
+  return { locale, path, href };
 }

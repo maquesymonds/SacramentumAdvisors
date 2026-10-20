@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap }          from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lenisRef }      from "@/lib/lenis-ref";
-import { useT } from "@/lib/locale-context";
+import { useT, useLocalePath } from "@/lib/locale-context";
 import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 function MobileHero() {
   const copy   = useT();
   const router = useRouter();
+  const { path } = useLocalePath();
 
   useEffect(() => {
     if (window.innerWidth < 1024) {
@@ -75,7 +76,7 @@ function MobileHero() {
 
         {/* CTA */}
         <button
-          onClick={() => router.push("/contact")}
+          onClick={() => router.push(path("contact"))}
           style={{
             display:      "inline-flex",
             alignItems:   "center",
@@ -106,6 +107,7 @@ function MobileHero() {
 export default function IntroReveal() {
   const copy   = useT();
   const router = useRouter();
+  const { path } = useLocalePath();
 
   const outerRef      = useRef<HTMLDivElement>(null);
   const bgRef         = useRef<HTMLDivElement>(null);
@@ -301,7 +303,7 @@ export default function IntroReveal() {
             </p>
 
             <button
-              onClick={() => router.push("/contact")}
+              onClick={() => router.push(path("contact"))}
               className="hero-cta"
               style={{
                 display:        "inline-flex",

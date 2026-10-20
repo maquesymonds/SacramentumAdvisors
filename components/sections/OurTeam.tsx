@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLocale, useT } from "@/lib/locale-context";
+import type { Locale } from "@/lib/i18n";
 import type { AdminTeamMember } from "@/lib/admin-content";
 import { useCharReveal } from "@/hooks/useCharReveal";
 
@@ -23,14 +24,14 @@ interface PersonCardProps {
   role:      string;
   bio:       string;
   index:     number;
-  locale:    "en" | "es";
+  locale:    Locale;
   roleAbove?: boolean;
 }
 
 function PersonCard({ image, name, role, bio, index, locale, roleAbove }: PersonCardProps) {
   const [expanded, setExpanded] = useState(false);
-  const readMore = locale === "es" ? "Leer más" : "Read more";
-  const readLess = locale === "es" ? "Leer menos" : "Read less";
+  const readMore = { en: "Read more", es: "Leer más",   de: "Mehr lesen"     }[locale];
+  const readLess = { en: "Read less", es: "Leer menos", de: "Weniger lesen"  }[locale];
 
   return (
     <motion.article {...fadeUp(index * 0.09)}>

@@ -1,3 +1,4 @@
+import { DATE_LOCALE, type Locale } from "@/lib/i18n";
 /* ─────────────────────────────────────────────────────────────────────────────
    Utility helpers
    ─────────────────────────────────────────────────────────────────────────── */
@@ -18,9 +19,9 @@ export function clamp(value: number, min: number, max: number): number {
 }
 
 /** Format a date string to a locale-aware string */
-export function formatDate(dateStr: string, locale: "en" | "es" = "en"): string {
+export function formatDate(dateStr: string, locale: Locale = "en"): string {
   const date = new Date(dateStr);
-  return date.toLocaleDateString(locale === "es" ? "es-UY" : "en-US", {
+  return date.toLocaleDateString(DATE_LOCALE[locale], {
     year:  "numeric",
     month: "long",
     day:   "numeric",

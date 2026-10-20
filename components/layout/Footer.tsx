@@ -22,7 +22,8 @@
 
 import Image       from "next/image";
 import { motion }  from "framer-motion";
-import { useT } from "@/lib/locale-context";
+import { useLocalePath, useT } from "@/lib/locale-context";
+import { isHomePath } from "@/lib/i18n";
 
 import { useRouter, usePathname } from "next/navigation";
 import { scrollToSection } from "@/lib/utils";
@@ -105,7 +106,9 @@ function FooterLink({
     (e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.5)";
   };
 
-  if (onClick) {
+  // With an href the link is a real <a> (crawlable, opens in a new tab with
+  // modifier keys); onClick keeps the in-app transition for normal clicks.
+  if (onClick && !href) {
     return (
       <button
         type="button"
@@ -123,6 +126,11 @@ function FooterLink({
     <a
       href={href ?? "#"}
       style={baseStyle}
+      onClick={onClick ? (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        onClick();
+      } : undefined}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -137,25 +145,27 @@ export default function Footer() {
 
   const router   = useRouter();
   const pathname = usePathname();
+  const { path, href: localize } = useLocalePath();
+  const isHome   = isHomePath(pathname);
 
   const handleNavClick = (href: string) => {
     if (href === "/") {
-      if (pathname === "/") {
+      if (isHome) {
         scrollToSection("home");
       } else {
         sessionStorage.setItem("skipIntro", "1");
-        router.push("/");
+        router.push(path("home"));
       }
     } else if (href.startsWith("/#")) {
       const id = href.slice(2);
-      if (pathname === "/") {
+      if (isHome) {
         scrollToSection(id);
       } else {
         pendingScroll.current = id;
-        router.push("/");
+        router.push(path("home"));
       }
     } else {
-      router.push(href);
+      router.push(localize(href));
     }
   };
 
@@ -229,6 +239,7 @@ export default function Footer() {
               {copy.nav.links.map((link) => (
                 <FooterLink
                   key={link.label}
+                  href={link.href === "/" || link.href.startsWith("/#") ? path("home") : localize(link.href)}
                   onClick={() => handleNavClick(link.href)}
                 >
                   {link.label}
@@ -241,7 +252,7 @@ export default function Footer() {
           <motion.div {...fadeUp(0.14)}>
             <ColHeading>{copy.services.title}</ColHeading>
             {copy.services.links.map((link) => (
-              <FooterLink key={link.label} onClick={() => router.push(link.href)}>
+              <FooterLink key={link.label} href={localize(link.href)} onClick={() => router.push(localize(link.href))}>
                 {link.label}
               </FooterLink>
             ))}
@@ -302,7 +313,7 @@ export default function Footer() {
             <div className="mt-8">
               <button
                 type="button"
-                onClick={() => router.push("/contact")}
+                onClick={() => router.push(path("contact"))}
                 style={{
                   display:         "inline-block",
                   padding:         "0.65rem 1.4rem",

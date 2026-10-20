@@ -4,7 +4,8 @@ import Image      from "next/image";
 import Link       from "next/link";
 import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
-import { useLocale, useT } from "@/lib/locale-context";
+import { DATE_LOCALE, type Locale } from "@/lib/i18n";
+import { useLocale, useT, useLocalePath } from "@/lib/locale-context";
 import { motion }    from "framer-motion";
 import { useEffect } from "react";
 import { lenisRef }  from "@/lib/lenis-ref";
@@ -16,8 +17,8 @@ type BlogPost = {
   body: string; image?: string; slug: string; linkedinUrl?: string; video?: string;
 };
 
-function formatDate(dateStr: string, locale: "en" | "es") {
-  return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-US" : "es-UY", {
+function formatDate(dateStr: string, locale: Locale) {
+  return new Date(dateStr).toLocaleDateString(DATE_LOCALE[locale], {
     year: "numeric", month: "long", day: "numeric",
   });
 }
@@ -34,6 +35,7 @@ export default function BlogPostPageClient({ post }: { post: BlogPost }) {
   }, []);
 
   const { locale } = useLocale();
+  const { path } = useLocalePath();
 
   const body = post.body
     ? post.body.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
@@ -83,7 +85,7 @@ export default function BlogPostPageClient({ post }: { post: BlogPost }) {
               style={{ marginBottom: "2.5rem" }}
             >
               <Link
-                href="/blog"
+                href={path("blog")}
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "var(--color-warm)", fontSize: "0.7rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, textDecoration: "none" }}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import InvestPageClient from "./InvestPageClient";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  return pageMetadata("why-uruguay", params.locale, {
   title: "Invest in Uruguay",
   description:
     "Discover Uruguay's most compelling investment sectors — real estate, technology, agriculture, and special situations. Premium advisory for discerning investors.",
@@ -10,7 +12,8 @@ export const metadata: Metadata = {
     description:
       "Four asset classes. One stable sovereign. Premium advisory for strategic acquisition in Latin America's most trusted market.",
   },
-};
+  });
+}
 
 export default function InvestPage() {
   return <InvestPageClient />;

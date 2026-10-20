@@ -5,7 +5,8 @@ import Link        from "next/link";
 import Navigation  from "@/components/layout/Navigation";
 import Footer      from "@/components/layout/Footer";
 import CategoryPill from "@/components/ui/CategoryPill";
-import { useLocale, useT } from "@/lib/locale-context";
+import { DATE_LOCALE, type Locale } from "@/lib/i18n";
+import { useLocale, useT, useLocalePath } from "@/lib/locale-context";
 import { articleBodies } from "@/data/article-bodies";
 import { motion }    from "framer-motion";
 import { useEffect }  from "react";
@@ -16,8 +17,8 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
 type RawArticle = { id: string; image: string; category?: string; title: string; excerpt?: string; body?: string; slug?: string; date?: string; inlineImages?: InlineImage[]; link?: string };
 
-function formatDate(dateStr: string, locale: "en" | "es") {
-  return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-US" : "es-UY", {
+function formatDate(dateStr: string, locale: Locale) {
+  return new Date(dateStr).toLocaleDateString(DATE_LOCALE[locale], {
     year: "numeric", month: "long", day: "numeric",
   });
 }
@@ -41,6 +42,7 @@ export default function ArticlePageClient({
   }, []);
 
   const { locale } = useLocale();
+  const { path } = useLocalePath();
   const copy       = useT().news;
 
   const source  = adminArticles ?? (copy.articles as RawArticle[]);
@@ -51,7 +53,7 @@ export default function ArticlePageClient({
   // Admin-authored body: split on blank lines into paragraphs
   const body: string[] = article.body
     ? article.body.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
-    : (articleBodies[id]?.[locale] ?? articleBodies[id]?.["en"] ?? []);
+    : ((articleBodies[id] as Partial<Record<Locale, string[]>> | undefined)?.[locale] ?? articleBodies[id]?.["en"] ?? []);
 
   return (
     <>
@@ -110,7 +112,7 @@ export default function ArticlePageClient({
               style={{ marginBottom: "2.5rem" }}
             >
               <Link
-                href="/news"
+                href={path("news")}
                 style={{
                   display:       "inline-flex",
                   alignItems:    "center",

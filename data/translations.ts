@@ -8,7 +8,8 @@
      copy.nav.home  // → "Home"
    ─────────────────────────────────────────────────────────────────────────── */
 
-export type Locale = "en" | "es";
+import type { Locale } from "@/lib/i18n";
+export type { Locale };
 
 export interface SiteTranslations {
   locale: Locale;
@@ -1282,7 +1283,9 @@ const es: SiteTranslations = {
 };
 
 // ─── Locale dictionary ────────────────────────────────────────────────────────
-const translations: Record<Locale, SiteTranslations> = { en, es };
+// German falls back to English until the German copy exists (DE is noindex
+// meanwhile — see INDEXED_LOCALES in lib/i18n.ts).
+const translations: Record<Locale, SiteTranslations> = { en, es, de: en };
 
 export function t(locale: Locale = "en"): SiteTranslations {
   return translations[locale];

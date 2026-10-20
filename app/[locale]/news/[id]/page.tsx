@@ -3,20 +3,21 @@ import { notFound }      from "next/navigation";
 import ArticlePageClient from "./ArticlePageClient";
 import { t }             from "@/data/translations";
 import { fetchAdminContent } from "@/lib/admin-content";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string; locale: string } }
 ): Promise<Metadata> {
   const content  = await fetchAdminContent();
   const articles = content.articles ?? (t("en").news.articles as { id: string; title: string; excerpt: string }[]);
   const article  = articles.find(a => a.id === params.id);
   if (!article) return {};
-  return {
-    title:       `${article.title} | Sacramentum Advisors`,
+  return pageMetadata("news", params.locale, {
+    title:       article.title,
     description: article.excerpt,
-  };
+  }, { sub: article.id });
 }
 
 export default async function ArticlePage({ params }: { params: { id: string } }) {

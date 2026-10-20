@@ -6,7 +6,7 @@ import { gsap }               from "gsap";
 import { ScrollTrigger }      from "gsap/ScrollTrigger";
 import Navigation             from "@/components/layout/Navigation";
 import Footer                 from "@/components/layout/Footer";
-import { useT }               from "@/lib/locale-context";
+import { useT, useLocalePath } from "@/lib/locale-context";
 import { lenisRef }           from "@/lib/lenis-ref";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -53,6 +53,7 @@ const fadeIn = (delay = 0) => ({
 export default function InvestPageClient() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tr = useT() as any;
+  const { path } = useLocalePath();
 
   // ── Refs ───────────────────────────────────────────────────────────────────
   const chaptersSection = useRef<HTMLDivElement>(null);
@@ -280,7 +281,7 @@ export default function InvestPageClient() {
                           </div>
                         ))}
                       </div>
-                      <a href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
+                      <a href={path("contact")} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
                         onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
                         onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
                         {copy.cta}
@@ -319,7 +320,7 @@ export default function InvestPageClient() {
                           </a>
                         ))}
                       </div>
-                      <a href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
+                      <a href={path("contact")} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
                         onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
                         onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
                         {copy.cta}
@@ -340,7 +341,7 @@ export default function InvestPageClient() {
                           <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", letterSpacing: "0.04em", maxWidth: "24ch", lineHeight: 1.4 }}>{copy.statLabel}</span>
                         </div>
                       )}
-                      <a href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
+                      <a href={path("contact")} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
                         onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
                         onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
                         {copy.cta}
@@ -444,7 +445,7 @@ export default function InvestPageClient() {
                     </div>
                   </>
                 ) : (
-                  <a href="/contact" style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "0.2rem" }}>
+                  <a href={path("contact")} style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "0.2rem" }}>
                     {copy.cta}
                   </a>
                 )}

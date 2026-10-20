@@ -17,6 +17,12 @@ import {
 } from "@/components/sections";
 import OlasBackground from "@/components/OlasBackground";
 import { fetchAdminContent } from "@/lib/admin-content";
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  return pageMetadata("home", params.locale, {});
+}
 
 export const dynamic = "force-dynamic";
 

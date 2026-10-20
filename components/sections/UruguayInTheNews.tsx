@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion }          from "framer-motion";
-import { useT } from "@/lib/locale-context";
+import { useT, useLocalePath } from "@/lib/locale-context";
 import { useRouter }       from "next/navigation";
 import { useCharReveal }   from "@/hooks/useCharReveal";
 
@@ -127,6 +127,7 @@ function MobileNewsCard({ article, visitLabel }: { article: Article; visitLabel:
 export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Article[] | null }) {
   const copy       = useT().news;
   const router     = useRouter();
+  const { path } = useLocalePath();
 
   const source        = (adminArticles ?? copy.articles) as Article[];
   const preview       = source.slice(0, 3);
@@ -173,7 +174,7 @@ export default function UruguayInTheNews({ adminArticles }: { adminArticles?: Ar
 
         <div className="mt-14 flex justify-center">
           <button
-            onClick={() => router.push("/news")}
+            onClick={() => router.push(path("news"))}
             style={{
               display:       "inline-flex",
               alignItems:    "center",

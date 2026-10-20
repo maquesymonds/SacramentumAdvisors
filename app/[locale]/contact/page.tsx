@@ -6,15 +6,14 @@
 
 import type { Metadata } from "next";
 import ContactPageClient from "./ContactPageClient";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
+  return pageMetadata("contact", params.locale, {
   title:       "Private Consultation",
   description: "Connect with the Sacramentum Advisors team to discuss residency, strategic asset acquisition, lifestyle assets, or long-term positioning in Uruguay.",
-  robots: {
-    index:  false, // intake page — intentionally unlisted
-    follow: false,
-  },
-};
+  });
+}
 
 export default function ContactPage() {
   return <ContactPageClient />;

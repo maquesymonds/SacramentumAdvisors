@@ -2,6 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { isHomePath } from "@/lib/i18n";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,7 +21,7 @@ export default function SmoothScrollProvider({ children }: Props) {
   // Exception: when navigating to "/" with skipIntro set, IntroReveal will
   // handle the scroll position itself — don't fight it.
   useEffect(() => {
-    if (pathname === "/" && sessionStorage.getItem("skipIntro") === "1") return;
+    if (isHomePath(pathname) && sessionStorage.getItem("skipIntro") === "1") return;
     const lenis = lenisRef.current;
     if (lenis) lenis.scrollTo(0, { immediate: true });
     else window.scrollTo(0, 0);
