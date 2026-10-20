@@ -13,16 +13,17 @@ interface StatItemProps {
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-// Parses "97%" → { prefix:"", num:97, suffix:"%", decimals:0 }
-// Parses "3.5M" → { prefix:"", num:3.5, suffix:"M", decimals:1 }
-// Parses "#1"  → { prefix:"#", num:1, suffix:"", decimals:0 }
+// Parses "97%"      → { prefix:"", num:97, suffix:"%", decimals:0 }
+// Parses "3.5M"     → { prefix:"", num:3.5, suffix:"M", decimals:1, sep:"." }
+// Parses "3,5 Mio." → { prefix:"", num:3.5, suffix:" Mio.", decimals:1, sep:"," }
+// Parses "#1"       → { prefix:"#", num:1, suffix:"", decimals:0 }
 function parseValue(val: string) {
-  const match = val.match(/^([^\d.]*)(\d+\.?\d*)(.*)$/);
+  const match = val.match(/^([^\d]*)(\d+)(?:([.,])(\d+))?(.*)$/);
   if (!match) return null;
-  const [, prefix, numStr, suffix] = match;
-  const num      = parseFloat(numStr);
-  const decimals = numStr.includes(".") ? numStr.split(".")[1].length : 0;
-  return { prefix, num, suffix, decimals };
+  const [, prefix, intStr, sep = ".", decStr = "", suffix] = match;
+  const num      = parseFloat(`${intStr}.${decStr || 0}`);
+  const decimals = decStr.length;
+  return { prefix, num, suffix, decimals, sep };
 }
 
 export default function StatItem({
@@ -37,7 +38,7 @@ export default function StatItem({
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [displayed, setDisplayed] = useState<string>(
-    parsed ? `${parsed.prefix}0${parsed.suffix}` : value
+    parsed ? `${parsed.prefix}${(0).toFixed(parsed.decimals).replace(".", parsed.sep)}${parsed.suffix}` : value
   );
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function StatItem({
       // easeOutCubic
       const eased    = 1 - Math.pow(1 - progress, 3);
       const current  = parsed.num * eased;
-      setDisplayed(`${parsed.prefix}${current.toFixed(parsed.decimals)}${parsed.suffix}`);
+      setDisplayed(`${parsed.prefix}${current.toFixed(parsed.decimals).replace(".", parsed.sep)}${parsed.suffix}`);
       if (progress < 1) requestAnimationFrame(tick);
     };
 
@@ -66,13 +67,14 @@ export default function StatItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, ease: EASE, delay: index * 0.1 }}
-      className="flex flex-col gap-2"
+      className="flex flex-col gap-2 [container-type:inline-size]"
     >
       {/* Value */}
       <span
         className={cn(
-          "font-normal leading-none tracking-tight tabular-nums",
-          "text-[3.5rem] sm:text-[4.5rem] lg:text-[5.5rem]",
+          "font-normal leading-none tracking-tight whitespace-nowrap",
+          // Scales with the column so the longest value ("3,5 Mio.") fits on one line
+          "text-[min(5.5rem,27cqw)]",
           isDark ? "text-white" : ""
         )}
         style={!isDark ? { color: "#0F1C2F" } : undefined}

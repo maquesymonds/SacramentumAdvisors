@@ -41,8 +41,8 @@ export const de: SiteTranslations = {
     subheadline: "Ein stabiler, international vernetzter Standort für Kapitalerhalt, regionale Expansion und die langfristige Positionierung von Familien.",
     stats: [
       { value: "#1",     label: "Geringste Korruption in Lateinamerika" },
-      { value: "97 %",   label: "Erneuerbare Energie" },
-      { value: "98 %",   label: "Alphabetisierungsrate" },
+      { value: "97\u202F%",   label: "Erneuerbare Energie" },
+      { value: "98\u202F%",   label: "Alphabetisierungsrate" },
       { value: "3,5 Mio.", label: "Einwohner" },
     ],
     cards: [
