@@ -168,7 +168,7 @@ buyer's agents, family offices and relocation services: **no data** — AI-only 
 1. **Sacramentum already wins one query cleanly: family office.** That is exactly the phrase its LinkedIn uses. Proof that
    *the words a firm publishes are the words it gets recommended for* — and that the website, today, contributes nothing to ChatGPT.
 2. **Gemini reads the website, ChatGPT does not** (ChatGPT's answers never cite sacramentumadvisors.com). Likely causes: no sitemap,
-   no robots.txt, one generic `<title>` for every page, no page per service. The stage-2 technical work addresses all four.
+   no robots.txt, a generic home `<title>` (other pages have English-only titles), no page per service. The stage-2 technical work addresses all four.
 3. **Pablo Mautone is on the website's team section** (Gemini read it there) — open question from the Spanish research resolved.
 4. **ChatGPT flags the independence question every time** ("verify referral fees, commissions"). A short, explicit
    "How we are paid / independence" statement on the site answers it and turns a doubt into a differentiator.
@@ -226,7 +226,7 @@ buyer's agents, family offices and relocation services: **no data** — AI-only 
 
 | Today | Proposal | Why |
 |---|---|---|
-| `<title>` "Sacramentum Advisors" (every page) | e.g. "Sacramentum Advisors · Invest, Relocate and Get Residency in Uruguay" + one title per page | One generic title is the single biggest technical gap |
+| Home `<title>` "Sacramentum Advisors" (other pages have English-only titles) | e.g. "Sacramentum Advisors · Invest, Relocate and Get Residency in Uruguay" + one title per page | The home title says nothing about what or where; no title exists in ES/DE |
 | Meta description "Principled leadership for strategic asset acquisition… lifestyle assets" | Say what, where and for whom: residency, real estate, farmland, investment, for foreign families and investors | Nobody searches "strategic asset acquisition" |
 | Hero eyebrow "Strategic Asset Acquisition" | **Residency, real estate and investment in Uruguay** | Matches searches and how AIs describe the firm |
 | Hero "…Latin America's premier **haven**" | Drop "haven" | In English it reads as *tax haven*; both AIs frame Uruguay as lawful diversification, not secrecy |

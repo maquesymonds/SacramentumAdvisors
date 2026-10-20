@@ -13,7 +13,7 @@ Volumes are tool estimates; Search Console will replace them after launch.
 ## 1. The five findings that shape the architecture
 
 1. **The website is invisible today in Spanish and German.** It serves English only (`lang="en"`); Spanish appears client-side after
-   clicking "ES". No sitemap, no robots.txt, no hreflang, one `<title>` for all pages. ChatGPT describes Sacramentum **only from LinkedIn**.
+   clicking "ES". No sitemap, no robots.txt, no hreflang, a generic home `<title>` and English-only titles elsewhere. ChatGPT describes Sacramentum **only from LinkedIn**.
    → The `/es/ /en/ /de/` architecture is the precondition for everything else.
 
 2. **People search topics, not "investing".** "Invertir en Uruguay / invest in Uruguay / in Uruguay investieren" has almost no volume

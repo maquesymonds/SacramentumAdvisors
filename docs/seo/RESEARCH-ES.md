@@ -222,7 +222,7 @@ Lo que ve un buscador o una IA al leer sacramentumadvisors.com:
 | URLs por idioma / hreflang | No existen | No hay forma de posicionar en español ni en alemán |
 | `sitemap.xml` · `robots.txt` | 404 · 404 | |
 | Canonical | No hay | |
-| `<title>` | "Sacramentum Advisors" (igual en todas) | No dice qué hace ni dónde |
+| `<title>` del home | "Sacramentum Advisors" (las demás páginas tienen título solo en inglés) | No dice qué hace ni dónde |
 | H1 | Duplicado en el home | |
 
 **Conclusión:** la arquitectura `/es/ /en/ /de/` de la propuesta no es una mejora opcional — sin ella, todo el trabajo de keywords en
