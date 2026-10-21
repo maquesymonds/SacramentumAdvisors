@@ -219,7 +219,7 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
         <section style={{ backgroundColor: BG.mint, paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
           <div className="container-site grid md:grid-cols-[4fr_8fr] gap-10 lg:gap-16 items-start">
             <div className="relative w-full max-w-sm overflow-hidden" style={{ aspectRatio: "1 / 1", borderRadius: 16 }}>
-              <Image src="/images/pablo.png" alt={`${c.pablo.name}, ${c.pablo.role}`} fill sizes="(min-width: 768px) 384px, 90vw" className="object-cover" />
+              <Image src="/images/pablo-mautone.jpg" alt={`${c.pablo.name}, ${c.pablo.role}`} fill sizes="(min-width: 768px) 384px, 90vw" className="object-cover" />
             </div>
             <div>
               <Eyebrow>{c.pablo.eyebrow}</Eyebrow>

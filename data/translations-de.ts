@@ -184,7 +184,7 @@ export const de: SiteTranslations = {
       },
       {
         id:    "pablo",
-        image: "/images/pablo.png",
+        image: "/images/pablo-mautone-portrait.jpg",
         name:  "Pablo Mautone",
         role:  "Director",
         bio:   "Pablo Mautone ist Gründer und Director von Sacramentum Capital, einer Investmentbank mit Sitz in Uruguay, die für strategische Führung, Verlässlichkeit und Professionalität bekannt ist. Er verfügt über eine solide internationale Laufbahn als Vice President im Investment Banking bei J.P. Morgan und Lehman Brothers mit Schwerpunkt auf Energie, Infrastruktur und Agribusiness.\n\nZu seiner Laufbahn gehören außerdem eine prägende Zeit bei Bozano Simonsen in Rio de Janeiro und Erfahrung bei VR Hedge Fund. Mit fundierter Fachkenntnis, professioneller Sorgfalt und einem diskreten Führungsstil leitet Pablo Sacramentum Capital bei wirkungsvollen Finanzlösungen und streng vertraulicher strategischer Beratung, die echten und nachhaltigen Wert für die Kunden schafft.",
