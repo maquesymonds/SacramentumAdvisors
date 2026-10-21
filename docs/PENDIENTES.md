@@ -60,9 +60,9 @@ Lista viva. Se actualiza en cada sesión.
 
 ## Sacramentum Capital (21.10.2026)
 
-- La página ahora usa el contenido completo del PDF: cifras, clientes, gráfico de trayectoria y transacciones. **El PDF dice "Confidential"**: confirmar con la clienta que todo se puede publicar, en especial la operación de 2026 con la empresa tecnológica ("en etapa de cierre").
+- La página usa una selección del PDF (cifras, gráfico, 6 transacciones destacadas, qué hace, cómo trabaja, Pablo), con la tipografía y el estilo de la web y fondos verdes. **El PDF dice "Confidential"**: confirmar con la clienta que se puede publicar. La operación de 2026 con la empresa tecnológica ("en etapa de cierre") queda afuera hasta que cierre.
 - Bio de Pablo: se usa la del PDF (JPMorgan, de Asociado a Director Ejecutivo); la web anterior decía "VP en J.P. Morgan y Lehman Brothers". Confirmar.
-- El gráfico muestra las 16 transacciones con nombre y monto (suman USD 1.605B); el PDF tiene unas 10 burbujas más chicas sin datos.
+- El gráfico muestra las 15 transacciones cerradas con nombre y monto; el PDF tiene unas 10 burbujas más chicas sin datos.
 - Foto de Pablo: se usa la del equipo (400 × 400, fondo blanco). Conviene una foto mejor, más grande.
 - La página no se edita desde el admin (contenido en data/capital.ts).
 
