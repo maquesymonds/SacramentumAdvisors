@@ -64,14 +64,22 @@
 
 .card > * { position: relative; z-index: 1; }
 
-.number {
-  display: block;
-  font-size: clamp(2.6rem, 2rem + 2.4vw, 4.4rem);
-  line-height: 1;
+/* Heading above the pile (Walde: "Was du von deinem Makler … erwarten kannst") */
+.heading {
+  max-width: 22ch;
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  color: #FAFAF8;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.6rem);
   font-weight: 400;
   letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* Number in front of the card title, on the same line */
+.number {
   color: var(--color-warm);
-  margin-bottom: 0.9rem;
+  margin-right: 0.35em;
   font-variant-numeric: tabular-nums;
 }
 

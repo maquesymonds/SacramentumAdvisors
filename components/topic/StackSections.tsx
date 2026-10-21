@@ -21,18 +21,21 @@ function Body({ sec }: { sec: TopicSection }) {
   );
 }
 
-export default function StackSections({ sections }: { sections: TopicSection[] }) {
+export default function StackSections({ heading, sections }: { heading?: string; sections: TopicSection[] }) {
   return (
     <section className={s.section} data-nav-dark>
       <div className="container-site">
+        {heading && <h2 className={s.heading}>{heading}</h2>}
         <ol className={s.stack} data-stack>
           {sections.map((sec, i) => (
             <li key={i} style={{ "--i": i + 1 } as React.CSSProperties}>
               <article className={`${s.card} ${sec.image ? "" : s.noImage}`}>
                 {/* Without a photo: number and heading left, text right */}
                 <div>
-                  <span className={s.number} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                  <h2 className={s.title}>{sec.heading}</h2>
+                  <h3 className={s.title}>
+                    <span className={s.number} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    {sec.heading}
+                  </h3>
                   {sec.image && <Body sec={sec} />}
                 </div>
                 {!sec.image && <Body sec={sec} />}

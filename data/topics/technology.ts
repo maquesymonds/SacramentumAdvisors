@@ -24,6 +24,7 @@ const copy: TopicCopy = {
       { value: "63%",        label: "Of the sector's revenue from international sales" },
       { value: "77.6%",      label: "Of Uruguay's technology exports go to the United States" },
     ],
+    sectionsHeading: "What Uruguay offers technology companies",
     sections: [
       {
         heading: "A natural technology platform",
@@ -80,6 +81,7 @@ const copy: TopicCopy = {
       { value: "63%",         label: "De la facturación del sector proviene de ventas internacionales" },
       { value: "77,6%",       label: "De las exportaciones tecnológicas de Uruguay van a Estados Unidos" },
     ],
+    sectionsHeading: "Qué ofrece Uruguay a las empresas de tecnología",
     sections: [
       {
         heading: "Una plataforma tecnológica natural",
@@ -135,6 +137,7 @@ const copy: TopicCopy = {
       { value: "63 %",          label: "Des Umsatzes stammen aus internationalen Verkäufen" },
       { value: "77,6 %",        label: "Der uruguayischen Technologieexporte gehen in die USA" },
     ],
+    sectionsHeading: "Was Uruguay Technologieunternehmen bietet",
     sections: [
       {
         heading: "Eine natürliche Technologieplattform",

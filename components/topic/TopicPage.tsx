@@ -140,7 +140,7 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
         )}
 
         {/* ── Sections: stacked cards (Web System S7) ─────────────────────── */}
-        <StackSections sections={c.sections} />
+        <StackSections heading={c.sectionsHeading} sections={c.sections} />
 
         {/* ── Steps ────────────────────────────────────────────────────────── */}
         {c.steps && (

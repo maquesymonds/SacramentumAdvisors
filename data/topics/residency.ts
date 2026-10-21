@@ -20,6 +20,7 @@ const copy: TopicCopy = {
       "We coordinate the whole move — migration, documents, banking, housing and schools — with one point of contact, so you do not have to manage five advisors in a language you may not speak.",
     ],
     image: { src: "/placeholders/hero-coast.avif", alt: "Uruguayan coastline at sunset" },
+    sectionsHeading: "Moving to Uruguay: what you need to know",
     sections: [
       {
         heading: "Three things that are often confused",
@@ -92,6 +93,7 @@ const copy: TopicCopy = {
       "Coordinamos toda la llegada (migración, documentos, banco, vivienda y colegios) con un solo interlocutor, para que no tenga que manejar cinco asesores por separado.",
     ],
     image: { src: "/placeholders/hero-coast.avif", alt: "Costa uruguaya al atardecer" },
+    sectionsHeading: "Mudarse a Uruguay: lo que tiene que saber",
     sections: [
       {
         heading: "Tres cosas que suelen confundirse",
@@ -163,6 +165,7 @@ const copy: TopicCopy = {
       "Wir koordinieren den gesamten Umzug – Einwanderungsbehörde, Unterlagen, Bank, Wohnung und Schulen – mit einem einzigen Ansprechpartner, damit Sie nicht fünf Berater in einer fremden Sprache steuern müssen.",
     ],
     image: { src: "/placeholders/hero-coast.avif", alt: "Küste von Uruguay bei Sonnenuntergang" },
+    sectionsHeading: "Auswandern nach Uruguay: was Sie wissen müssen",
     sections: [
       {
         heading: "Drei Dinge, die oft verwechselt werden",

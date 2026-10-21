@@ -22,6 +22,7 @@ const copy: TopicCopy = {
       { value: "0%",  label: "Restrictions on foreign ownership of residential property" },
       { value: "USD", label: "Currency in which property is priced and transacted" },
     ],
+    sectionsHeading: "Buying property in Uruguay, step by step",
     sections: [
       {
         heading: "Where to buy: the four markets our clients ask about",
@@ -95,6 +96,7 @@ const copy: TopicCopy = {
       { value: "0%",  label: "Restricciones a la propiedad extranjera de inmuebles residenciales" },
       { value: "USD", label: "Moneda en que se cotizan y operan las propiedades" },
     ],
+    sectionsHeading: "Comprar una propiedad en Uruguay, paso a paso",
     sections: [
       {
         heading: "Dónde comprar: los cuatro mercados por los que más nos consultan",
@@ -167,6 +169,7 @@ const copy: TopicCopy = {
       { value: "0 %", label: "Beschränkungen für ausländische Eigentümer von Wohnimmobilien" },
       { value: "USD", label: "Währung, in der Immobilien angeboten und gehandelt werden" },
     ],
+    sectionsHeading: "Eine Immobilie in Uruguay kaufen, Schritt für Schritt",
     sections: [
       {
         heading: "Wo kaufen: die vier Märkte, nach denen man uns fragt",

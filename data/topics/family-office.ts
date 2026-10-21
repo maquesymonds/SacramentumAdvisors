@@ -19,6 +19,7 @@ const copy: TopicCopy = {
       "We act as your local partner: we identify opportunities, provide the market intelligence behind each decision, and coordinate the legal, tax and operational specialists — so the family office deals with one counterpart in Uruguay.",
     ],
     image: { src: "/images/hands.webp", alt: "Advisors in a meeting" },
+    sectionsHeading: "How we support family offices in Uruguay",
     sections: [
       {
         heading: "Why Uruguay for a family office",
@@ -80,6 +81,7 @@ const copy: TopicCopy = {
       "Actuamos como su socio local: identificamos oportunidades, aportamos la inteligencia de mercado detrás de cada decisión y coordinamos a los especialistas legales, fiscales y operativos, para que el family office tenga un solo interlocutor en Uruguay.",
     ],
     image: { src: "/images/hands.webp", alt: "Asesores en una reunión" },
+    sectionsHeading: "Cómo acompañamos a un family office en Uruguay",
     sections: [
       {
         heading: "Por qué Uruguay para un family office",
@@ -140,6 +142,7 @@ const copy: TopicCopy = {
       "Wir sind Ihr Partner vor Ort: Wir identifizieren Chancen, liefern die Marktanalyse hinter jeder Entscheidung und koordinieren die rechtlichen, steuerlichen und operativen Fachleute – so hat das Family Office in Uruguay einen einzigen Ansprechpartner.",
     ],
     image: { src: "/images/hands.webp", alt: "Berater in einer Besprechung" },
+    sectionsHeading: "Wie wir Family Offices in Uruguay begleiten",
     sections: [
       {
         heading: "Warum Uruguay für ein Family Office",

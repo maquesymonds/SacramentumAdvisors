@@ -40,6 +40,8 @@ export interface TopicContent {
   intro:           string[];
   image:           { src: string; alt: string };
   facts?:          TopicFact[];
+  /** Heading above the stacked section cards */
+  sectionsHeading?: string;
   sections:        TopicSection[];
   steps?:          { heading: string; items: { title: string; body: string }[] };
   faqs:            { q: string; a: string }[];

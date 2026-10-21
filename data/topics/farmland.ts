@@ -22,6 +22,7 @@ const copy: TopicCopy = {
       { value: "90%+",   label: "Of Uruguay's land suitable for productive use" },
       { value: "15.939", label: "Forestry Law providing the legal framework for forestry investment" },
     ],
+    sectionsHeading: "Investing in land in Uruguay",
     sections: [
       {
         heading: "Four ways to invest in land",
@@ -91,6 +92,7 @@ const copy: TopicCopy = {
       { value: "90%+",   label: "De la tierra de Uruguay es apta para uso productivo" },
       { value: "15.939", label: "Ley Forestal que da el marco jurídico a la inversión forestal" },
     ],
+    sectionsHeading: "Invertir en campos en Uruguay",
     sections: [
       {
         heading: "Cuatro formas de invertir en tierra",
@@ -159,6 +161,7 @@ const copy: TopicCopy = {
       { value: "90 %+",  label: "Der Fläche Uruguays produktiv nutzbar" },
       { value: "15.939", label: "Forstgesetz, das den rechtlichen Rahmen für Forstinvestitionen bildet" },
     ],
+    sectionsHeading: "In Land in Uruguay investieren",
     sections: [
       {
         heading: "Vier Wege, in Land zu investieren",
