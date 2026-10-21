@@ -10,6 +10,7 @@ import { LocaleProvider }      from "@/lib/locale-context";
 import SmoothScrollProvider   from "@/components/layout/SmoothScrollProvider";
 import { TransitionProvider } from "@/lib/transition-context";
 import TransitionOverlay      from "@/components/layout/TransitionOverlay";
+import ReviewPanel            from "@/components/review/ReviewPanel";
 import Loader                 from "@/components/layout/Loader";
 import { notFound }           from "next/navigation";
 import { getTranslationOverrides } from "@/lib/translation-overrides";
@@ -111,6 +112,7 @@ export default async function RootLayout({
               <Loader />
               <TransitionOverlay />
               {children}
+              <ReviewPanel />
             </LocaleProvider>
             <script
               type="application/ld+json"
