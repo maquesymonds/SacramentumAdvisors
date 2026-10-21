@@ -241,8 +241,11 @@ export default function Navigation() {
     },
     {
       // The four service cards, same titles as on the Services page; each opens its card.
+      // Investment banking is Sacramentum Capital: named so and linked to its own page.
       label: copy.nav.sectors, id: "services", href: path("services"),
-      children: copy.howWeSupport.cards.map(card => ({ label: card.title, href: `${path("services")}?card=${card.id}` })),
+      children: copy.howWeSupport.cards.map(card => card.id === "investment-banking"
+        ? { label: "Sacramentum Capital", href: path("sacramentum-capital") }
+        : { label: card.title, href: `${path("services")}?card=${card.id}` }),
     },
     { label: copy.nav.news,       id: "news",        href: path("news")        },
     { label: copy.nav.blog,       id: "blog",        href: path("blog")        },

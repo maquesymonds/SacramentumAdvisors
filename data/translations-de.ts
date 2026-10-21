@@ -399,7 +399,7 @@ export const de: SiteTranslations = {
         { label: "Strategische Beratung",            href: "page:family-office" },
         { label: "Marktanalyse",                     href: "/services?card=market-intelligence" },
         { label: "Auswandern und Niederlassung",     href: "page:residency" },
-        { label: "Investment-Banking-Boutique",      href: "page:sacramentum-capital" },
+        { label: "Sacramentum Capital",              href: "page:sacramentum-capital" },
       ],
     },
     contact: {

@@ -18,6 +18,7 @@ const SERVICE_PAGE: Record<string, PageId> = {
   "market-intelligence": "family-office",
 };
 const MORE_LABEL = { en: "Learn more", es: "Ver más", de: "Mehr erfahren" } as const;
+const CAPITAL_LABEL = { en: "Discover Sacramentum Capital", es: "Conocer Sacramentum Capital", de: "Sacramentum Capital entdecken" } as const;
 
 function ServiceLink({ id }: { id: string }) {
   const { path, locale } = useLocalePath();
@@ -28,7 +29,7 @@ function ServiceLink({ id }: { id: string }) {
       href={path(page)}
       style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", marginTop: "1rem", color: "var(--color-warm)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500 }}
     >
-      {MORE_LABEL[locale]} <span aria-hidden="true">→</span>
+      {page === "sacramentum-capital" ? CAPITAL_LABEL[locale] : MORE_LABEL[locale]} <span aria-hidden="true">→</span>
     </a>
   );
 }

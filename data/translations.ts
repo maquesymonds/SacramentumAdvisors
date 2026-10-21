@@ -705,7 +705,7 @@ const en: SiteTranslations = {
         { label: "Strategic Advisory",          href: "page:family-office" },
         { label: "Market Intelligence",          href: "/services?card=market-intelligence" },
         { label: "Soft Landing Partnerships",    href: "page:residency" },
-        { label: "Boutique Investment Banking",  href: "page:sacramentum-capital" },
+        { label: "Sacramentum Capital",          href: "page:sacramentum-capital" },
       ],
     },
     contact: {
@@ -1209,7 +1209,7 @@ const es: SiteTranslations = {
         { label: "Asesoría Estratégica",           href: "page:family-office" },
         { label: "Inteligencia de Mercado",         href: "/services?card=market-intelligence" },
         { label: "Asociaciones de Soft Landing",    href: "page:residency" },
-        { label: "Banca de Inversión Boutique",     href: "page:sacramentum-capital" },
+        { label: "Sacramentum Capital",             href: "page:sacramentum-capital" },
       ],
     },
     contact: {
