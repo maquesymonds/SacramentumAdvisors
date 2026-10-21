@@ -27,6 +27,7 @@ const copy: TopicCopy = {
     sections: [
       {
         heading: "A natural technology platform",
+        image:   { src: "/images/edificios.webp", alt: "Waterfront towers in Uruguay" },
         body: [
           "Uruguay is Latin America's second-largest software exporter per capita — and the largest in South America. The technology sector generated US$3.68 billion in revenue in 2024, equivalent to 4.5% of GDP, with 63% of its revenue coming from international sales.",
           "The United States remains its strongest market, accounting for 77.6% of technology exports from Uruguay. At the same time, established links with the United Kingdom, Spain, Chile, Canada, and other international markets position Uruguay as a natural technology platform connecting North America, Latin America, and Europe.",
@@ -34,6 +35,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Strategic operation buildout",
+        image:   { src: "/images/firmando.avif", alt: "Signing documents at a meeting table" },
         body: [
           "Establish a new technology operation or expand an existing regional capability. We support the process from market assessment and operating-model design through local leadership, talent acquisition, establishment, and execution.",
           "Uruguay combines institutional stability, sophisticated talent, strong digital infrastructure, and an ecosystem already tested by global technology and services companies.",
@@ -41,6 +43,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Acquisitions & regional expansion",
+        image:   { src: "/images/hands.webp", alt: "Handshake closing an agreement" },
         body: [
           "Acquire a software company, product team, or specialized technology capability with existing talent, intellectual property, and international clients.",
           "Uruguay can also serve as a strategic base for expansion across Spanish-speaking Latin America, Brazil, and global markets, supported by established investment frameworks and free-zone platforms.",
@@ -80,6 +83,7 @@ const copy: TopicCopy = {
     sections: [
       {
         heading: "Una plataforma tecnológica natural",
+        image:   { src: "/images/edificios.webp", alt: "Torres frente al mar en Uruguay" },
         body: [
           "Uruguay es el segundo exportador de software per cápita de América Latina, y el primero de América del Sur. El sector tecnológico facturó US$ 3.680 millones en 2024, equivalentes al 4,5% del PIB, y el 63% de esa facturación proviene de ventas internacionales.",
           "Estados Unidos sigue siendo su principal mercado, con el 77,6% de las exportaciones tecnológicas de Uruguay. Al mismo tiempo, los vínculos consolidados con el Reino Unido, España, Chile, Canadá y otros mercados posicionan a Uruguay como una plataforma tecnológica natural que conecta América del Norte, América Latina y Europa.",
@@ -87,6 +91,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Instalación de operaciones estratégicas",
+        image:   { src: "/images/firmando.avif", alt: "Firma de documentos en una reunión" },
         body: [
           "Instale una nueva operación tecnológica o amplíe una capacidad regional existente. Acompañamos el proceso desde la evaluación del mercado y el diseño del modelo operativo hasta el liderazgo local, la incorporación de talento, la instalación y la ejecución.",
           "Uruguay combina estabilidad institucional, talento calificado, una infraestructura digital sólida y un ecosistema ya probado por empresas globales de tecnología y servicios.",
@@ -94,6 +99,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Adquisiciones y expansión regional",
+        image:   { src: "/images/hands.webp", alt: "Apretón de manos al cerrar un acuerdo" },
         body: [
           "Adquiera una empresa de software, un equipo de producto o una capacidad tecnológica especializada, con talento, propiedad intelectual y clientes internacionales ya existentes.",
           "Uruguay también puede funcionar como base estratégica para expandirse a la América Latina hispanohablante, a Brasil y a mercados globales, con marcos de inversión consolidados y plataformas de zona franca.",
@@ -132,6 +138,7 @@ const copy: TopicCopy = {
     sections: [
       {
         heading: "Eine natürliche Technologieplattform",
+        image:   { src: "/images/edificios.webp", alt: "Hochhäuser an der Küste Uruguays" },
         body: [
           "Uruguay ist der zweitgrößte Softwareexporteur pro Kopf in Lateinamerika – und der größte in Südamerika. Der Technologiesektor erzielte 2024 einen Umsatz von 3,68 Milliarden US-Dollar, entsprechend 4,5 % des BIP; 63 % davon stammen aus internationalen Verkäufen.",
           "Die Vereinigten Staaten sind mit 77,6 % der Technologieexporte der wichtigste Markt. Gleichzeitig machen etablierte Verbindungen nach Großbritannien, Spanien, Chile, Kanada und in weitere Märkte Uruguay zu einer natürlichen Technologieplattform zwischen Nordamerika, Lateinamerika und Europa.",
@@ -139,6 +146,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Aufbau strategischer Standorte",
+        image:   { src: "/images/firmando.avif", alt: "Unterzeichnung von Dokumenten bei einem Termin" },
         body: [
           "Bauen Sie einen neuen Technologiestandort auf oder erweitern Sie bestehende regionale Kapazitäten. Wir begleiten den Prozess von der Marktanalyse und dem Betriebsmodell über lokale Führung und Talentgewinnung bis zur Gründung und Umsetzung.",
           "Uruguay verbindet institutionelle Stabilität, qualifizierte Fachkräfte, eine starke digitale Infrastruktur und ein Ökosystem, das globale Technologie- und Dienstleistungsunternehmen bereits erprobt haben.",
@@ -146,6 +154,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Akquisitionen und regionale Expansion",
+        image:   { src: "/images/hands.webp", alt: "Handschlag zum Abschluss einer Vereinbarung" },
         body: [
           "Übernehmen Sie ein Softwareunternehmen, ein Produktteam oder eine spezialisierte Technologiekompetenz mit bestehenden Talenten, geistigem Eigentum und internationalen Kunden.",
           "Uruguay kann zudem als strategische Basis für die Expansion in das spanischsprachige Lateinamerika, nach Brasilien und in globale Märkte dienen – mit etablierten Investitionsregimen und Freihandelszonen.",

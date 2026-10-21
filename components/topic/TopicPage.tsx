@@ -6,6 +6,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 import CountUp    from "@/components/ui/CountUp";
+import StackSections from "./StackSections";
 import ItemReveal from "@/components/ui/ItemReveal";
 import FaqHover   from "./FaqHover";
 import s          from "./topic.module.css";
@@ -138,31 +139,8 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
           </section>
         )}
 
-        {/* ── Sections ─────────────────────────────────────────────────────── */}
-        <div style={{ backgroundColor: "var(--color-surface)", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
-          <div className="container-site flex flex-col" style={{ gap: "clamp(3.5rem, 7vw, 6rem)" }}>
-            {c.sections.map((s, i) => (
-              <section key={i} className="grid lg:grid-cols-[5fr_7fr] gap-6 lg:gap-16">
-                <h2 className="font-normal text-ink" style={{ fontSize: "clamp(1.6rem, 2.6vw, 2.2rem)", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
-                  {s.heading}
-                </h2>
-                <div className="text-body text-ink-muted leading-relaxed flex flex-col gap-4">
-                  {s.body.map((p, j) => <p key={j}>{p}</p>)}
-                  {s.bullets && (
-                    <ul className="flex flex-col gap-3 mt-2">
-                      {s.bullets.map((b, j) => (
-                        <li key={j} className="flex gap-3">
-                          <span aria-hidden="true" className="mt-[0.7em] block h-px w-4 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </section>
-            ))}
-          </div>
-        </div>
+        {/* ── Sections: stacked cards (Web System S7) ─────────────────────── */}
+        <StackSections sections={c.sections} />
 
         {/* ── Steps ────────────────────────────────────────────────────────── */}
         {c.steps && (

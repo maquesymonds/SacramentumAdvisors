@@ -20,6 +20,8 @@ export interface TopicSection {
   heading:  string;
   body:     string[];
   bullets?: string[];
+  /** Photo on the section's card (stacked-cards layout). Code only, not admin-editable. */
+  image?:   { src: string; alt: string };
 }
 
 export interface TopicContent {
@@ -141,6 +143,7 @@ export function applyTopicEdits(c: TopicContent, o: FlatTopic): TopicContent {
         heading: str(e?.heading, sec.heading),
         body:    e?.body?.trim() ? paras(e.body) : sec.body,
         bullets: e?.bullets?.trim() ? lines(e.bullets) : sec.bullets,
+        image:   sec.image,
       };
     }),
     steps: c.steps && {
