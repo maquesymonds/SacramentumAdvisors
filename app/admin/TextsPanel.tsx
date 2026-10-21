@@ -455,13 +455,15 @@ function topicSection(id: TopicId): SectionDef {
   };
 }
 
-SECTIONS.push(...TOPIC_IDS.map(topicSection));
+// Sacramentum Capital has its own page (data/capital.ts), not the topic template.
+const ADMIN_TOPICS = TOPIC_IDS.filter(id => id !== "sacramentum-capital");
+SECTIONS.push(...ADMIN_TOPICS.map(topicSection));
 
 // ── Sidebar grouping: sections grouped by the page they belong to ─────────────
 const PAGES: { label: string; ids: string[] }[] = [
   { label: "Home", ids: ["hero", "whySacramentum", "whyUruguay", "howWeSupport", "lifestyleAssets", "trust", "contact", "closingCta", "team", "news"] },
   { label: "Página Por qué Uruguay", ids: ["investHero", "investRealEstate", "investTechnology", "investAgriculture", "investSpecial"] },
-  { label: "Sectores y servicios", ids: TOPIC_IDS.map(adminKey) },
+  { label: "Sectores y servicios", ids: ADMIN_TOPICS.map(adminKey) },
   { label: "Página de Contacto", ids: ["contactPage", "contactTrust"] },
   { label: "Blog", ids: ["blog"] },
   { label: "Servicios", ids: ["services"] },

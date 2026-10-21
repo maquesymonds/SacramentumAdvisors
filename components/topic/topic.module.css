@@ -1,0 +1,332 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Topic page — FAQ and related cards
+   FAQ ported from Katzer (components/blocks/faq.css): centred title, one
+   column of flat cards (number · question · round button). It stays a
+   <details>: the answer is in the HTML even when closed (crawlable, citable),
+   and the open/close motion is CSS only (::details-content +
+   interpolate-size). Browsers without them open without a transition.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.faq {
+  --faq-column: 56rem;
+  --faq-offset: 2.5rem;
+  --faq-radius: 1.25rem;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.sectionTitle {
+  max-width: 20ch;
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 1.2rem + 2.6vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+}
+
+.list {
+  width: 100%;
+  max-width: var(--faq-column);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  interpolate-size: allow-keywords;
+}
+
+/* Closed sits slightly into the surface; open lifts out of it. */
+.item {
+  border-radius: var(--faq-radius);
+  border: 1px solid transparent;
+  background: rgb(17 31 48 / 0.05);
+  transition:
+    background-color 320ms var(--ease),
+    border-color 320ms var(--ease),
+    box-shadow 320ms var(--ease);
+}
+
+.item:hover {
+  background: rgb(17 31 48 / 0.08);
+}
+
+.item[open] {
+  background: #ffffff;
+  border-color: rgb(17 31 48 / 0.1);
+  box-shadow: 0 18px 40px -24px rgb(17 31 48 / 0.35);
+}
+
+.question {
+  display: grid;
+  grid-template-columns: var(--faq-offset) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(1rem, 1.6vw, 1.375rem) clamp(1rem, 2vw, 1.75rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.question::-webkit-details-marker {
+  display: none;
+}
+
+.question:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: -2px;
+  border-radius: var(--faq-radius);
+}
+
+.number {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-warm);
+  letter-spacing: 0.04em;
+}
+
+.questionText {
+  font-size: clamp(1.0625rem, 0.95rem + 0.3vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+
+/* A plus that turns into a cross: two bars rotating, not a glyph swap.
+   Filled while closed, outline once open. */
+.knob {
+  position: relative;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-dark);
+  background: var(--color-dark);
+  color: #fafaf8;
+  transition:
+    transform 380ms var(--ease),
+    background-color 320ms var(--ease),
+    color 320ms var(--ease);
+}
+
+.knob::before,
+.knob::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 0.875rem;
+  height: 1.5px;
+  border-radius: 1px;
+  background: currentColor;
+  translate: -50% -50%;
+}
+
+.knob::after {
+  rotate: 90deg;
+}
+
+.item[open] .knob {
+  transform: rotate(45deg);
+  background: transparent;
+  color: var(--color-dark);
+}
+
+.item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 420ms var(--ease),
+    content-visibility 420ms allow-discrete;
+}
+
+.item[open]::details-content {
+  block-size: auto;
+}
+
+.answer {
+  max-width: calc(68ch + var(--faq-offset));
+  padding: 0 clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 2vw, 1.75rem);
+  padding-left: calc(clamp(1rem, 2vw, 1.75rem) + var(--faq-offset) + 1rem);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--color-ink-muted);
+}
+
+@media (max-width: 639px) {
+  .faq {
+    --faq-offset: 0rem;
+  }
+
+  .number {
+    display: none;
+  }
+
+  .question {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+  }
+
+  .answer {
+    padding-left: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  .knob {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+/* ── Related ─────────────────────────────────────────────────────────────── */
+
+.related {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-warm);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Cards wrap and stay centred, whether a page has three related topics or four. */
+.cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.card {
+  flex: 1 1 18rem;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid rgb(17 31 48 / 0.08);
+  box-shadow: 0 1px 2px rgb(17 31 48 / 0.04);
+  transition:
+    transform 480ms var(--ease),
+    box-shadow 480ms var(--ease),
+    border-color 480ms var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgb(17 31 48 / 0.14);
+  box-shadow: 0 28px 50px -30px rgb(17 31 48 / 0.45);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+.cardImage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-surface-muted);
+}
+
+@media (max-width: 639px) {
+  .cardImage {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.cardImage img {
+  transition: transform 900ms var(--ease);
+}
+
+.card:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1.4rem, 2vw, 1.75rem);
+}
+
+.cardTitle {
+  font-size: clamp(1.3rem, 1.1rem + 0.5vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.cardText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.cardFoot {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgb(17 31 48 / 0.15);
+  color: var(--color-ink);
+  transition:
+    background-color 380ms var(--ease),
+    border-color 380ms var(--ease),
+    color 380ms var(--ease);
+}
+
+.arrow svg {
+  transition: transform 380ms var(--ease);
+}
+
+.card:hover .arrow {
+  background: var(--color-dark);
+  border-color: var(--color-dark);
+  color: #fafaf8;
+}
+
+.card:hover .arrow svg {
+  transform: translateX(2px) rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .knob,
+  .item::details-content,
+  .card,
+  .cardImage img,
+  .arrow,
+  .arrow svg {
+    transition: none;
+  }
+}

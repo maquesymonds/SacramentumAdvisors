@@ -6,6 +6,9 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 import CountUp    from "@/components/ui/CountUp";
+import ItemReveal from "@/components/ui/ItemReveal";
+import FaqHover   from "./FaqHover";
+import s          from "./topic.module.css";
 import Image      from "next/image";
 import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
@@ -22,10 +25,10 @@ import {
 import { PAGE_LABELS, topicContent, type Overrides, type TopicContent } from "@/lib/topics";
 import { getTranslationOverrides } from "@/lib/translation-overrides";
 
-const UI: Record<Locale, { home: string; faq: string; related: string; facts: string; source: string }> = {
-  en: { home: "Home",       faq: "Frequently asked questions", related: "Related",       facts: "Key facts",      source: "Source" },
-  es: { home: "Inicio",     faq: "Preguntas frecuentes",        related: "Relacionado",   facts: "Datos clave",    source: "Fuente" },
-  de: { home: "Startseite", faq: "Häufige Fragen",              related: "Verwandte Themen", facts: "Eckdaten",   source: "Quelle" },
+const UI: Record<Locale, { home: string; faq: string; related: string; relatedTitle: string; facts: string; source: string }> = {
+  en: { home: "Home",       faq: "Frequently asked questions", related: "Related",          relatedTitle: "Keep exploring",    facts: "Key facts", source: "Source" },
+  es: { home: "Inicio",     faq: "Preguntas frecuentes",        related: "Relacionado",      relatedTitle: "Seguir explorando", facts: "Datos clave", source: "Fuente" },
+  de: { home: "Startseite", faq: "Häufige Fragen",              related: "Verwandte Themen", relatedTitle: "Weiter entdecken",  facts: "Eckdaten", source: "Quelle" },
 };
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -37,10 +40,10 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-function relatedCard(id: PageId, locale: Locale, overrides: Overrides): { href: string; title: string; text: string } | null {
+function relatedCard(id: PageId, locale: Locale, overrides: Overrides): { href: string; title: string; text: string; image?: string } | null {
   if (isTopicId(id)) {
     const c = topicContent(id, locale, overrides);
-    return { href: localePath(id, locale), title: c.navLabel, text: c.cardText };
+    return { href: localePath(id, locale), title: c.navLabel, text: c.cardText, image: c.image.src };
   }
   const label = PAGE_LABELS[id]?.[locale];
   return label ? { href: localePath(id, locale), title: label.title, text: label.text } : null;
@@ -182,19 +185,22 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
         )}
 
         {/* ── FAQ ──────────────────────────────────────────────────────────── */}
-        <section style={{ backgroundColor: "var(--color-surface-muted)", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
-          <div className="container-site grid lg:grid-cols-[5fr_7fr] gap-6 lg:gap-16">
-            <h2 className="font-normal text-ink" style={{ fontSize: "clamp(1.6rem, 2.6vw, 2.2rem)", letterSpacing: "-0.02em" }}>
-              {ui.faq}
-            </h2>
-            <div className="flex flex-col">
+        {/* Katzer layout: centred title, one column of cards. A shared `name`
+            makes the <details> an accordion (one open at a time); it is
+            spread because React 18's types don't know it on <details>. */}
+        <section style={{ backgroundColor: "var(--color-surface-muted)", paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}>
+          <div className={`container-site ${s.faq}`}>
+            <FaqHover />
+            <h2 className={s.sectionTitle}>{ui.faq}</h2>
+            <div className={s.list} data-faq-list data-reveal-items="">
               {c.faqs.map((f, i) => (
-                <details key={i} className="group py-5" style={{ borderBottom: "1px solid rgba(17,31,48,0.12)" }}>
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-ink" style={{ fontSize: "1.05rem", lineHeight: 1.45 }}>
-                    <h3 className="font-normal">{f.q}</h3>
-                    <span aria-hidden="true" className="mt-1 text-ink-subtle transition-transform duration-300 group-open:rotate-45" style={{ fontSize: "1.25rem", lineHeight: 1 }}>+</span>
+                <details key={i} {...{ name: `faq-${id}` }} className={s.item}>
+                  <summary className={s.question}>
+                    <span className={s.number} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    <h3 className={s.questionText}>{f.q}</h3>
+                    <span className={s.knob} aria-hidden="true" />
                   </summary>
-                  <p className="text-ink-muted mt-4" style={{ fontSize: "0.98rem", lineHeight: 1.7 }}>{f.a}</p>
+                  <p className={s.answer}>{f.a}</p>
                 </details>
               ))}
             </div>
@@ -203,25 +209,37 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
 
         {/* ── Related ──────────────────────────────────────────────────────── */}
         {related.length > 0 && (
-          <section style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 6rem)" }}>
-            <div className="container-site">
-              <Eyebrow>{ui.related}</Eyebrow>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <section style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}>
+            <div className={`container-site ${s.related}`}>
+              <div>
+                <div className={`text-eyebrow ${s.eyebrow}`}>{ui.related}</div>
+                <h2 className={s.sectionTitle}>{ui.relatedTitle}</h2>
+              </div>
+              <div className={s.cards} data-reveal-items="">
                 {related.map(r => (
-                  <a
-                    key={r.href}
-                    href={r.href}
-                    className="flex flex-col gap-3 p-6 transition-colors duration-300 hover:bg-[var(--color-surface-muted)]"
-                    style={{ border: "1px solid rgba(17,31,48,0.12)", borderRadius: 12 }}
-                  >
-                    <span className="text-ink" style={{ fontSize: "1.1rem" }}>{r.title} →</span>
-                    <span className="text-ink-muted" style={{ fontSize: "0.9rem", lineHeight: 1.55 }}>{r.text}</span>
+                  <a key={r.href} href={r.href} className={s.card}>
+                    {r.image && (
+                      <div className={s.cardImage}>
+                        <Image src={r.image} alt="" fill sizes="(min-width: 1024px) 384px, 100vw" className="object-cover" />
+                      </div>
+                    )}
+                    <div className={s.cardBody}>
+                      <h3 className={s.cardTitle}>{r.title}</h3>
+                      <p className={s.cardText}>{r.text}</p>
+                      <div className={s.cardFoot}>
+                        <span className={s.arrow} aria-hidden="true">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        </span>
+                      </div>
+                    </div>
                   </a>
                 ))}
               </div>
             </div>
           </section>
         )}
+
+        <ItemReveal />
 
         {/* ── CTA ──────────────────────────────────────────────────────────── */}
         <section style={{ backgroundColor: "var(--color-dark)", paddingBlock: "clamp(4.5rem, 9vw, 7.5rem)" }}>

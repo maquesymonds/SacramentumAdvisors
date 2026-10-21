@@ -57,3 +57,12 @@ Lista viva. Se actualiza en cada sesión.
 8. [x] Conversión: botón fijo, confianza, gracias, privacidad (guías e inversión mínima esperan datos)
 9. [ ] Medición (GA4, Search Console, GTM, Business Profile)
 10. [ ] QA y publicación (PR a `main`)
+
+## Sacramentum Capital (21.10.2026)
+
+- La página ahora usa el contenido completo del PDF: cifras, clientes, gráfico de trayectoria y transacciones. **El PDF dice "Confidential"**: confirmar con la clienta que todo se puede publicar, en especial la operación de 2026 con la empresa tecnológica ("en etapa de cierre").
+- Bio de Pablo: se usa la del PDF (JPMorgan, de Asociado a Director Ejecutivo); la web anterior decía "VP en J.P. Morgan y Lehman Brothers". Confirmar.
+- El gráfico muestra las 16 transacciones con nombre y monto (suman USD 1.605B); el PDF tiene unas 10 burbujas más chicas sin datos.
+- Foto de Pablo: se usa la del equipo (400 × 400, fondo blanco). Conviene una foto mejor, más grande.
+- La página no se edita desde el admin (contenido en data/capital.ts).
+

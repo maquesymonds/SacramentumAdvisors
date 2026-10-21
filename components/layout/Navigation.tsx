@@ -100,7 +100,6 @@ export default function Navigation() {
   const { navigate } = usePageTransition();
 
   const isHome    = isHomePath(pathname);
-  const forceDark = !isHome;
 
   // Language switcher: same page in the other language; the choice is
   // remembered (used by the middleware only when someone lands on "/").
@@ -139,7 +138,28 @@ export default function Navigation() {
     return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(rafId); };
   }, [isHome]);
 
-  const isDark = forceDark || scrollDark;
+  // Other pages are light, except sections marked data-nav-dark (the
+  // Sacramentum Capital page): over those the nav switches to its light-on-dark look.
+  const [overDarkSection, setOverDarkSection] = useState(false);
+  useEffect(() => {
+    if (isHome) return;
+    const NAV_Y = 60;
+    let rafId: number;
+    const check = () => {
+      const over = Array.from(document.querySelectorAll("[data-nav-dark]")).some(el => {
+        const r = el.getBoundingClientRect();
+        return r.top <= NAV_Y && r.bottom >= NAV_Y;
+      });
+      setOverDarkSection(over);
+    };
+    const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(check); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    check();
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); cancelAnimationFrame(rafId); };
+  }, [isHome, pathname]);
+
+  const isDark = isHome ? scrollDark : !overDarkSection;
 
   // On home page: hide nav until intro animation dispatches the event
   useLayoutEffect(() => {

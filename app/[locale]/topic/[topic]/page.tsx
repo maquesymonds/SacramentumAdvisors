@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TopicPage from "@/components/topic/TopicPage";
+import CapitalPage from "@/components/capital/CapitalPage";
 import { LOCALES, TOPIC_IDS, isTopicId, pageLocales } from "@/lib/i18n";
 import { topicContent } from "@/lib/topics";
 import { pageMetadata, toLocale } from "@/lib/seo";
@@ -29,5 +30,7 @@ export async function generateMetadata({ params }: { params: { locale: string; t
 export default function Page({ params }: { params: { locale: string; topic: string } }) {
   const locale = toLocale(params.locale);
   if (!isTopicId(params.topic) || !pageLocales(params.topic).includes(locale)) notFound();
+  // Sacramentum Capital is a separate firm: its own page and look.
+  if (params.topic === "sacramentum-capital") return <CapitalPage locale={locale} />;
   return <TopicPage id={params.topic} locale={locale} />;
 }

@@ -1,15 +1,8 @@
 import type { TopicCopy } from "@/lib/topics";
 
-// DRAFT — pending approval by Inés AND by Sacramentum Capital.
-// Source: ~/Desktop/Sacramentum_Capital_Presentation.pdf (CONFIDENTIAL).
-// Deliberately omitted until the client confirms what may be published:
-// all figures (closed volume, mandate counts, per-transaction amounts), client
-// names (public entities and companies) and the selected-transactions list.
-// Kept: positioning, practice areas and the founding partner's career, which
-// is already public on the team section.
-// OPEN: the public bio says "VP at J.P. Morgan and Lehman Brothers"; the PDF
-// says "Bozano Simonsen, then JPMorgan (Executive Director)". Only the common
-// fact (J.P. Morgan) is used until the client confirms.
+// Only metadata, nav label and card text are used from here: the page has its
+// own template (components/capital/CapitalPage.tsx) and body copy
+// (data/capital.ts). The sections and FAQs below are no longer rendered.
 
 const copy: TopicCopy = {
   en: {
