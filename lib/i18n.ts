@@ -48,8 +48,8 @@ export type PageId =
   | "thank-you" | "privacy"
   // Sector pages (linked from Why Uruguay)
   | "real-estate" | "farmland" | "technology"
-  // Service pages (linked from Services)
-  | "residency" | "family-office" | "sacramentum-capital";
+  // Service page (linked from Services)
+  | "sacramentum-capital";
 
 export type TopicId = Exclude<PageId, "home" | "why-uruguay" | "services" | "news" | "blog" | "contact" | "thank-you" | "privacy">;
 
@@ -75,32 +75,22 @@ export const PAGES: Record<PageId, PageDef> = {
   "real-estate": {
     route: "topic/real-estate",
     slugs: { en: "uruguay-real-estate", es: "inmobiliario-punta-del-este-montevideo", de: "immobilien-uruguay" },
-    related: ["residency", "farmland", "family-office"],
+    related: ["farmland", "technology", "sacramentum-capital"],
   },
   "farmland": {
     route: "topic/farmland",
     slugs: { en: "uruguay-farmland", es: "campos-y-chacras-en-uruguay", de: "landwirtschaft-uruguay" },
-    related: ["family-office", "real-estate", "sacramentum-capital"],
+    related: ["real-estate", "technology", "sacramentum-capital"],
   },
   "technology": {
     route: "topic/technology",
     slugs: { en: "technology", es: "tecnologia", de: "technologie" },
-    related: ["sacramentum-capital", "residency", "family-office"],
-  },
-  "residency": {
-    route: "topic/residency",
-    slugs: { en: "uruguay-residency", es: "residencia-en-uruguay", de: "auswandern-nach-uruguay" },
-    related: ["real-estate", "farmland", "family-office"],
-  },
-  "family-office": {
-    route: "topic/family-office",
-    slugs: { en: "family-office-uruguay", es: "family-office-patrimonio", de: "family-office-uruguay" },
-    related: ["sacramentum-capital", "farmland", "real-estate", "residency"],
+    related: ["sacramentum-capital", "real-estate", "farmland"],
   },
   "sacramentum-capital": {
     route: "topic/sacramentum-capital",
     slugs: { en: "sacramentum-capital", es: "sacramentum-capital", de: "sacramentum-capital" },
-    related: ["family-office", "technology", "real-estate"],
+    related: ["technology", "real-estate", "farmland"],
   },
 };
 

@@ -10,7 +10,7 @@ const copy: TopicCopy = {
     metaTitle:       "Uruguay Farmland, Ranches & Forestry",
     metaDescription: "Uruguay farmland, ranches, chacras and forestry: how a foreign investor buys land in Uruguay, what to check before buying and how to hold it.",
     navLabel:        "Farmland & forestry",
-    cardText:        "Productive land, ranches, chacras and forestry — how foreign investors buy and hold land in Uruguay.",
+    cardText:        "Productive land, ranches, chacras and forestry: how foreign investors buy and hold land in Uruguay.",
     eyebrow:         "Agriculture & forestry",
     title:           "Farmland, ranches and forestry in Uruguay",
     intro: [
@@ -28,10 +28,10 @@ const copy: TopicCopy = {
         heading: "Four ways to invest in land",
         body: ["The right model depends on the income you expect, how involved you want to be and how long you can hold the asset."],
         bullets: [
-          "Productive farmland leased to an operator — the most passive model: the tenant runs the operation, you collect the lease.",
-          "Cattle ranches (estancias) — grazing land with a long tradition in Uruguay, often combined with lifestyle use.",
-          "Forestry — eucalyptus and pine plantations supported by an established pulp and timber industry and a dedicated legal framework.",
-          "Chacras — smaller properties near the coast or the cities, bought for lifestyle, tourism or small-scale production.",
+          "Productive farmland leased to an operator. The most passive model: the tenant runs the operation, you collect the lease.",
+          "Cattle ranches (estancias): grazing land with a long tradition in Uruguay, often combined with lifestyle use.",
+          "Forestry: eucalyptus and pine plantations supported by an established pulp and timber industry and a dedicated legal framework.",
+          "Chacras: smaller properties near the coast or the cities, bought for lifestyle, tourism or small-scale production.",
         ],
       },
       {
@@ -57,7 +57,7 @@ const copy: TopicCopy = {
     steps: {
       heading: "From brief to deed",
       items: [
-        { title: "Model and budget",     body: "Lease, ranch, forestry or chacra — and the region that fits it." },
+        { title: "Model and budget",     body: "Lease, ranch, forestry or chacra, and the region that fits it." },
         { title: "Shortlist and visits", body: "Properties from rural agencies and direct owners, with technical review." },
         { title: "Due diligence",        body: "Soil and water, leases, environmental rules, title study and preference rights." },
         { title: "Purchase and setup",   body: "Deed, registration, tax ID and the operator or manager agreement." },
@@ -67,7 +67,9 @@ const copy: TopicCopy = {
       { q: "Can foreigners buy farmland in Uruguay?", a: "Yes. Foreign individuals can buy rural land in Uruguay without residency. Ownership through companies and purchases by foreign states follow specific rules, which we review for each case." },
       { q: "What is the CONEAT index?", a: "CONEAT is Uruguay's official index of soil productivity, where 100 is the national average. It is one of the first figures we review to value a property." },
       { q: "What is the difference between a chacra and a productive farm?", a: "A chacra is a smaller property bought mainly for lifestyle, tourism or small-scale production, often near the coast. A productive farm is valued by its agricultural output and is usually leased to an operator." },
-      { q: "Is forestry a good investment in Uruguay?", a: "Forestry is a long-horizon investment with an established industry and a specific legal framework (Law 15.939). Returns depend on growth, timber prices and harvest timing, and liquidity is low — it suits patient capital." },
+      { q: "Is forestry a good investment in Uruguay?", a: "Forestry is a long-horizon investment with an established industry and a specific legal framework (Law 15.939). Returns depend on growth, timber prices and harvest timing, and liquidity is low, so it suits patient capital." },
+      { q: "Should I lease the farm or operate it myself?", a: "Most foreign investors lease productive land to a local operator: it gives a fixed annual rent and needs little management. Operating it yourself can earn more but requires a team and active oversight. We help you decide based on your goal: income, growth or capital preservation." },
+      { q: "What is the Instituto Nacional de Colonización?", a: "It is the public body in charge of Uruguay's land settlement policy. For certain rural properties it has a right of first refusal, so the sale must be offered to it first. The escribano checks whether this applies before you sign." },
     ],
     cta: {
       heading: "Considering land in Uruguay?",
@@ -138,6 +140,8 @@ const copy: TopicCopy = {
       { q: "¿Qué es el índice CONEAT?", a: "Es el índice oficial de productividad del suelo en Uruguay, donde 100 es el promedio nacional. Es uno de los primeros datos que revisamos para valorar un campo." },
       { q: "¿Qué diferencia hay entre una chacra y un campo productivo?", a: "La chacra es una propiedad más chica comprada sobre todo por calidad de vida, turismo o producción a pequeña escala, muchas veces cerca de la costa. El campo productivo se valora por su rendimiento agropecuario y suele arrendarse a un productor." },
       { q: "¿Conviene invertir en forestación en Uruguay?", a: "La forestación es una inversión de largo plazo con una industria consolidada y un marco legal propio (Ley 15.939). El retorno depende del crecimiento, del precio de la madera y del momento de la cosecha, y la liquidez es baja: es para capital paciente." },
+      { q: "¿Conviene arrendar el campo o explotarlo?", a: "La mayoría de los inversores extranjeros arrienda el campo productivo a un productor local: da una renta anual fija y exige poca gestión. Explotarlo directamente puede rendir más, pero requiere un equipo y supervisión activa. Lo definimos según su objetivo: renta, crecimiento o preservar capital." },
+      { q: "¿Qué es el Instituto Nacional de Colonización?", a: "Es el organismo público a cargo de la política de colonización de tierras. Sobre ciertos inmuebles rurales tiene derecho de preferencia, por lo que la venta debe ofrecérsele primero. El escribano verifica si aplica antes de firmar." },
     ],
     cta: {
       heading: "¿Está pensando en tierra en Uruguay?",
@@ -149,7 +153,7 @@ const copy: TopicCopy = {
     metaTitle:       "Agrarland und Estancias in Uruguay",
     metaDescription: "Agrarland, Estancias, Chacras und Forst in Uruguay: wie ausländische Investoren Land kaufen, was vor dem Kauf zu prüfen ist und wie man es hält.",
     navLabel:        "Landwirtschaft und Forst",
-    cardText:        "Agrarland, Estancias, Chacras und Forstwirtschaft – Land in Uruguay kaufen und halten.",
+    cardText:        "Agrarland, Estancias, Chacras und Forstwirtschaft: Land in Uruguay kaufen und halten.",
     eyebrow:         "Landwirtschaft und Forstwirtschaft",
     title:           "Agrarland, Estancias und Forstwirtschaft in Uruguay",
     intro: [
@@ -167,10 +171,10 @@ const copy: TopicCopy = {
         heading: "Vier Wege, in Land zu investieren",
         body: ["Das richtige Modell hängt vom erwarteten Ertrag ab, davon, wie stark Sie sich einbringen möchten, und davon, wie lange Sie den Wert halten können."],
         bullets: [
-          "Verpachtetes Agrarland – das passivste Modell: Ein Betreiber bewirtschaftet die Fläche, Sie erhalten die Pacht.",
-          "Rinder-Estancias – Weideland mit langer Tradition in Uruguay, oft verbunden mit Eigennutzung.",
-          "Forstwirtschaft – Eukalyptus- und Kiefernplantagen mit einer etablierten Zellstoff- und Holzindustrie und eigenem Rechtsrahmen.",
-          "Chacras – kleinere Grundstücke nahe der Küste oder der Städte, gekauft für Lebensqualität, Tourismus oder kleine Produktion.",
+          "Verpachtetes Agrarland. Das passivste Modell: Ein Betreiber bewirtschaftet die Fläche, Sie erhalten die Pacht.",
+          "Rinder-Estancias: Weideland mit langer Tradition in Uruguay, oft verbunden mit Eigennutzung.",
+          "Forstwirtschaft: Eukalyptus- und Kiefernplantagen mit einer etablierten Zellstoff- und Holzindustrie und eigenem Rechtsrahmen.",
+          "Chacras: kleinere Grundstücke nahe der Küste oder der Städte, gekauft für Lebensqualität, Tourismus oder kleine Produktion.",
         ],
       },
       {
@@ -196,7 +200,7 @@ const copy: TopicCopy = {
     steps: {
       heading: "Vom Ziel zur Urkunde",
       items: [
-        { title: "Modell und Budget",       body: "Pacht, Estancia, Forst oder Chacra – und die passende Region." },
+        { title: "Modell und Budget",       body: "Pacht, Estancia, Forst oder Chacra und die passende Region." },
         { title: "Auswahl und Besichtigung", body: "Flächen von ländlichen Maklern und Eigentümern, mit technischer Prüfung." },
         { title: "Prüfung",                 body: "Boden und Wasser, Pachtverträge, Umweltauflagen, Eigentum und Vorkaufsrechte." },
         { title: "Kauf und Start",          body: "Urkunde, Eintragung, Steuernummer und Vertrag mit Betreiber oder Verwalter." },
@@ -207,6 +211,8 @@ const copy: TopicCopy = {
       { q: "Was ist der CONEAT-Index?", a: "Der offizielle Index der Bodenproduktivität in Uruguay; 100 entspricht dem Landesdurchschnitt. Er gehört zu den ersten Werten, die wir bei einer Bewertung prüfen." },
       { q: "Was ist eine Chacra?", a: "Ein kleineres ländliches Grundstück, oft nahe der Küste oder der Städte, gekauft vor allem für Lebensqualität, Tourismus oder kleine Produktion." },
       { q: "Ist Forstwirtschaft in Uruguay eine gute Investition?", a: "Forstwirtschaft ist eine langfristige Anlage mit etablierter Industrie und eigenem Rechtsrahmen (Gesetz 15.939). Die Rendite hängt von Wachstum, Holzpreisen und Erntezeitpunkt ab; die Liquidität ist gering." },
+      { q: "Verpachten oder selbst bewirtschaften?", a: "Die meisten ausländischen Investoren verpachten produktives Land an einen lokalen Betreiber: Das bringt eine feste jährliche Pacht bei wenig Aufwand. Selbst zu bewirtschaften kann mehr einbringen, verlangt aber ein Team und aktive Aufsicht. Wir entscheiden das mit Ihnen nach Ihrem Ziel: Ertrag, Wachstum oder Kapitalerhalt." },
+      { q: "Was ist das Instituto Nacional de Colonización?", a: "Die staatliche Stelle für die Landbesiedlungspolitik Uruguays. Bei bestimmten ländlichen Grundstücken hat sie ein Vorkaufsrecht, der Verkauf muss ihr also zuerst angeboten werden. Der Escribano prüft vor der Unterschrift, ob das zutrifft." },
     ],
     cta: {
       heading: "Sie denken über Land in Uruguay nach?",

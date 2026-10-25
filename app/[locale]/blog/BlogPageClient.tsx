@@ -226,7 +226,7 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[] }) {
         </section>
 
       </main>
-      <Footer />
+      <Footer closing="closing-blog" />
     </>
   );
 }

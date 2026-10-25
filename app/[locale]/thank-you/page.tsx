@@ -10,7 +10,7 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
   return pageMetadata("thank-you", params.locale, { title: THANK_YOU[toLocale(params.locale)].metaTitle });
 }
 
-const NEXT: TopicId[] = ["residency", "real-estate", "family-office"];
+const NEXT: TopicId[] = ["real-estate", "farmland", "technology"];
 
 export default function ThankYouPage({ params }: { params: { locale: string } }) {
   const locale = toLocale(params.locale);

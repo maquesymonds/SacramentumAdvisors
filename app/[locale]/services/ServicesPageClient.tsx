@@ -6,16 +6,16 @@ import { motion }          from "framer-motion";
 import { gsap }            from "gsap";
 import { ScrollTrigger }   from "gsap/ScrollTrigger";
 import Navigation          from "@/components/layout/Navigation";
+import TrustSection from "@/components/sections/TrustSection";
+import SectionCta from "@/components/ui/SectionCta";
 import Footer              from "@/components/layout/Footer";
 import { useLocale, useLocalePath, useT } from "@/lib/locale-context";
 import type { PageId } from "@/lib/i18n";
 
-// Each service card links to the page that develops it (docs/ARCHITECTURE.md §8).
+// Only investment banking has a page of its own: Sacramentum Capital. The other
+// services have no separate page in stage 2 (Maque, 25.10.2026).
 const SERVICE_PAGE: Record<string, PageId> = {
-  "soft-landing":        "residency",
   "investment-banking":  "sacramentum-capital",
-  "strategic-advisory":  "family-office",
-  "market-intelligence": "family-office",
 };
 const MORE_LABEL = { en: "Learn more", es: "Ver más", de: "Mehr erfahren" } as const;
 const CAPITAL_LABEL = { en: "Discover Sacramentum Capital", es: "Conocer Sacramentum Capital", de: "Sacramentum Capital entdecken" } as const;
@@ -473,7 +473,8 @@ function CardParam({ onChange }: { onChange: (id: string | null) => void }) {
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
-export default function ServicesPageClient() {
+/** `faq` is the server-rendered FaqSection, passed in by page.tsx. */
+export default function ServicesPageClient({ faq }: { faq?: React.ReactNode }) {
   const { locale }  = useLocale();
   const copy        = useT();
   // ?card=<id> preselects a carousel card (see CardParam).
@@ -530,10 +531,16 @@ export default function ServicesPageClient() {
           <ServiceCarousel cards={copy.howWeSupport.cards} locale={locale} initialCard={initialCard} />
         </div>
 
+        <div className="container-site">
+          <SectionCta id="services-after-services" label={copy.closingCta.cta} className="pb-[var(--section-padding-y)]" />
+        </div>
 
+        <TrustSection cta="services-testimonials" />
+
+        {faq}
       </main>
 
-      <Footer />
+      <Footer closing="closing-services" />
     </>
   );
 }

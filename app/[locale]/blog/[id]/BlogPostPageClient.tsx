@@ -193,7 +193,7 @@ export default function BlogPostPageClient({ post }: { post: BlogPost }) {
 
       </main>
 
-      <Footer />
+      <Footer closing="closing-blog-post" />
     </>
   );
 }

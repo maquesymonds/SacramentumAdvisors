@@ -1,9 +1,10 @@
 /* ─────────────────────────────────────────────────────────────────────────────
    Functional pages copy: thank-you and privacy policy (ES/EN/DE).
    ⚠️ PRIVACY POLICY = DRAFT. It describes what the site does today (contact
-   form via Formspree, hosting on Vercel, language cookie; no analytics yet).
-   Must be reviewed by the client's lawyer before launch, and updated when
-   GA4/GTM and the consent banner are added (step 9).
+   form via Formspree, hosting on Vercel, language cookie, Google Analytics
+   through Tag Manager only after consent in the cookie banner).
+   Must be reviewed by the client's lawyer before launch. The analytics
+   paragraphs (Service providers + Cookies) were added by Claude: confirm.
    ─────────────────────────────────────────────────────────────────────────── */
 
 import type { Locale } from "@/lib/i18n";
@@ -50,9 +51,11 @@ export const PRIVACY: Record<Locale, { metaTitle: string; title: string; updated
       ] },
       { heading: "Service providers", body: [
         "The contact form is delivered through Formspree, and the website is hosted by Vercel. Both act on our behalf and may process data on servers in the United States.",
+        "If you accept analytics cookies, we use Google Analytics, loaded through Google Tag Manager (Google Ireland Limited / Google LLC), to measure how the website is used: pages visited, approximate country, device type and how you arrived at the site. Google may process this data on servers in the United States.",
       ] },
       { heading: "Cookies and local storage", body: [
-        "The website stores your language choice in a cookie (NEXT_LOCALE) for up to one year, so the site opens in your language next time, and uses your browser's session storage to remember whether the opening animation has been shown. The website currently uses no analytics or advertising cookies; if that changes, this policy will be updated and your consent requested where required.",
+        "The website stores your language choice in a cookie (NEXT_LOCALE) for up to one year, so the site opens in your language next time, and uses your browser's session storage to remember whether the opening animation has been shown.",
+        "Analytics cookies from Google Analytics (_ga, _ga_*) are only set if you accept them in the cookie banner, and are kept for up to two years. We do not use advertising cookies. Your choice is stored in your browser, and you can change it at any time with the \"Cookie settings\" link at the bottom of every page.",
       ] },
       { heading: "How long we keep your data", body: [
         "We keep enquiry data for as long as needed to handle your enquiry and any resulting relationship, and delete it afterwards unless the law requires us to keep it.",
@@ -75,9 +78,11 @@ export const PRIVACY: Record<Locale, { metaTitle: string; title: string; updated
       ] },
       { heading: "Proveedores", body: [
         "El formulario de contacto se envía a través de Formspree y el sitio está alojado en Vercel. Ambos actúan por cuenta nuestra y pueden tratar datos en servidores de Estados Unidos.",
+        "Si acepta las cookies de analítica, usamos Google Analytics, cargado a través de Google Tag Manager (Google Ireland Limited / Google LLC), para medir cómo se usa el sitio: páginas visitadas, país aproximado, tipo de dispositivo y cómo llegó al sitio. Google puede tratar estos datos en servidores de Estados Unidos.",
       ] },
       { heading: "Cookies y almacenamiento local", body: [
-        "El sitio guarda el idioma que elige en una cookie (NEXT_LOCALE) durante un máximo de un año, para abrirse en su idioma la próxima vez, y usa el almacenamiento de sesión de su navegador para recordar si ya vio la animación de inicio. Actualmente el sitio no usa cookies de analítica ni de publicidad; si eso cambia, actualizaremos esta política y pediremos su consentimiento cuando corresponda.",
+        "El sitio guarda el idioma que elige en una cookie (NEXT_LOCALE) durante un máximo de un año, para abrirse en su idioma la próxima vez, y usa el almacenamiento de sesión de su navegador para recordar si ya vio la animación de inicio.",
+        "Las cookies de analítica de Google Analytics (_ga, _ga_*) solo se instalan si usted las acepta en el aviso de cookies, y se conservan hasta dos años. No usamos cookies de publicidad. Su elección se guarda en su navegador y puede cambiarla en cualquier momento con el enlace \"Configuración de cookies\" al pie de cada página.",
       ] },
       { heading: "Cuánto tiempo guardamos sus datos", body: [
         "Guardamos los datos de su consulta durante el tiempo necesario para atenderla y para la relación que pueda surgir, y luego los eliminamos, salvo que la ley nos obligue a conservarlos.",
@@ -100,15 +105,17 @@ export const PRIVACY: Record<Locale, { metaTitle: string; title: string; updated
       ] },
       { heading: "Dienstleister", body: [
         "Das Kontaktformular wird über Formspree übermittelt, die Website wird von Vercel gehostet. Beide handeln in unserem Auftrag und können Daten auf Servern in den Vereinigten Staaten verarbeiten.",
+        "Wenn Sie Analyse-Cookies akzeptieren, nutzen wir Google Analytics, eingebunden über den Google Tag Manager (Google Ireland Limited / Google LLC), um zu messen, wie die Website genutzt wird: besuchte Seiten, ungefähres Land, Gerätetyp und wie Sie auf die Website gelangt sind. Google kann diese Daten auf Servern in den Vereinigten Staaten verarbeiten.",
       ] },
       { heading: "Cookies und lokaler Speicher", body: [
-        "Die Website speichert Ihre Sprachwahl in einem Cookie (NEXT_LOCALE) für bis zu ein Jahr, damit sie beim nächsten Besuch in Ihrer Sprache öffnet, und nutzt den Sitzungsspeicher Ihres Browsers, um sich zu merken, ob die Eingangsanimation bereits gezeigt wurde. Derzeit verwendet die Website keine Analyse- oder Werbe-Cookies; sollte sich das ändern, aktualisieren wir diese Erklärung und holen, wo erforderlich, Ihre Einwilligung ein.",
+        "Die Website speichert Ihre Sprachwahl in einem Cookie (NEXT_LOCALE) für bis zu ein Jahr, damit sie beim nächsten Besuch in Ihrer Sprache öffnet, und nutzt den Sitzungsspeicher Ihres Browsers, um sich zu merken, ob die Eingangsanimation bereits gezeigt wurde.",
+        "Analyse-Cookies von Google Analytics (_ga, _ga_*) werden nur gesetzt, wenn Sie im Cookie-Hinweis zustimmen, und bis zu zwei Jahre gespeichert. Werbe-Cookies verwenden wir nicht. Ihre Wahl wird in Ihrem Browser gespeichert, und Sie können sie jederzeit über den Link \"Cookie-Einstellungen\" am Ende jeder Seite ändern.",
       ] },
       { heading: "Speicherdauer", body: [
         "Wir speichern Anfragedaten so lange, wie es für die Bearbeitung Ihrer Anfrage und eine sich daraus ergebende Beziehung erforderlich ist, und löschen sie danach, sofern keine gesetzliche Aufbewahrungspflicht besteht.",
       ] },
       { heading: "Ihre Rechte", body: [
-        "Sie können jederzeit Auskunft über Ihre Daten, deren Berichtigung oder Löschung verlangen, der Verarbeitung widersprechen oder eine Kopie anfordern – per E-Mail an ines@sacramentumcapital.com. Sie können sich außerdem bei der uruguayischen Datenschutzbehörde (Unidad Reguladora y de Control de Datos Personales) oder, wenn Sie in der Europäischen Union leben, bei der Aufsichtsbehörde Ihres Landes beschweren.",
+        "Sie können jederzeit Auskunft über Ihre Daten, deren Berichtigung oder Löschung verlangen, der Verarbeitung widersprechen oder eine Kopie anfordern, per E-Mail an ines@sacramentumcapital.com. Sie können sich außerdem bei der uruguayischen Datenschutzbehörde (Unidad Reguladora y de Control de Datos Personales) oder, wenn Sie in der Europäischen Union leben, bei der Aufsichtsbehörde Ihres Landes beschweren.",
         "Für diese Erklärung gelten das uruguayische Datenschutzgesetz Nr. 18.331 und, für Besucher in der Europäischen Union, die Datenschutz-Grundverordnung (DSGVO).",
       ] },
     ],

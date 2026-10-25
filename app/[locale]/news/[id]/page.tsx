@@ -6,7 +6,11 @@ import { fetchAdminContent } from "@/lib/admin-content";
 import { clampDescription, pageMetadata, toLocale } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
-import { localePath } from "@/lib/i18n";
+import { localePath, pageLocales } from "@/lib/i18n";
+import { ARTICLE_RELATED } from "@/lib/topic-links";
+import { newsTopic } from "@/lib/news-topics";
+import { relatedCard, TOPIC_UI } from "@/components/topic/TopicPage";
+import { getTranslationOverrides } from "@/lib/translation-overrides";
 
 export const dynamic = "force-dynamic";
 
@@ -38,9 +42,18 @@ export default async function ArticlePage({ params }: { params: { id: string; lo
 
   const all = [...(adminArticles ?? []), ...(t(locale).news.articles as { id: string; title: string }[])];
   const title = all.find(a => a.id === params.id)?.title ?? params.id;
+
+  // Sector chosen in the admin (or mapped in lib/news-topics) first; ARTICLE_RELATED covers the stage-1 articles.
+  const adminArticle = adminArticles?.find(a => a.id === params.id);
+  const relId = (adminArticle && newsTopic(adminArticle)) || ARTICLE_RELATED[params.id];
+  const card  = relId && pageLocales(relId).includes(locale)
+    ? relatedCard(relId, locale, await getTranslationOverrides())
+    : null;
+  const related = card ? { ...card, eyebrow: TOPIC_UI[locale].related } : null;
+
   return (
     <>
-      <ArticlePageClient id={params.id} adminArticles={adminArticles} />
+      <ArticlePageClient id={params.id} adminArticles={adminArticles} related={related} />
       <JsonLd data={breadcrumbJsonLd(locale, [
         { name: t(locale).nav.news, path: localePath("news", locale) },
         { name: title,              path: localePath("news", locale, params.id) },

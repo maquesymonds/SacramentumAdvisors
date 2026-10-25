@@ -17,6 +17,7 @@ export type AdminArticle = {
   image:      string;
   title:      string;
   link?:      string;
+  topic?:     string; // sector page the card links to (lib/news-topics.ts)
   published?: boolean; // undefined = published (backwards compat), false = draft
   category?:  string;
   excerpt?:   string;

@@ -5,10 +5,7 @@
 
 .section {
   position: relative;
-  background:
-    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(129, 166, 176, 0.16), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(204, 168, 124, 0.08), transparent 70%),
-    var(--color-dark);
+  background: var(--topic-bg, #FFFFFF); /* same as the page: the cards are the surface, not the section */
   padding-block: clamp(4.5rem, 9vw, 8rem);
 }
 
@@ -68,7 +65,41 @@
 .heading {
   max-width: 22ch;
   margin: 0 0 clamp(2.5rem, 5vw, 4rem);
-  color: #FAFAF8;
+  color: var(--color-ink);
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.6rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* Number in front of the card title, on the same line */
+.number {
+  color: var(--color-warm);
+  margin-right: 0.35em;
+  font-variant-numeric: tabular-nums;
+}
+
+.title { margin-bottom: 0; }
+
+/* Darkens as the next card covers it */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: #04080E;
+  opacity: calc(var(--cover, 0) * 0.5);
+}
+
+.card > * { position: relative; z-index: 1; }
+
+/* Heading above the pile (Walde: "Was du von deinem Makler … erwarten kannst") */
+.heading {
+  max-width: 22ch;
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  color: var(--color-ink);
   font-size: clamp(2rem, 1.4rem + 2.4vw, 3.6rem);
   font-weight: 400;
   letter-spacing: -0.03em;

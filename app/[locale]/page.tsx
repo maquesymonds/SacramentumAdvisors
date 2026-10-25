@@ -13,12 +13,15 @@ import {
   WhySacramentum,
   OurTeam,
   UruguayInTheNews,
-  ClosingCTA,
 } from "@/components/sections";
-import OlasBackground from "@/components/OlasBackground";
 import { fetchAdminContent } from "@/lib/admin-content";
 import type { Metadata } from "next";
-import { coreMetadata } from "@/lib/seo";
+import { coreMetadata, toLocale } from "@/lib/seo";
+import CapitalTeaser from "@/components/sections/CapitalTeaser";
+import SeamBlend from "@/components/ui/SeamBlend";
+import TrustSection from "@/components/sections/TrustSection";
+import FaqSection from "@/components/faq/FaqSection";
+import { coreFaqs } from "@/data/faqs";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return coreMetadata("home", params.locale);
@@ -26,12 +29,11 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
+export default async function HomePage({ params }: { params: { locale: string } }) {
+  const locale        = toLocale(params.locale);
   const content       = await fetchAdminContent();
   const _articles = (content.articles ?? []).filter(a => a.published !== false);
   const adminArticles = _articles.length ? _articles : null;
-  const olasTop    = 870;
-  const olasHeight = 1757;
   const adminTeam     = content.team     ?? null;
 
   return (
@@ -42,23 +44,22 @@ export default async function HomePage() {
         <WhyUruguay />
         <HowWeSupport />
         <WhySacramentum />
+        {/* Testimonials (light) melt into Capital (green) as you scroll, like the Capital page */}
+        <SeamBlend from="#FAFAF8" to="#0C3B38">
+          <TrustSection cta="home-testimonials" />
+          <CapitalTeaser />
+        </SeamBlend>
         <OurTeam adminTeam={adminTeam} />
+        <FaqSection id="home" locale={locale} items={coreFaqs("home", locale)} />
 
         {/* ── Image divider ── */}
         <EdificiosDivider />
 
         <div id="sectors" className="h-px" aria-hidden="true" />
 
-        {/* olas.png spans bottom half of news section through ClosingCTA */}
-        <div className="news-cta-wrapper" style={{ position: "relative", overflow: "hidden" }}>
-          <OlasBackground initialTop={olasTop} initialHeight={olasHeight} />
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <UruguayInTheNews adminArticles={adminArticles} />
-            <ClosingCTA />
-          </div>
-        </div>
+        <UruguayInTheNews adminArticles={adminArticles} />
       </main>
-      <Footer />
+      <Footer closing />
       <DevPanel />
     </>
   );

@@ -14,9 +14,9 @@ export const PAGE_META: Record<CorePage, Record<Locale, { title: string; descrip
     de: { title: "Sacramentum Advisors | Uruguay: Investieren, Auswandern", description: "Unabhängige Beratung für Investoren und Familien in Uruguay: Aufenthalt, Immobilien, Agrarland und Investitionen, koordiniert aus Montevideo.", absolute: true },
   },
   "why-uruguay": {
-    en: { title: "Why Invest in Uruguay: Stability & Sectors", description: "Why Uruguay: stability, equal rights for foreign investors and four sectors we advise on — real estate, technology, farmland and special projects." },
+    en: { title: "Why Invest in Uruguay: Stability & Sectors", description: "Why Uruguay: stability, equal rights for foreign investors and four sectors we advise on: real estate, technology, farmland and special projects." },
     es: { title: "Por qué invertir en Uruguay", description: "Por qué Uruguay: estabilidad, igualdad de trato al inversor extranjero y cuatro sectores: inmobiliario, tecnología, campos y proyectos especiales." },
-    de: { title: "Warum Uruguay: Stabilität und Sektoren", description: "Warum Uruguay: Stabilität, Gleichbehandlung ausländischer Investoren und vier Sektoren – Immobilien, Technologie, Agrarland und Sonderprojekte." },
+    de: { title: "Warum Uruguay: Stabilität und Sektoren", description: "Warum Uruguay: Stabilität, Gleichbehandlung ausländischer Investoren und vier Sektoren: Immobilien, Technologie, Agrarland und Sonderprojekte." },
   },
   "services": {
     en: { title: "Advisory Services for Investing in Uruguay", description: "Residency and relocation, market intelligence, strategic advisory and investment banking: how we support each stage of your move to Uruguay." },
@@ -34,8 +34,8 @@ export const PAGE_META: Record<CorePage, Record<Locale, { title: string; descrip
     de: { title: "Blog: Einblicke zu Uruguay", description: "Einblicke des Teams von Sacramentum Advisors zu Investitionen, Aufenthalt, Immobilien und Auswandern nach Uruguay." },
   },
   "contact": {
-    en: { title: "Contact: Book a Private Consultation", description: "Book a private consultation with Sacramentum Advisors about residency, real estate, farmland or investing in Uruguay. Reply within 1–2 business days." },
-    es: { title: "Contacto: agendar una consulta", description: "Agende una consulta privada sobre residencia, inmobiliario, campos o inversión en Uruguay. Respuesta en 1–2 días hábiles, con total discreción." },
-    de: { title: "Kontakt: vertrauliche Beratung", description: "Vertrauliche Beratung zu Aufenthalt, Immobilien, Agrarland oder Investitionen in Uruguay vereinbaren. Antwort innerhalb von 1–2 Werktagen." },
+    en: { title: "Contact: Book a Private Consultation", description: "Book a private consultation with Sacramentum Advisors about residency, real estate, farmland or investing in Uruguay. Reply within 1 to 2 business days." },
+    es: { title: "Contacto: agendar una consulta", description: "Agende una consulta privada sobre residencia, inmobiliario, campos o inversión en Uruguay. Respuesta en 1 a 2 días hábiles, con total discreción." },
+    de: { title: "Kontakt: vertrauliche Beratung", description: "Vertrauliche Beratung zu Aufenthalt, Immobilien, Agrarland oder Investitionen in Uruguay vereinbaren. Antwort innerhalb von 1 bis 2 Werktagen." },
   },
 };

@@ -29,6 +29,10 @@ const p = (pregunta: string): ReviewNote => ({ kind: "propuesta", pregunta });
 const r = (pregunta: string): ReviewNote => ({ kind: "redaccion", pregunta });
 
 export const TOPIC_REVIEW: Partial<Record<TopicId, TopicReview>> = {
+
+
+
+
   "real-estate": {
     meta: [
       s("¿Asesoran compras en Punta del Este, José Ignacio, Montevideo y Piriápolis? La etapa 1 solo habla de \"propiedades costeras\"."),
@@ -87,7 +91,6 @@ export const TOPIC_REVIEW: Partial<Record<TopicId, TopicReview>> = {
     },
     cta: [s("\"Le diremos dónde tiene sentido, y dónde no.\" ¿Te sirve esta promesa?")],
   },
-
   "farmland": {
     meta: [
       s("¿Asesoran también en la administración del campo después de la compra?"),
@@ -134,107 +137,10 @@ export const TOPIC_REVIEW: Partial<Record<TopicId, TopicReview>> = {
     cta: [s("¿Ofrecen este análisis de zonas, renta real y riesgos antes de la compra?")],
   },
 
-  "residency": {
-    meta: [
-      r("¿Está bien que la página apunte a argentinos y españoles con sus familias (en alemán, a alemanes, austríacos y suizos)?"),
-      s("¿Coordinan de verdad la residencia, los documentos, el banco y la instalación del cliente?"),
-      p("\"Residencia e instalación\" como nombre del servicio Soft Landing es una propuesta sin aprobar."),
-    ],
-    intro: [
-      d("¿Podemos decir que Uruguay ofrece \"un camino claro\" a la residencia para cualquier extranjero?"),
-      d("¿Es lo que ves en tus clientes, que muchas familias usan Uruguay como plan B?"),
-      s("¿Coordinan toda la llegada (migración, documentos, banco, vivienda y colegios) o solo una parte?"),
-      s("¿El cliente tiene una sola persona de contacto para todo el proceso? ¿Atienden en inglés y en alemán?"),
-    ],
-    sections: {
-      0: [
-        p("Residencia legal ≠ residencia fiscal ≠ tener patrimonio en Uruguay: es un mensaje de la propuesta, sin aprobar."),
-        d("¿Es correcto que una propiedad o una cuenta no dan, por sí solas, ni residencia legal ni fiscal? (Ojo con la vía fiscal por inversión inmobiliaria.)"),
-        s("¿Arrancan con cada cliente con un diagnóstico de qué residencias necesita?"),
-      ],
-      1: [
-        d("¿Las vías son temporaria y permanente, y se tramitan ante la Dirección Nacional de Migración?"),
-        d("¿El trámite se inicia en Uruguay y se puede entrar como turista para empezarlo?"),
-        d("¿Con la constancia de inicio ya se saca la cédula y se abren cuentas bancarias?"),
-        d("Residencia Mercosur: ¿qué países entran? Españoles, europeos, estadounidenses y canadienses: ¿todos van por la vía general?"),
-      ],
-      2: [
-        d("¿Son estos los documentos que se piden (pasaporte, partida de nacimiento, certificado de matrimonio, antecedentes penales)?"),
-        d("Medios de vida (jubilación, rentas, trabajo o empresa): ¿son las formas válidas? ¿Hay un monto mínimo?"),
-        d("¿Hay que apostillar y traducir al español? ¿A los estadounidenses se les pide el certificado del FBI?"),
-      ],
-      3: [
-        s("¿Arman el plan B con estos cuatro pilares?"),
-        s("¿Ayudan con cuentas bancarias y diversificación del patrimonio?"),
-        s("¿Ayudan a alquilar o comprar vivienda?"),
-        s("La planificación fiscal entre Uruguay y el país del cliente: ¿la hacen ustedes o la coordinan con un contador?"),
-      ],
-    },
-    steps: [
-      s("Antes de viajar, diagnóstico y revisión fiscal en su país: ¿lo hacen? ¿Quién?"),
-      d("¿El trámite y la cédula se resuelven en las primeras semanas? ¿Existe una cédula \"provisoria\"?"),
-      s("¿Ayudan con vivienda temporal y cobertura de salud?"),
-      d("¿Es realista el plazo de los meses 2 y 3 para bancos, vivienda, colegios y empresa? ¿La residencia se otorga dentro del primer año?"),
-      s("¿Hacen seguimiento al año, con revisión de la residencia fiscal?"),
-    ],
-    faqs: {
-      0: [d("¿La residencia Mercosur puede ser temporaria o permanente y se tramita ante la DNM?"), s("¿Recomiendan o hacen la revisión fiscal en Argentina?")],
-      1: [d("¿Los españoles van por la vía general acreditando medios de vida, sin ningún acuerdo especial?")],
-      2: [d("¿La residencia fiscal se tramita por separado (certificado de la DGI)?")],
-      3: [d("¿No hace falta comprar una propiedad? ¿Una inversión inmobiliaria sirve para acreditar medios de vida?")],
-      4: [d("¿Se puede tener y conservar la residencia sin vivir en Uruguay? ¿Hay requisitos de permanencia?"), s("¿Hacen el seguimiento de esos requisitos?")],
-    },
-    cta: [s("¿Es lo que entregan en la primera consulta: ruta, documentos y tiempos?")],
-  },
-
-  "family-office": {
-    meta: [
-      s("¿Ofrecen a family offices activos reales, inteligencia de mercado, residencia y plan B? ¿Se presentan como su \"socio local\"?"),
-      p("Nombrar a los family offices de forma explícita es una propuesta sin aprobar."),
-    ],
-    intro: [
-      d("\"Los family offices miran a Uruguay por lo que ofrece y los mercados más grandes no\": ¿es lo que ves?"),
-      d("Igualdad de trato al inversor extranjero y libre movimiento de capitales: ¿lo afirmamos? ¿Citamos la ley?"),
-      s("¿Coordinan también a los especialistas fiscales y operativos? ¿El family office tiene una sola persona de contacto?"),
-    ],
-    sections: {
-      0: [
-        d("¿Los inversores extranjeros tienen los mismos derechos que los locales (Ley 16.906)?"),
-        d("¿No hay controles de cambio y capital y utilidades se giran al exterior libremente?"),
-        d("¿Podemos decir que Uruguay tiene un sector financiero \"consolidado\" y que es base para toda la región?"),
-      ],
-      2: [r("Tu texto de Market Intelligence quedó un poco reescrito. ¿Lo aprobás así?")],
-      3: [
-        p("El mensaje \"plan B\" es una propuesta sin aprobar."),
-        s("¿Así definen la protección patrimonial: diversificar dentro de la ley?"),
-        s("¿Piden documentar el origen de los fondos y el cumplimiento fiscal en cada país?"),
-      ],
-      4: [
-        p("\"Trabajamos para nuestro cliente\" es la propuesta de independencia, sin aprobar."),
-        s("¿Cómo cobra la firma? ¿Lo explican siempre antes del mandato?"),
-        s("¿Informan siempre el vínculo con Sacramentum Capital?"),
-      ],
-    },
-    faqs: {
-      0: [d("¿Igualdad de trato al inversor extranjero y sin controles de cambio?")],
-      1: [d("¿Los familiares pueden obtener la residencia, y la fiscal cuando corresponda?"), s("¿Planifican la residencia de la familia junto con la inversión?")],
-      2: [d("¿Podemos afirmar que Uruguay no es un paraíso fiscal y aplica los estándares de la OCDE? ¿\"Previsible\", si el régimen cambió en 2026?")],
-      3: [s("¿Cuál es la relación real entre Advisors y Capital? ¿Son empresas separadas? ¿Comparten socios? ¿Está bien \"de nuestra red\"?"), s("¿Siempre informan ese vínculo?")],
-    },
-    cta: [s("¿En la primera conversación ya presentan oportunidades y asesores?")],
-  },
-
   "technology": {
     meta: [r("El título, la descripción y la tarjeta resumen tu texto, sin agregar nada. ¿Te sirven? (En inglés: \"Build & Acquire\".)")],
     intro: [r("La traducción al español es nuestra. ¿La revisás con Chiara? Lo mismo vale para las tres secciones.")],
     facts: [r("Redondeamos US$3.680 millones a \"US$3,7 MM\". En español \"MM\" suele leerse como millones: ¿preferís \"US$ 3.680 millones\"?")],
-    faqs: {
-      0: [d("Tu texto no habla del huso horario con Norteamérica, Latinoamérica y Europa. ¿Lo agregamos o lo sacamos?")],
-      1: [
-        d("\"Los inversores extranjeros reciben el mismo trato que los locales\": no sale de tu texto. ¿Lo confirmás (y con qué ley) o lo sacamos?"),
-        s("¿Advisors busca e identifica empresas para comprar? ¿Coordina la transacción con Sacramentum Capital?"),
-      ],
-    },
     cta: [s("\"Cuéntenos qué necesita y le mostramos las opciones en Uruguay\": ¿así trabajan con tecnología?")],
   },
 };

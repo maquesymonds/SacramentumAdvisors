@@ -162,6 +162,7 @@ export default function HowWeSupport() {
 
                   <article
                     onClick={() => navigate(path("contact"))}
+                    data-cta={`home-support-card-${card.id}`}
                     style={{
                       display:       "flex",
                       flexDirection: "row",
@@ -257,6 +258,7 @@ export default function HowWeSupport() {
             <article
               key={card.id}
               onClick={() => navigate(path("contact"))}
+              data-cta={`home-support-card-${card.id}`}
               style={{
                 width:         "clamp(300px, 50vw, 580px)",
                 height:        "clamp(360px, 55vh, 480px)",
@@ -311,9 +313,9 @@ export default function HowWeSupport() {
         <div className="container-site lg:py-14 py-8">
           <div className="lg:pt-10 lg:border-t lg:border-ink/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <p className="text-body text-ink-muted max-w-[440px]">
-              Every engagement begins with a private, no-commitment conversation about your objectives.
+              {copy.ctaNote}
             </p>
-            <button onClick={() => navigate(path("contact"))} className="btn-primary whitespace-nowrap flex-shrink-0">
+            <button onClick={() => navigate(path("contact"))} data-cta="home-support-strip" className="btn-primary whitespace-nowrap flex-shrink-0">
               {copy.cta}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

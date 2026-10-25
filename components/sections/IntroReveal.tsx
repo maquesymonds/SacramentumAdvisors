@@ -108,6 +108,7 @@ export default function IntroReveal() {
 
         <button
           onClick={() => navigate(path("contact"))}
+          data-cta="home-hero"
           className="hero-cta"
           style={{
             display:        "inline-flex",

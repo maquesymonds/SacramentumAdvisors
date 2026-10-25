@@ -91,7 +91,7 @@ export const de: SiteTranslations = {
     subheadline: "Wir sind auf die widerstandsfähigsten und wertstabilsten Anlageklassen spezialisiert, die Uruguay bietet.",
     items: [
       { id: "residential",  title: "Wohnimmobilien",               description: "Private Residenzen und Anwesen an der Küste in den begehrtesten Lagen Uruguays." },
-      { id: "agricultural", title: "Landwirtschaftliche Flächen",  description: "Produktives Ackerland mit langfristigem Wert – Forstwirtschaft, Soja und Rinderfarmen." },
+      { id: "agricultural", title: "Landwirtschaftliche Flächen",  description: "Produktives Ackerland mit langfristigem Wert: Forstwirtschaft, Soja und Rinderfarmen." },
       { id: "commercial",   title: "Gewerbeimmobilien",            description: "Strategische Gewerbeimmobilien in Montevideo und in Wachstumskorridoren." },
       { id: "equestrian",   title: "Estancias und Reitanlagen",    description: "Ausgewählte Estancias und Reitanlagen für Familien und Investoren." },
     ],
@@ -102,12 +102,13 @@ export const de: SiteTranslations = {
     headline:    "Wie wir Sie begleiten",
     subheadline: "Von Marktanalysen und Transaktionsstrukturierung bis zu Aufenthalt, Niederlassung vor Ort und langfristiger Kapitalpositionierung: Unser Team begleitet Sie in jeder Phase Ihres Schritts nach Uruguay.",
     cta:         "Vertrauliches Beratungsgespräch vereinbaren",
+    ctaNote:     "Jede Zusammenarbeit beginnt mit einem vertraulichen, unverbindlichen Gespräch über Ihre Ziele.",
     cards: [
       {
         id:          "soft-landing",
         image:       "/images/hands.webp",
         title:       "Auswandern und Niederlassung (Soft Landing)",
-        description: "Unser Netzwerk aus Rechts-, Finanz- und Steuerpartnern sowie Akteuren des lokalen Ökosystems begleitet Sie in jeder Phase Ihrer Niederlassung – von Aufenthalt und Strukturierung bis zur Integration vor Ort und zum operativen Aufbau.",
+        description: "Unser Netzwerk aus Rechts-, Finanz- und Steuerpartnern sowie Akteuren des lokalen Ökosystems begleitet Sie in jeder Phase Ihrer Niederlassung, von Aufenthalt und Strukturierung bis zur Integration vor Ort und zum operativen Aufbau.",
       },
       {
         id:          "market-intelligence",
@@ -140,7 +141,7 @@ export const de: SiteTranslations = {
         roman:       "I",
         eyebrow:     "Erfahrung",
         title:       "Seniorität und Erfahrung",
-        description: "Unser Team bringt jahrzehntelange Führungserfahrung in strategischer Beratung, institutioneller Investitionsförderung und grenzüberschreitenden Kapitalentscheidungen mit – ein Urteil, das auf echter Erfahrung beruht.",
+        description: "Unser Team bringt jahrzehntelange Führungserfahrung in strategischer Beratung, institutioneller Investitionsförderung und grenzüberschreitenden Kapitalentscheidungen mit: ein Urteil, das auf echter Erfahrung beruht.",
       },
       {
         id:          "network",
@@ -162,7 +163,7 @@ export const de: SiteTranslations = {
   lifestyleAssets: {
     eyebrow:     "Lifestyle Assets",
     headline:    "Wo Kapital und Leben zusammenkommen.",
-    subheadline: "Mehr als eine reine Geldanlage – Werte, die das Leben der Familien bereichern, denen sie gehören.",
+    subheadline: "Mehr als eine reine Geldanlage: Werte, die das Leben der Familien bereichern, denen sie gehören.",
   },
 
   trust: {
@@ -200,7 +201,7 @@ export const de: SiteTranslations = {
           image: "/images/omar.webp",
           name:  "Omar Paganini",
           role:  "Energie und Politik",
-          bio:   "Elektroingenieur, Hochschullehrer und uruguayischer Politiker mit einer herausragenden Laufbahn im öffentlichen und privaten Sektor. Er war Minister für Industrie, Energie und Bergbau Uruguays (2020–2023) und anschließend Außenminister (2023–2025). Seine fundierte Expertise in Energie, Technologie und Telekommunikation, verbunden mit strategischem Weitblick und Führungserfahrung, macht ihn zu einem wertvollen Berater für Entwicklung und Innovation.",
+          bio:   "Elektroingenieur, Hochschullehrer und uruguayischer Politiker mit einer herausragenden Laufbahn im öffentlichen und privaten Sektor. Er war Minister für Industrie, Energie und Bergbau Uruguays (2020 bis 2023) und anschließend Außenminister (2023 bis 2025). Seine fundierte Expertise in Energie, Technologie und Telekommunikation, verbunden mit strategischem Weitblick und Führungserfahrung, macht ihn zu einem wertvollen Berater für Entwicklung und Innovation.",
         },
         {
           id:    "guillermo",
@@ -269,7 +270,7 @@ export const de: SiteTranslations = {
         image:    "/placeholders/pde.avif",
         category: "Wirtschaft",
         title:    "Zonamerica: Einblick in Lateinamerikas führende Freihandelszone",
-        excerpt:  "Wie eine visionäre Freihandelszone nördlich von Montevideo zum Anker für Uruguays Technologieexporte wurde – und warum globale Unternehmen sie günstigeren Alternativen vorziehen.",
+        excerpt:  "Wie eine visionäre Freihandelszone nördlich von Montevideo zum Anker für Uruguays Technologieexporte wurde und warum globale Unternehmen sie günstigeren Alternativen vorziehen.",
         slug:     "zonamerica-latin-america-premier-free-trade-zone",
         date:     "2025-03-22",
       },
@@ -278,7 +279,7 @@ export const de: SiteTranslations = {
         image:    "/placeholders/lapalom.avif",
         category: "Lebensstil",
         title:    "Warum vermögende Familien den Aufenthalt in Uruguay wählen",
-        excerpt:  "Stabile Institutionen, ein wettbewerbsfähiges Steuersystem und eine hohe Lebensqualität machen Uruguay für eine immer vielfältigere internationale Gruppe zur ersten Wahl – von lateinamerikanischen Führungskräften bis zu europäischen Rentnern.",
+        excerpt:  "Stabile Institutionen, ein wettbewerbsfähiges Steuersystem und eine hohe Lebensqualität machen Uruguay für eine immer vielfältigere internationale Gruppe zur ersten Wahl, von lateinamerikanischen Führungskräften bis zu europäischen Rentnern.",
         slug:     "high-net-worth-families-uruguayan-residency",
         date:     "2025-02-14",
       },
@@ -287,7 +288,7 @@ export const de: SiteTranslations = {
         image:    "/placeholders/hero-coast.avif",
         category: "Investitionen",
         title:    "Punta del Este: mehr als ein Sommerziel",
-        excerpt:  "Lange als reines Sommerziel abgetan, ist der Immobilienmarkt von Punta del Este zu einem Ganzjahresmarkt gereift – getragen von Remote-Arbeit, der Nachfrage nach Aufenthalt in Uruguay und einem knappen Angebot an erstklassigen Küstengrundstücken.",
+        excerpt:  "Lange als reines Sommerziel abgetan, ist der Immobilienmarkt von Punta del Este zu einem Ganzjahresmarkt gereift, getragen von Remote-Arbeit, der Nachfrage nach Aufenthalt in Uruguay und einem knappen Angebot an erstklassigen Küstengrundstücken.",
         slug:     "punta-del-este-beyond-seasonal-myth",
         date:     "2025-01-30",
       },
@@ -296,7 +297,7 @@ export const de: SiteTranslations = {
         image:    "/placeholders/colonia.avif",
         category: "Wirtschaft",
         title:    "Governance-Prämie: warum Uruguays Institutionen das Risiko senken",
-        excerpt:  "In einer Region, in der politisches Risiko die Regel ist, schafft Uruguays konstante institutionelle Bilanz – unter Regierungen jeder Richtung – etwas Seltenes: eine echte Governance-Prämie, die erfahrene Investoren zunehmend einpreisen.",
+        excerpt:  "In einer Region, in der politisches Risiko die Regel ist, schafft Uruguays konstante institutionelle Bilanz (unter Regierungen jeder Richtung) etwas Seltenes: eine echte Governance-Prämie, die erfahrene Investoren zunehmend einpreisen.",
         slug:     "governance-premium-uruguays-institutions",
         date:     "2024-12-18",
       },
@@ -317,14 +318,6 @@ export const de: SiteTranslations = {
     cta:      "Vertrauliche Beratung vereinbaren",
   },
 
-  contactTrust: {
-    eyebrow:           "Mit wem Sie sprechen",
-    headline:          "Erfahrene Berater, vom ersten Gespräch an.",
-    legal:             "Das uruguayische Recht gewährt ausländischen Investoren dieselben Rechte wie inländischen.",
-    confidentiality:   "Jedes Gespräch ist vertraulich. Vor jedem Mandat erklären wir, wie wir arbeiten und wie wir vergütet werden.",
-    minimumInvestment: "",
-  },
-
   contactPage: {
     meta: {
       title:       "Vertrauliche Beratung | Sacramentum Advisors",
@@ -333,11 +326,12 @@ export const de: SiteTranslations = {
     eyebrow:  "Vertrauliche Beratung",
     headline: "Sprechen Sie mit unserem Team.",
     intro:    "Sprechen Sie mit unserem Team in Uruguay über Aufenthalt, Investitionen, Immobilien oder Ihre langfristige Positionierung in der Region.",
-    disclaimer:   "Wir antworten innerhalb von 1–2 Werktagen. Alle Anfragen sind streng vertraulich.",
+    disclaimer:   "Wir antworten innerhalb von 1 bis 2 Werktagen. Alle Anfragen sind streng vertraulich.",
     errorMessage: "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
     secondary: {
       eyebrow: "Zusammenarbeit",
       body:    "Wir arbeiten jeweils mit einer ausgewählten Zahl von Kunden, um jedem Mandat die Aufmerksamkeit zu geben, die es verdient.",
+      minimum: "Wir begleiten Investitionen ab USD ___.",
     },
     form: {
       nameLabel:           "Vollständiger Name",
@@ -351,7 +345,7 @@ export const de: SiteTranslations = {
       interestLabel:       "Interessengebiet",
       interestPlaceholder: "Bereich auswählen",
       interestOptions: [
-        { value: "not-sure",               label: "Ich bin noch unsicher – ich informiere mich" },
+        { value: "not-sure",               label: "Ich bin noch unsicher, ich informiere mich" },
         { value: "residency",              label: "Auswandern und Aufenthalt" },
         { value: "strategic-acquisition",  label: "Strategische Investitionen" },
         { value: "lifestyle-assets",       label: "Lifestyle Assets" },
@@ -396,9 +390,9 @@ export const de: SiteTranslations = {
     services: {
       title: "Leistungen",
       links: [
-        { label: "Strategische Beratung",            href: "page:family-office" },
+        { label: "Strategische Beratung",            href: "page:services" },
         { label: "Marktanalyse",                     href: "/services?card=market-intelligence" },
-        { label: "Auswandern und Niederlassung",     href: "page:residency" },
+        { label: "Auswandern und Niederlassung",     href: "page:services" },
         { label: "Sacramentum Capital",              href: "page:sacramentum-capital" },
       ],
     },
@@ -451,7 +445,7 @@ export const de: SiteTranslations = {
       { text: "Technologie und nachhaltige Bewirtschaftung" },
     ],
     marketHighlights: [
-      { text: "Lebensmittelproduktion für 30–50 Millionen Menschen" },
+      { text: "Lebensmittelproduktion für 30 bis 50 Millionen Menschen" },
       { text: "Ein Land ohne Entwaldung" },
       { text: "Steuerliche Anreize für Forstinvestitionen" },
     ],
@@ -487,7 +481,7 @@ export const de: SiteTranslations = {
     headline:     "Blog",
     subtitle:     "Perspektiven des Sacramentum-Teams zu Investitionen, Immobilien und Auswandern nach Uruguay.",
     readLabel:    "BEITRAG LESEN",
-    empty:        "Noch keine Beiträge – schauen Sie bald wieder vorbei.",
+    empty:        "Noch keine Beiträge. Schauen Sie bald wieder vorbei.",
     backLabel:    "Zurück zum Blog",
     linkedinText: "Originalbeitrag auf LinkedIn ansehen",
   },

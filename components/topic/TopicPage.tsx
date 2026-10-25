@@ -2,17 +2,21 @@
    TopicPage — shared template for sector and service pages
    Server component: all copy is in the HTML (crawlable, citable by AI
    answers). Blocks: hero · image · facts · sections · steps · FAQ · related ·
-   CTA. FAQ text and FAQPage JSON-LD come from the same data (parity).
+   CTA. FaqSection renders the FAQPage JSON-LD from the same data (parity).
    ─────────────────────────────────────────────────────────────────────────── */
 
 import CountUp    from "@/components/ui/CountUp";
 import StackSections from "./StackSections";
-import ItemReveal from "@/components/ui/ItemReveal";
-import FaqHover   from "./FaqHover";
+import LinkedText from "@/components/ui/LinkedText";
+import FaqSection from "@/components/faq/FaqSection";
 import s          from "./topic.module.css";
 import Image      from "next/image";
 import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
+import { SECTOR_COLOR } from "@/lib/topic-links";
+import SectionCta from "@/components/ui/SectionCta";
+import ReviewFlag from "@/components/review/ReviewFlag";
+import { topicReview } from "@/data/review-flags";
 import {
   PAGES,
   absoluteUrl,
@@ -26,10 +30,10 @@ import {
 import { PAGE_LABELS, topicContent, type Overrides, type TopicContent } from "@/lib/topics";
 import { getTranslationOverrides } from "@/lib/translation-overrides";
 
-const UI: Record<Locale, { home: string; faq: string; related: string; relatedTitle: string; facts: string; source: string }> = {
-  en: { home: "Home",       faq: "Frequently asked questions", related: "Related",          relatedTitle: "Keep exploring",    facts: "Key facts", source: "Source" },
-  es: { home: "Inicio",     faq: "Preguntas frecuentes",        related: "Relacionado",      relatedTitle: "Seguir explorando", facts: "Datos clave", source: "Fuente" },
-  de: { home: "Startseite", faq: "Häufige Fragen",              related: "Verwandte Themen", relatedTitle: "Weiter entdecken",  facts: "Eckdaten", source: "Quelle" },
+export const TOPIC_UI: Record<Locale, { home: string; related: string; relatedTitle: string; facts: string; source: string }> = {
+  en: { home: "Home",       related: "Related",          relatedTitle: "Keep exploring",    facts: "Key facts", source: "Source" },
+  es: { home: "Inicio",     related: "Relacionado",      relatedTitle: "Seguir explorando", facts: "Datos clave", source: "Fuente" },
+  de: { home: "Startseite", related: "Verwandte Themen", relatedTitle: "Weiter entdecken",  facts: "Eckdaten", source: "Quelle" },
 };
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -41,20 +45,26 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-function relatedCard(id: PageId, locale: Locale, overrides: Overrides): { href: string; title: string; text: string; image?: string } | null {
+export function relatedCard(id: PageId, locale: Locale, overrides: Overrides): { href: string; title: string; text: string; image?: string } | null {
   if (isTopicId(id)) {
     const c = topicContent(id, locale, overrides);
-    return { href: localePath(id, locale), title: c.navLabel, text: c.cardText, image: c.image.src };
+    // Pre-sized card thumbnail (public/images/cards/<id>.webp, 960×720):
+    // served as a static file, so the image optimizer never has to encode the
+    // large hero source the first time someone scrolls to the cards.
+    return { href: localePath(id, locale), title: c.navLabel, text: c.cardText, image: `/images/cards/${id}.webp` };
   }
   const label = PAGE_LABELS[id]?.[locale];
   return label ? { href: localePath(id, locale), title: label.title, text: label.text } : null;
 }
 
 export default async function TopicPage({ id, locale }: { id: TopicId; locale: Locale }) {
+  // Sector pages take their Why Uruguay colour, with white text (.topic-theme in globals.css)
+  const bg = SECTOR_COLOR[id];
   // Admin edits (EN/ES) are applied on top of the code copy.
   const overrides = await getTranslationOverrides();
   const c: TopicContent = topicContent(id, locale, overrides);
-  const ui = UI[locale];
+  const ui = TOPIC_UI[locale];
+  const rv = topicReview(id);
   const related = (PAGES[id].related ?? [])
     .filter(r => pageLocales(r).includes(locale))
     .map(r => relatedCard(r, locale, overrides))
@@ -69,26 +79,17 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
         { "@type": "ListItem", position: 2, name: c.navLabel, item: absoluteUrl(localePath(id, locale)) },
       ],
     },
-    {
-      "@context": "https://schema.org",
-      "@type":    "FAQPage",
-      mainEntity: c.faqs.map(f => ({
-        "@type": "Question",
-        name:    f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
   ];
 
   return (
     <>
       <Navigation />
-      <main>
+      <main className={bg ? "topic-theme" : undefined} style={bg ? ({ "--topic-bg": bg } as React.CSSProperties) : undefined}>
 
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <section
           style={{
-            backgroundColor: "#FFFFFF",
+            backgroundColor: "var(--topic-bg, #FFFFFF)",
             paddingTop:      "clamp(8rem, 14vw, 12rem)",
             paddingBottom:   "clamp(3rem, 6vw, 5rem)",
           }}
@@ -105,89 +106,88 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
                 {c.title}
               </h1>
               <div className="text-body text-ink-muted leading-relaxed lg:pt-2 flex flex-col gap-4">
-                {c.intro.map((p, i) => <p key={i}>{p}</p>)}
+                {c.intro.map((p, i) => <p key={i}><LinkedText text={p} locale={locale} /></p>)}
+                <ReviewFlag notes={rv?.intro} />
               </div>
             </div>
+
+            {/* Key facts right under the intro, before the image: the figures are
+                the first thing a visitor wants (Maque, 21.10.2026). */}
+            {c.facts && c.facts.length > 0 && (
+              <dl
+                aria-label={ui.facts}
+                className="grid grid-cols-2 lg:grid-cols-4 gap-y-10"
+                style={{ marginTop: "clamp(3rem, 6vw, 4.5rem)", borderTop: "1px solid var(--topic-line, rgba(17,31,48,0.1))" }}
+              >
+                {c.facts.map((f, i) => (
+                  <div
+                    key={i}
+                    className={`flex flex-col gap-3 pt-8 pr-4 lg:pr-6 ${i % 2 ? "pl-4" : ""} ${i > 0 ? "lg:pl-8" : ""} ${i % 2 ? "border-l" : i > 0 ? "lg:border-l" : ""}`}
+                    style={{ borderColor: "var(--topic-line, rgba(17,31,48,0.1))" }}
+                  >
+                    {/* Label is the <dt>, figure the <dd>; CSS order puts the figure on top. */}
+                    <dt className="text-ink-muted order-2 font-normal" style={{ fontSize: "0.92rem", lineHeight: 1.55, maxWidth: "28ch" }}>
+                      {f.label}
+                      {f.source && (
+                        <a href={f.source.href} target="_blank" rel="noopener noreferrer" className="block mt-2 text-ink-subtle hover:text-ink" style={{ fontSize: "0.75rem" }}>
+                          {ui.source}: {f.source.label}
+                        </a>
+                      )}
+                    </dt>
+                    <dd className="text-ink order-1" style={{ fontSize: "clamp(1.9rem, 1rem + 3vw, 3.9rem)", letterSpacing: "-0.035em", lineHeight: 1, whiteSpace: "nowrap" }}>
+                      <CountUp value={f.value} />
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            <ReviewFlag notes={rv?.facts} className="mt-6" />
           </div>
         </section>
 
         {/* ── Image ────────────────────────────────────────────────────────── */}
-        <div className="container-site" style={{ paddingBottom: "clamp(3rem, 6vw, 5rem)", backgroundColor: "#FFFFFF" }}>
+        <div className="container-site" style={{ paddingBottom: "clamp(3rem, 6vw, 5rem)", backgroundColor: "var(--topic-bg, #FFFFFF)" }}>
           <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21 / 9", borderRadius: 16 }}>
             <Image src={c.image.src} alt={c.image.alt} fill sizes="(min-width: 1440px) 1344px, 100vw" className="object-cover" priority />
           </div>
         </div>
 
-        {/* ── Facts ────────────────────────────────────────────────────────── */}
-        {c.facts && c.facts.length > 0 && (
-          <section aria-label={ui.facts} style={{ backgroundColor: "var(--color-surface-muted)", paddingBlock: "clamp(3rem, 6vw, 5rem)" }}>
-            <div className="container-site grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-              {c.facts.map((f, i) => (
-                <div key={i} className="flex flex-col items-center text-center gap-2">
-                  <span className="text-ink" style={{ fontSize: "clamp(3rem, 4.4vw, 4.75rem)", letterSpacing: "-0.03em", lineHeight: 1, whiteSpace: "nowrap" }}>
-                    <CountUp value={f.value} />
-                  </span>
-                  <span className="text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.5 }}>{f.label}</span>
-                  {f.source && (
-                    <a href={f.source.href} target="_blank" rel="noopener noreferrer" className="text-ink-subtle hover:text-ink" style={{ fontSize: "0.75rem" }}>
-                      {ui.source}: {f.source.label}
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* ── Sections: stacked cards (Web System S7) ─────────────────────── */}
-        <StackSections heading={c.sectionsHeading} sections={c.sections} />
+        {c.sections.length > 0 && <StackSections locale={locale} heading={c.sectionsHeading} sections={c.sections} review={locale === "es" ? rv?.sections : undefined} />}
+        {!c.steps && (
+          <div className="container-site">
+            <SectionCta id={`topic-${id}-sections`} label={c.cta.label} className="pb-[var(--section-padding-y)]" onDark={!!bg} />
+          </div>
+        )}
 
         {/* ── Steps ────────────────────────────────────────────────────────── */}
         {c.steps && (
-          <section style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
+          <section style={{ backgroundColor: "var(--topic-bg, #FFFFFF)", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
             <div className="container-site">
               <h2 className="font-normal text-ink mb-12" style={{ fontSize: "clamp(1.6rem, 2.6vw, 2.2rem)", letterSpacing: "-0.02em" }}>
                 {c.steps.heading}
               </h2>
+              <ReviewFlag notes={rv?.steps} className="-mt-6 mb-10" />
               <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {c.steps.items.map((step, i) => (
-                  <li key={i} className="flex flex-col gap-3 pt-6" style={{ borderTop: "1px solid rgba(17,31,48,0.12)" }}>
+                  <li key={i} className="flex flex-col gap-3 pt-6" style={{ borderTop: "1px solid var(--topic-line, rgba(17,31,48,0.12))" }}>
                     <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{String(i + 1).padStart(2, "0")}</span>
                     <h3 className="text-ink" style={{ fontSize: "1.15rem", lineHeight: 1.3 }}>{step.title}</h3>
-                    <p className="text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>{step.body}</p>
+                    <p className="text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.6 }}><LinkedText text={step.body} locale={locale} /></p>
                   </li>
                 ))}
               </ol>
+              <SectionCta id={`topic-${id}-steps`} label={c.cta.label} align="start" onDark={!!bg} />
             </div>
           </section>
         )}
 
         {/* ── FAQ ──────────────────────────────────────────────────────────── */}
-        {/* Katzer layout: centred title, one column of cards. A shared `name`
-            makes the <details> an accordion (one open at a time); it is
-            spread because React 18's types don't know it on <details>. */}
-        <section style={{ backgroundColor: "var(--color-surface-muted)", paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}>
-          <div className={`container-site ${s.faq}`}>
-            <FaqHover />
-            <h2 className={s.sectionTitle}>{ui.faq}</h2>
-            <div className={s.list} data-faq-list data-reveal-items="">
-              {c.faqs.map((f, i) => (
-                <details key={i} {...{ name: `faq-${id}` }} className={s.item}>
-                  <summary className={s.question}>
-                    <span className={s.number} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                    <h3 className={s.questionText}>{f.q}</h3>
-                    <span className={s.knob} aria-hidden="true" />
-                  </summary>
-                  <p className={s.answer}>{f.a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSection id={id} locale={locale} items={c.faqs} background={bg ? "transparent" : undefined} />
 
         {/* ── Related ──────────────────────────────────────────────────────── */}
         {related.length > 0 && (
-          <section style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}>
+          <section style={{ backgroundColor: "var(--topic-bg, #FFFFFF)", paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}>
             <div className={`container-site ${s.related}`}>
               <div>
                 <div className={`text-eyebrow ${s.eyebrow}`}>{ui.related}</div>
@@ -198,7 +198,7 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
                   <a key={r.href} href={r.href} className={s.card}>
                     {r.image && (
                       <div className={s.cardImage}>
-                        <Image src={r.image} alt="" fill sizes="(min-width: 1024px) 384px, 100vw" className="object-cover" />
+                        <Image src={r.image} alt="" fill unoptimized className="object-cover" />
                       </div>
                     )}
                     <div className={s.cardBody}>
@@ -217,23 +217,10 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
           </section>
         )}
 
-        <ItemReveal />
-
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
-        <section style={{ backgroundColor: "var(--color-dark)", paddingBlock: "clamp(4.5rem, 9vw, 7.5rem)" }}>
-          <div className="container-site flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <h2 className="font-normal" style={{ color: "#FAFAF8", fontSize: "clamp(1.8rem, 3vw, 2.6rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
-                {c.cta.heading}
-              </h2>
-              <p className="mt-4" style={{ color: "rgba(250,250,248,0.7)", lineHeight: 1.7 }}>{c.cta.body}</p>
-            </div>
-            <a href={localePath("contact", locale)} data-cta={`topic-${id}`} className="btn-primary flex-shrink-0">{c.cta.label}</a>
-          </div>
-        </section>
-
       </main>
-      <Footer />
+      {/* Closing CTA lives in the footer: centred, same colour (Maque, 21.10.). */}
+      {rv?.cta && <div className="container-site" style={{ paddingBlock: "1.5rem" }}><ReviewFlag title="Para confirmar con Inés · cierre de la página" notes={rv.cta} /></div>}
+      <Footer cta={{ heading: c.cta.heading, body: c.cta.body, label: c.cta.label, href: localePath("contact", locale), id: `topic-${id}` }} />
 
       <script
         type="application/ld+json"

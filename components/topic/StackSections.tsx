@@ -7,38 +7,43 @@ import Image      from "next/image";
 import StackCover from "./StackCover";
 import s          from "./stack.module.css";
 import type { TopicSection } from "@/lib/topics";
+import type { ReviewNote } from "@/lib/review";
+import ReviewFlag from "@/components/review/ReviewFlag";
+import LinkedText from "@/components/ui/LinkedText";
+import type { Locale } from "@/lib/i18n";
 
-function Body({ sec }: { sec: TopicSection }) {
+function Body({ sec, locale }: { sec: TopicSection; locale?: Locale }) {
   return (
     <div className={s.body}>
-      {sec.body.map((p, j) => <p key={j}>{p}</p>)}
+      {sec.body.map((p, j) => <p key={j}><LinkedText text={p} locale={locale} /></p>)}
       {sec.bullets && (
         <ul className={s.bullets}>
-          {sec.bullets.map((b, j) => <li key={j}>{b}</li>)}
+          {sec.bullets.map((b, j) => <li key={j}><LinkedText text={b} locale={locale} /></li>)}
         </ul>
       )}
     </div>
   );
 }
 
-export default function StackSections({ heading, sections }: { heading?: string; sections: TopicSection[] }) {
+export default function StackSections({ heading, sections, review, locale }: { heading?: string; sections: TopicSection[]; review?: Record<number, ReviewNote[]>; locale?: Locale }) {
   return (
-    <section className={s.section} data-nav-dark>
+    <section className={s.section}>
       <div className="container-site">
         {heading && <h2 className={s.heading}>{heading}</h2>}
         <ol className={s.stack} data-stack>
           {sections.map((sec, i) => (
             <li key={i} style={{ "--i": i + 1 } as React.CSSProperties}>
               <article className={`${s.card} ${sec.image ? "" : s.noImage}`}>
+                <ReviewFlag notes={review?.[i]} style={{ gridColumn: "1 / -1" }} />
                 {/* Without a photo: number and heading left, text right */}
                 <div>
                   <h3 className={s.title}>
                     <span className={s.number} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                     {sec.heading}
                   </h3>
-                  {sec.image && <Body sec={sec} />}
+                  {sec.image && <Body sec={sec} locale={locale} />}
                 </div>
-                {!sec.image && <Body sec={sec} />}
+                {!sec.image && <Body sec={sec} locale={locale} />}
                 {sec.image && (
                   <figure className={s.pic}>
                     <Image src={sec.image.src} alt={sec.image.alt} fill sizes="(max-width: 900px) 92vw, 40vw" className="object-cover" />

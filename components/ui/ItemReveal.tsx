@@ -12,8 +12,9 @@
 
    The visible state is the default: only GSAP hides, at runtime. No JS, a
    crawler or reduced motion → everything is simply there. Groups already in
-   view on load don't move. The filter is cleared once done (a leftover
-   filter keeps a compositing layer per element).
+   view on load don't move. Filter and transforms are cleared once done: a
+   leftover filter keeps a compositing layer per element, and the inline
+   transform / translate / scale would override the cards' CSS hover.
    ─────────────────────────────────────────────────────────────────────────── */
 
 import { useEffect } from "react";
@@ -57,7 +58,7 @@ export default function ItemReveal() {
         const items = itemsOf(group);
         const col = columns(items);
         items.forEach((item, i) => {
-          const clear = () => gsap.set(item, { clearProps: "filter" });
+          const clear = () => gsap.set(item, { clearProps: "filter,transform,translate,rotate,scale" });
           gsap.fromTo(item, FROM, {
             opacity: 1,
             y: 0,

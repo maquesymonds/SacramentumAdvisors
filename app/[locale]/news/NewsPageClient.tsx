@@ -5,7 +5,9 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence }  from "framer-motion";
 import Navigation                   from "@/components/layout/Navigation";
 import Footer                       from "@/components/layout/Footer";
-import { useT } from "@/lib/locale-context";
+import { useT, useLocalePath } from "@/lib/locale-context";
+import { newsTopic } from "@/lib/news-topics";
+import { FOOTER_TOPICS } from "@/lib/topic-links";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -23,7 +25,26 @@ const fadeIn = (delay = 0) => ({
   transition:  { duration: 0.75, ease: EASE, delay },
 });
 
-type AdminArticle = { id: string; image: string; title: string; link?: string; category?: string; excerpt?: string; slug?: string; date?: string };
+type AdminArticle = { id: string; image: string; title: string; link?: string; topic?: string; category?: string; excerpt?: string; slug?: string; date?: string };
+
+// Link under each card to the sector page the article belongs to.
+const MORE_ON = { en: "More on", es: "Más sobre", de: "Mehr zu" } as const;
+
+function SectorLink({ article }: { article: AdminArticle }) {
+  const { path, locale } = useLocalePath();
+  const topic = newsTopic(article);
+  if (!topic) return null;
+  const label = FOOTER_TOPICS.find(t => t.id === topic)!.label[locale];
+  return (
+    <a
+      href={path(topic)}
+      className="inline-flex items-center gap-1.5 mt-3 sm:mt-4"
+      style={{ color: "var(--color-warm)", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, textWrap: "balance" as React.CSSProperties["textWrap"] }}
+    >
+      <span><span className="hidden sm:inline">{MORE_ON[locale]} </span>{label}</span> <span aria-hidden="true">→</span>
+    </a>
+  );
+}
 
 function ArticleCard({ article, visitLabel }: { article: AdminArticle; visitLabel: string }) {
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
@@ -188,7 +209,10 @@ export default function NewsPageClient({ adminArticles }: { adminArticles?: Admi
             <AnimatePresence mode="popLayout">
               <motion.div layout className="sm:hidden grid grid-cols-2 gap-3">
                 {articles.map(article => (
-                  <MobileNewsCard key={article.id} article={article} visitLabel={copy.readArticle} />
+                  <div key={article.id} className="flex flex-col">
+                    <MobileNewsCard article={article} visitLabel={copy.readArticle} />
+                    <SectorLink article={article} />
+                  </div>
                 ))}
               </motion.div>
             </AnimatePresence>
@@ -197,7 +221,10 @@ export default function NewsPageClient({ adminArticles }: { adminArticles?: Admi
             <AnimatePresence mode="popLayout">
               <motion.div layout className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10" style={{ alignItems: "stretch" }}>
                 {articles.map(article => (
-                  <ArticleCard key={article.id} article={article} visitLabel={copy.readArticle} />
+                  <div key={article.id} className="flex flex-col">
+                    <div className="flex-1 flex"><ArticleCard article={article} visitLabel={copy.readArticle} /></div>
+                    <SectorLink article={article} />
+                  </div>
                 ))}
               </motion.div>
             </AnimatePresence>
@@ -206,7 +233,7 @@ export default function NewsPageClient({ adminArticles }: { adminArticles?: Admi
         </section>
 
       </main>
-      <Footer />
+      <Footer closing="closing-news" />
     </>
   );
 }

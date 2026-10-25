@@ -20,6 +20,9 @@ export interface TopicSection {
   heading:  string;
   body:     string[];
   bullets?: string[];
+  /** Small label above the card title, e.g. to mark the cards that are
+      Sacramentum's own services ("How we help"). Code only. */
+  label?:   string;
   /** Photo on the section's card (stacked-cards layout). Code only, not admin-editable. */
   image?:   { src: string; alt: string };
 }
@@ -53,16 +56,12 @@ export type TopicCopy = Partial<Record<Locale, TopicContent>> & { en: TopicConte
 import realEstate         from "@/data/topics/real-estate";
 import farmland           from "@/data/topics/farmland";
 import technology         from "@/data/topics/technology";
-import residency          from "@/data/topics/residency";
-import familyOffice       from "@/data/topics/family-office";
 import sacramentumCapital from "@/data/topics/sacramentum-capital";
 
 const TOPICS: Record<TopicId, TopicCopy> = {
   "real-estate":         realEstate,
   "farmland":            farmland,
   "technology":          technology,
-  "residency":           residency,
-  "family-office":       familyOffice,
   "sacramentum-capital": sacramentumCapital,
 };
 
@@ -146,6 +145,7 @@ export function applyTopicEdits(c: TopicContent, o: FlatTopic): TopicContent {
         body:    e?.body?.trim() ? paras(e.body) : sec.body,
         bullets: e?.bullets?.trim() ? lines(e.bullets) : sec.bullets,
         image:   sec.image,
+        label:   sec.label,
       };
     }),
     steps: c.steps && {

@@ -12,6 +12,7 @@ import { TransitionProvider } from "@/lib/transition-context";
 import TransitionOverlay      from "@/components/layout/TransitionOverlay";
 import ReviewPanel            from "@/components/review/ReviewPanel";
 import Loader                 from "@/components/layout/Loader";
+import CookieConsent          from "@/components/layout/CookieConsent";
 import { notFound }           from "next/navigation";
 import { getTranslationOverrides } from "@/lib/translation-overrides";
 import { siteJsonLd } from "@/lib/schema";
@@ -113,6 +114,7 @@ export default async function RootLayout({
               <TransitionOverlay />
               {children}
               <ReviewPanel />
+              <CookieConsent />
             </LocaleProvider>
             <script
               type="application/ld+json"

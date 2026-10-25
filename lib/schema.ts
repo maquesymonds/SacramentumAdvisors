@@ -1,9 +1,12 @@
 /* Site-wide structured data — verified values only (web-seo-geo §7).
    Every value below is published on the site (contact page / footer).
-   Not included until verified: street address, geo, opening hours, sameAs
-   (no LinkedIn link exists on the site yet), founding date, rating. */
+   Inés and the company link to their LinkedIn (given by Maque, 2026-10-21;
+   also on her team card and in the footer).
+   Not included until verified: street address, geo, opening hours,
+   founding date, rating. */
 
 import { SITE_URL, localePath, type Locale } from "@/lib/i18n";
+import { COMPANY_LINKEDIN, TEAM_LINKEDIN } from "@/lib/external-links";
 
 export const ORG_ID = `${SITE_URL}/#organization`;
 
@@ -23,8 +26,15 @@ export function siteJsonLd(locale: Locale) {
         addressLocality: "Montevideo",
         addressCountry:  "UY",
       },
+      sameAs:     [COMPANY_LINKEDIN],
       areaServed: "UY",
       knowsLanguage: ["es", "en"],
+      employee: {
+        "@type":  "Person",
+        name:     "Inés Bonicelli",
+        jobTitle: "Managing Director",
+        sameAs:   [TEAM_LINKEDIN.ines],
+      },
     },
     {
       "@context": "https://schema.org",

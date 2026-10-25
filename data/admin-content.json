@@ -1,76 +1,50 @@
 {
   "articles": [
     {
-      "id": "port",
-      "image": "/images/news/port.avif",
-      "category": "Economy",
-      "title": "Montevideo Port: Gateway to South American Trade",
-      "excerpt": "How Uruguay's strategic location and world-class port infrastructure continue to position Montevideo as a leading logistics and trade hub in the region.",
-      "slug": "montevideo-port-gateway-south-american-trade",
-      "date": "2025-03-14"
-    },
-    {
-      "id": "montevideo",
-      "image": "/images/news/montevideo.avif",
-      "category": "Lifestyle",
-      "title": "The Walking City: Graceful Montevideo",
-      "excerpt": "A closer look at Montevideo's waterfront culture, urban rhythm, and high quality of life, making it increasingly attractive for global families and investors.",
-      "slug": "the-walking-city-graceful-montevideo",
-      "date": "2025-02-28"
-    },
-    {
-      "id": "investment",
-      "image": "/images/news/investment.avif",
-      "category": "Investment",
-      "title": "Uruguay's Rising Investment Leaders",
-      "excerpt": "The professionals and institutions helping shape Uruguay's next chapter as a stable, internationally connected destination for capital and innovation.",
-      "slug": "uruguays-rising-investment-leaders",
-      "date": "2025-01-19"
-    },
-    {
       "id": "agri-boom",
-      "image": "/images/woods.avif",
+      "image": "https://oyo1nzjtvybgtd3y.public.blob.vercel-storage.com/uploads/1777307583898-m2t1gigc5e9.webp",
       "category": "Investment",
-      "title": "Agricultural Land in Uruguay: A Generational Asset Class",
+      "title": "In Uruguay, 50,000 Steps in a City Where the Sidewalk Never Ends - The New York Times",
       "excerpt": "With fertile prairies, dollar-denominated transactions, and no restrictions on foreign ownership, Uruguay's farmland is quietly becoming one of the most compelling long-term holds in the Southern Hemisphere.",
       "slug": "agricultural-land-uruguay-generational-asset",
-      "date": "2025-04-05"
+      "date": "2025-04-05",
+      "link": "https://www.nytimes.com/2025/02/03/travel/uruguay-montevideo-la-rambla-waterfront.html?searchResultPosition=1",
+      "published": true
     },
     {
-      "id": "tech-hub",
-      "image": "/placeholders/pde.avif",
-      "category": "Economy",
-      "title": "Zonamerica: Inside Latin America's Premier Free Trade Zone",
-      "excerpt": "How a visionary free trade zone north of Montevideo became the anchor for Uruguay's technology export boom — and why global companies keep choosing it over cheaper alternatives.",
-      "slug": "zonamerica-latin-america-premier-free-trade-zone",
-      "date": "2025-03-22"
+      "id": "article-1777307437501",
+      "image": "https://oyo1nzjtvybgtd3y.public.blob.vercel-storage.com/uploads/1777307518055-106uoguh75f.webp",
+      "title": "Uruguay: Punta del Este - Monocle ",
+      "link": "https://monocle.com/partnered-content/uruguay-punta-del-este/",
+      "published": true
     },
     {
-      "id": "residency",
-      "image": "/placeholders/lapalom.avif",
-      "category": "Lifestyle",
-      "title": "Why High-Net-Worth Families Are Choosing Uruguayan Residency",
-      "excerpt": "Stable institutions, competitive tax treatment, and a genuinely high quality of life have made Uruguay the residency choice of an increasingly diverse global cohort — from Latin American executives to European retirees.",
-      "slug": "high-net-worth-families-uruguayan-residency",
-      "date": "2025-02-14"
+      "id": "article-1777307654905",
+      "image": "https://oyo1nzjtvybgtd3y.public.blob.vercel-storage.com/uploads/1777307726818-9h5t4abddto.jpg",
+      "title": "\"There’s No Better Place Than Uruguay to Build an International Company\" - News",
+      "link": "https://www.uruguayxxi.gub.uy/en/news/article/there-s-no-better-place-than-uruguay-to-build-an-international-company/",
+      "published": true
     },
     {
-      "id": "pde-market",
-      "image": "/placeholders/hero-coast.avif",
-      "category": "Investment",
-      "title": "Punta del Este: Beyond the Seasonal Myth",
-      "excerpt": "Long dismissed as a summer destination, Punta del Este's real estate market has matured into a year-round proposition — driven by remote work migration, Uruguayan residency demand, and a shrinking supply of premium coastal lots.",
-      "slug": "punta-del-este-beyond-seasonal-myth",
-      "date": "2025-01-30"
+      "id": "article-1777307824565",
+      "image": "https://oyo1nzjtvybgtd3y.public.blob.vercel-storage.com/uploads/1777307884609-myd6wy201fg.avif",
+      "title": "El destino que compite con Saint-Tropez y Los Hamptons y es elegido por los europeos para invertir en propiedades",
+      "link": "https://www.lanacion.com.ar/propiedades/casas-y-departamentos/el-destino-latino-que-compite-con-saint-tropez-y-los-hamptons-y-es-elegido-por-los-europeos-para-nid01042026/",
+      "published": true
     },
     {
-      "id": "governance",
-      "image": "/placeholders/colonia.avif",
-      "category": "Economy",
-      "title": "Governance Premium: Why Uruguay's Institutions Command a Risk Discount",
-      "excerpt": "In a region where political risk is the default assumption, Uruguay's consistent institutional track record — across left and right administrations alike — produces something rare: a genuine governance premium that sophisticated investors are beginning to price in.",
-      "slug": "governance-premium-uruguays-institutions",
-      "date": "2024-12-18"
+      "id": "article-1777307965119",
+      "image": "https://oyo1nzjtvybgtd3y.public.blob.vercel-storage.com/uploads/1777308018242-0pujrict52md.jpg",
+      "title": "Los Hamptons de Sudamérica: cómo Uruguay se convirtió en un polo para ultrarricos",
+      "link": "https://www.bloomberglinea.com.br/estilo-de-vida/hamptons-da-america-do-sul-como-o-uruguai-se-tornou-um-polo-para-ultrarricos/",
+      "published": true
+    },
+    {
+      "id": "article-1782328682080",
+      "image": "https://oyo1nzjtvybgtd3y.public.blob.vercel-storage.com/uploads/1782328813806-en1eudhanv4.avif",
+      "title": "Peter Thiel: Investor erwägt Umzug nach Argentinien – „Plan B für die Zivilisation“",
+      "link": "https://www.handelsblatt.com/politik/international/peter-thiel-investor-zieht-nach-argentinien-plan-b-fuer-die-zivilisation-02/100229368.html",
+      "published": true
     }
   ],
   "team": [
@@ -111,7 +85,7 @@
       "image": "/images/PaulinaFernandez.jpg",
       "name": "Paulina Fernandez Rubio",
       "role": "Investment Sales & Wealth Management",
-      "bio": "Paulina is a distinguished investment sales professional with a stellar track record in investment product brokerage and personal wealth management across Europe and South America. With a natural talent for sales and exceptional relationship-building skills, Paulina excels at connecting with high-net-worth individuals. She brings extensive multinational financial services experience from top-tier institutions like Citibank, Merrill Lynch, and Lloyds TSB, all backed by a Business Administration degree with a finance emphasis. A true global citizen, Paulina is fluent in Spanish, English, Portuguese, French, and German. Her studies and professional connections extend across the USA, Switzerland, Spain, and South America, particularly in Argentina, Brazil, and Uruguay. Married to an expatriate marketing executive, Paulina's dynamic career has taken her across the globe, living in Montevideo, Lima, Dubai, Rio de Janeiro, Zurich, and Barcelona between 2003–2017.",
+      "bio": "Paulina is a distinguished investment sales professional with a stellar track record in investment product brokerage and personal wealth management across Europe and South America. With a natural talent for sales and exceptional relationship-building skills, Paulina excels at connecting with high-net-worth individuals. She brings extensive multinational financial services experience from top-tier institutions like Citibank, Merrill Lynch, and Lloyds TSB, all backed by a Business Administration degree with a finance emphasis. A true global citizen, Paulina is fluent in Spanish, English, Portuguese, French, and German. Her studies and professional connections extend across the USA, Switzerland, Spain, and South America, particularly in Argentina, Brazil, and Uruguay. Married to an expatriate marketing executive, Paulina's dynamic career has taken her across the globe, living in Montevideo, Lima, Dubai, Rio de Janeiro, Zurich, and Barcelona between 2003 and 2017.",
       "group": "advisory"
     }
   ],

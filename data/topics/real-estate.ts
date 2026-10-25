@@ -10,11 +10,11 @@ const copy: TopicCopy = {
     metaTitle:       "Uruguay Real Estate: Punta del Este",
     metaDescription: "Buying property in Uruguay as a foreigner: Punta del Este, José Ignacio, Montevideo and Piriápolis. Independent advice from the buyer's side.",
     navLabel:        "Real estate",
-    cardText:        "Punta del Este, José Ignacio, Montevideo and Piriápolis — advised from the buyer's side.",
+    cardText:        "Punta del Este, José Ignacio, Montevideo and Piriápolis, advised from the buyer's side.",
     eyebrow:         "Real estate in Uruguay",
     title:           "Invest where you can live: real estate in Uruguay",
     intro: [
-      "We believe the most resilient portfolio is one you can experience — assets that preserve and grow your capital while remaining livable, enjoyable and productive.",
+      "We believe the most resilient portfolio is one you can experience: assets that preserve and grow your capital while remaining livable, enjoyable and productive.",
       "Uruguay's real estate market offers legal certainty, dollar-denominated transactions and unrestricted foreign ownership. We advise from the buyer's side: what to buy, where, at what price, and how to close it safely.",
     ],
     image: { src: "/placeholders/pde.avif", alt: "Coastline of Punta del Este, Uruguay" },
@@ -27,13 +27,13 @@ const copy: TopicCopy = {
       {
         heading: "Where to buy: the four markets our clients ask about",
         body: [
-          "Each coastal and urban market in Uruguay behaves differently — in price, seasonality, rental demand and resale liquidity. Choosing the place is the first investment decision.",
+          "Each coastal and urban market in Uruguay behaves differently in price, seasonality, rental demand and resale liquidity. Choosing the place is the first investment decision.",
         ],
         bullets: [
-          "Punta del Este — the most established market: apartments and houses, year-round services, the deepest rental and resale market.",
-          "José Ignacio — exclusive and low-density: architectural houses and large plots, limited supply, a long-term ownership market.",
-          "Montevideo — Carrasco, Pocitos and Punta Carretas: year-round city living, schools, healthcare and steady annual rentals.",
-          "Piriápolis — a historic seaside town with lower entry prices, chosen for second homes and quieter year-round living.",
+          "Punta del Este, the most established market: apartments and houses, year-round services, the deepest rental and resale market.",
+          "José Ignacio, exclusive and low-density: architectural houses and large plots, limited supply, a long-term ownership market.",
+          "Montevideo (Carrasco, Pocitos and Punta Carretas): year-round city living, schools, healthcare and steady annual rentals.",
+          "Piriápolis, a historic seaside town with lower entry prices, chosen for second homes and quieter year-round living.",
         ],
       },
       {
@@ -47,13 +47,13 @@ const copy: TopicCopy = {
         heading: "Advice from the buyer's side",
         body: [
           "In Uruguay a traditional agent is usually paid on the sale. We work for the buyer: we compare the market, challenge the asking price, review the real costs of owning the property and coordinate an independent escribano (notary) for the title study.",
-          "Our role is to make sure the property fits your plan — personal use, rental income or long-term preservation of capital — before you commit.",
+          "Our role is to make sure the property fits your plan (personal use, rental income or long-term preservation of capital) before you commit.",
         ],
       },
       {
         heading: "Rental income and promoted housing",
         body: [
-          "Seasonal rentals in Punta del Este concentrate in a few weeks of summer, while annual rentals in Montevideo are steadier. We model net income with realistic occupancy, building charges and taxes — not the advertised peak-season rate.",
+          "Seasonal rentals in Punta del Este concentrate in a few weeks of summer, while annual rentals in Montevideo are steadier. We model net income with realistic occupancy, building charges and taxes, not the advertised peak-season rate.",
           "For income-focused investors, Uruguay's promoted housing regime (vivienda promovida, Law 18.795) offers tax benefits on qualifying residential projects. We assess whether a project qualifies and what the benefits mean in your case.",
         ],
       },
@@ -64,7 +64,7 @@ const copy: TopicCopy = {
         { title: "Brief and shortlist",      body: "Budget, purpose and location. We shortlist properties across agencies and off-market." },
         { title: "Reservation",              body: "A reservation agreement fixes the price and conditions while due diligence is done." },
         { title: "Title study",              body: "An independent escribano reviews ownership, debts, permits and encumbrances." },
-        { title: "Deed and registration",    body: "Signing, payment and registration of the deed — in person or by power of attorney." },
+        { title: "Deed and registration",    body: "Signing, payment and registration of the deed, in person or by power of attorney." },
       ],
     },
     faqs: [
@@ -72,10 +72,12 @@ const copy: TopicCopy = {
       { q: "Which is better for investment: Punta del Este or José Ignacio?", a: "Punta del Este offers a deeper rental and resale market; José Ignacio offers scarcity and long-term value in a smaller, exclusive market. The right choice depends on whether you prioritise income, personal use or capital preservation." },
       { q: "What costs should I budget on top of the price?", a: "Notary fees, agency commission where applicable, the property transfer tax (ITP, calculated on the cadastral value) and registration costs. We give you a full acquisition-cost estimate before you make an offer." },
       { q: "Can I buy remotely?", a: "Yes. With a power of attorney, the purchase can be completed without being in Uruguay for the signing." },
+      { q: "How does a foreigner buy property in Uruguay, step by step?", a: "Define budget and use, sign a reservation agreement that fixes price and conditions, have an independent escribano (notary) study the title (ownership, debts, permits and encumbrances) and sign and register the deed, in person or through a power of attorney. We coordinate each step from the buyer's side." },
+      { q: "Annual or seasonal rental: which works better in Punta del Este?", a: "An annual rental gives steadier income with less management; a seasonal rental concentrates income in the summer months and needs active management. We compare the net return of both, after common charges, taxes and management, before you buy." },
     ],
     cta: {
       heading: "Looking at a property in Uruguay?",
-      body:    "Tell us what you are looking for and how you plan to use it. We will tell you where it makes sense — and where it does not.",
+      body:    "Tell us what you are looking for and how you plan to use it. We will tell you where it makes sense, and where it does not.",
       label:   "Book a consultation",
     },
   },
@@ -146,6 +148,9 @@ const copy: TopicCopy = {
       { q: "¿Qué conviene más para invertir: Punta del Este o José Ignacio?", a: "Punta del Este tiene un mercado de alquiler y reventa más profundo; José Ignacio ofrece escasez y valor a largo plazo en un mercado más chico y exclusivo. La elección depende de si prioriza renta, uso personal o preservación de capital." },
       { q: "¿Qué costos tengo que sumar al precio?", a: "Honorarios del escribano, comisión inmobiliaria si corresponde, el Impuesto a las Trasmisiones Patrimoniales (ITP, calculado sobre el valor catastral) y gastos de registro. Le damos una estimación completa de costos antes de ofertar." },
       { q: "¿Puedo comprar a distancia?", a: "Sí. Con un poder, la compra puede completarse sin estar en Uruguay el día de la firma." },
+      { q: "¿Cómo compra un extranjero una propiedad en Uruguay, paso a paso?", a: "Se define presupuesto y uso, se firma un boleto de reserva que fija precio y condiciones, un escribano independiente estudia los títulos (titularidad, deudas, permisos y gravámenes) y se firma e inscribe la escritura, en persona o mediante un poder. Coordinamos cada paso del lado del comprador." },
+      { q: "¿Alquiler anual o de temporada en Punta del Este?", a: "El alquiler anual da un ingreso más estable y menos gestión; el de temporada concentra el ingreso en el verano y exige una administración activa. Comparamos la rentabilidad neta de ambos, después de gastos comunes, impuestos y administración, antes de comprar." },
+      { q: "¿Qué es la vivienda promovida?", a: "Es el régimen de la Ley 18.795, que da beneficios fiscales a quien invierte en vivienda nueva o reciclada en determinadas zonas, para venderla o alquilarla. Muchas unidades en Montevideo se venden bajo este régimen; revisamos qué beneficios aplican a cada una." },
     ],
     cta: {
       heading: "¿Está mirando una propiedad en Uruguay?",
@@ -157,11 +162,11 @@ const copy: TopicCopy = {
     metaTitle:       "Haus kaufen in Uruguay",
     metaDescription: "Immobilien in Uruguay als Ausländer kaufen: Punta del Este, José Ignacio, Piriápolis und Montevideo. Unabhängige Beratung auf der Seite des Käufers.",
     navLabel:        "Immobilien",
-    cardText:        "Punta del Este, José Ignacio, Montevideo und Piriápolis – beraten auf der Seite des Käufers.",
+    cardText:        "Punta del Este, José Ignacio, Montevideo und Piriápolis, beraten auf der Seite des Käufers.",
     eyebrow:         "Immobilien in Uruguay",
     title:           "Investieren, wo man leben kann: Immobilien in Uruguay",
     intro: [
-      "Wir glauben, dass das widerstandsfähigste Portfolio eines ist, das man erleben kann – Werte, die Ihr Kapital erhalten und vermehren und zugleich bewohnbar, genießbar und produktiv sind.",
+      "Wir glauben, dass das widerstandsfähigste Portfolio eines ist, das man erleben kann: Werte, die Ihr Kapital erhalten und vermehren und zugleich bewohnbar, genießbar und produktiv sind.",
       "Der uruguayische Immobilienmarkt bietet Rechtssicherheit, Transaktionen in US-Dollar und keine Beschränkungen für ausländische Eigentümer. Wir beraten auf der Seite des Käufers: was, wo, zu welchem Preis und wie Sie sicher abschließen.",
     ],
     image: { src: "/placeholders/pde.avif", alt: "Küste von Punta del Este, Uruguay" },
@@ -174,13 +179,13 @@ const copy: TopicCopy = {
       {
         heading: "Wo kaufen: die vier Märkte, nach denen man uns fragt",
         body: [
-          "Jeder Markt an der Küste und in der Stadt funktioniert anders – bei Preis, Saison, Mietnachfrage und Wiederverkauf. Die Wahl des Ortes ist die erste Investitionsentscheidung.",
+          "Jeder Markt an der Küste und in der Stadt funktioniert anders: bei Preis, Saison, Mietnachfrage und Wiederverkauf. Die Wahl des Ortes ist die erste Investitionsentscheidung.",
         ],
         bullets: [
-          "Punta del Este – der etablierteste Markt: Wohnungen und Häuser, Infrastruktur das ganze Jahr, der tiefste Miet- und Wiederverkaufsmarkt.",
-          "José Ignacio – exklusiv und weitläufig: Architektenhäuser und große Grundstücke, begrenztes Angebot, ein Markt für langfristiges Eigentum.",
-          "Montevideo – Carrasco, Pocitos und Punta Carretas: ganzjähriges Stadtleben, Schulen, medizinische Versorgung und stabile Jahresmieten.",
-          "Piriápolis – ein historischer Badeort mit niedrigeren Einstiegspreisen, gewählt für ein Haus am Meer und ein ruhiges Leben das ganze Jahr.",
+          "Punta del Este, der etablierteste Markt: Wohnungen und Häuser, Infrastruktur das ganze Jahr, der tiefste Miet- und Wiederverkaufsmarkt.",
+          "José Ignacio, exklusiv und weitläufig: Architektenhäuser und große Grundstücke, begrenztes Angebot, ein Markt für langfristiges Eigentum.",
+          "Montevideo (Carrasco, Pocitos und Punta Carretas): ganzjähriges Stadtleben, Schulen, medizinische Versorgung und stabile Jahresmieten.",
+          "Piriápolis, ein historischer Badeort mit niedrigeren Einstiegspreisen, gewählt für ein Haus am Meer und ein ruhiges Leben das ganze Jahr.",
         ],
       },
       {
@@ -194,13 +199,13 @@ const copy: TopicCopy = {
         heading: "Beratung auf der Seite des Käufers",
         body: [
           "In Uruguay wird ein klassischer Makler meist für den Verkauf bezahlt. Wir arbeiten für den Käufer: Wir vergleichen den Markt, hinterfragen den Angebotspreis, prüfen die tatsächlichen Kosten des Eigentums und koordinieren einen unabhängigen Notar (Escribano) für die Prüfung der Eigentumsverhältnisse.",
-          "Unsere Aufgabe ist sicherzustellen, dass die Immobilie zu Ihrem Plan passt – Eigennutzung, Mieteinnahmen oder langfristiger Kapitalerhalt –, bevor Sie sich verpflichten.",
+          "Unsere Aufgabe ist sicherzustellen, dass die Immobilie zu Ihrem Plan passt (Eigennutzung, Mieteinnahmen oder langfristiger Kapitalerhalt), bevor Sie sich verpflichten.",
         ],
       },
       {
         heading: "Mieteinnahmen",
         body: [
-          "Saisonvermietungen in Punta del Este konzentrieren sich auf wenige Sommerwochen, Jahresmieten in Montevideo sind stabiler. Wir rechnen die Nettorendite mit realistischer Auslastung, Nebenkosten und Steuern – nicht mit dem Preis der Hochsaison.",
+          "Saisonvermietungen in Punta del Este konzentrieren sich auf wenige Sommerwochen, Jahresmieten in Montevideo sind stabiler. Wir rechnen die Nettorendite mit realistischer Auslastung, Nebenkosten und Steuern, nicht mit dem Preis der Hochsaison.",
         ],
       },
     ],
@@ -210,7 +215,7 @@ const copy: TopicCopy = {
         { title: "Ziel und Auswahl",            body: "Budget, Nutzung und Ort. Wir wählen Objekte verschiedener Makler und außerhalb des Marktes aus." },
         { title: "Reservierung",                body: "Eine Reservierungsvereinbarung sichert Preis und Bedingungen während der Prüfung." },
         { title: "Prüfung der Eigentumsrechte", body: "Ein unabhängiger Escribano prüft Eigentum, Schulden, Genehmigungen und Belastungen." },
-        { title: "Urkunde und Eintragung",      body: "Unterzeichnung, Zahlung und Eintragung – persönlich oder per Vollmacht." },
+        { title: "Urkunde und Eintragung",      body: "Unterzeichnung, Zahlung und Eintragung, persönlich oder per Vollmacht." },
       ],
     },
     faqs: [
@@ -218,10 +223,12 @@ const copy: TopicCopy = {
       { q: "Punta del Este, José Ignacio oder Piriápolis?", a: "Punta del Este bietet den tiefsten Miet- und Wiederverkaufsmarkt, José Ignacio Exklusivität und langfristigen Wert, Piriápolis niedrigere Einstiegspreise und ein ruhiges Leben. Die Wahl hängt davon ab, ob Sie Mieteinnahmen, Eigennutzung oder Kapitalerhalt priorisieren." },
       { q: "Welche Kosten kommen zum Kaufpreis hinzu?", a: "Notarkosten, gegebenenfalls Maklerprovision, die Grunderwerbsteuer (ITP, berechnet auf den Katasterwert) und Eintragungskosten. Vor einem Angebot erhalten Sie von uns eine vollständige Kostenschätzung." },
       { q: "Kann ich aus der Ferne kaufen?", a: "Ja. Mit einer Vollmacht kann der Kauf abgeschlossen werden, ohne dass Sie zur Unterzeichnung in Uruguay sein müssen." },
+      { q: "Wie kauft man als Ausländer ein Haus in Uruguay?", a: "Budget und Nutzung festlegen, einen Reservierungsvertrag unterzeichnen, der Preis und Bedingungen fixiert, einen unabhängigen Escribano (Notar) die Titel prüfen lassen (Eigentum, Schulden, Genehmigungen, Belastungen) und die Urkunde unterzeichnen und eintragen, persönlich oder per Vollmacht. Wir koordinieren jeden Schritt auf der Seite des Käufers." },
+      { q: "Jahres- oder Saisonvermietung in Punta del Este?", a: "Die Jahresvermietung bringt stetigere Einnahmen bei weniger Aufwand; die Saisonvermietung konzentriert die Einnahmen auf den Sommer und verlangt eine aktive Verwaltung. Wir vergleichen die Nettorendite beider Varianten nach Nebenkosten, Steuern und Verwaltung, vor dem Kauf." },
     ],
     cta: {
       heading: "Sie interessieren sich für eine Immobilie in Uruguay?",
-      body:    "Erzählen Sie uns, was Sie suchen und wie Sie sie nutzen möchten. Wir sagen Ihnen, wo es sinnvoll ist – und wo nicht.",
+      body:    "Erzählen Sie uns, was Sie suchen und wie Sie sie nutzen möchten. Wir sagen Ihnen, wo es sinnvoll ist und wo nicht.",
       label:   "Beratung vereinbaren",
     },
   },

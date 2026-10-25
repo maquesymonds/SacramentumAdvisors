@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import TextsPanel from "./TextsPanel";
+import { NEWS_TOPIC_OPTIONS } from "@/lib/news-topics";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type InlineImage = { url: string; afterParagraph: number; caption?: string };
 type Article = {
   id: string; image: string; title: string; link?: string; published?: boolean;
-  category?: string; excerpt?: string; body?: string; slug?: string; date?: string;
+  category?: string; excerpt?: string; body?: string; slug?: string; date?: string; topic?: string;
   inlineImages?: InlineImage[];
 };
 type TeamMember = {
@@ -541,6 +542,13 @@ function ArticlesPanel({ articles, onSave, saving }: {
               <label style={S.label}>Link al artículo <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "rgba(31,41,51,0.35)" }}>(URL externa — se abre en nueva pestaña)</span></label>
               <input value={draft.link ?? ""} onChange={e => update("link", e.target.value)}
                 style={S.input} placeholder="https://..." />
+            </div>
+            <div>
+              <label style={S.label}>Sector <span style={{ fontWeight: 400, textTransform: "none", letterSpacing: 0, color: "rgba(31,41,51,0.35)" }}>(debajo de la noticia aparece un link a esa página de la web)</span></label>
+              <select value={draft.topic ?? ""} onChange={e => update("topic", e.target.value)} style={S.input}>
+                <option value="">Sin sector</option>
+                {NEWS_TOPIC_OPTIONS.map(t => <option key={t.id} value={t.id}>{t.label.es}</option>)}
+              </select>
             </div>
             <div>
               <label style={S.label}>Imagen de portada</label>

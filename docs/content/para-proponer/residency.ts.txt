@@ -12,12 +12,12 @@ const copy: TopicCopy = {
     metaTitle:       "Uruguay Residency: Moving to Uruguay",
     metaDescription: "How to get permanent residency in Uruguay: requirements, documents and steps for Americans, Europeans and their families. Your move, coordinated.",
     navLabel:        "Residency & relocation",
-    cardText:        "Permanent residency, documents, banking and settling in — your move to Uruguay, coordinated.",
+    cardText:        "Permanent residency, documents, banking and settling in: your move to Uruguay, coordinated.",
     eyebrow:         "Residency & relocation",
     title:           "Moving to Uruguay: residency and relocation",
     intro: [
       "Uruguay offers foreign nationals a clear path to legal residency, and many families use it as a plan B: a second home and a second jurisdiction, ready for when they need it.",
-      "We coordinate the whole move — migration, documents, banking, housing and schools — with one point of contact, so you do not have to manage five advisors in a language you may not speak.",
+      "We coordinate the whole move (migration, documents, banking, housing and schools) with one point of contact, so you do not have to manage five advisors in a language you may not speak.",
     ],
     image: { src: "/placeholders/hero-coast.avif", alt: "Uruguayan coastline at sunset" },
     sectionsHeading: "Moving to Uruguay: what you need to know",
@@ -26,7 +26,7 @@ const copy: TopicCopy = {
         heading: "Three things that are often confused",
         body: [
           "Legal residency, tax residency and having assets in Uruguay are three different things. Legal residency is your right to live in the country. Tax residency decides where you pay tax. Owning property or a bank account in Uruguay gives you neither on its own.",
-          "Most plans need one, two or all three — in the right order. We start by defining which ones you actually need.",
+          "Most plans need one, two or all three, in the right order. We start by defining which ones you actually need.",
         ],
       },
       {
@@ -34,7 +34,7 @@ const copy: TopicCopy = {
         body: [
           "Foreign nationals can apply for temporary or permanent legal residency with the National Migration Directorate (Dirección Nacional de Migración). The application is filed in Uruguay and you can enter as a visitor to start it.",
           "Once the application is filed you receive a provisional status that allows you to obtain a Uruguayan identity card (cédula), open bank accounts and settle in while the file is processed.",
-          "Citizens of Mercosur countries — Argentina, Brazil, Paraguay and others — can use the Mercosur residency route. Citizens of the United States, Canada and European countries such as Spain or Germany apply through the general route.",
+          "Citizens of Mercosur countries (Argentina, Brazil, Paraguay and others) can use the Mercosur residency route. Citizens of the United States, Canada and European countries such as Spain or Germany apply through the general route.",
         ],
       },
       {
@@ -49,7 +49,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Your plan B, built in four parts",
-        body: ["A move to Uruguay — or a plan B that you may activate later — usually rests on four pillars:"],
+        body: ["A move to Uruguay, or a plan B that you may activate later, usually rests on four pillars:"],
         bullets: [
           "Legal residency for you and your family.",
           "Banking and diversification of part of your assets.",
@@ -63,7 +63,7 @@ const copy: TopicCopy = {
       items: [
         { title: "Before you travel",  body: "Diagnosis, tax review in your home country, and apostilled documents." },
         { title: "First weeks",        body: "Residency application, provisional ID, temporary housing and health cover." },
-        { title: "Months 2–3",         body: "Bank accounts, long-term housing, schools and, if relevant, your business." },
+        { title: "Months 2 and 3",         body: "Bank accounts, long-term housing, schools and, if relevant, your business." },
         { title: "First year",         body: "Residency granted, tax residency reviewed, and your plan adjusted." },
       ],
     },
@@ -73,9 +73,11 @@ const copy: TopicCopy = {
       { q: "Do I need to buy property to get residency in Uruguay?", a: "No. Residency is based on proving stable means of support, not on buying property." },
       { q: "Can I keep living in my country and have Uruguay as a plan B?", a: "Yes. Many clients obtain residency, open banking relationships and diversify part of their assets while still living abroad. We help you keep the requirements that apply to your situation." },
       { q: "Does residency lead to citizenship?", a: "Legal residency is the first step towards Uruguayan legal citizenship, which requires years of genuine residence in the country. See our page on the Uruguayan passport." },
+      { q: "Do I need a visa to move to Uruguay?", a: "Not to enter. Citizens of the US, Canada, the UK and the EU enter Uruguay without a visa as visitors and apply for residency once in the country." },
+      { q: "Is there a retirement visa in Uruguay?", a: "There is no separate retirement visa. Retirees apply for residency like anyone else, proving a stable pension or income, and we help prepare the documents." },
     ],
     cta: {
-      heading: "Thinking about a move — or a plan B?",
+      heading: "Thinking about a move, or a plan B?",
       body:    "Tell us where you are coming from and what you need. We will map the route, the documents and the timing for your family.",
       label:   "Book a consultation",
     },
@@ -146,6 +148,8 @@ const copy: TopicCopy = {
       { q: "¿La residencia legal es lo mismo que la residencia fiscal?", a: "No. La residencia legal es su derecho a vivir en Uruguay; la residencia fiscal define dónde tributa. Tienen reglas distintas y se tramitan por separado." },
       { q: "¿Tengo que comprar una propiedad para obtener la residencia?", a: "No. La residencia se basa en acreditar medios de vida estables, no en comprar una propiedad." },
       { q: "¿Puedo seguir viviendo en mi país y tener Uruguay como plan B?", a: "Sí. Muchos clientes obtienen la residencia, abren relaciones bancarias y diversifican parte de su patrimonio mientras siguen viviendo afuera. Le ayudamos a cumplir los requisitos que aplican a su caso." },
+      { q: "¿Puedo trabajar en Uruguay mientras tramito la residencia?", a: "Sí. Al iniciar el trámite de residencia puede obtener una cédula de identidad provisoria, que le permite trabajar y operar en el país mientras se resuelve la solicitud." },
+      { q: "¿La residencia permite obtener la ciudadanía uruguaya?", a: "Sí, con el tiempo. La ciudadanía legal exige residencia efectiva en el país: tres años si tiene familia constituida en Uruguay y cinco si no la tiene." },
     ],
     cta: {
       heading: "¿Pensando en mudarse, o en un plan B?",
@@ -157,12 +161,12 @@ const copy: TopicCopy = {
     metaTitle:       "Auswandern nach Uruguay: Aufenthalt",
     metaDescription: "Auswandern nach Uruguay: Aufenthaltsgenehmigung, Unterlagen und Ablauf für Deutsche, Österreicher, Schweizer und ihre Familien.",
     navLabel:        "Auswandern nach Uruguay",
-    cardText:        "Aufenthaltsgenehmigung, Unterlagen, Bank und Ankommen – Ihr Umzug nach Uruguay, koordiniert.",
+    cardText:        "Aufenthaltsgenehmigung, Unterlagen, Bank und Ankommen: Ihr Umzug nach Uruguay, koordiniert.",
     eyebrow:         "Auswandern und Aufenthalt",
     title:           "Auswandern nach Uruguay: Aufenthalt und Ankommen",
     intro: [
       "Uruguay bietet Ausländern einen klaren Weg zur Aufenthaltsgenehmigung, und viele Familien nutzen ihn als Plan B: einen zweiten Wohnsitz und eine zweite Rechtsordnung außerhalb der EU, bereit für den Moment, in dem sie gebraucht werden.",
-      "Wir koordinieren den gesamten Umzug – Einwanderungsbehörde, Unterlagen, Bank, Wohnung und Schulen – mit einem einzigen Ansprechpartner, damit Sie nicht fünf Berater in einer fremden Sprache steuern müssen.",
+      "Wir koordinieren den gesamten Umzug (Einwanderungsbehörde, Unterlagen, Bank, Wohnung und Schulen) mit einem einzigen Ansprechpartner, damit Sie nicht fünf Berater in einer fremden Sprache steuern müssen.",
     ],
     image: { src: "/placeholders/hero-coast.avif", alt: "Küste von Uruguay bei Sonnenuntergang" },
     sectionsHeading: "Auswandern nach Uruguay: was Sie wissen müssen",
@@ -171,7 +175,7 @@ const copy: TopicCopy = {
         heading: "Drei Dinge, die oft verwechselt werden",
         body: [
           "Aufenthaltsgenehmigung, steuerlicher Wohnsitz und Vermögen in Uruguay sind drei verschiedene Dinge. Die Aufenthaltsgenehmigung ist Ihr Recht, im Land zu leben. Der steuerliche Wohnsitz entscheidet, wo Sie Steuern zahlen. Eine Immobilie oder ein Konto in Uruguay verschafft Ihnen für sich genommen keines von beiden.",
-          "Die meisten Pläne brauchen eins, zwei oder alle drei – in der richtigen Reihenfolge. Wir klären zuerst, was Sie tatsächlich brauchen.",
+          "Die meisten Pläne brauchen eins, zwei oder alle drei, in der richtigen Reihenfolge. Wir klären zuerst, was Sie tatsächlich brauchen.",
         ],
       },
       {
@@ -201,7 +205,7 @@ const copy: TopicCopy = {
       },
       {
         heading: "Ihr Plan B in vier Teilen",
-        body: ["Ein Umzug nach Uruguay – oder ein Plan B, den Sie später aktivieren – ruht meist auf vier Säulen:"],
+        body: ["Ein Umzug nach Uruguay oder ein Plan B, den Sie später aktivieren, ruht meist auf vier Säulen:"],
         bullets: [
           "Aufenthaltsgenehmigung für Sie und Ihre Familie.",
           "Bankverbindung und Diversifikation eines Teils Ihres Vermögens.",
@@ -215,7 +219,7 @@ const copy: TopicCopy = {
       items: [
         { title: "Vor der Abreise",     body: "Bestandsaufnahme, steuerliche Prüfung im Herkunftsland und apostillierte Unterlagen." },
         { title: "Erste Wochen",        body: "Antrag auf Aufenthalt, vorläufiger Ausweis, Übergangswohnung und Krankenversicherung." },
-        { title: "Monate 2–3",          body: "Bankkonten, feste Wohnung, Schulen und gegebenenfalls Ihr Unternehmen." },
+        { title: "Monate 2 und 3",          body: "Bankkonten, feste Wohnung, Schulen und gegebenenfalls Ihr Unternehmen." },
         { title: "Erstes Jahr",         body: "Aufenthalt erteilt, steuerlicher Wohnsitz geprüft, Plan angepasst." },
       ],
     },
@@ -225,9 +229,11 @@ const copy: TopicCopy = {
       { q: "Muss ich eine Immobilie kaufen, um in Uruguay leben zu dürfen?", a: "Nein. Grundlage der Aufenthaltsgenehmigung ist der Nachweis ausreichender Mittel, nicht ein Immobilienkauf." },
       { q: "Kann ich in Deutschland wohnen bleiben und Uruguay als Plan B haben?", a: "Ja. Viele Kunden beantragen den Aufenthalt, eröffnen Bankverbindungen und diversifizieren einen Teil ihres Vermögens, während sie weiter in Europa leben. Wir helfen, die jeweiligen Anforderungen einzuhalten." },
       { q: "Gibt es eine deutsche Schule in Uruguay?", a: "Ja. Die Deutsche Schule Montevideo gehört zu den ältesten deutschen Auslandsschulen und hat Standorte in Pocitos und Carrasco." },
+      { q: "Brauche ich ein Visum für Uruguay?", a: "Nicht für die Einreise. Deutsche, Österreicher und Schweizer reisen ohne Visum als Besucher ein und beantragen die Aufenthaltsgenehmigung in Uruguay." },
+      { q: "Führt die Aufenthaltsgenehmigung zur Staatsbürgerschaft?", a: "Mit der Zeit, ja. Die uruguayische Staatsbürgerschaft (ciudadanía legal) setzt einen tatsächlichen Aufenthalt im Land voraus: drei Jahre mit Familie in Uruguay, sonst fünf Jahre." },
     ],
     cta: {
-      heading: "Sie denken ans Auswandern – oder an einen Plan B?",
+      heading: "Sie denken ans Auswandern oder an einen Plan B?",
       body:    "Erzählen Sie uns, woher Sie kommen und was Sie brauchen. Wir planen Weg, Unterlagen und Zeitrahmen für Ihre Familie.",
       label:   "Beratung vereinbaren",
     },

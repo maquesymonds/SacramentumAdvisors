@@ -8,12 +8,16 @@ import Navigation             from "@/components/layout/Navigation";
 import Footer                 from "@/components/layout/Footer";
 import { useT, useLocalePath } from "@/lib/locale-context";
 import { lenisRef }           from "@/lib/lenis-ref";
+import LinkedText from "@/components/ui/LinkedText";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { SECTOR_COLOR } from "@/lib/topic-links";
 const EASE_FM = [0.16, 1, 0.3, 1] as const;
 
-const CHAPTER_BG = ["#004785", "#af8f6e", "#194418", "#4a2512"] as const;
+// Chapter order: real estate, technology, agriculture, special situations.
+// The first three share their colour with the sector page (SECTOR_COLOR).
+const CHAPTER_BG = [SECTOR_COLOR["real-estate"]!, SECTOR_COLOR["technology"]!, SECTOR_COLOR["farmland"]!, "#4a2512"] as const;
 
 function lerpColor(a: string, b: string, t: number): string {
   const p = (hex: string) => {
@@ -64,7 +68,8 @@ const fadeIn = (delay = 0) => ({
   transition:  { duration: 0.85, ease: EASE_FM, delay },
 });
 
-export default function InvestPageClient() {
+/** `faq` is the server-rendered FaqSection, passed in by page.tsx. */
+export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tr = useT() as any;
   const { path, locale } = useLocalePath();
@@ -295,7 +300,7 @@ export default function InvestPageClient() {
                           </div>
                         ))}
                       </div>
-                      <a href={path("contact")} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
+                      <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
                         onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
                         onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
                         {copy.cta}
@@ -323,7 +328,7 @@ export default function InvestPageClient() {
                           </div>
                         ))}
                       </div>
-                      <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: 1.5, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.875rem", marginBottom: "1.25rem", maxWidth: "52ch" }}>{copy.legalNote}</p>
+                      <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: 1.5, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.875rem", marginBottom: "1.25rem", maxWidth: "52ch" }}><LinkedText text={copy.legalNote} locale={locale} /></p>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "1.5rem" }}>
                         {copy.downloads.map((dl: { label: string; href: string }) => (
                           <a key={dl.label} href={dl.href} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(255,255,255,0.75)", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, border: "1px solid rgba(255,255,255,0.18)", borderRadius: "50px", padding: "0.45rem 1rem", transition: "all 0.25s ease" }}
@@ -334,7 +339,7 @@ export default function InvestPageClient() {
                           </a>
                         ))}
                       </div>
-                      <a href={path("contact")} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
+                      <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
                         onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
                         onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
                         {copy.cta}
@@ -355,7 +360,7 @@ export default function InvestPageClient() {
                           <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.78rem", letterSpacing: "0.04em", maxWidth: "24ch", lineHeight: 1.4 }}>{copy.statLabel}</span>
                         </div>
                       )}
-                      <a href={path("contact")} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
+                      <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
                         onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
                         onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
                         {copy.cta}
@@ -448,7 +453,7 @@ export default function InvestPageClient() {
                       </div>
                     ))}
                     <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: 1.6, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.75rem", marginBottom: "1.25rem" }}>
-                      {copy.legalNote}
+                      <LinkedText text={copy.legalNote} locale={locale} />
                     </p>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                       {copy.downloads.map((dl: { label: string; href: string }) => (
@@ -457,9 +462,12 @@ export default function InvestPageClient() {
                         </a>
                       ))}
                     </div>
+                    <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ display: "inline-block", marginTop: "1.5rem", color: "rgba(255,255,255,0.8)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "0.2rem" }}>
+                    {copy.cta}
+                  </a>
                   </>
                 ) : (
-                  <a href={path("contact")} style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "0.2rem" }}>
+                  <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "0.2rem" }}>
                     {copy.cta}
                   </a>
                 )}
@@ -470,9 +478,10 @@ export default function InvestPageClient() {
         </div>
 
 
+        {faq}
       </main>
 
-      <Footer />
+      <Footer closing="closing-why-uruguay" />
 
       {/* ── Dev: colour picker ──────────────────────────────────────────── */}
       <div style={{

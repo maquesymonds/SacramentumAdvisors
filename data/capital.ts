@@ -7,8 +7,8 @@
    ⚠️ The PDF footer reads "Confidential" and it names clients: publishing
    needs the client's explicit OK (docs/PENDIENTES.md). The 2026 technology
    company sale is left out on purpose: it is still in closing stage.
-   Bio follows the PDF (JPMorgan Associate → Executive Director), not the older
-   site bio ("VP at J.P. Morgan and Lehman Brothers"); confirm with the client.
+   Bio follows the PDF (JPMorgan Associate → Executive Director); the team card
+   keeps the stage-1 bio. Years in operation count from 2010 (Maque, 21.10.2026).
    Metadata, nav label and card text stay in data/topics/sacramentum-capital.ts.
    ─────────────────────────────────────────────────────────────────────────── */
 
@@ -18,10 +18,13 @@ export type Sector = "energy" | "infra" | "devbank" | "ma";
 
 export interface Stat { value: string; label: string }
 
+/** Founded in 2010: the figure follows the calendar (read at build time). */
+const YEARS = String(new Date().getFullYear() - 2010);
+
 export interface CapitalCopy {
   hero:  { eyebrow: string; title: string; intro: string[]; stats: Stat[] };
   focus: { heading: string; items: { title: string; stat: string; body: string }[] };
-  track: { eyebrow: string; heading: string; intro: string; legend: string; sizeNote: string; scrollHint: string; sectors: Record<Sector, string>; featured: string };
+  track: { eyebrow: string; heading: string; intro: string; legend: string; scrollHint: string; sectors: Record<Sector, string>; featured: string };
   deals: { year: string; name: string; amount: string; tags: string; body: string }[];
   how:   { heading: string; items: { title: string; body: string }[] };
   pablo: { eyebrow: string; name: string; role: string; intro: string; points: string[] };
@@ -54,14 +57,14 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       eyebrow: "Sacramentum Capital",
       title:   "Investment banking boutique in Montevideo, since 2010",
       intro: [
-        "Sacramentum Capital advises on structured finance, capital markets and cross-border M&A across the Southern Cone — for regional companies, institutional investors and public entities, on transactions that require both technical depth and local judgment.",
+        "Sacramentum Capital advises on structured finance, capital markets and cross-border M&A across the Southern Cone, for regional companies, institutional investors and public entities, on transactions that require both technical depth and local judgment.",
         "It is Sacramentum Advisors' investment banking firm: Advisors guides international investors and families in Uruguay; Capital leads corporate finance transactions. When an Advisors client considers a transaction led by Capital, we disclose that relationship.",
       ],
       stats: [
         { value: "USD 1.6B+", label: "In closed transactions" },
         { value: "30",        label: "Mandates since 2010" },
         { value: "12",        label: "Sectors" },
-        { value: "15",        label: "Years in operation" },
+        { value: YEARS,       label: "Years in operation" },
       ],
     },
     focus: {
@@ -80,15 +83,14 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       heading:  "Main transactions since 2012",
       intro:    "Each bubble is a closed transaction, placed by year; its size is proportional to the transaction value.",
       legend:   "Sector",
-      sizeNote: "Bubble size proportional to transaction value",
       scrollHint: "Swipe to see the full timeline",
       sectors:  { energy: "Energy", infra: "Infrastructure", devbank: "Development bank", ma: "M&A" },
       featured: "Featured transactions",
     },
     deals: [
-      { year: "2016", name: "CAF Infrastructure Fund",    amount: "USD 300M", tags: "Development bank · IPO",           body: "The first infrastructure debt fund in Uruguay, structured and placed for CAF — the largest transaction in the firm's history." },
-      { year: "2023", name: "CVU Liability Management",   amount: "USD 200M", tags: "Infrastructure · Capital markets", body: "Liability management for Corporación Vial del Uruguay — one of the most technically complex mandates in the firm's history." },
-      { year: "2026", name: "Hotel Enjoy Punta del Este", amount: "USD 180M", tags: "Hospitality · M&A",                body: "Advisory to Baluma on the sale to a leading Brazilian hospitality group — one of the most significant hospitality transactions in Uruguay's recent history." },
+      { year: "2016", name: "CAF Infrastructure Fund",    amount: "USD 300M", tags: "Development bank · IPO",           body: "The first infrastructure debt fund in Uruguay, structured and placed for CAF: the largest transaction in the firm's history." },
+      { year: "2023", name: "CVU Liability Management",   amount: "USD 200M", tags: "Infrastructure · Capital markets", body: "Liability management for Corporación Vial del Uruguay, one of the most technically complex mandates in the firm's history." },
+      { year: "2026", name: "Hotel Enjoy Punta del Este", amount: "USD 180M", tags: "Hospitality · M&A",                body: "Advisory to Baluma on the sale to a leading Brazilian hospitality group, one of the most significant hospitality transactions in Uruguay's recent history." },
       { year: "2012", name: "UTE Bond Issuance",          amount: "USD 100M", tags: "Energy · Capital markets",         body: "UTE's inaugural bond issuance, the largest in the company's history at the time, and the start of the firm's relationship with Uruguay's institutional investors." },
       { year: "2025", name: "INFRAM IPO",                 amount: "USD 100M", tags: "Infrastructure · Equity",          body: "Lead advisor on one of the first equity offerings of its kind in the local market, beyond traditional debt." },
       { year: "2019", name: "PPP Road Circuit 1",         amount: "USD 91M",  tags: "Infrastructure · Project finance", body: "The first public-private partnership road circuit in Uruguay, with institutional placement in the local pension fund market." },
@@ -105,7 +107,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       eyebrow: "Founding partner",
       name:    "Pablo Mautone",
       role:    "Founding Partner, Sacramentum Capital",
-      intro:   "Pablo founded Sacramentum Capital on returning to Uruguay in 2010, after a decade in international investment banking.",
+      intro:   "Pablo founded Sacramentum Capital on returning to Uruguay in 2010, after his career in international investment banking.",
       points: [
         "Seven years at JPMorgan in New York and Latin America, from Associate in Latin American M&A to Executive Director",
         "Earlier at Banco Bozano Simonsen in Rio de Janeiro, and VR Capital in Buenos Aires",
@@ -132,7 +134,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
         { value: "USD 1.6B+", label: "En transacciones cerradas" },
         { value: "30",        label: "Mandatos desde 2010" },
         { value: "12",        label: "Sectores" },
-        { value: "15",        label: "Años de operación" },
+        { value: YEARS,       label: "Años de operación" },
       ],
     },
     focus: {
@@ -151,7 +153,6 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       heading:  "Principales transacciones desde 2012",
       intro:    "Cada burbuja es una transacción cerrada, ubicada por año; su tamaño es proporcional al valor de la transacción.",
       legend:   "Sector",
-      sizeNote: "Tamaño proporcional al valor de la transacción",
       scrollHint: "Deslizá para ver toda la línea de tiempo",
       sectors:  { energy: "Energía", infra: "Infraestructura", devbank: "Banco de desarrollo", ma: "M&A" },
       featured: "Transacciones destacadas",
@@ -176,7 +177,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       eyebrow: "Socio fundador",
       name:    "Pablo Mautone",
       role:    "Socio fundador de Sacramentum Capital",
-      intro:   "Pablo fundó Sacramentum Capital al regresar a Uruguay en 2010, después de una década en la banca de inversión internacional.",
+      intro:   "Pablo fundó Sacramentum Capital al regresar a Uruguay en 2010, después de su carrera en la banca de inversión internacional.",
       points: [
         "Siete años en JPMorgan, en Nueva York y América Latina: de Asociado en M&A Latam a Director Ejecutivo",
         "Antes, Banco Bozano Simonsen en Río de Janeiro; después, VR Capital en Buenos Aires",
@@ -196,14 +197,14 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       eyebrow: "Sacramentum Capital",
       title:   "Investment-Banking-Boutique in Montevideo, seit 2010",
       intro: [
-        "Sacramentum Capital berät zu strukturierten Finanzierungen, Kapitalmärkten und grenzüberschreitenden M&A-Transaktionen im Southern Cone – für regionale Unternehmen, institutionelle Investoren und öffentliche Einrichtungen, bei Transaktionen, die technische Tiefe und lokales Urteilsvermögen verlangen.",
+        "Sacramentum Capital berät zu strukturierten Finanzierungen, Kapitalmärkten und grenzüberschreitenden M&A-Transaktionen im Southern Cone, für regionale Unternehmen, institutionelle Investoren und öffentliche Einrichtungen, bei Transaktionen, die technische Tiefe und lokales Urteilsvermögen verlangen.",
         "Sie ist die Investment-Banking-Firma von Sacramentum: Advisors begleitet internationale Investoren und Familien in Uruguay, Capital führt Corporate-Finance-Transaktionen. Erwägt ein Advisors-Kunde eine von Capital geführte Transaktion, legen wir diese Verbindung offen.",
       ],
       stats: [
         { value: "USD 1.6B+", label: "Abgeschlossene Transaktionen" },
         { value: "30",        label: "Mandate seit 2010" },
         { value: "12",        label: "Sektoren" },
-        { value: "15",        label: "Jahre am Markt" },
+        { value: YEARS,       label: "Jahre am Markt" },
       ],
     },
     focus: {
@@ -222,15 +223,14 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       heading:  "Wichtigste Transaktionen seit 2012",
       intro:    "Jede Blase ist eine abgeschlossene Transaktion, nach Jahr angeordnet; ihre Größe entspricht dem Transaktionswert.",
       legend:   "Sektor",
-      sizeNote: "Blasengröße proportional zum Transaktionswert",
       scrollHint: "Wischen, um die ganze Zeitleiste zu sehen",
       sectors:  { energy: "Energie", infra: "Infrastruktur", devbank: "Entwicklungsbank", ma: "M&A" },
       featured: "Ausgewählte Transaktionen",
     },
     deals: [
-      { year: "2016", name: "CAF-Infrastrukturfonds",     amount: "USD 300M", tags: "Entwicklungsbank · IPO",             body: "Der erste Infrastruktur-Schuldenfonds Uruguays, für CAF strukturiert und platziert – die größte Transaktion der Firmengeschichte." },
-      { year: "2023", name: "CVU Liability Management",   amount: "USD 200M", tags: "Infrastruktur · Kapitalmärkte",      body: "Liability Management für die Corporación Vial del Uruguay – eines der technisch anspruchsvollsten Mandate der Firma." },
-      { year: "2026", name: "Hotel Enjoy Punta del Este", amount: "USD 180M", tags: "Hotellerie · M&A",                   body: "Beratung von Baluma beim Verkauf an eine führende brasilianische Hotelgruppe – eine der bedeutendsten Hoteltransaktionen der jüngeren Geschichte Uruguays." },
+      { year: "2016", name: "CAF-Infrastrukturfonds",     amount: "USD 300M", tags: "Entwicklungsbank · IPO",             body: "Der erste Infrastruktur-Schuldenfonds Uruguays, für CAF strukturiert und platziert: die größte Transaktion der Firmengeschichte." },
+      { year: "2023", name: "CVU Liability Management",   amount: "USD 200M", tags: "Infrastruktur · Kapitalmärkte",      body: "Liability Management für die Corporación Vial del Uruguay, eines der technisch anspruchsvollsten Mandate der Firma." },
+      { year: "2026", name: "Hotel Enjoy Punta del Este", amount: "USD 180M", tags: "Hotellerie · M&A",                   body: "Beratung von Baluma beim Verkauf an eine führende brasilianische Hotelgruppe, eine der bedeutendsten Hoteltransaktionen der jüngeren Geschichte Uruguays." },
       { year: "2012", name: "Anleiheemission UTE",        amount: "USD 100M", tags: "Energie · Kapitalmärkte",            body: "Die erste Anleihe von UTE, damals die größte der Unternehmensgeschichte, und der Beginn der Beziehung der Firma zu Uruguays institutionellen Investoren." },
       { year: "2025", name: "Börsengang INFRAM",          amount: "USD 100M", tags: "Infrastruktur · Eigenkapital",       body: "Lead Advisor bei einem der ersten Eigenkapitalangebote dieser Art am lokalen Markt." },
       { year: "2019", name: "PPP-Straßenprojekt 1",       amount: "USD 91M",  tags: "Infrastruktur · Projektfinanzierung", body: "Das erste öffentlich-private Straßenprojekt Uruguays, mit Platzierung bei den lokalen Pensionsfonds." },
@@ -247,7 +247,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       eyebrow: "Gründungspartner",
       name:    "Pablo Mautone",
       role:    "Gründungspartner von Sacramentum Capital",
-      intro:   "Pablo gründete Sacramentum Capital 2010 nach seiner Rückkehr nach Uruguay, nach einem Jahrzehnt im internationalen Investment Banking.",
+      intro:   "Pablo gründete Sacramentum Capital 2010 nach seiner Rückkehr nach Uruguay, nach seiner Laufbahn im internationalen Investment Banking.",
       points: [
         "Sieben Jahre bei JPMorgan in New York und Lateinamerika: vom Associate im LatAm-M&A bis zum Executive Director",
         "Davor Banco Bozano Simonsen in Rio de Janeiro, danach VR Capital in Buenos Aires",

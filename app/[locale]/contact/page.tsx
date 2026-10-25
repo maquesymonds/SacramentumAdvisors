@@ -11,6 +11,8 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 import { localePath } from "@/lib/i18n";
 import { t } from "@/data/translations";
+import FaqSection from "@/components/faq/FaqSection";
+import { coreFaqs } from "@/data/faqs";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return coreMetadata("contact", params.locale);
@@ -19,7 +21,7 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 export default function ContactPage({ params }: { params: { locale: string } }) {
   const locale = toLocale(params.locale);
   return <>
-      <ContactPageClient />
+      <ContactPageClient faq={<FaqSection id="contact" locale={locale} items={coreFaqs("contact", locale)} />} />
       <JsonLd data={breadcrumbJsonLd(locale, [{ name: t(locale).nav.contact, path: localePath("contact", locale) }])} />
     </>;
 }

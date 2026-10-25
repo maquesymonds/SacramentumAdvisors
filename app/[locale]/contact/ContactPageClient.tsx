@@ -12,6 +12,8 @@ import { usePageTransition } from "@/lib/transition-context";
 import Navigation    from "@/components/layout/Navigation";
 import Footer        from "@/components/layout/Footer";
 import { lenisRef }  from "@/lib/lenis-ref";
+import TrustSection from "@/components/sections/TrustSection";
+import { REVIEW_MODE } from "@/lib/review";
 
 // ── Easing ────────────────────────────────────────────────────────────────────
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -117,7 +119,7 @@ function InfoRow({ icon, children }: { icon: React.ReactNode; children: React.Re
       <span className="mt-0.5" style={{ color: "var(--color-warm)", opacity: 0.8 }}>
         {icon}
       </span>
-      <span style={{ fontSize: "0.95rem", color: "var(--color-ink-muted)", lineHeight: 1.6 }}>
+      <span style={{ fontSize: "1.02rem", color: "var(--color-ink-muted)", lineHeight: 1.6 }}>
         {children}
       </span>
     </div>
@@ -125,9 +127,9 @@ function InfoRow({ icon, children }: { icon: React.ReactNode; children: React.Re
 }
 
 // ── Form field wrapper ────────────────────────────────────────────────────────
-function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
+function Field({ label, required, className, children }: { label: string; required?: boolean; className?: string; children: React.ReactNode }) {
   return (
-    <div>
+    <div className={className}>
       <label style={labelStyle}>
         {label}
         {required && (
@@ -140,7 +142,8 @@ function Field({ label, required, children }: { label: string; required?: boolea
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export default function ContactPageClient() {
+/** `faq` is the server-rendered FaqSection, passed in by page.tsx. */
+export default function ContactPageClient({ faq }: { faq?: React.ReactNode }) {
   const copy       = useT().contactPage;
 
   useEffect(() => {
@@ -156,9 +159,6 @@ export default function ContactPageClient() {
     name: "", email: "", phone: "", country: "", interest: "", message: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
-  const site    = useT();
-  const trust   = site.contactTrust;
-  const leaders = site.team.leadership;
   const { navigate } = usePageTransition();
   const { path } = useLocalePath();
   const formRef = useRef<HTMLFormElement>(null);
@@ -241,56 +241,18 @@ export default function ContactPageClient() {
           </div>
         </div>
 
-        {/* ── Trust: right before asking for details (proposal) ───────── */}
-        <section
-          aria-label={trust.eyebrow}
-          className="container-site"
-          style={{ paddingTop: "clamp(2.5rem, 5vw, 4rem)" }}
-        >
-          <div className="grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-16 items-start">
-            <div>
-              <p className="text-eyebrow mb-3" style={{ color: "var(--color-warm)" }}>{trust.eyebrow}</p>
-              <h2 className="font-normal text-ink" style={{ fontSize: "clamp(1.5rem, 2.4vw, 2rem)", letterSpacing: "-0.02em", lineHeight: 1.2 }}>
-                {trust.headline}
-              </h2>
-            </div>
-            <div className="flex flex-col gap-6">
-              <ul className="flex flex-wrap gap-6">
-                {leaders.map(p => (
-                  <li key={p.id} className="flex items-center gap-3">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.image} alt={p.name} width={56} height={56} style={{ width: 56, height: 56, borderRadius: "50%", objectFit: "cover" }} />
-                    <span className="flex flex-col">
-                      <span className="text-ink" style={{ fontSize: "0.98rem" }}>{p.name}</span>
-                      <span className="text-ink-subtle" style={{ fontSize: "0.8rem" }}>{p.role}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <ul className="flex flex-col gap-3 text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
-                {[trust.legal, trust.confidentiality, trust.minimumInvestment].filter(Boolean).map(line => (
-                  <li key={line} className="flex gap-3">
-                    <span aria-hidden="true" className="mt-[0.7em] block h-px w-4 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
-                    <span>{line}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* ── Form + info 2-column ──────────────────────────────────── */}
         <div
-          className="container-site"
+          className="container-site max-lg:flex max-lg:flex-col"
           style={{
             paddingTop:    "clamp(3.5rem, 6vw, 5rem)",
             paddingBottom: "clamp(5rem, 9vw, 7rem)",
           }}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 items-start">
+          <div className="max-lg:contents grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 lg:items-stretch">
 
             {/* ── LEFT: Form ───────────────────────────────────────── */}
-            <motion.div {...fadeUp(0.08)}>
+            <motion.div {...fadeUp(0.08)} className="flex flex-col">
               {status === "success" ? (
                 /* ── Success state ──────────────────────────────── */
                 <motion.div
@@ -317,8 +279,8 @@ export default function ContactPageClient() {
                 </motion.div>
               ) : (
                 /* ── Form ───────────────────────────────────────── */
-                <form ref={formRef} onSubmit={handleSubmit} noValidate>
-                  <div className="flex flex-col gap-6">
+                <form id="contact-form" ref={formRef} onSubmit={handleSubmit} noValidate className="flex-1 flex flex-col">
+                  <div className="flex-1 flex flex-col gap-6">
 
                     {/* Row 1: Name + Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -425,43 +387,19 @@ export default function ContactPageClient() {
                     </Field>
 
                     {/* Row 4: Message */}
-                    <Field label={copy.form.messageLabel}>
+                    <Field label={copy.form.messageLabel} className="flex-1 flex flex-col">
                       <textarea
                         name="message"
                         value={form.message}
                         onChange={handleChange}
                         placeholder={copy.form.messagePlaceholder}
-                        rows={5}
-                        style={{ ...inputBase, resize: "vertical", minHeight: "130px" }}
+                        rows={3}
+                        style={{ ...inputBase, resize: "vertical", minHeight: "92px", flex: 1 }}
                         onFocus={onFocus}
                         onBlur={onBlur}
                       />
                     </Field>
 
-                    {/* Submit */}
-                    <div className="pt-2">
-                      <button
-                        type="submit"
-                        disabled={status === "submitting"}
-                        className="btn-primary"
-                        style={{
-                          opacity:    status === "submitting" ? 0.65 : 1,
-                          cursor:     status === "submitting" ? "not-allowed" : "pointer",
-                          transition: "opacity 0.2s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease",
-                          minWidth:   "260px",
-                          justifyContent: "center",
-                        }}
-                      >
-                        {status === "submitting" ? copy.form.submitting : copy.form.submit}
-                      </button>
-
-                      <p
-                        className="text-caption text-ink-ghost mt-4"
-                        style={{ letterSpacing: "0.05em" }}
-                      >
-                        {copy.disclaimer}
-                      </p>
-                    </div>
                   </div>
                 </form>
               )}
@@ -471,24 +409,26 @@ export default function ContactPageClient() {
             <motion.aside
               {...fadeUp(0.18)}
               aria-label="Contact details"
+              className="flex flex-col max-lg:order-3 max-lg:mt-16"
             >
               {/* Info card */}
               <div
                 style={{
                   borderLeft:  "1px solid rgba(204,168,124,0.3)",
                   paddingLeft: "2rem",
+                  paddingBlock: "0.5rem",
                 }}
               >
                 {/* Heading */}
                 <p
-                  className="text-eyebrow mb-7"
+                  className="text-eyebrow mb-10"
                   style={{ color: "var(--color-warm)", fontSize: "0.67rem", letterSpacing: "0.13em" }}
                 >
                   {copy.info.heading}
                 </p>
 
                 {/* Details */}
-                <div className="flex flex-col gap-4 mb-8">
+                <div className="flex flex-col divide-y divide-[rgba(31,41,51,0.08)] [&>*]:py-7 [&>*:first-child]:pt-0">
                   <InfoRow icon={<IconLocation />}>
                     <span style={{ display: "block" }}>{copy.info.location1}</span>
                     <span style={{ display: "block", color: "var(--color-ink-subtle)", fontSize: "0.85rem" }}>
@@ -513,33 +453,58 @@ export default function ContactPageClient() {
                   </InfoRow>
                 </div>
 
-                {/* Divider */}
-                <span
-                  aria-hidden="true"
-                  style={{
-                    display:         "block",
-                    height:          1,
-                    width:           "100%",
-                    backgroundColor: "rgba(31,41,51,0.07)",
-                    marginBottom:    "1.75rem",
-                  }}
-                />
-
               </div>
 
               {/* Optional secondary note */}
-              <div className="mt-10 pt-8" style={{ borderTop: "1px solid rgba(31,41,51,0.06)" }}>
+              <div className="mt-10 pt-8 lg:mt-auto" style={{ borderTop: "1px solid rgba(31,41,51,0.06)" }}>
                 <p className="text-eyebrow mb-3" style={{ color: "var(--color-ink-ghost)", fontSize: "0.63rem", letterSpacing: "0.1em" }}>
                   {copy.secondary.eyebrow}
                 </p>
                 <p style={{ fontSize: "0.875rem", color: "var(--color-ink-subtle)", lineHeight: 1.7 }}>
                   {copy.secondary.body}
                 </p>
+                {copy.secondary.minimum && (REVIEW_MODE || !copy.secondary.minimum.includes("___")) && (
+                  <p className="mt-3" style={{ fontSize: "0.875rem", color: "var(--color-ink-muted)", lineHeight: 1.7, textWrap: "pretty" as React.CSSProperties["textWrap"] }}>
+                    {copy.secondary.minimum}
+                  </p>
+                )}
               </div>
             </motion.aside>
 
           </div>
+
+          {/* Submit: own row under both columns, centred on the page (tied to the form by id) */}
+          {status !== "success" && (
+            <div className="mt-10 lg:mt-14 max-lg:order-2 flex flex-col items-center text-center">
+              <button
+                type="submit"
+                form="contact-form"
+                disabled={status === "submitting"}
+                className="btn-primary"
+                style={{
+                  opacity:    status === "submitting" ? 0.65 : 1,
+                  cursor:     status === "submitting" ? "not-allowed" : "pointer",
+                  transition: "opacity 0.2s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease",
+                  minWidth:   "260px",
+                  justifyContent: "center",
+                }}
+              >
+                {status === "submitting" ? copy.form.submitting : copy.form.submit}
+              </button>
+
+              <p
+                className="text-caption text-ink-ghost mt-4"
+                style={{ letterSpacing: "0.05em" }}
+              >
+                {copy.disclaimer}
+              </p>
+            </div>
+          )}
         </div>
+
+        {/* ── Testimonials, under the form */}
+        <TrustSection cta="contact-testimonials" toForm />
+        {faq}
       </main>
 
       <Footer />

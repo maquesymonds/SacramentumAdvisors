@@ -235,16 +235,6 @@
   50%       { opacity: 0.3; transform: scaleY(0.6); }
 }
 
-/* ── News/CTA wrapper: mobile-only gradient background ──────────────────────── */
-.news-cta-wrapper {
-  background: linear-gradient(to bottom, var(--color-surface) 0%, #111F30 55%);
-}
-@media (min-width: 1024px) {
-  .news-cta-wrapper {
-    background: none;
-  }
-}
-
 /* ── Button base styles ─────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
@@ -338,3 +328,54 @@ html.lenis body {
     font-size: 0.875rem !important;
   }
 }
+
+/* ── Capital ambient (components/capital/CapitalAmbient.tsx) ────────────────────
+   Sacramentum Capital only: one fixed layer behind the page, ported from SOCIO's
+   Ambient. No colour here, every value arrives as a var. Only once the layer has
+   its first values (html[data-cap-amb]) do the sections and the footer turn
+   see-through; without JS they keep their solid colour. !important: their
+   colours are inline styles. */
+.cap-ambient {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(130vmax 95vmax at 105% -35%, rgb(var(--amb-a) / var(--amb-a-k)) 0%, rgb(var(--amb-a) / 0) 78%),
+    radial-gradient(115vmax 85vmax at -15% 125%, rgb(var(--amb-b) / var(--amb-b-k)) 0%, rgb(var(--amb-b) / 0) 76%),
+    linear-gradient(168deg, rgb(var(--amb-top)) 0%, rgb(var(--amb-bottom)) 100%);
+}
+/* Grain: the cure for banding across a full-width gradient, not a texture. Static. */
+.cap-ambient__grain {
+  position: absolute; inset: 0;
+  opacity: var(--amb-grain, 0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+html[data-cap-amb] body,
+html[data-cap-amb] main > section[data-amb],
+html[data-cap-amb] footer[role="contentinfo"] { background-color: transparent !important; }
+
+/* Outbound links inside copy (components/ui/LinkedText.tsx) */
+.ext-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(204, 168, 124, 0.6);
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.2s ease;
+}
+.ext-link:hover { text-decoration-color: currentColor; }
+
+/* ── Sector pages in their colour (components/topic/TopicPage.tsx) ────────────
+   Technology, real estate and agriculture take their Why Uruguay chapter
+   colour (--topic-bg, from SECTOR_COLOR) with white text (Maque, 25.10.2026).
+   The tokens are redefined for the page; white cards reset them locally. */
+.topic-theme {
+  background-color: var(--topic-bg);
+  --color-ink:        #FAFAF8;
+  --color-ink-muted:  rgba(250, 250, 248, 0.82);
+  --color-ink-subtle: rgba(250, 250, 248, 0.64);
+  --color-warm:       rgba(250, 250, 248, 0.82);
+  --topic-line:       rgba(250, 250, 248, 0.22);
+}
+.topic-theme .text-ink        { color: var(--color-ink); }
+.topic-theme .text-ink-muted  { color: var(--color-ink-muted); }
+.topic-theme .text-ink-subtle { color: var(--color-ink-subtle); }
+.topic-theme .ext-link        { text-decoration-color: rgba(250, 250, 248, 0.5); }

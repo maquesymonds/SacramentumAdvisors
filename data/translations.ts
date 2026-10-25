@@ -67,6 +67,7 @@ export interface SiteTranslations {
     headline:   string;
     subheadline:string;
     cta:        string;
+    ctaNote:    string;
     cards: Array<{
       id:          string;
       image:       string;
@@ -149,15 +150,6 @@ export interface SiteTranslations {
     cta:        string;
   };
 
-  contactTrust: {
-    eyebrow:           string;
-    headline:          string;
-    legal:             string;
-    confidentiality:   string;
-    /** Shown only when filled in (minimum investment line, proposal). */
-    minimumInvestment: string;
-  };
-
   contactPage: {
     meta: {
       title:       string;
@@ -171,6 +163,8 @@ export interface SiteTranslations {
     secondary: {
       eyebrow: string;
       body:    string;
+      /** Minimum-investment line (proposal). Hidden on the live site while it still contains "___". */
+      minimum: string;
     };
     form: {
       nameLabel:           string;
@@ -388,7 +382,7 @@ const en: SiteTranslations = {
       {
         id:          "agricultural",
         title:       "Agricultural Land",
-        description: "Productive farmland with long-term value — forestry, soy, and cattle ranches.",
+        description: "Productive farmland with long-term value: forestry, soy, and cattle ranches.",
       },
       {
         id:          "commercial",
@@ -408,6 +402,7 @@ const en: SiteTranslations = {
     headline:    "How We Support You",
     subheadline: "From market intelligence and transaction structuring to residency, local establishment, and long-term capital positioning, our team supports each stage of your investment move into Uruguay.",
     cta:         "Schedule a private advisory call",
+    ctaNote:     "Every engagement begins with a private, no-commitment conversation about your objectives.",
     cards: [
       {
         id:          "soft-landing",
@@ -468,7 +463,7 @@ const en: SiteTranslations = {
   lifestyleAssets: {
     eyebrow:     "Lifestyle Assets",
     headline:    "Where capital and life converge.",
-    subheadline: "Beyond pure investment — assets that enrich the lives of the families who own them.",
+    subheadline: "Beyond pure investment: assets that enrich the lives of the families who own them.",
   },
 
   trust: {
@@ -506,21 +501,21 @@ const en: SiteTranslations = {
           image: "/images/omar.webp",
           name:  "Omar Paganini",
           role:  "Energy & Public Policy",
-          bio:   "Electrical engineer, academic, and Uruguayan politician with a distinguished career in the public and private sectors. He served as Uruguay's Minister of Industry, Energy and Mining (2020–2023), and subsequently as Minister of Foreign Affairs (2023–2025). His deep expertise in energy, technology, and telecommunications, combined with strategic vision and experience in public and private management, make him a key reference and high-value advisor on development and innovation.",
+          bio:   "Electrical engineer, academic, and Uruguayan politician with a distinguished career in the public and private sectors. He served as Uruguay's Minister of Industry, Energy and Mining (2020 to 2023), and subsequently as Minister of Foreign Affairs (2023 to 2025). His deep expertise in energy, technology, and telecommunications, combined with strategic vision and experience in public and private management, make him a key reference and high-value advisor on development and innovation.",
         },
         {
           id:    "guillermo",
           image: "/images/guillermo.webp",
           name:  "Guillermo Javier Dietrich",
           role:  "Infrastructure & Mobility",
-          bio:   "Economist from the Universidad Católica Argentina with an MBA from IAE. Entrepreneur, businessman, and politician with extensive experience in public and private management. From 2009 to 2015 he led the transformation of Buenos Aires City's transit and transportation systems. He served as Argentina's Minister of Transport (2015–2019), leading one of the largest ministries in government. Currently a member of the PRO party council, leads G25, and advises organizations across the private and public sectors.",
+          bio:   "Economist from the Universidad Católica Argentina with an MBA from IAE. Entrepreneur, businessman, and politician with extensive experience in public and private management. From 2009 to 2015 he led the transformation of Buenos Aires City's transit and transportation systems. He served as Argentina's Minister of Transport (2015 to 2019), leading one of the largest ministries in government. Currently a member of the PRO party council, leads G25, and advises organizations across the private and public sectors.",
         },
         {
           id:    "eleanor",
           image: "/images/PaulinaFernandez.jpg",
           name:  "Paulina Fernandez Rubio",
           role:  "Investment Sales & Wealth",
-          bio:   "Paulina is a distinguished investment sales professional with a stellar track record in investment product brokerage and personal wealth management across Europe and South America. With a natural talent for sales and exceptional relationship-building skills, Paulina excels at connecting with high-net-worth individuals. She brings extensive multinational financial services experience from top-tier institutions like Citibank, Merrill Lynch, and Lloyds TSB, all backed by a Business Administration degree with a finance emphasis. A true global citizen, Paulina is fluent in Spanish, English, Portuguese, French, and German. Her studies and professional connections extend across the USA, Switzerland, Spain, and South America, particularly in Argentina, Brazil, and Uruguay. Married to an expatriate marketing executive, Paulina's dynamic career has taken her across the globe, living in Montevideo, Lima, Dubai, Rio de Janeiro, Zurich, and Barcelona between 2003–2017.",
+          bio:   "Paulina is a distinguished investment sales professional with a stellar track record in investment product brokerage and personal wealth management across Europe and South America. With a natural talent for sales and exceptional relationship-building skills, Paulina excels at connecting with high-net-worth individuals. She brings extensive multinational financial services experience from top-tier institutions like Citibank, Merrill Lynch, and Lloyds TSB, all backed by a Business Administration degree with a finance emphasis. A true global citizen, Paulina is fluent in Spanish, English, Portuguese, French, and German. Her studies and professional connections extend across the USA, Switzerland, Spain, and South America, particularly in Argentina, Brazil, and Uruguay. Married to an expatriate marketing executive, Paulina's dynamic career has taken her across the globe, living in Montevideo, Lima, Dubai, Rio de Janeiro, Zurich, and Barcelona between 2003 and 2017.",
         },
       ],
     },
@@ -575,7 +570,7 @@ const en: SiteTranslations = {
         image:    "/placeholders/pde.avif",
         category: "Economy",
         title:    "Zonamerica: Inside Latin America's Premier Free Trade Zone",
-        excerpt:  "How a visionary free trade zone north of Montevideo became the anchor for Uruguay's technology export boom — and why global companies keep choosing it over cheaper alternatives.",
+        excerpt:  "How a visionary free trade zone north of Montevideo became the anchor for Uruguay's technology export boom, and why global companies keep choosing it over cheaper alternatives.",
         slug:     "zonamerica-latin-america-premier-free-trade-zone",
         date:     "2025-03-22",
       },
@@ -584,7 +579,7 @@ const en: SiteTranslations = {
         image:    "/placeholders/lapalom.avif",
         category: "Lifestyle",
         title:    "Why High-Net-Worth Families Are Choosing Uruguayan Residency",
-        excerpt:  "Stable institutions, competitive tax treatment, and a genuinely high quality of life have made Uruguay the residency choice of an increasingly diverse global cohort — from Latin American executives to European retirees.",
+        excerpt:  "Stable institutions, competitive tax treatment, and a genuinely high quality of life have made Uruguay the residency choice of an increasingly diverse global cohort, from Latin American executives to European retirees.",
         slug:     "high-net-worth-families-uruguayan-residency",
         date:     "2025-02-14",
       },
@@ -593,7 +588,7 @@ const en: SiteTranslations = {
         image:    "/placeholders/hero-coast.avif",
         category: "Investment",
         title:    "Punta del Este: Beyond the Seasonal Myth",
-        excerpt:  "Long dismissed as a summer destination, Punta del Este's real estate market has matured into a year-round proposition — driven by remote work migration, Uruguayan residency demand, and a shrinking supply of premium coastal lots.",
+        excerpt:  "Long dismissed as a summer destination, Punta del Este's real estate market has matured into a year-round proposition, driven by remote work migration, Uruguayan residency demand, and a shrinking supply of premium coastal lots.",
         slug:     "punta-del-este-beyond-seasonal-myth",
         date:     "2025-01-30",
       },
@@ -602,7 +597,7 @@ const en: SiteTranslations = {
         image:    "/placeholders/colonia.avif",
         category: "Economy",
         title:    "Governance Premium: Why Uruguay's Institutions Command a Risk Discount",
-        excerpt:  "In a region where political risk is the default assumption, Uruguay's consistent institutional track record — across left and right administrations alike — produces something rare: a genuine governance premium that sophisticated investors are beginning to price in.",
+        excerpt:  "In a region where political risk is the default assumption, Uruguay's consistent institutional track record (across left and right administrations alike) produces something rare: a genuine governance premium that sophisticated investors are beginning to price in.",
         slug:     "governance-premium-uruguays-institutions",
         date:     "2024-12-18",
       },
@@ -623,14 +618,6 @@ const en: SiteTranslations = {
     cta:      "Book a private consultation",
   },
 
-  contactTrust: {
-    eyebrow:           "Who you will speak with",
-    headline:          "Senior advisors, from the first conversation.",
-    legal:             "Uruguayan law gives foreign investors the same rights as local investors.",
-    confidentiality:   "Every conversation is confidential. We explain how we work and how we are paid before any engagement.",
-    minimumInvestment: "",
-  },
-
   contactPage: {
     meta: {
       title:       "Private Consultation | Sacramentum Advisors",
@@ -639,11 +626,12 @@ const en: SiteTranslations = {
     eyebrow:  "Private Consultation",
     headline: "Connect with our team.",
     intro:    "Connect with our team in Uruguay to discuss residency, strategic asset acquisition, lifestyle assets, or long-term positioning in the region.",
-    disclaimer:   "We respond within 1–2 business days. All enquiries are fully confidential.",
+    disclaimer:   "We respond within 1 to 2 business days. All enquiries are fully confidential.",
     errorMessage: "Something went wrong. Please try again.",
     secondary: {
       eyebrow: "Working with us",
       body:    "We work with a select number of clients at any given time to ensure the depth of attention each engagement deserves.",
+      minimum: "We support investments from USD ___.",
     },
     form: {
       nameLabel:           "Full Name",
@@ -657,7 +645,7 @@ const en: SiteTranslations = {
       interestLabel:       "Area of Interest",
       interestPlaceholder: "Select an area",
       interestOptions: [
-        { value: "not-sure",               label: "I'm not sure yet — just exploring" },
+        { value: "not-sure",               label: "I'm not sure yet, just exploring" },
         { value: "residency",              label: "Residency"                  },
         { value: "strategic-acquisition",  label: "Strategic Asset Acquisition" },
         { value: "lifestyle-assets",       label: "Lifestyle Assets"            },
@@ -702,9 +690,9 @@ const en: SiteTranslations = {
     services: {
       title: "Services",
       links: [
-        { label: "Strategic Advisory",          href: "page:family-office" },
+        { label: "Strategic Advisory",          href: "page:services" },
         { label: "Market Intelligence",          href: "/services?card=market-intelligence" },
-        { label: "Soft Landing Partnerships",    href: "page:residency" },
+        { label: "Soft Landing Partnerships",    href: "page:services" },
         { label: "Sacramentum Capital",          href: "page:sacramentum-capital" },
       ],
     },
@@ -757,7 +745,7 @@ const en: SiteTranslations = {
       { text: "Technology and sustainable management practices" },
     ],
     marketHighlights: [
-      { text: "Food production capacity for 30–50 million people" },
+      { text: "Food production capacity for 30 to 50 million people" },
       { text: "Country free from deforestation" },
       { text: "Tax incentives for forestry investment" },
     ],
@@ -793,7 +781,7 @@ const en: SiteTranslations = {
     headline:     "Blog",
     subtitle:     "Perspectives on Uruguay's investment landscape, real estate, and strategic relocation from the Sacramentum team.",
     readLabel:    "READ POST",
-    empty:        "No posts yet — check back soon.",
+    empty:        "No posts yet. Check back soon.",
     backLabel:    "Back to blog",
     linkedinText: "View original post on LinkedIn",
   },
@@ -844,7 +832,7 @@ const es: SiteTranslations = {
         id:          "stability",
         icon:        "shield",
         title:       "Estabilidad y confianza institucional",
-        description: "Uruguay es reconocido por su solidez democrática, su seguridad jurídica y su bajo índice de corrupción —el más bajo de la región. En un continente con volatilidad, Uruguay representa certeza, profesionalismo y seriedad.",
+        description: "Uruguay es reconocido por su solidez democrática, su seguridad jurídica y su bajo índice de corrupción, el más bajo de la región. En un continente con volatilidad, Uruguay representa certeza, profesionalismo y seriedad.",
       },
       {
         id:          "innovation",
@@ -892,7 +880,7 @@ const es: SiteTranslations = {
       {
         id:          "agricultural",
         title:       "Tierras Agrícolas",
-        description: "Tierras productivas con valor a largo plazo — forestación, soja y estancias ganaderas.",
+        description: "Tierras productivas con valor a largo plazo: forestación, soja y estancias ganaderas.",
       },
       {
         id:          "commercial",
@@ -912,6 +900,7 @@ const es: SiteTranslations = {
     headline:    "Cómo le acompañamos",
     subheadline: "Desde inteligencia de mercado y estructuración de transacciones hasta residencia, establecimiento local y posicionamiento de capital a largo plazo, nuestro equipo lo acompaña en cada etapa de su proceso.",
     cta:         "Agendar una llamada de asesoría privada",
+    ctaNote:     "Cada proceso comienza con una conversación privada y sin compromiso sobre sus objetivos.",
     cards: [
       {
         id:          "investment-banking",
@@ -972,7 +961,7 @@ const es: SiteTranslations = {
   lifestyleAssets: {
     eyebrow:     "Activos de Estilo de Vida",
     headline:    "Donde el capital y la vida convergen.",
-    subheadline: "Más allá de la inversión pura — activos que enriquecen la vida de las familias que los poseen.",
+    subheadline: "Más allá de la inversión pura: activos que enriquecen la vida de las familias que los poseen.",
   },
 
   trust: {
@@ -1010,7 +999,7 @@ const es: SiteTranslations = {
           image: "/images/omar.webp",
           name:  "Omar Paganini",
           role:  "Energía & Políticas Públicas",
-          bio:   "Ingeniero electricista, académico y político uruguayo con una destacada trayectoria en los sectores público y privado. Se desempeñó como Ministro de Industria, Energía y Minería de Uruguay entre 2020 y 2023, y posteriormente como Ministro de Relaciones Exteriores (2023–2025). Su profundo conocimiento en energía, tecnología y telecomunicaciones, junto con una visión estratégica y experiencia en gestión pública y privada, lo convierten en un referente clave y asesor de alto valor en temas de desarrollo e innovación.",
+          bio:   "Ingeniero electricista, académico y político uruguayo con una destacada trayectoria en los sectores público y privado. Se desempeñó como Ministro de Industria, Energía y Minería de Uruguay entre 2020 y 2023, y posteriormente como Ministro de Relaciones Exteriores (2023 a 2025). Su profundo conocimiento en energía, tecnología y telecomunicaciones, junto con una visión estratégica y experiencia en gestión pública y privada, lo convierten en un referente clave y asesor de alto valor en temas de desarrollo e innovación.",
         },
         {
           id:    "guillermo",
@@ -1127,14 +1116,6 @@ const es: SiteTranslations = {
     cta:      "Reservar una consulta privada",
   },
 
-  contactTrust: {
-    eyebrow:           "Con quién va a hablar",
-    headline:          "Asesores senior, desde la primera conversación.",
-    legal:             "La ley uruguaya otorga a los inversores extranjeros los mismos derechos que a los locales.",
-    confidentiality:   "Toda conversación es confidencial. Antes de cualquier mandato explicamos cómo trabajamos y cómo cobramos.",
-    minimumInvestment: "",
-  },
-
   contactPage: {
     meta: {
       title:       "Consulta Privada | Sacramentum Advisors",
@@ -1143,11 +1124,12 @@ const es: SiteTranslations = {
     eyebrow:  "Consulta Privada",
     headline: "Conéctese con nuestro equipo.",
     intro:    "Conéctese con nuestro equipo en Uruguay para hablar sobre residencia, adquisición estratégica de activos, activos de estilo de vida o posicionamiento a largo plazo en la región.",
-    disclaimer:   "Respondemos en 1–2 días hábiles. Toda consulta es completamente confidencial.",
+    disclaimer:   "Respondemos en 1 a 2 días hábiles. Toda consulta es completamente confidencial.",
     errorMessage: "Algo salió mal. Por favor intentá de nuevo.",
     secondary: {
       eyebrow: "Trabajar con nosotros",
       body:    "Trabajamos con un número selecto de clientes en todo momento para garantizar la profundidad de atención que cada compromiso merece.",
+      minimum: "Acompañamos inversiones a partir de USD ___.",
     },
     form: {
       nameLabel:           "Nombre Completo",
@@ -1161,7 +1143,7 @@ const es: SiteTranslations = {
       interestLabel:       "Área de Interés",
       interestPlaceholder: "Seleccione un área",
       interestOptions: [
-        { value: "not-sure",               label: "Aún no lo sé — solo explorando"   },
+        { value: "not-sure",               label: "Aún no lo sé, solo explorando"   },
         { value: "residency",              label: "Residencia"                       },
         { value: "strategic-acquisition",  label: "Adquisición Estratégica de Activos" },
         { value: "lifestyle-assets",       label: "Activos de Estilo de Vida"         },
@@ -1206,9 +1188,9 @@ const es: SiteTranslations = {
     services: {
       title: "Servicios",
       links: [
-        { label: "Asesoría Estratégica",           href: "page:family-office" },
+        { label: "Asesoría Estratégica",           href: "page:services" },
         { label: "Inteligencia de Mercado",         href: "/services?card=market-intelligence" },
-        { label: "Asociaciones de Soft Landing",    href: "page:residency" },
+        { label: "Asociaciones de Soft Landing",    href: "page:services" },
         { label: "Sacramentum Capital",             href: "page:sacramentum-capital" },
       ],
     },
@@ -1262,7 +1244,7 @@ const es: SiteTranslations = {
       { text: "Sólida infraestructura exportadora y sistemas de trazabilidad" },
     ],
     marketHighlights: [
-      { text: "Capacidad alimentaria para 30–50 millones de personas" },
+      { text: "Capacidad alimentaria para 30 a 50 millones de personas" },
       { text: "País libre de deforestación" },
       { text: "Incentivos fiscales para inversión forestal" },
       { text: "Fuerte apoyo institucional al uso sostenible de la tierra" },

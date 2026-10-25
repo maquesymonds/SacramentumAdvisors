@@ -1,0 +1,5 @@
+/* SeamBlend: once the wrapper carries the blended colour, its sections let it
+   show through. !important: their colours are inline styles or utilities. */
+.wrap[data-ready] > section {
+  background-color: transparent !important;
+}

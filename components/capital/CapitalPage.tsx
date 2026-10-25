@@ -6,12 +6,23 @@
    transaction of the track-record chart are in the HTML.
    Body copy: data/capital.ts · metadata: data/topics/sacramentum-capital.ts.
    Sections with data-nav-dark switch the nav to its light-on-dark look.
+   data-amb = each section's state of the scroll-driven background
+   (CapitalAmbient): the colours blend from section to section, no cuts.
+   They alternate the hero's green and white, one change per topic (Maque,
+   21.10.): hero · track record · what it does · how · Pablo · FAQ.
    ─────────────────────────────────────────────────────────────────────────── */
 
 import Image      from "next/image";
 import Navigation from "@/components/layout/Navigation";
+import SectionCta from "@/components/ui/SectionCta";
 import Footer     from "@/components/layout/Footer";
 import CountUp    from "@/components/ui/CountUp";
+import TrackReveal from "@/components/capital/TrackReveal";
+import CapitalAmbient from "@/components/capital/CapitalAmbient";
+import FaqSection from "@/components/faq/FaqSection";
+import CardDeck   from "@/components/ui/CardDeck";
+import LinkedText from "@/components/ui/LinkedText";
+import { topicContent } from "@/lib/topics";
 import { absoluteUrl, localePath, type Locale } from "@/lib/i18n";
 import { CAPITAL, TRACK, type Sector } from "@/data/capital";
 
@@ -19,6 +30,8 @@ import { CAPITAL, TRACK, type Sector } from "@/data/capital";
 const BG = { deep: "#0C3B38", mint: "#EDF3F1" };
 const ON_DARK = { text: "#FAFAF8", muted: "rgba(250,250,248,0.72)", line: "rgba(250,250,248,0.16)" };
 const SECTOR_COLOR: Record<Sector, string> = { energy: "#4FA79B", infra: "#2B5E59", devbank: "#163A36", ma: "#84CCC4" };
+// Behind the "what it does" cards: the deep green lifting toward the energy teal and back
+const FOCUS_BAND = "linear-gradient(180deg, rgba(12,59,56,0) 0%, rgba(43,94,89,0.9) 30%, rgba(79,167,155,0.55) 62%, rgba(43,94,89,0.6) 85%, rgba(12,59,56,0) 100%)";
 
 const HOME: Record<Locale, string> = { en: "Home", es: "Inicio", de: "Startseite" };
 
@@ -36,8 +49,8 @@ const H2 = { fontSize: "clamp(1.6rem, 2.6vw, 2.2rem)", letterSpacing: "-0.02em",
 // ── Track record: bubbles by year, area proportional to value ───────────────
 function TrackChart({ locale }: { locale: Locale }) {
   const t = CAPITAL[locale].track;
-  const W = 1200, H = 470, AXIS = 236, X0 = 70, X1 = 1130, Y0 = 2011.6, Y1 = 2026.9, STEM = 22;
-  const ink = "#111F30", muted = "#4A5568", grid = "rgba(17,31,48,0.10)";
+  const W = 1200, H = 400, AXIS = 166, X0 = 70, X1 = 1130, Y0 = 2011.6, Y1 = 2026.9, STEM = 22;
+  const ink = "#111F30", muted = "#4A5568";
   const x = (y: number) => X0 + (y - Y0) * (X1 - X0) / (Y1 - Y0);
   const r = (v: number) => 3.3 * Math.sqrt(v);
   const years = Array.from({ length: 15 }, (_, i) => 2012 + i);
@@ -46,34 +59,24 @@ function TrackChart({ locale }: { locale: Locale }) {
       <title id="track-title">{t.heading}</title>
       {years.map(y => (
         <g key={y}>
-          <line x1={x(y)} x2={x(y)} y1={24} y2={H - 34} stroke={grid} strokeWidth={y % 2 === 0 ? 1 : 0.5} strokeDasharray={y % 2 === 0 ? undefined : "2 4"} />
           {y % 2 === 0 && <text x={x(y)} y={H - 12} textAnchor="middle" fontSize="13" fill={muted} style={{ fontVariantNumeric: "tabular-nums" }}>{y}</text>}
         </g>
       ))}
-      <line x1={X0 - 20} x2={X1 + 20} y1={AXIS} y2={AXIS} stroke={BG.deep} strokeWidth="2" />
+      <line data-track-axis x1={X0 - 20} x2={X1 + 20} y1={AXIS} y2={AXIS} stroke={BG.deep} strokeWidth="2" />
       {TRACK.map(d => {
         const rr = r(d.value), cx = x(d.year);
         const cy = d.side === "up" ? AXIS - STEM - rr : AXIS + STEM + rr;
-        // Name inside the bubble only when it fits (≈6.6 px per character at 12 px)
-        const inside = rr >= 22 && d.label.length * 6.6 <= 2 * rr - 10;
-        const txt = d.sector === "ma" ? ink : "#FFFFFF";
+        // Name and amount always outside the bubble: above it on the upper side, below on the lower
         const ty = d.side === "up" ? cy - rr - 18 : cy + rr + 16;
+        // Where the axis line reaches this deal (0..1), for TrackReveal
+        const at = ((cx - (X0 - 20)) / (X1 - X0 + 40)).toFixed(3);
         return (
-          <g key={d.label}>
+          <g key={d.label} data-track-deal={at} data-side={d.side}>
             <title>{`${d.label} · ${Math.floor(d.year)} · USD ${d.value}M · ${t.sectors[d.sector]}`}</title>
-            <line x1={cx} x2={cx} y1={AXIS} y2={d.side === "up" ? cy + rr : cy - rr} stroke={BG.deep} strokeWidth="1" opacity="0.45" />
-            <circle cx={cx} cy={cy} r={rr} fill={SECTOR_COLOR[d.sector]} />
-            {inside ? (
-              <>
-                <text x={cx} y={cy - 2} textAnchor="middle" fontSize="12" fontWeight="600" fill={txt}>{d.label}</text>
-                <text x={cx} y={cy + 13} textAnchor="middle" fontSize="11" fill={txt} opacity="0.85">${d.value}M</text>
-              </>
-            ) : (
-              <>
-                <text x={cx} y={ty} textAnchor="middle" fontSize="12" fontWeight="600" fill={ink}>{d.label}</text>
-                <text x={cx} y={ty + 14} textAnchor="middle" fontSize="11" fill={muted}>${d.value}M</text>
-              </>
-            )}
+            <line data-stem x1={cx} x2={cx} y1={AXIS} y2={d.side === "up" ? cy + rr : cy - rr} stroke={BG.deep} strokeWidth="1" opacity="0.45" />
+            <circle data-bubble cx={cx} cy={cy} r={rr} fill={SECTOR_COLOR[d.sector]} />
+            <text data-label x={cx} y={ty} textAnchor="middle" fontSize="12" fontWeight="600" fill={ink}>{d.label}</text>
+            <text data-label x={cx} y={ty + 14} textAnchor="middle" fontSize="11" fill={muted}>${d.value}M</text>
           </g>
         );
       })}
@@ -113,6 +116,7 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
         {/* ── Hero + headline figures ──────────────────────────────────────── */}
         <section
           data-nav-dark
+          data-amb="bosque"
           style={{ backgroundColor: BG.deep, paddingTop: "clamp(8rem, 14vw, 12rem)", paddingBottom: "clamp(3.5rem, 7vw, 6rem)" }}
         >
           <div className="container-site">
@@ -129,18 +133,20 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 pt-12" style={{ marginTop: "clamp(3rem, 6vw, 5rem)", borderTop: `1px solid ${ON_DARK.line}` }}>
               {c.hero.stats.map((s, i) => (
                 <div key={i} className="flex flex-col items-center text-center gap-2">
-                  <span style={{ color: ON_DARK.text, fontSize: "clamp(2.6rem, 4vw, 4.2rem)", letterSpacing: "-0.03em", lineHeight: 1, whiteSpace: "nowrap" }}>
+                  <span style={{ color: ON_DARK.text, fontSize: "clamp(3.4rem, 5.4vw, 5.6rem)", letterSpacing: "-0.03em", lineHeight: 1, whiteSpace: "nowrap" }}>
                     <CountUp value={s.value} />
                   </span>
                   <span style={{ color: ON_DARK.muted, fontSize: "0.95rem", lineHeight: 1.5 }}>{s.label}</span>
                 </div>
               ))}
             </div>
+
+            <SectionCta id="capital-hero" label={c.cta.label} onDark />
           </div>
         </section>
 
         {/* ── Track record ─────────────────────────────────────────────────── */}
-        <section style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
+        <section data-amb="blanco" style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
           <div className="container-site">
             <Eyebrow>{c.track.eyebrow}</Eyebrow>
             <div className="grid lg:grid-cols-[5fr_7fr] gap-6 lg:gap-16">
@@ -148,13 +154,8 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
               <p className="text-body text-ink-muted leading-relaxed">{c.track.intro}</p>
             </div>
 
-            <div className="mt-10 overflow-x-auto" style={{ marginInline: "-1rem", paddingInline: "1rem" }}>
-              <div style={{ minWidth: 880 }}><TrackChart locale={locale} /></div>
-            </div>
-            <p className="mt-2 text-caption text-ink-subtle md:hidden">{c.track.scrollHint} →</p>
-
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-3 text-small text-ink-muted">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div className="mt-10 flex justify-center text-small text-ink-muted">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
                 <span className="text-ink">{c.track.legend}</span>
                 {(Object.keys(SECTOR_COLOR) as Sector[]).map(s => (
                   <span key={s} className="flex items-center gap-2">
@@ -163,8 +164,12 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
                   </span>
                 ))}
               </div>
-              <span>{c.track.sizeNote}</span>
             </div>
+
+            <div className="mt-6 overflow-x-auto" style={{ marginInline: "-1rem", paddingInline: "1rem" }}>
+              <div style={{ minWidth: 880 }}><TrackReveal><TrackChart locale={locale} /></TrackReveal></div>
+            </div>
+            <p className="mt-2 text-caption text-ink-subtle md:hidden">{c.track.scrollHint} →</p>
 
             {/* Featured transactions */}
             <h3 className="text-ink mt-16 mb-8" style={{ fontSize: "1.375rem", letterSpacing: "-0.01em" }}>{c.track.featured}</h3>
@@ -172,8 +177,8 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
               {c.deals.map((d, i) => (
                 <li key={i} className="flex flex-col gap-3 pt-6" style={{ borderTop: "1px solid rgba(17,31,48,0.12)" }}>
                   <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{d.year} · {d.amount}</span>
-                  <h4 className="text-ink" style={{ fontSize: "1.15rem", lineHeight: 1.3 }}>{d.name}</h4>
-                  <p className="text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>{d.body}</p>
+                  <h4 className="text-ink" style={{ fontSize: "1.15rem", lineHeight: 1.3 }}><LinkedText text={d.name} locale={locale} /></h4>
+                  <p className="text-ink-muted" style={{ fontSize: "0.95rem", lineHeight: 1.6 }}><LinkedText text={d.body} locale={locale} /></p>
                   <span className="text-caption text-ink-subtle">{d.tags}</span>
                 </li>
               ))}
@@ -182,25 +187,25 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
         </section>
 
         {/* ── What it does ─────────────────────────────────────────────────── */}
-        <section style={{ backgroundColor: BG.mint, paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
-          <div className="container-site grid lg:grid-cols-[5fr_7fr] gap-6 lg:gap-16">
-            <h2 className="font-normal text-ink" style={H2}>{c.focus.heading}</h2>
-            <ul className="flex flex-col">
-              {c.focus.items.map((it, i) => (
-                <li key={i} className="flex flex-col gap-2 py-7" style={{ borderTop: i ? "1px solid rgba(17,31,48,0.12)" : undefined, paddingTop: i ? undefined : 0 }}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                    <h3 className="text-ink" style={{ fontSize: "1.375rem", letterSpacing: "-0.01em" }}>{it.title}</h3>
-                    <span className="text-eyebrow" style={{ color: "var(--color-warm)" }}>{it.stat}</span>
-                  </div>
-                  <p className="text-body text-ink-muted leading-relaxed">{it.body}</p>
-                </li>
-              ))}
-            </ul>
+        {/* Same card deck as the home's "Why Sacramentum" (Maque, 21.10.), on a
+            green gradient band instead of the photo; the band fades in and out
+            so it sits on the ambient green without edges. */}
+        <section data-nav-dark data-amb="bosque" className="overflow-hidden" style={{ backgroundColor: BG.deep, paddingTop: "clamp(4rem, 8vw, 7rem)" }}>
+          <div className="container-site">
+            <h2 className="font-normal mb-8 lg:mb-4" style={{ ...H2, color: ON_DARK.text }}>{c.focus.heading}</h2>
+          </div>
+          <div style={{ background: FOCUS_BAND, paddingTop: "clamp(2rem, 4vw, 3.5rem)", paddingBottom: "var(--section-padding-y)" }}>
+            <CardDeck
+              brand="Sacramentum Capital"
+              cards={c.focus.items.map((it, i) => ({ id: `focus-${i}`, eyebrow: it.stat, title: it.title, description: it.body }))}
+            >
+              <SectionCta id="capital-focus" label={c.cta.label} onDark />
+            </CardDeck>
           </div>
         </section>
 
         {/* ── How it works ─────────────────────────────────────────────────── */}
-        <section style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
+        <section data-amb="blanco" style={{ backgroundColor: "#FFFFFF", paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
           <div className="container-site">
             <h2 className="font-normal text-ink mb-12" style={H2}>{c.how.heading}</h2>
             <ol className="grid gap-8 md:grid-cols-3">
@@ -216,17 +221,17 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
         </section>
 
         {/* ── Pablo Mautone ────────────────────────────────────────────────── */}
-        <section style={{ backgroundColor: BG.mint, paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
+        <section data-nav-dark data-amb="bosque" style={{ backgroundColor: BG.deep, paddingBlock: "clamp(4rem, 8vw, 7rem)" }}>
           <div className="container-site grid md:grid-cols-[4fr_8fr] gap-10 lg:gap-16 items-start">
             <div className="relative w-full max-w-sm overflow-hidden" style={{ aspectRatio: "1 / 1", borderRadius: 16 }}>
               <Image src="/images/pablo-mautone.jpg" alt={`${c.pablo.name}, ${c.pablo.role}`} fill sizes="(min-width: 768px) 384px, 90vw" className="object-cover" />
             </div>
             <div>
               <Eyebrow>{c.pablo.eyebrow}</Eyebrow>
-              <h2 className="font-normal text-ink" style={{ ...H2, fontSize: "clamp(2rem, 3.2vw, 2.8rem)" }}>{c.pablo.name}</h2>
-              <p className="mt-2 text-ink-subtle">{c.pablo.role}</p>
-              <p className="mt-6 text-body text-ink-muted leading-relaxed" style={{ maxWidth: "60ch" }}>{c.pablo.intro}</p>
-              <ul className="mt-6 flex flex-col gap-3 text-body text-ink-muted">
+              <h2 className="font-normal" style={{ ...H2, color: ON_DARK.text, fontSize: "clamp(2rem, 3.2vw, 2.8rem)" }}>{c.pablo.name}</h2>
+              <p className="mt-2" style={{ color: ON_DARK.muted }}>{c.pablo.role}</p>
+              <p className="mt-6 text-body leading-relaxed" style={{ color: ON_DARK.muted, maxWidth: "60ch" }}>{c.pablo.intro}</p>
+              <ul className="mt-6 flex flex-col gap-3 text-body" style={{ color: ON_DARK.muted }}>
                 {c.pablo.points.map((p, i) => (
                   <li key={i} className="flex gap-3">
                     <span aria-hidden="true" className="mt-[0.7em] block h-px w-4 flex-shrink-0" style={{ backgroundColor: "var(--color-warm)" }} />
@@ -238,21 +243,13 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
-        <section data-nav-dark style={{ backgroundColor: BG.deep, paddingBlock: "clamp(4.5rem, 9vw, 7.5rem)" }}>
-          <div className="container-site flex flex-col items-start gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <h2 className="font-normal" style={{ color: ON_DARK.text, fontSize: "clamp(1.8rem, 3vw, 2.6rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
-                {c.cta.heading}
-              </h2>
-              <p className="mt-4" style={{ color: ON_DARK.muted, lineHeight: 1.7 }}>{c.cta.body}</p>
-            </div>
-            <a href={localePath("contact", locale)} data-cta="topic-sacramentum-capital" className="btn-primary flex-shrink-0">{c.cta.label}</a>
-          </div>
-        </section>
+        {/* FAQ: same block and copy source as the topic pages (data/topics/sacramentum-capital.ts) */}
+        <FaqSection id="sacramentum-capital" locale={locale} items={topicContent("sacramentum-capital", locale).faqs} background="#FFFFFF" amb="blanco" />
 
       </main>
-      <Footer />
+      {/* Closing CTA lives in the footer: centred, same colour (Maque, 21.10.). */}
+      <Footer cta={{ heading: c.cta.heading, body: c.cta.body, label: c.cta.label, href: localePath("contact", locale), id: "topic-sacramentum-capital" }} />
+      <CapitalAmbient />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>

@@ -12,8 +12,8 @@ import { usePageTransition } from "@/lib/transition-context";
 
 const LOCALE_NAMES: Record<Locale, string> = { en: "English", es: "Español", de: "Deutsch" };
 
-// Sector pages shown under "Why Uruguay" (the client's three sectors with a page).
-const WHY_URUGUAY_SECTORS: TopicId[] = ["real-estate", "technology", "farmland"];
+// Sector pages under "Why Uruguay". Technology first: it is the new section of stage 2.
+const WHY_URUGUAY_SECTORS: TopicId[] = ["technology", "real-estate", "farmland"];
 
 // ── Language menu: globe button that opens the three languages ───────────────
 function LanguageMenu({
@@ -92,6 +92,45 @@ function LanguageMenu({
   );
 }
 
+// Samples the page behind the fixed nav at a few points along its height
+// line: for each, the first ancestor with an opaque background decides. Photos
+// and other media are skipped (their tone is unknown). Dark when most of the
+// readable samples are dark.
+// Fixed layers (the loader, the page transition, floating panels) are skipped:
+// sampled while the loader still covered the page, a white page read as dark
+// and the nav kept white text on white until the first scroll.
+// Content pinned by ScrollTrigger is fixed too while it is pinned (Why
+// Uruguay's chapters), but it IS the page: it sits in a .pin-spacer and is
+// read like any other section. Skipping it left grey text on the green
+// chapter (Maque, 25.10.2026).
+function inFixedLayer(el: Element): boolean {
+  for (let e: Element | null = el; e && e !== document.body; e = e.parentElement) {
+    if (getComputedStyle(e).position === "fixed" && !e.parentElement?.classList.contains("pin-spacer")) return true;
+  }
+  return false;
+}
+
+function backgroundBehindNavIsDark(y: number): boolean {
+  const header = document.querySelector("header[role=banner]");
+  let dark = 0, light = 0;
+  for (const fx of [0.1, 0.3, 0.5, 0.7, 0.9]) {
+    const hit = document.elementsFromPoint(window.innerWidth * fx, y).find(el => !header?.contains(el) && !inFixedLayer(el));
+    if (!hit || hit.closest("img, video, canvas, picture, figure")) continue;
+    for (let el: Element | null = hit; el; el = el.parentElement) {
+      const m = getComputedStyle(el).backgroundColor.match(/[\d.]+/g);
+      if (!m || (m.length > 3 && parseFloat(m[3]) < 0.5)) continue;
+      const [r, g, b] = m.map(Number);
+      // Luminance (sRGB weights). 0.6, not 0.5: mid tones like Why Uruguay's
+      // sand chapter carry white text, so the nav goes white there too; the
+      // site's light surfaces sit above 0.9.
+      if ((0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 < 0.6) dark++;
+      else light++;
+      break;
+    }
+  }
+  return dark > light;
+}
+
 export default function Navigation() {
   const { locale, path } = useLocalePath();
   const copy = useT();
@@ -117,7 +156,7 @@ export default function Navigation() {
   useEffect(() => {
     if (!isHome) return;
 
-    const LIGHT_IDS = ["why-uruguay", "how-we-support", "why-sacramentum", "team", "news"];
+    const LIGHT_IDS = ["why-uruguay", "how-we-support", "why-sacramentum", "testimonials", "team", "news"];
     const NAV_Y = 60; // vertical midpoint of the nav bar
     let rafId: number;
 
@@ -128,7 +167,9 @@ export default function Navigation() {
         const r = el.getBoundingClientRect();
         return r.top <= NAV_Y && r.bottom >= NAV_Y;
       });
-      setScrollDark(inLight);
+      // A light section can still have a dark background behind the nav
+      // (testimonials melting into Capital, SeamBlend): the real colour wins.
+      setScrollDark(inLight && !backgroundBehindNavIsDark(NAV_Y));
     };
 
     const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(check); };
@@ -146,17 +187,23 @@ export default function Navigation() {
     const NAV_Y = 60;
     let rafId: number;
     const check = () => {
+      // Sacramentum Capital's blended background says its own tone (CapitalAmbient)
+      const tone = document.documentElement.dataset.capAmbTone;
+      if (tone) { setOverDarkSection(tone === "dark"); return; }
       const over = Array.from(document.querySelectorAll("[data-nav-dark]")).some(el => {
         const r = el.getBoundingClientRect();
         return r.top <= NAV_Y && r.bottom >= NAV_Y;
       });
-      setOverDarkSection(over);
+      // Not marked: read the real background behind the nav, so coloured
+      // sections (Why Uruguay's chapters…) get the light text too.
+      setOverDarkSection(over || backgroundBehindNavIsDark(NAV_Y));
     };
     const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(check); };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("cap-amb-tone", check);
     check();
-    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); cancelAnimationFrame(rafId); };
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); window.removeEventListener("cap-amb-tone", check); cancelAnimationFrame(rafId); };
   }, [isHome, pathname]);
 
   const isDark = isHome ? scrollDark : !overDarkSection;
@@ -233,23 +280,20 @@ export default function Navigation() {
 
   const topicLabel = (id: TopicId) => FOOTER_TOPICS.find(t => t.id === id)?.label[locale] ?? id;
 
+  // Menu by what the visitor is looking for (Maque, 25.10.2026): the country and
+  // its sectors, the services, Sacramentum Capital, news, blog, contact. One
+  // dropdown only, for the sector pages.
   const navLinks: { label: string; id: string; href: string; children?: { label: string; href: string }[] }[] = [
     // No "Home" link: the logo takes you home (client decision, 20.10.2026)
     {
       label: copy.nav.whyUruguay, id: "invest", href: path("why-uruguay"),
       children: WHY_URUGUAY_SECTORS.map(id => ({ label: topicLabel(id), href: path(id) })),
     },
-    {
-      // The four service cards, same titles as on the Services page; each opens its card.
-      // Investment banking is Sacramentum Capital: named so and linked to its own page.
-      label: copy.nav.sectors, id: "services", href: path("services"),
-      children: copy.howWeSupport.cards.map(card => card.id === "investment-banking"
-        ? { label: "Sacramentum Capital", href: path("sacramentum-capital") }
-        : { label: card.title, href: `${path("services")}?card=${card.id}` }),
-    },
-    { label: copy.nav.news,       id: "news",        href: path("news")        },
-    { label: copy.nav.blog,       id: "blog",        href: path("blog")        },
-    { label: copy.nav.contact,    id: "contact",     href: path("contact")     },
+    { label: copy.nav.sectors,      id: "services", href: path("services")            },
+    { label: "Sacramentum Capital", id: "capital",  href: path("sacramentum-capital") },
+    { label: copy.nav.news,         id: "news",     href: path("news")                },
+    { label: copy.nav.blog,         id: "blog",     href: path("blog")                },
+    { label: copy.nav.contact,      id: "contact",  href: path("contact")             },
   ];
 
   return (
@@ -287,7 +331,7 @@ export default function Navigation() {
               }
             }}
             className="relative flex-shrink-0 justify-self-start focus:outline-none focus-visible:outline focus-visible:outline-brand-blue"
-            aria-label="Sacramentum Advisors — back to top"
+            aria-label="Sacramentum Advisors, back to top"
           >
             <Image
               src={isDark ? "/images/LogoAzul.png" : "/images/Logo.png"}

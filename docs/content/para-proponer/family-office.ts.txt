@@ -11,12 +11,12 @@ const copy: TopicCopy = {
     metaTitle:       "Family Office Advisory in Uruguay",
     metaDescription: "For family offices and international families diversifying into Uruguay: real assets, market intelligence, residency and a lawful plan B.",
     navLabel:        "Family offices & wealth",
-    cardText:        "Diversification into Uruguay for family offices and international families — with a local partner.",
+    cardText:        "Diversification into Uruguay for family offices and international families, with a local partner.",
     eyebrow:         "Family offices & wealth",
     title:           "Uruguay for family offices and international families",
     intro: [
       "Family offices look at Uruguay for what it offers that larger markets do not: institutional predictability, equal treatment of foreign investors, free movement of capital and access to real assets in a small, stable jurisdiction.",
-      "We act as your local partner: we identify opportunities, provide the market intelligence behind each decision, and coordinate the legal, tax and operational specialists — so the family office deals with one counterpart in Uruguay.",
+      "We act as your local partner: we identify opportunities, provide the market intelligence behind each decision, and coordinate the legal, tax and operational specialists, so the family office deals with one counterpart in Uruguay.",
     ],
     image: { src: "/images/hands.webp", alt: "Advisors in a meeting" },
     sectionsHeading: "How we support family offices in Uruguay",
@@ -27,7 +27,7 @@ const copy: TopicCopy = {
         bullets: [
           "Institutional and legal stability, with the same rights for foreign and local investors.",
           "No exchange controls: capital and profits can be transferred abroad.",
-          "Real assets — farmland, forestry, real estate, infrastructure — alongside an established financial-services sector.",
+          "Real assets (farmland, forestry, real estate, infrastructure) alongside an established financial-services sector.",
           "A residency path for family members and a base for the wider region.",
         ],
       },
@@ -40,19 +40,19 @@ const copy: TopicCopy = {
       {
         heading: "Market intelligence",
         body: [
-          "We carry out studies and analysis of the market relevant to each opportunity: competition, risks, regulatory framework and business environment — clarity for entry, expansion or transaction decisions.",
+          "We carry out studies and analysis of the market relevant to each opportunity: competition, risks, regulatory framework and business environment, for clarity in entry, expansion or transaction decisions.",
         ],
       },
       {
         heading: "A plan B, built lawfully",
         body: [
-          "For international families, Uruguay is often part of a plan B: residency for the family, banking relationships and part of the assets held in a second, stable jurisdiction. Asset protection here means lawful diversification — with full transparency, source-of-funds documentation and tax compliance in every country involved.",
+          "For international families, Uruguay is often part of a plan B: residency for the family, banking relationships and part of the assets held in a second, stable jurisdiction. Asset protection here means lawful diversification, with full transparency, source-of-funds documentation and tax compliance in every country involved.",
         ],
       },
       {
         heading: "How we work",
         body: [
-          "We work for our client. Before any mandate we explain how we are paid, and we disclose any relationship with the opportunities we present — including transactions led by Sacramentum Capital.",
+          "We work for our client. Before any mandate we explain how we are paid, and we disclose any relationship with the opportunities we present, including transactions led by Sacramentum Capital.",
         ],
       },
     ],
@@ -61,6 +61,8 @@ const copy: TopicCopy = {
       { q: "Can family members also obtain residency?", a: "Yes. Residency and, where relevant, tax residency can be planned for family members alongside the investment strategy." },
       { q: "Is Uruguay a tax haven?", a: "No. Uruguay applies international transparency standards. Its appeal is stability and a predictable tax framework, not secrecy." },
       { q: "How does Sacramentum Advisors relate to Sacramentum Capital?", a: "Sacramentum Capital is the investment banking boutique of our network, focused on corporate finance, capital markets and M&A. We disclose that relationship whenever a Sacramentum Capital transaction is relevant to a client." },
+      { q: "Which assets do family offices use to diversify into Uruguay?", a: "Mostly real assets: productive farmland and forestry, real estate in Montevideo and on the coast, and stakes in technology companies. We help match them to the family's time horizon and liquidity needs." },
+      { q: "Is Sacramentum Advisors a multi-family office?", a: "No. We do not manage portfolios or hold client assets. We advise families and family offices on what to do in Uruguay and coordinate the legal, tax and financial partners who carry it out." },
     ],
     cta: {
       heading: "Exploring Uruguay for your family office?",
@@ -123,6 +125,8 @@ const copy: TopicCopy = {
       { q: "¿Los miembros de la familia pueden obtener la residencia?", a: "Sí. La residencia y, cuando corresponde, la residencia fiscal pueden planificarse para la familia junto con la estrategia de inversión." },
       { q: "¿Uruguay es un paraíso fiscal?", a: "No. Uruguay aplica los estándares internacionales de transparencia. Su atractivo es la estabilidad y un marco tributario previsible, no el secreto." },
       { q: "¿Qué relación hay entre Sacramentum Advisors y Sacramentum Capital?", a: "Sacramentum Capital es la boutique de banca de inversión de nuestra red, enfocada en finanzas corporativas, mercado de capitales y M&A. Informamos ese vínculo cada vez que una transacción de Sacramentum Capital es relevante para un cliente." },
+      { q: "¿En qué activos diversifica un family office en Uruguay?", a: "Sobre todo en activos reales: campos productivos y forestación, inmuebles en Montevideo y en la costa, y participaciones en empresas de tecnología. Ayudamos a elegirlos según el horizonte y las necesidades de liquidez de la familia." },
+      { q: "¿Sacramentum Advisors gestiona patrimonios?", a: "No. No gestionamos carteras ni custodiamos activos de clientes. Asesoramos a familias y family offices sobre qué hacer en Uruguay y coordinamos a los socios legales, fiscales y financieros que lo ejecutan." },
     ],
     cta: {
       heading: "¿Evaluando Uruguay para su family office?",
@@ -134,12 +138,12 @@ const copy: TopicCopy = {
     metaTitle:       "Family Office in Uruguay",
     metaDescription: "Für Family Offices und internationale Familien, die in Uruguay diversifizieren: Sachwerte, Marktanalyse, Aufenthalt und ein rechtssicherer Plan B.",
     navLabel:        "Family Office und Vermögen",
-    cardText:        "Diversifikation in Uruguay für Family Offices und internationale Familien – mit einem Partner vor Ort.",
+    cardText:        "Diversifikation in Uruguay für Family Offices und internationale Familien, mit einem Partner vor Ort.",
     eyebrow:         "Family Office und Vermögen",
     title:           "Uruguay für Family Offices und internationale Familien",
     intro: [
       "Family Offices schauen auf Uruguay wegen dessen, was größere Märkte nicht bieten: institutionelle Berechenbarkeit, Gleichbehandlung ausländischer Investoren, freien Kapitalverkehr und Zugang zu Sachwerten in einer kleinen, stabilen Rechtsordnung.",
-      "Wir sind Ihr Partner vor Ort: Wir identifizieren Chancen, liefern die Marktanalyse hinter jeder Entscheidung und koordinieren die rechtlichen, steuerlichen und operativen Fachleute – so hat das Family Office in Uruguay einen einzigen Ansprechpartner.",
+      "Wir sind Ihr Partner vor Ort: Wir identifizieren Chancen, liefern die Marktanalyse hinter jeder Entscheidung und koordinieren die rechtlichen, steuerlichen und operativen Fachleute. So hat das Family Office in Uruguay einen einzigen Ansprechpartner.",
     ],
     image: { src: "/images/hands.webp", alt: "Berater in einer Besprechung" },
     sectionsHeading: "Wie wir Family Offices in Uruguay begleiten",
@@ -150,7 +154,7 @@ const copy: TopicCopy = {
         bullets: [
           "Institutionelle und rechtliche Stabilität mit gleichen Rechten für ausländische und inländische Investoren.",
           "Keine Devisenkontrollen: Kapital und Gewinne können ins Ausland transferiert werden.",
-          "Sachwerte – Agrarland, Forst, Immobilien, Infrastruktur – neben einem etablierten Finanzdienstleistungssektor.",
+          "Sachwerte (Agrarland, Forst, Immobilien, Infrastruktur) neben einem etablierten Finanzdienstleistungssektor.",
           "Ein Weg zum Aufenthalt für Familienmitglieder und eine Basis für die gesamte Region.",
         ],
       },
@@ -163,19 +167,19 @@ const copy: TopicCopy = {
       {
         heading: "Marktanalyse",
         body: [
-          "Wir untersuchen und analysieren den für jede Chance relevanten Markt: Wettbewerb, Risiken, regulatorischer Rahmen und Geschäftsumfeld – für Klarheit bei Einstiegs-, Expansions- und Transaktionsentscheidungen.",
+          "Wir untersuchen und analysieren den für jede Chance relevanten Markt: Wettbewerb, Risiken, regulatorischer Rahmen und Geschäftsumfeld, für Klarheit bei Einstiegs-, Expansions- und Transaktionsentscheidungen.",
         ],
       },
       {
         heading: "Ein Plan B, rechtssicher aufgebaut",
         body: [
-          "Für internationale Familien ist Uruguay oft Teil eines Plan B außerhalb der EU: Aufenthalt für die Familie, Bankverbindungen und ein Teil des Vermögens in einer zweiten, stabilen Rechtsordnung. Vermögensschutz bedeutet hier rechtmäßige Diversifikation – mit voller Transparenz, Nachweis der Mittelherkunft und steuerlicher Compliance in jedem beteiligten Land.",
+          "Für internationale Familien ist Uruguay oft Teil eines Plan B außerhalb der EU: Aufenthalt für die Familie, Bankverbindungen und ein Teil des Vermögens in einer zweiten, stabilen Rechtsordnung. Vermögensschutz bedeutet hier rechtmäßige Diversifikation mit voller Transparenz, Nachweis der Mittelherkunft und steuerlicher Compliance in jedem beteiligten Land.",
         ],
       },
       {
         heading: "Wie wir arbeiten",
         body: [
-          "Wir arbeiten für unseren Kunden. Vor jedem Mandat erklären wir, wie wir vergütet werden, und legen jede Verbindung zu den vorgestellten Chancen offen – auch zu Transaktionen von Sacramentum Capital.",
+          "Wir arbeiten für unseren Kunden. Vor jedem Mandat erklären wir, wie wir vergütet werden, und legen jede Verbindung zu den vorgestellten Chancen offen, auch zu Transaktionen von Sacramentum Capital.",
         ],
       },
     ],
@@ -184,10 +188,12 @@ const copy: TopicCopy = {
       { q: "Können Familienmitglieder ebenfalls eine Aufenthaltsgenehmigung erhalten?", a: "Ja. Aufenthalt und gegebenenfalls steuerlicher Wohnsitz können für Familienmitglieder parallel zur Investitionsstrategie geplant werden." },
       { q: "Ist Uruguay eine Steueroase?", a: "Nein. Uruguay wendet internationale Transparenzstandards an. Sein Vorteil sind Stabilität und ein berechenbarer Steuerrahmen, nicht Verschwiegenheit." },
       { q: "Wie hängen Sacramentum Advisors und Sacramentum Capital zusammen?", a: "Sacramentum Capital ist die Investment-Banking-Boutique unseres Netzwerks mit Fokus auf Unternehmensfinanzierung, Kapitalmärkte und M&A. Wir legen diese Verbindung offen, wann immer eine Transaktion von Sacramentum Capital für einen Kunden relevant ist." },
+      { q: "In welche Anlagen diversifizieren Family Offices in Uruguay?", a: "Vor allem in Sachwerte: produktives Agrarland und Forst, Immobilien in Montevideo und an der Küste sowie Beteiligungen an Technologieunternehmen. Wir helfen, sie auf den Zeithorizont und den Liquiditätsbedarf der Familie abzustimmen." },
+      { q: "Ist Sacramentum Advisors ein Multi Family Office?", a: "Nein. Wir verwalten keine Portfolios und verwahren kein Kundenvermögen. Wir beraten Familien und Family Offices, was in Uruguay sinnvoll ist, und koordinieren die Rechts-, Steuer- und Finanzpartner, die es umsetzen." },
     ],
     cta: {
       heading: "Sie prüfen Uruguay für Ihr Family Office?",
-      body:    "Erzählen Sie uns von Ihrem Mandat. Wir zeigen Ihnen Chancen und die passenden Berater – in einem Gespräch.",
+      body:    "Erzählen Sie uns von Ihrem Mandat. Wir zeigen Ihnen Chancen und die passenden Berater, in einem Gespräch.",
       label:   "Beratung vereinbaren",
     },
   },

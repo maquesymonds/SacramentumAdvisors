@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap }          from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useT } from "@/lib/locale-context";
+import SectionCta from "@/components/ui/SectionCta";
 import StatItem          from "@/components/ui/StatItem";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { useCharReveal }   from "@/hooks/useCharReveal";
@@ -217,7 +218,8 @@ function MobileCarousel({ cards }: { cards: CarouselCard[] }) {
 
 // ── Section ───────────────────────────────────────────────────────────────────
 export default function WhyUruguay() {
-  const copy = useT().whyUruguay;
+  const t    = useT();
+  const copy = t.whyUruguay;
 
   const statsRef = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
   const gridRef  = useRef<HTMLDivElement>(null);
@@ -423,6 +425,8 @@ export default function WhyUruguay() {
               />
             ))}
           </div>
+
+          <SectionCta id="home-why-uruguay" label={t.closingCta.cta} />
         </div>
       </div>
 

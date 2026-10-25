@@ -7,6 +7,7 @@ import { useLocale, useT } from "@/lib/locale-context";
 import type { Locale } from "@/lib/i18n";
 import type { AdminTeamMember } from "@/lib/admin-content";
 import { useCharReveal } from "@/hooks/useCharReveal";
+import { TEAM_LINKEDIN } from "@/lib/external-links";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -17,6 +18,19 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.9, ease: EASE, delay },
 });
 
+// Small "LinkedIn ↗" link under a name; only rendered when the profile is known.
+function LinkedInLink({ href, name }: { href: string; name: string }) {
+  return (
+    <a
+      href={href} target="_blank" rel="noopener" aria-label={`${name} on LinkedIn`}
+      className="text-eyebrow inline-block mt-1.5"
+      style={{ color: "var(--color-warm)", fontSize: "0.62rem" }}
+    >
+      LinkedIn ↗
+    </a>
+  );
+}
+
 // ── Unified person card (Inés/Pablo style for everyone) ───────────────────────
 interface PersonCardProps {
   image:     string;
@@ -26,9 +40,10 @@ interface PersonCardProps {
   index:     number;
   locale:    Locale;
   roleAbove?: boolean;
+  linkedin?: string;
 }
 
-function PersonCard({ image, name, role, bio, index, locale, roleAbove }: PersonCardProps) {
+function PersonCard({ image, name, role, bio, index, locale, roleAbove, linkedin }: PersonCardProps) {
   const [expanded, setExpanded] = useState(false);
   const readMore = { en: "Read more", es: "Leer más",   de: "Mehr lesen"     }[locale];
   const readLess = { en: "Read less", es: "Leer menos", de: "Weniger lesen"  }[locale];
@@ -64,6 +79,7 @@ function PersonCard({ image, name, role, bio, index, locale, roleAbove }: Person
             <h3 style={{ fontSize: "1.05rem", fontWeight: 400, letterSpacing: "-0.02em", lineHeight: 1.2, color: "var(--color-ink)", margin: 0 }}>
               {name}
             </h3>
+            {linkedin && <LinkedInLink href={linkedin} name={name} />}
           </div>
         </div>
 
@@ -145,6 +161,7 @@ function PersonCard({ image, name, role, bio, index, locale, roleAbove }: Person
             style={{ fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
             {name}
           </h3>
+          {linkedin && <div className="mb-3 -mt-1"><LinkedInLink href={linkedin} name={name} /></div>}
           <div
             className="text-ink-muted leading-relaxed"
             style={expanded ? {
@@ -258,7 +275,7 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
         {leadershipMembers.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-16 mb-20">
             {leadershipMembers.map((person, i) => (
-              <PersonCard key={person.id} image={person.image} name={person.name} role={person.role} bio={person.bio} index={i} locale={locale} />
+              <PersonCard key={person.id} linkedin={TEAM_LINKEDIN[person.id]} image={person.image} name={person.name} role={person.role} bio={person.bio} index={i} locale={locale} />
             ))}
           </div>
         )}
@@ -283,7 +300,7 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16">
               {advisoryMembers.map((person, i) => (
-                <PersonCard key={person.id} image={person.image} name={person.name} role={person.role} bio={person.bio} index={i} locale={locale} roleAbove />
+                <PersonCard key={person.id} linkedin={TEAM_LINKEDIN[person.id]} image={person.image} name={person.name} role={person.role} bio={person.bio} index={i} locale={locale} roleAbove />
               ))}
             </div>
           </>

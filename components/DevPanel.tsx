@@ -51,7 +51,7 @@ export default function DevPanel() {
 
       <label style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
         <span style={{ opacity: 0.7 }}>
-          OurTeam padding-bottom — <strong style={{ color: "#f4c97a" }}>{teamPb.toFixed(1)}rem</strong>
+          OurTeam padding-bottom: <strong style={{ color: "#f4c97a" }}>{teamPb.toFixed(1)}rem</strong>
         </span>
         <input
           type="range"
@@ -66,7 +66,7 @@ export default function DevPanel() {
 
       <label style={{ display: "none", flexDirection: "column", gap: "0.4rem" }}>
         <span style={{ opacity: 0.7 }}>
-          Edificios Y position — <strong style={{ color: "#f4c97a" }}>{edificiosY}%</strong>
+          Edificios Y position: <strong style={{ color: "#f4c97a" }}>{edificiosY}%</strong>
         </span>
         <input
           type="range"
@@ -81,7 +81,7 @@ export default function DevPanel() {
 
       <label style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
         <span style={{ opacity: 0.7 }}>
-          Olas top position — <strong style={{ color: "#f4c97a" }}>{olasTop}px</strong>
+          Olas top position: <strong style={{ color: "#f4c97a" }}>{olasTop}px</strong>
         </span>
         <input
           type="range"
@@ -96,7 +96,7 @@ export default function DevPanel() {
 
       <label style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
         <span style={{ opacity: 0.7 }}>
-          Intro BG vertical — <strong style={{ color: "#f4c97a" }}>{introBgY}%</strong>
+          Intro BG vertical: <strong style={{ color: "#f4c97a" }}>{introBgY}%</strong>
         </span>
         <input
           type="range"

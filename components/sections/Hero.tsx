@@ -126,6 +126,7 @@ export default function Hero() {
             >
               <button
                 onClick={() => scrollToSection("contact")}
+                data-cta="home-hero"
                 onMouseEnter={onEnter}
                 onMouseLeave={onLeave}
                 className={[

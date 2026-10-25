@@ -5,6 +5,10 @@
    ─────────────────────────────────────────────────────────────────────────────
    Structure:
      • Dark panel (--color-dark #1F2933)
+     • Optional `cta` on top: the page's closing call to action, centred and
+       part of the footer itself (Maque, 21.10.2026: never a separate section
+       of another colour above the footer). The home passes `closing`: its
+       question and button from translations.closingCta (admin-editable)
      • 4-column grid: Brand | Navigation | Services | Contact
      • Bottom legal bar: copyright · Filamento credit · privacy · terms
      • Logo inverted to white via CSS filter
@@ -25,6 +29,9 @@ import { motion }  from "framer-motion";
 import { useLocalePath, useT } from "@/lib/locale-context";
 import { isHomePath, pageLocales } from "@/lib/i18n";
 import { FOOTER_TOPICS, FOOTER_TOPICS_TITLE } from "@/lib/topic-links";
+import { COMPANY_LINKEDIN } from "@/lib/external-links";
+import { openCookieSettings } from "@/components/layout/CookieConsent";
+import { COOKIE_CONSENT } from "@/data/cookie-consent";
 
 import { usePathname } from "next/navigation";
 import { usePageTransition } from "@/lib/transition-context";
@@ -60,6 +67,16 @@ function IconMail() {
       <rect x="1" y="1" width="14" height="11" rx="1.5"
         stroke="currentColor" strokeWidth="1.4"/>
       <path d="M1 3.5L8 8l7-4.5" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function IconLinkedIn() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.4"/>
+      <path d="M5 7v4.5M5 4.6v.1M8 11.5V7m0 2.2c0-1.3.8-2.2 1.9-2.2S11.5 7.8 11.5 9v2.5"
+        stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
     </svg>
   );
 }
@@ -142,12 +159,27 @@ function FooterLink({
 }
 
 // ── Footer ────────────────────────────────────────────────────────────────────
-export default function Footer() {
-  const copy       = useT().footer;
+export interface FooterCta {
+  heading: string;
+  body?:   string;
+  label:   string;
+  href:    string;
+  /** data-cta value, for conversion tracking */
+  id:      string;
+}
+
+/** `closing`: show the shared closing CTA (translations.closingCta). `true` on the
+ *  home (also anchors #contact); a string elsewhere = that page's data-cta id. */
+export default function Footer({ cta: pageCta, closing }: { cta?: FooterCta; closing?: boolean | string }) {
+  const t          = useT();
+  const copy       = t.footer;
 
   const { navigate } = usePageTransition();
   const pathname = usePathname();
   const { path, href: localize, locale } = useLocalePath();
+  const cta: FooterCta | undefined = closing
+    ? { heading: t.closingCta.headline, label: t.closingCta.cta, href: path("contact"), id: typeof closing === "string" ? closing : "closing-cta" }
+    : pageCta;
   const isHome   = isHomePath(pathname);
 
   const handleNavClick = (href: string) => {
@@ -174,8 +206,53 @@ export default function Footer() {
   return (
     <footer
       role="contentinfo"
+      data-nav-dark
       style={{ backgroundColor: "var(--color-dark)" }}
     >
+      {/* ── Closing CTA ─────────────────────────────────────── */}
+      {cta && (
+        <div className="container-site">
+          <div
+            id={closing === true ? "contact" : undefined}
+            className="mx-auto flex flex-col items-center text-center"
+            style={{
+              maxWidth:      "44rem",
+              paddingTop:    "clamp(3.5rem, 6vw, 5rem)",
+              paddingBottom: "clamp(1rem, 2vw, 1.5rem)", // the main grid below brings its own top padding
+            }}
+          >
+            <motion.h2
+              {...fadeUp(0)}
+              className="font-normal"
+              style={{ color: "#FAFAF8", fontSize: "clamp(2rem, 1.2rem + 2.4vw, 3.2rem)", letterSpacing: "-0.03em", lineHeight: 1.1, textWrap: "balance" }}
+            >
+              {cta.heading}
+            </motion.h2>
+            {cta.body && (
+              <motion.p
+                {...fadeUp(0.08)}
+                className="mt-5"
+                style={{ color: "rgba(250,250,248,0.7)", lineHeight: 1.7, maxWidth: "36rem", textWrap: "pretty" }}
+              >
+                {cta.body}
+              </motion.p>
+            )}
+            <motion.div {...fadeUp(0.16)} className="mt-9">
+              {/* Same button as the nav's "Reservar consulta", white on the dark footer */}
+              <a
+                href={cta.href}
+                data-cta={cta.id}
+                className="inline-block text-base font-medium tracking-[0.03em] rounded-full whitespace-nowrap transition-transform duration-300 ease-out hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:scale-100"
+                style={{ padding: "0.8rem 1.75rem", backgroundColor: "#FFFFFF", color: "var(--color-dark)" }}
+                onClick={(e) => { e.preventDefault(); navigate(cta.href); }}
+              >
+                {cta.label}
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      )}
+
       {/* ── Main grid ───────────────────────────────────────── */}
       <div
         className="container-site"
@@ -319,6 +396,34 @@ export default function Footer() {
                   {copy.contact.email}
                 </a>
               </div>
+
+              <div className="flex items-start gap-3">
+                <span
+                  className="mt-0.5 flex-shrink-0"
+                  style={{ color: "rgba(250,250,248,0.3)" }}
+                >
+                  <IconLinkedIn />
+                </span>
+                <a
+                  href={COMPANY_LINKEDIN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color:      "rgba(250,250,248,0.5)",
+                    fontSize:   "0.9rem",
+                    lineHeight: 1.5,
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={e =>
+                    ((e.currentTarget as HTMLElement).style.color = "var(--color-warm)")
+                  }
+                  onMouseLeave={e =>
+                    ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.5)")
+                  }
+                >
+                  LinkedIn
+                </a>
+              </div>
             </div>
 
             {/* Consult CTA */}
@@ -326,6 +431,7 @@ export default function Footer() {
               <button
                 type="button"
                 onClick={() => navigate(path("contact"))}
+                data-cta="footer-consult"
                 style={{
                   display:         "inline-block",
                   padding:         "0.65rem 1.4rem",
@@ -434,6 +540,23 @@ export default function Footer() {
                 {label}
               </a>
             ))}
+            <button
+              onClick={openCookieSettings}
+              style={{
+                color:         "rgba(250,250,248,0.28)",
+                fontSize:      "0.72rem",
+                letterSpacing: "0.04em",
+                transition:    "color 0.2s ease",
+              }}
+              onMouseEnter={e =>
+                ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.6)")
+              }
+              onMouseLeave={e =>
+                ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.28)")
+              }
+            >
+              {COOKIE_CONSENT[locale].settings}
+            </button>
           </div>
         </div>
       </motion.div>

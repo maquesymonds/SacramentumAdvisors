@@ -5,6 +5,7 @@ import Link        from "next/link";
 import Navigation  from "@/components/layout/Navigation";
 import Footer      from "@/components/layout/Footer";
 import CategoryPill from "@/components/ui/CategoryPill";
+import ts           from "@/components/topic/topic.module.css";
 import { DATE_LOCALE, type Locale } from "@/lib/i18n";
 import { useLocale, useT, useLocalePath } from "@/lib/locale-context";
 import { articleBodies } from "@/data/article-bodies";
@@ -26,9 +27,12 @@ function formatDate(dateStr: string, locale: Locale) {
 export default function ArticlePageClient({
   id,
   adminArticles,
+  related,
 }: {
   id: string;
   adminArticles?: RawArticle[] | null;
+  /** The sector page this article leads to (lib/topic-links ARTICLE_RELATED) */
+  related?: { href: string; title: string; text: string; image?: string; eyebrow: string } | null;
 }) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -245,9 +249,36 @@ export default function ArticlePageClient({
           </div>
         </section>
 
+        {/* ── Related sector: where to go after reading ─────────────────── */}
+        {related && (
+          <section style={{ paddingBottom: "clamp(4rem, 8vw, 6rem)" }}>
+            <div className={`container-site ${ts.related}`}>
+              <div className={`text-eyebrow ${ts.eyebrow}`}>{related.eyebrow}</div>
+              <div className={ts.cards}>
+                <a href={related.href} className={ts.card} data-cta={`article-related-${id}`}>
+                  {related.image && (
+                    <div className={ts.cardImage}>
+                      <Image src={related.image} alt="" fill unoptimized className="object-cover" />
+                    </div>
+                  )}
+                  <div className={ts.cardBody}>
+                    <h3 className={ts.cardTitle}>{related.title}</h3>
+                    <p className={ts.cardText}>{related.text}</p>
+                    <div className={ts.cardFoot}>
+                      <span className={ts.arrow} aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
       </main>
 
-      <Footer />
+      <Footer closing="closing-article" />
     </>
   );
 }

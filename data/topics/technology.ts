@@ -19,7 +19,7 @@ const copy: TopicCopy = {
     ],
     image: { src: "/images/tech.avif", alt: "Technology office in Montevideo, Uruguay" },
     facts: [
-      { value: "#2",         label: "Software exporter per capita in Latin America — and the largest in South America" },
+      { value: "#2",         label: "Software exporter per capita in Latin America, and the largest in South America" },
       { value: "US$3.7bn",   label: "Technology sector revenue in 2024, equivalent to 4.5% of GDP" },
       { value: "63%",        label: "Of the sector's revenue from international sales" },
       { value: "77.6%",      label: "Of Uruguay's technology exports go to the United States" },
@@ -30,7 +30,7 @@ const copy: TopicCopy = {
         heading: "A natural technology platform",
         image:   { src: "/images/edificios.webp", alt: "Waterfront towers in Uruguay" },
         body: [
-          "Uruguay is Latin America's second-largest software exporter per capita — and the largest in South America. The technology sector generated US$3.68 billion in revenue in 2024, equivalent to 4.5% of GDP, with 63% of its revenue coming from international sales.",
+          "Uruguay is Latin America's second-largest software exporter per capita, and the largest in South America. The technology sector generated US$3.68 billion in revenue in 2024, equivalent to 4.5% of GDP, with 63% of its revenue coming from international sales.",
           "The United States remains its strongest market, accounting for 77.6% of technology exports from Uruguay. At the same time, established links with the United Kingdom, Spain, Chile, Canada, and other international markets position Uruguay as a natural technology platform connecting North America, Latin America, and Europe.",
         ],
       },
@@ -52,8 +52,9 @@ const copy: TopicCopy = {
       },
     ],
     faqs: [
-      { q: "Why do technology companies choose Uruguay?", a: "Institutional stability, sophisticated talent, strong digital infrastructure and an ecosystem already tested by global technology and services companies — with time-zone and business links to North America, Latin America and Europe." },
-      { q: "Can a foreign company acquire a software company in Uruguay?", a: "Yes. Foreign investors receive the same treatment as local investors. We help identify targets with existing talent, intellectual property and international clients, and coordinate the transaction with Sacramentum Capital." },
+      { q: "Why do technology companies choose Uruguay?", a: "Institutional stability, skilled talent, digital infrastructure and an ecosystem already proven by global technology and services companies." },
+      { q: "How big is Uruguay's technology sector?", a: "Uruguay is Latin America's second-largest software exporter per capita and the largest in South America. The sector had revenues of US$3.68 billion in 2024, 4.5% of GDP, and 63% of that came from international sales, mainly to the United States." },
+      { q: "How does a foreign technology company set up in Uruguay?", a: "In stages: market assessment, operating model design, local leadership, talent onboarding, setup and launch. At Sacramentum Advisors we support every one of those stages." },
       { q: "Can a technology operation in Uruguay serve the whole region?", a: "Yes. Uruguay can serve as a base for Spanish-speaking Latin America, Brazil and global markets, supported by established investment frameworks and free-zone platforms." },
     ],
     cta: {
@@ -109,8 +110,9 @@ const copy: TopicCopy = {
       },
     ],
     faqs: [
-      { q: "¿Por qué las empresas tecnológicas eligen Uruguay?", a: "Estabilidad institucional, talento calificado, infraestructura digital sólida y un ecosistema ya probado por empresas globales de tecnología y servicios, con vínculos de huso horario y negocio con América del Norte, América Latina y Europa." },
-      { q: "¿Una empresa extranjera puede adquirir una empresa de software en Uruguay?", a: "Sí. Los inversores extranjeros reciben el mismo trato que los locales. Ayudamos a identificar empresas con talento, propiedad intelectual y clientes internacionales, y coordinamos la transacción con Sacramentum Capital." },
+      { q: "¿Por qué las empresas tecnológicas eligen Uruguay?", a: "Por su estabilidad institucional, su talento calificado, su infraestructura digital y un ecosistema ya probado por empresas globales de tecnología y servicios." },
+      { q: "¿Qué tan grande es el sector tecnológico de Uruguay?", a: "Uruguay es el segundo exportador de software per cápita de América Latina y el primero de América del Sur. El sector facturó US$ 3.680 millones en 2024, el 4,5 % del PIB, y el 63 % de esa facturación viene de ventas internacionales, sobre todo a Estados Unidos." },
+      { q: "¿Cómo se instala una empresa de tecnología extranjera en Uruguay?", a: "Por etapas: evaluación del mercado, diseño del modelo operativo, liderazgo local, incorporación de talento, instalación y puesta en marcha. En Sacramentum Advisors acompañamos cada una de esas etapas." },
       { q: "¿Una operación tecnológica en Uruguay puede atender a toda la región?", a: "Sí. Uruguay puede funcionar como base para la América Latina hispanohablante, Brasil y mercados globales, con marcos de inversión consolidados y plataformas de zona franca." },
     ],
     cta: {
@@ -132,7 +134,7 @@ const copy: TopicCopy = {
     ],
     image: { src: "/images/tech.avif", alt: "Technologiebüro in Montevideo, Uruguay" },
     facts: [
-      { value: "#2",           label: "Softwareexporteur pro Kopf in Lateinamerika – und der größte in Südamerika" },
+      { value: "#2",           label: "Softwareexporteur pro Kopf in Lateinamerika und der größte in Südamerika" },
       { value: "$3,7 Mrd.",    label: "Umsatz des Technologiesektors 2024, entsprechend 4,5 % des BIP" },
       { value: "63 %",          label: "Des Umsatzes stammen aus internationalen Verkäufen" },
       { value: "77,6 %",        label: "Der uruguayischen Technologieexporte gehen in die USA" },
@@ -143,7 +145,7 @@ const copy: TopicCopy = {
         heading: "Eine natürliche Technologieplattform",
         image:   { src: "/images/edificios.webp", alt: "Hochhäuser an der Küste Uruguays" },
         body: [
-          "Uruguay ist der zweitgrößte Softwareexporteur pro Kopf in Lateinamerika – und der größte in Südamerika. Der Technologiesektor erzielte 2024 einen Umsatz von 3,68 Milliarden US-Dollar, entsprechend 4,5 % des BIP; 63 % davon stammen aus internationalen Verkäufen.",
+          "Uruguay ist der zweitgrößte Softwareexporteur pro Kopf in Lateinamerika und der größte in Südamerika. Der Technologiesektor erzielte 2024 einen Umsatz von 3,68 Milliarden US-Dollar, entsprechend 4,5 % des BIP; 63 % davon stammen aus internationalen Verkäufen.",
           "Die Vereinigten Staaten sind mit 77,6 % der Technologieexporte der wichtigste Markt. Gleichzeitig machen etablierte Verbindungen nach Großbritannien, Spanien, Chile, Kanada und in weitere Märkte Uruguay zu einer natürlichen Technologieplattform zwischen Nordamerika, Lateinamerika und Europa.",
         ],
       },
@@ -160,13 +162,14 @@ const copy: TopicCopy = {
         image:   { src: "/images/hands.webp", alt: "Handschlag zum Abschluss einer Vereinbarung" },
         body: [
           "Übernehmen Sie ein Softwareunternehmen, ein Produktteam oder eine spezialisierte Technologiekompetenz mit bestehenden Talenten, geistigem Eigentum und internationalen Kunden.",
-          "Uruguay kann zudem als strategische Basis für die Expansion in das spanischsprachige Lateinamerika, nach Brasilien und in globale Märkte dienen – mit etablierten Investitionsregimen und Freihandelszonen.",
+          "Uruguay kann zudem als strategische Basis für die Expansion in das spanischsprachige Lateinamerika, nach Brasilien und in globale Märkte dienen, mit etablierten Investitionsregimen und Freihandelszonen.",
         ],
       },
     ],
     faqs: [
-      { q: "Warum wählen Technologieunternehmen Uruguay?", a: "Institutionelle Stabilität, qualifizierte Fachkräfte, eine starke digitale Infrastruktur und ein von globalen Unternehmen erprobtes Ökosystem – mit Zeitzonen- und Geschäftsverbindungen nach Nordamerika, Lateinamerika und Europa." },
-      { q: "Kann ein ausländisches Unternehmen ein Softwareunternehmen in Uruguay übernehmen?", a: "Ja. Ausländische Investoren werden wie inländische behandelt. Wir helfen, passende Unternehmen zu finden, und koordinieren die Transaktion mit Sacramentum Capital." },
+      { q: "Warum wählen Technologieunternehmen Uruguay?", a: "Wegen institutioneller Stabilität, qualifizierter Fachkräfte, digitaler Infrastruktur und eines Ökosystems, das sich bei globalen Technologie- und Dienstleistungsunternehmen bereits bewährt hat." },
+      { q: "Wie groß ist der Technologiesektor in Uruguay?", a: "Uruguay ist pro Kopf der zweitgrößte Softwareexporteur Lateinamerikas und der größte Südamerikas. Der Sektor erzielte 2024 einen Umsatz von 3,68 Milliarden US-Dollar, 4,5 % des BIP, und 63 % davon stammen aus internationalen Verkäufen, vor allem in die USA." },
+      { q: "Wie gründet ein ausländisches Technologieunternehmen einen Standort in Uruguay?", a: "In Etappen: Marktanalyse, Gestaltung des Betriebsmodells, lokale Führung, Aufbau des Teams, Einrichtung und Inbetriebnahme. Sacramentum Advisors begleitet jede dieser Etappen." },
       { q: "Kann ein Standort in Uruguay die ganze Region bedienen?", a: "Ja. Uruguay eignet sich als Basis für das spanischsprachige Lateinamerika, Brasilien und globale Märkte, unterstützt durch Investitionsregime und Freihandelszonen." },
     ],
     cta: {

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 // home stats (StatItem). The server renders the final value so crawlers read
 // the real figure; the count only starts once the number scrolls into view.
 // "US$3,7 MM" / "$3,7 Mrd.": a trailing unit word is set smaller so the
-// figure fits a quarter column.
+// figure fits a quarter column; so is a leading currency word ("USD 1.6B+").
 
 function parseValue(val: string) {
   const match = val.match(/^([^\d]*)(\d+)(?:([.,])(\d+))?(.*)$/);
@@ -44,14 +44,17 @@ export default function CountUp({ value }: { value: string }) {
 
   if (!parsed) return <span ref={ref}>{value}</span>;
 
+  const currency = parsed.prefix.match(/^([A-Za-z]+)\s$/);
+  const lead = currency ? "" : parsed.prefix;
   const number = current === null
-    ? value.slice(0, value.length - parsed.suffix.length)
-    : `${parsed.prefix}${current.toFixed(parsed.decimals).replace(".", parsed.sep)}`;
+    ? value.slice(parsed.prefix.length, value.length - parsed.suffix.length)
+    : current.toFixed(parsed.decimals).replace(".", parsed.sep);
   const unit = parsed.suffix.match(/^\s([A-Za-z.]+)$/);
 
   return (
     <span ref={ref}>
-      {number}
+      {currency && <span style={{ fontSize: "0.5em", marginRight: "0.15em" }}>{currency[1]}</span>}
+      {lead}{number}
       {unit
         ? <span style={{ fontSize: "0.5em", marginLeft: "0.15em" }}>{unit[1]}</span>
         : parsed.suffix}

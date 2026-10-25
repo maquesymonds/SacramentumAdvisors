@@ -5,6 +5,8 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/schema";
 import { localePath } from "@/lib/i18n";
 import { t } from "@/data/translations";
+import FaqSection from "@/components/faq/FaqSection";
+import { coreFaqs } from "@/data/faqs";
 
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
   return coreMetadata("why-uruguay", params.locale);
@@ -13,7 +15,7 @@ export function generateMetadata({ params }: { params: { locale: string } }): Me
 export default function InvestPage({ params }: { params: { locale: string } }) {
   const locale = toLocale(params.locale);
   return <>
-      <InvestPageClient />
+      <InvestPageClient faq={<FaqSection id="why-uruguay" locale={locale} items={coreFaqs("why-uruguay", locale)} />} />
       <JsonLd data={breadcrumbJsonLd(locale, [{ name: t(locale).nav.whyUruguay, path: localePath("why-uruguay", locale) }])} />
     </>;
 }
