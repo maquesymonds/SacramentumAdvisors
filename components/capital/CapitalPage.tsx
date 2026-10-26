@@ -17,6 +17,7 @@ import Navigation from "@/components/layout/Navigation";
 import SectionCta from "@/components/ui/SectionCta";
 import Footer     from "@/components/layout/Footer";
 import TrackReveal from "@/components/capital/TrackReveal";
+import { TrackChart, TrackLegend, dealColor } from "@/components/capital/TrackChart";
 import HowRail    from "@/components/capital/HowRail";
 import cs         from "@/components/capital/capital.module.css";
 import CapitalAmbient from "@/components/capital/CapitalAmbient";
@@ -28,12 +29,11 @@ import ScrubText  from "@/components/ui/ScrubText";
 import FirmsDiagram from "@/components/capital/FirmsDiagram";
 import { topicContent } from "@/lib/topics";
 import { absoluteUrl, localePath, type Locale } from "@/lib/i18n";
-import { CAPITAL, TRACK, type Sector } from "@/data/capital";
+import { CAPITAL } from "@/data/capital";
 
 // Backgrounds of this page (the firm's greens); type and accents stay the site's
 const BG = { deep: "#0C3B38", mint: "#EDF3F1" };
 const ON_DARK = { text: "#FAFAF8", muted: "rgba(250,250,248,0.72)", line: "rgba(250,250,248,0.16)" };
-const SECTOR_COLOR: Record<Sector, string> = { energy: "#4FA79B", infra: "#2B5E59", devbank: "#163A36", ma: "#84CCC4" };
 // Behind the "what it does" cards: the deep green lifting toward the energy teal and back
 const FOCUS_BAND = "linear-gradient(180deg, rgba(12,59,56,0) 0%, rgba(43,94,89,0.9) 30%, rgba(79,167,155,0.55) 62%, rgba(43,94,89,0.6) 85%, rgba(12,59,56,0) 100%)";
 
@@ -63,10 +63,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Featured deals (data/capital.ts, same order in every language) → their
-// bubble in TRACK, so each row carries its sector's colour.
-const DEAL_TRACK = ["CAF Fund", "CVU", "Baluma", "UTE Bond", "INFRAM", "Circuit 1"];
-const dealColor = (i: number) => SECTOR_COLOR[TRACK.find(t => t.label === DEAL_TRACK[i])?.sector ?? "infra"];
 
 // Where each step sits in the curve band (fractions of its height): --c is
 // the curve under the node, --n the node. As in christophbauer.de's
@@ -103,43 +99,6 @@ function Amount({ value }: { value: string }) {
   return <><span className={cs.unit}>{m[1]}</span>{m[2]}</>;
 }
 
-// ── Track record: bubbles by year, area proportional to value ───────────────
-function TrackChart({ locale }: { locale: Locale }) {
-  const t = CAPITAL[locale].track;
-  const W = 1200, H = 400, AXIS = 166, X0 = 70, X1 = 1130, Y0 = 2011.6, Y1 = 2026.9, STEM = 22;
-  const ink = "#111F30", muted = "#4A5568";
-  const x = (y: number) => X0 + (y - Y0) * (X1 - X0) / (Y1 - Y0);
-  const r = (v: number) => 3.3 * Math.sqrt(v);
-  const years = Array.from({ length: 15 }, (_, i) => 2012 + i);
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby="track-title" style={{ width: "100%", height: "auto", display: "block" }}>
-      <title id="track-title">{t.heading}</title>
-      {years.map(y => (
-        <g key={y}>
-          {y % 2 === 0 && <text x={x(y)} y={H - 12} textAnchor="middle" fontSize="13" fill={muted} style={{ fontVariantNumeric: "tabular-nums" }}>{y}</text>}
-        </g>
-      ))}
-      <line data-track-axis x1={X0 - 20} x2={X1 + 20} y1={AXIS} y2={AXIS} stroke={BG.deep} strokeWidth="2" />
-      {TRACK.map(d => {
-        const rr = r(d.value), cx = x(d.year);
-        const cy = d.side === "up" ? AXIS - STEM - rr : AXIS + STEM + rr;
-        // Name and amount always outside the bubble: above it on the upper side, below on the lower
-        const ty = d.side === "up" ? cy - rr - 18 : cy + rr + 16;
-        // Where the axis line reaches this deal (0..1), for TrackReveal
-        const at = ((cx - (X0 - 20)) / (X1 - X0 + 40)).toFixed(3);
-        return (
-          <g key={d.label} data-track-deal={at} data-side={d.side}>
-            <title>{`${d.label} · ${Math.floor(d.year)} · USD ${d.value}M · ${t.sectors[d.sector]}`}</title>
-            <line data-stem x1={cx} x2={cx} y1={AXIS} y2={d.side === "up" ? cy + rr : cy - rr} stroke={BG.deep} strokeWidth="1" opacity="0.45" />
-            <circle data-bubble cx={cx} cy={cy} r={rr} fill={SECTOR_COLOR[d.sector]} />
-            <text data-label x={cx} y={ty} textAnchor="middle" fontSize="12" fontWeight="600" fill={ink}>{d.label}</text>
-            <text data-label x={cx} y={ty + 14} textAnchor="middle" fontSize="11" fill={muted}>${d.value}M</text>
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
 
 export default function CapitalPage({ locale }: { locale: Locale }) {
   const c = CAPITAL[locale];
@@ -198,17 +157,7 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
               <p className="text-body text-ink-muted leading-relaxed">{c.track.intro}</p>
             </div>
 
-            <div className="mt-10 flex justify-center text-small text-ink-muted">
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-                <span className="text-ink">{c.track.legend}</span>
-                {(Object.keys(SECTOR_COLOR) as Sector[]).map(s => (
-                  <span key={s} className="flex items-center gap-2">
-                    <span className="inline-block rounded-full" style={{ width: 12, height: 12, backgroundColor: SECTOR_COLOR[s] }} />
-                    {c.track.sectors[s]}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <TrackLegend locale={locale} className="mt-10" />
 
             <div className="mt-6 overflow-x-auto" style={{ marginInline: "-1rem", paddingInline: "1rem" }}>
               <div style={{ minWidth: 880 }}><TrackReveal><TrackChart locale={locale} /></TrackReveal></div>

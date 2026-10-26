@@ -30,7 +30,7 @@ export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
   home: [
     d("Sección Sacramentum Capital: las cifras (USD 1.6B+, 30 mandatos, 12 sectores) salen de la presentación de Capital, marcada \"Confidential\". ¿Se pueden publicar en la home?"),
     s("Sección Sacramentum Capital: ¿te parece bien mostrar a Capital en la home como la firma detrás del servicio de banca de inversión?"),
-    r("Sección Sacramentum Capital: el título sale de tu tarjeta de servicio (\"transacciones sofisticadas con precisión y criterio\"). ¿Te sirve?"),
+    d("Sección Sacramentum Capital: muestra la gráfica de transacciones y tres operaciones por nombre (bonos de UTE 2012, fondo de CAF 2016, IPO de INFRAM 2025). ¿Se pueden mostrar en la home?"),
     r("Los tres testimonios son INVENTADOS, solo para mostrar cómo se vería la sección. ¿Nos pasás 2 o 3 comentarios reales de clientes, con permiso para publicarlos? Pueden ser anónimos (\"Familia de Buenos Aires\"); necesitamos el texto, de dónde es la persona y en qué la ayudaron."),
     p("Descripción en Google: \"Asesoramiento independiente… coordinado de punta a punta desde Montevideo\". \"Independiente\" depende de la relación con Capital, que está pendiente."),
   ],
