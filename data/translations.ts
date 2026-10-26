@@ -979,7 +979,7 @@ const es: SiteTranslations = {
         id:    "ines",
         image: "/images/ines.png",
         name:  "Inés Bonicelli",
-        role:  "Directora General",
+        role:  "Managing Director",
         bio:   "Licenciada en Dirección de Empresas por la Universidad Católica del Uruguay y MBA por la Universidad de Michigan, con una amplia trayectoria en los sectores público, privado y de la sociedad civil. Comenzó su carrera en la industria frigorífica y luego se desempeñó en diversas instituciones financieras como ABN AMRO, Citi y Bozano Simonsen (Río de Janeiro, Brasil).\n\nDurante una década en Estados Unidos, fundó y dirigió Reaching U, a Foundation for Uruguay, y fue responsable de la gestión de un showroom en Nueva York. Entre 2020 y 2025, ocupó el cargo de vicedirectora ejecutiva en Uruguay XXI, liderando iniciativas y sectores clave para la atracción de inversión extranjera. Posteriormente, fue Business Developer del Uruguay Innovation Hub, programa gubernamental enfocado en promover el emprendimiento, fortalecer el ecosistema de innovación y atraer inversión en capital de riesgo.",
       },
       {
