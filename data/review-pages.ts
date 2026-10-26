@@ -2,7 +2,8 @@
    Review notes outside the topic pages (audit of 21.10.2026, see
    data/review-flags.ts for the rules): what is not visible as one block
    (Google descriptions, structured data, page-wide copy), shown in the
-   floating ReviewPanel. FAQs carry no flags: reviewed one by one with Maque
+   floating ReviewPanel, the only place notes show (Maque, 25.10.2026: no
+   boxes inside the page, they shift the layout). FAQs carry no flags: reviewed one by one with Maque
    (25.10.2026).
    Remove an entry once Inés has confirmed it.
    ─────────────────────────────────────────────────────────────────────────── */
@@ -27,6 +28,10 @@ export const SITE_REVIEW: ReviewNote[] = [
 /** Notes per page (Google description and copy that is not one block) */
 export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
   home: [
+    d("Sección Sacramentum Capital: las cifras (USD 1.6B+, 30 mandatos, 12 sectores) salen de la presentación de Capital, marcada \"Confidential\". ¿Se pueden publicar en la home?"),
+    s("Sección Sacramentum Capital: ¿te parece bien mostrar a Capital en la home como la firma detrás del servicio de banca de inversión?"),
+    r("Sección Sacramentum Capital: el título sale de tu tarjeta de servicio (\"transacciones sofisticadas con precisión y criterio\"). ¿Te sirve?"),
+    r("Los tres testimonios son INVENTADOS, solo para mostrar cómo se vería la sección. ¿Nos pasás 2 o 3 comentarios reales de clientes, con permiso para publicarlos? Pueden ser anónimos (\"Familia de Buenos Aires\"); necesitamos el texto, de dónde es la persona y en qué la ayudaron."),
     p("Descripción en Google: \"Asesoramiento independiente… coordinado de punta a punta desde Montevideo\". \"Independiente\" depende de la relación con Capital, que está pendiente."),
   ],
   "why-uruguay": [
@@ -35,10 +40,12 @@ export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
     d("Corregimos \"97% de su matriz energética\" por \"97% de su electricidad\": el 97% renovable es de la electricidad, no de toda la energía."),
   ],
   services: [
+    r("Los tres testimonios son INVENTADOS, solo para mostrar cómo se vería la sección. ¿Nos pasás 2 o 3 comentarios reales de clientes, con permiso para publicarlos? Pueden ser anónimos (\"Familia de Buenos Aires\"); necesitamos el texto, de dónde es la persona y en qué la ayudaron."),
     p("Descripción en Google: ya usa \"Residencia e instalación\" en vez de Soft Landing (propuesta sin aprobar)."),
     p("Las tarjetas van en el mismo orden en los tres idiomas, con Sacramentum Capital al final."),
   ],
   contact: [
+    r("Los tres testimonios son INVENTADOS, solo para mostrar cómo se vería la sección. ¿Nos pasás 2 o 3 comentarios reales de clientes, con permiso para publicarlos? Pueden ser anónimos (\"Familia de Buenos Aires\"); necesitamos el texto, de dónde es la persona y en qué la ayudaron."),
     r("Descripción en Google: \"respondemos en 1 a 2 días hábiles\" y temas reordenados. ¿Te sirve?"),
     p("Las opciones de \"Área de interés\" del formulario ahora son las mismas áreas de la web (antes: Adquisición estratégica de activos, Activos de estilo de vida, Situaciones especiales…)."),
     d("Inversión mínima, en \"Trabajar con nosotros\": \"Acompañamos inversiones a partir de USD ___\". ¿Cuál es el monto? Mientras falte, la línea no se ve en la web en vivo. Si preferís no poner una cifra, la sacamos o la cambiamos por otra frase."),

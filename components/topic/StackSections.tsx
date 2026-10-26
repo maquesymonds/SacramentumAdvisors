@@ -7,8 +7,6 @@ import Image      from "next/image";
 import StackCover from "./StackCover";
 import s          from "./stack.module.css";
 import type { TopicSection } from "@/lib/topics";
-import type { ReviewNote } from "@/lib/review";
-import ReviewFlag from "@/components/review/ReviewFlag";
 import LinkedText from "@/components/ui/LinkedText";
 import type { Locale } from "@/lib/i18n";
 
@@ -25,7 +23,7 @@ function Body({ sec, locale }: { sec: TopicSection; locale?: Locale }) {
   );
 }
 
-export default function StackSections({ heading, sections, review, locale }: { heading?: string; sections: TopicSection[]; review?: Record<number, ReviewNote[]>; locale?: Locale }) {
+export default function StackSections({ heading, sections, locale }: { heading?: string; sections: TopicSection[]; locale?: Locale }) {
   return (
     <section className={s.section}>
       <div className="container-site">
@@ -34,7 +32,6 @@ export default function StackSections({ heading, sections, review, locale }: { h
           {sections.map((sec, i) => (
             <li key={i} style={{ "--i": i + 1 } as React.CSSProperties}>
               <article className={`${s.card} ${sec.image ? "" : s.noImage}`}>
-                <ReviewFlag notes={review?.[i]} style={{ gridColumn: "1 / -1" }} />
                 {/* Without a photo: number and heading left, text right */}
                 <div>
                   <h3 className={s.title}>

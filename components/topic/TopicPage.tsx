@@ -17,8 +17,6 @@ import Navigation from "@/components/layout/Navigation";
 import Footer     from "@/components/layout/Footer";
 import { SECTOR_COLOR } from "@/lib/topic-links";
 import SectionCta from "@/components/ui/SectionCta";
-import ReviewFlag from "@/components/review/ReviewFlag";
-import { topicReview } from "@/data/review-flags";
 import {
   PAGES,
   absoluteUrl,
@@ -87,9 +85,6 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
   const overrides = await getTranslationOverrides();
   const c: TopicContent = topicContent(id, locale, overrides);
   const ui = TOPIC_UI[locale];
-  // A page Inés reviews as a whole carries no inline blocks (its notes are listed in the review panel)
-  const rvAll = topicReview(id);
-  const rv = rvAll?.wholePage ? undefined : rvAll;
   const related = (PAGES[id].related ?? [])
     .filter(r => pageLocales(r).includes(locale))
     .map(r => relatedCard(r, locale, overrides))
@@ -156,12 +151,10 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
                           </li>
                         ))}
                       </ul>
-                      <ReviewFlag notes={rv?.intro} />
                     </div>
                   ) : (
                     <div className="mt-8 text-body text-ink-muted leading-relaxed flex flex-col gap-4" style={{ maxWidth: "52ch" }}>
                       {c.intro.map((p, i) => <p key={i}><LinkedText text={p} locale={locale} /></p>)}
-                      <ReviewFlag notes={rv?.intro} />
                     </div>
                   )}
                 </div>
@@ -178,7 +171,6 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
                 </h1>
                 <div className="text-body text-ink-muted leading-relaxed lg:pt-2 flex flex-col gap-4">
                   {c.intro.map((p, i) => <p key={i}><LinkedText text={p} locale={locale} /></p>)}
-                  <ReviewFlag notes={rv?.intro} />
                 </div>
               </div>
             )}
@@ -214,7 +206,6 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
                 ))}
               </dl>
             )}
-            <ReviewFlag notes={rv?.facts} className="mt-6" />
           </div>
         </section>
 
@@ -231,7 +222,7 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
         )}
 
         {/* ── Sections: stacked cards (Web System S7) ─────────────────────── */}
-        {c.sections.length > 0 && <StackSections locale={locale} heading={c.sectionsHeading} sections={c.sections} review={locale === "es" ? rv?.sections : undefined} />}
+        {c.sections.length > 0 && <StackSections locale={locale} heading={c.sectionsHeading} sections={c.sections} />}
         {!c.steps && (
           <div className="container-site">
             <SectionCta id={`topic-${id}-sections`} label={c.cta.label} className="pb-[var(--section-padding-y)]" onDark={!!bg} />
@@ -245,7 +236,6 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
               <h2 className="font-normal text-ink mb-12" style={{ fontSize: "clamp(1.6rem, 2.6vw, 2.2rem)", letterSpacing: "-0.02em" }}>
                 {c.steps.heading}
               </h2>
-              <ReviewFlag notes={rv?.steps} className="-mt-6 mb-10" />
               <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {c.steps.items.map((step, i) => (
                   <li key={i} className="flex flex-col gap-3 pt-6" style={{ borderTop: "1px solid var(--topic-line, rgba(17,31,48,0.12))" }}>
@@ -297,7 +287,6 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
 
       </main>
       {/* Closing CTA lives in the footer: centred, same colour (Maque, 21.10.). */}
-      {rv?.cta && <div className="container-site" style={{ paddingBlock: "1.5rem" }}><ReviewFlag title="Para confirmar con Inés · cierre de la página" notes={rv.cta} /></div>}
       <Footer cta={{ heading: c.cta.heading, body: c.cta.body, label: c.cta.label, href: localePath("contact", locale), id: `topic-${id}` }} />
 
       <script

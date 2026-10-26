@@ -16,7 +16,6 @@
 import { useLocale, useT } from "@/lib/locale-context";
 import type { Locale } from "@/lib/i18n";
 import { REVIEW_MODE } from "@/lib/review";
-import ReviewFlag from "@/components/review/ReviewFlag";
 import SectionCta from "@/components/ui/SectionCta";
 
 interface Quote { text: string; who: string; topic: string }
@@ -71,13 +70,6 @@ export default function TrustSection({ cta = "testimonials", toForm = false }: {
       style={{ paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}
     >
       <div className="container-site">
-        <ReviewFlag
-          className="mb-10"
-          notes={[
-            { kind: "redaccion", pregunta: "Los tres testimonios son INVENTADOS, solo para mostrar cómo se vería la sección. ¿Nos pasás 2 o 3 comentarios reales de clientes, con permiso para publicarlos? Pueden ser anónimos (\"Familia de Buenos Aires\"); necesitamos el texto, de dónde es la persona y en qué la ayudaron." },
-          ]}
-        />
-
         <p className="text-eyebrow mb-6 flex items-center gap-4" style={{ color: "var(--color-warm)" }}>
           <span aria-hidden="true" className="block h-px w-8" style={{ backgroundColor: "var(--color-warm)" }} />
           {c.eyebrow}

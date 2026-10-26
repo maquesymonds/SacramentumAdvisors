@@ -16,7 +16,6 @@ import { useLocale, useLocalePath } from "@/lib/locale-context";
 import { usePageTransition } from "@/lib/transition-context";
 import { CAPITAL } from "@/data/capital";
 import type { Locale } from "@/lib/i18n";
-import ReviewFlag from "@/components/review/ReviewFlag";
 
 const BG = "#0C3B38"; // Capital page colour
 
@@ -37,15 +36,6 @@ export default function CapitalTeaser() {
   return (
     <section id="sacramentum-capital" aria-label="Sacramentum Capital" style={{ backgroundColor: BG, paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}>
       <div className="container-site">
-        <ReviewFlag
-          className="mb-10"
-          notes={[
-            { kind: "dato",      pregunta: "Las cifras (USD 1.6B+, 30 mandatos, 12 sectores) salen de la presentación de Capital, marcada \"Confidential\". ¿Se pueden publicar en la home?" },
-            { kind: "servicio",  pregunta: "¿Te parece bien mostrar a Capital en la home como la firma detrás del servicio de banca de inversión? ¿Cómo describimos la relación entre Advisors y Capital?" },
-            { kind: "redaccion", pregunta: "El título sale de tu tarjeta de servicio (\"transacciones sofisticadas con precisión y criterio\"). ¿Te sirve?" },
-          ]}
-        />
-
         <div className="grid gap-12 lg:grid-cols-[6fr_5fr] lg:gap-20 lg:items-end">
           <div>
             <p className="text-eyebrow mb-6 flex items-center gap-3" style={{ color: "var(--color-warm)" }}>

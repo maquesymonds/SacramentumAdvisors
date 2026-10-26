@@ -1,10 +1,9 @@
 "use client";
 
-/* ReviewPanel — floating list of what Inés still has to confirm on the
-   current page: site-wide notes, the page's own (Google description, data
-   not shown as one block), the language version's, and on topic pages in
-   EN/DE the section and FAQ notes (inline only on the Spanish page, where the
-   positions are known to match). Review mode only. */
+/* ReviewPanel — floating list of what Inés still has to confirm. The only
+   place review notes show: no boxes inside the page, they shifted the layout
+   (Maque, 25.10.2026). Each page lists only its own notes; the site-wide and
+   per-language ones go on the home. Review mode only. */
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
@@ -26,16 +25,17 @@ export default function ReviewPanel() {
   const page   = parsed?.page;
   const locale = parsed?.locale;
   const rv     = page && isTopicId(page) ? topicReview(page) : undefined;
+  const isHome = page === "home";
 
-  // A page reviewed as a whole: one list here, first the instruction, then every note
-  const pageNotes = rv?.wholePage
-    ? [WHOLE_PAGE, ...(page ? PAGE_REVIEW[page] ?? [] : []), ...allNotes(rv)]
-    : [...(page ? PAGE_REVIEW[page] ?? [] : []), ...(rv?.meta ?? [])];
-  const offPage   = rv && !rv.wholePage && locale !== "es"
-    ? [...Object.values(rv.sections ?? {}).flat(), ...Object.values(rv.faqs ?? {}).flat()]
-    : [];
-  const langNotes = locale ? LOCALE_REVIEW[locale] ?? [] : [];
-  const total     = pageNotes.length + offPage.length + langNotes.length + SITE_REVIEW.length;
+  const pageNotes = [
+    ...(rv?.wholePage ? [WHOLE_PAGE] : []),
+    ...(page ? PAGE_REVIEW[page] ?? [] : []),
+    ...allNotes(rv),
+  ];
+  const langNotes = isHome && locale ? LOCALE_REVIEW[locale] ?? [] : [];
+  const siteNotes = isHome ? SITE_REVIEW : [];
+  const total     = pageNotes.length + langNotes.length + siteNotes.length;
+  if (!total) return null;
 
   return (
     <div style={{ position: "fixed", left: 16, bottom: 16, zIndex: 9000, maxWidth: "min(440px, calc(100vw - 32px))" }}>
@@ -48,9 +48,8 @@ export default function ReviewPanel() {
           }}
         >
           <ReviewFlag title="Esta página" notes={pageNotes} />
-          <ReviewFlag title="Secciones y preguntas (marcadas en el texto en la versión en español)" notes={offPage} />
           <ReviewFlag title={`Solo en esta versión (${locale?.toUpperCase()})`} notes={langNotes} />
-          <ReviewFlag title="En toda la web" notes={SITE_REVIEW} />
+          <ReviewFlag title="En toda la web" notes={siteNotes} />
         </div>
       )}
       <button
