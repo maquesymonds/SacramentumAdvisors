@@ -314,7 +314,7 @@ const en: SiteTranslations = {
     eyebrow:     "Strategic Asset Acquisition",
     headline:    "We help you establish your strategic footprint in Uruguay.",
     subheadline: "Bespoke residency, real estate, and capital structuring for those seeking a foundational base in Latin America's premier haven.",
-    cta:         "Schedule a call",
+    cta:         "Book a consultation",
     ctaSecondary:"Explore Uruguay",
     scrollLabel: "Scroll to explore",
   },
@@ -325,7 +325,7 @@ const en: SiteTranslations = {
     subheadline: "A stable, globally connected platform for capital preservation, regional expansion, and long-term family positioning.",
     stats: [
       { value: "#1",   label: "Least corruption in Latin America" },
-      { value: "97%",  label: "Renewable energy" },
+      { value: "97%",  label: "Renewable electricity" },
       { value: "98%",  label: "Literacy rate" },
       { value: "3.5M", label: "Population" },
     ],
@@ -401,13 +401,13 @@ const en: SiteTranslations = {
     eyebrow:     "Our Support",
     headline:    "How We Support You",
     subheadline: "From market intelligence and transaction structuring to residency, local establishment, and long-term capital positioning, our team supports each stage of your investment move into Uruguay.",
-    cta:         "Schedule a private advisory call",
+    cta:         "Book a consultation",
     ctaNote:     "Every engagement begins with a private, no-commitment conversation about your objectives.",
     cards: [
       {
         id:          "soft-landing",
         image:       "/images/hands.webp",
-        title:       "Soft Landing Partnerships",
+        title:       "Residency & Relocation",
         description: "Our network of legal, financial, tax, and ecosystem partners ensures close support throughout every stage of your establishment process, from residency and structuring to local integration and operational setup.",
       },
       {
@@ -425,8 +425,8 @@ const en: SiteTranslations = {
       {
         id:          "investment-banking",
         image:       "/images/bandera.webp",
-        title:       "Investment banking boutique",
-        description: "Through Sacramentum Capital, we provide professional advisory across M&A, capital markets advisory, institutional relationships, and investment proyects law, supporting sophisticated transactions with precision and strategic clarity.",
+        title:       "Sacramentum Capital",
+        description: "Through Sacramentum Capital, we provide professional advisory across M&A, capital markets advisory, institutional relationships, and investment projects law, supporting sophisticated transactions with precision and strategic clarity.",
       },
     ],
   },
@@ -608,14 +608,14 @@ const en: SiteTranslations = {
     eyebrow:     "Contact",
     headline:    "Begin a confidential conversation.",
     subheadline: "We work with a select number of clients. All inquiries are handled with complete discretion.",
-    cta:         "Request a consultation",
+    cta:         "Book a consultation",
   },
 
   closingCta: {
     eyebrow:  "Begin a Conversation",
     headline: "Ready to explore your move into Uruguay?",
     body:     "Whether you are evaluating residency, capital deployment, family relocation, or long-term strategic establishment, our team offers discreet senior-level guidance tailored to your priorities.",
-    cta:      "Book a private consultation",
+    cta:      "Book a consultation",
   },
 
   contactPage: {
@@ -645,18 +645,17 @@ const en: SiteTranslations = {
       interestLabel:       "Area of Interest",
       interestPlaceholder: "Select an area",
       interestOptions: [
-        { value: "not-sure",               label: "I'm not sure yet, just exploring" },
-        { value: "residency",              label: "Residency"                  },
-        { value: "strategic-acquisition",  label: "Strategic Asset Acquisition" },
-        { value: "lifestyle-assets",       label: "Lifestyle Assets"            },
-        { value: "real-estate",            label: "Real Estate Opportunities"   },
-        { value: "agriculture-forestry",   label: "Agriculture & Forestry"      },
-        { value: "special-situations",     label: "Special Situations"          },
-        { value: "general-advisory",       label: "General Advisory"            },
+        { value: "residency",          label: "Residency & relocation" },
+        { value: "real-estate",        label: "Real estate" },
+        { value: "farmland",           label: "Farmland & forestry" },
+        { value: "technology",         label: "Technology" },
+        { value: "investment-banking", label: "Sacramentum Capital (investment banking)" },
+        { value: "special-projects",   label: "Special projects" },
+        { value: "not-sure",           label: "I'm not sure yet, just exploring" },
       ],
       messageLabel:        "Message",
       messagePlaceholder:  "Tell us briefly about your priorities and how we can help.",
-      submit:              "Request a Private Consultation",
+      submit:              "Book a consultation",
       submitting:          "Sending…",
     },
     success: {
@@ -683,7 +682,9 @@ const en: SiteTranslations = {
         { label: "Home",        href: "/"             },
         { label: "Why Uruguay", href: "/invest"        },
         { label: "Services",    href: "/services"     },
+        { label: "Sacramentum Capital", href: "page:sacramentum-capital" },
         { label: "News",        href: "/news"         },
+        { label: "Blog",        href: "/blog"         },
         { label: "Contact",     href: "/contact"      },
       ],
     },
@@ -692,7 +693,7 @@ const en: SiteTranslations = {
       links: [
         { label: "Strategic Advisory",          href: "page:services" },
         { label: "Market Intelligence",          href: "/services?card=market-intelligence" },
-        { label: "Soft Landing Partnerships",    href: "page:services" },
+        { label: "Residency & Relocation",       href: "page:services" },
         { label: "Sacramentum Capital",          href: "page:sacramentum-capital" },
       ],
     },
@@ -702,7 +703,7 @@ const en: SiteTranslations = {
       email:    "ines@sacramentumcapital.com",
     },
     legal: {
-      copyright: "© 2025 Sacramentum Advisors. All rights reserved.",
+      copyright: "© 2026 Sacramentum Advisors. All rights reserved.",
       privacy:   "Privacy Policy",
       terms:     "Terms of Service",
       credit:    "Made by",
@@ -731,8 +732,8 @@ const en: SiteTranslations = {
   },
 
   investAgriculture: {
-    eyebrow:    "03 · Agriculture & Forestry",
-    headline:   "Agriculture & Forestry",
+    eyebrow:    "03 · Farmland & Forestry",
+    headline:   "Farmland & Forestry",
     body:       "Uruguay is a country with deep agricultural tradition. With more than 90% of its land suitable for productive use, it stands as a reliable global food supplier.",
     statValue:  "90%+",
     statLabel:  "Of land suitable for productive use",
@@ -812,7 +813,7 @@ const es: SiteTranslations = {
     eyebrow:     "Adquisición de Activos Estratégicos",
     headline:    "La firma de asesoría detrás de su llegada a Uruguay.",
     subheadline: "Asesoramos en Real Estate, adquisición de tierra y empresas. Guiamos en obtención de residencia y la estrategia de capital para familias e inversores.",
-    cta:         "Agendar una consulta",
+    cta:         "Reservar consulta",
     ctaSecondary:"Explorar Uruguay",
     scrollLabel: "Explorar",
   },
@@ -823,9 +824,9 @@ const es: SiteTranslations = {
     subheadline: "Un lugar estable, globalmente conectado donde puede alcanzar sus objetivos de diversificación y resguardo de capital, expansión regional y posicionamiento familiar a largo plazo.",
     stats: [
       { value: "#1",   label: "Menos corrupción en América Latina" },
-      { value: "97%",  label: "Energía renovable" },
+      { value: "97%",  label: "Electricidad renovable" },
       { value: "98%",  label: "Tasa de alfabetización" },
-      { value: "3.5M", label: "Habitantes" },
+      { value: "3,5 M", label: "Habitantes" },
     ],
     cards: [
       {
@@ -838,7 +839,7 @@ const es: SiteTranslations = {
         id:          "innovation",
         icon:        "circuit",
         title:       "Un ecosistema ideal para la innovación y la sostenibilidad",
-        description: "Líder regional en telecomunicaciones, energías renovables (97% de su matriz energética), gobierno digital y producción de alimentos premium, Uruguay combina sus riquezas naturales con políticas de desarrollo sostenible y una visión de futuro.",
+        description: "Líder regional en telecomunicaciones, energías renovables (97% de su electricidad), gobierno digital y producción de alimentos premium, Uruguay combina sus riquezas naturales con políticas de desarrollo sostenible y una visión de futuro.",
       },
       {
         id:          "talent",
@@ -885,7 +886,7 @@ const es: SiteTranslations = {
       {
         id:          "commercial",
         title:       "Activos Comerciales",
-        description: "Bienes raíces comerciales estratégicos en Montevideo y corredores de crecimiento.",
+        description: "Inmuebles comerciales estratégicos en Montevideo y corredores de crecimiento.",
       },
       {
         id:          "equestrian",
@@ -899,32 +900,32 @@ const es: SiteTranslations = {
     eyebrow:     "Nuestro Asesoramiento",
     headline:    "Cómo le acompañamos",
     subheadline: "Desde inteligencia de mercado y estructuración de transacciones hasta residencia, establecimiento local y posicionamiento de capital a largo plazo, nuestro equipo lo acompaña en cada etapa de su proceso.",
-    cta:         "Agendar una llamada de asesoría privada",
+    cta:         "Reservar consulta",
     ctaNote:     "Cada proceso comienza con una conversación privada y sin compromiso sobre sus objetivos.",
     cards: [
       {
-        id:          "investment-banking",
-        image:       "/images/bandera.webp",
-        title:       "Boutique de Banca de Inversión",
-        description: "A través de SACRAMENTUM CAPITAL, brindamos asesoramiento estratégico y confidencial en procesos de M&A, mercado de capitales, relacionamiento institucional, estructuración financiera y régimen de inversiones, acompañando transacciones sofisticadas con precisión y criterio.",
-      },
-      {
         id:          "soft-landing",
         image:       "/images/hands.webp",
-        title:       "Soft Landing Partnerships",
+        title:       "Residencia e instalación",
         description: "Contamos con una red de socios estratégicos que integra expertos legales, financieros y referentes clave del ecosistema público y privado. Brindamos un acompañamiento cercano y eficiente durante todo el proceso de instalación, expansión y operación en Uruguay.",
       },
       {
         id:          "market-intelligence",
         image:       "/images/puerto.webp",
-        title:       "Market Intelligence",
+        title:       "Inteligencia de mercado",
         description: "Realizamos estudios y análisis del mercado relevante para cada oportunidad de inversión. Evaluamos competencia, riesgos, marco regulatorio y entorno de negocios, aportando claridad estratégica para decisiones de entrada, expansión o transacción.",
       },
       {
         id:          "strategic-advisory",
         image:       "/images/writing.webp",
-        title:       "Asesoría Estratégica",
+        title:       "Asesoría estratégica",
         description: "Nuestros socios legales y financieros ayudan a identificar oportunidades, estructurar operaciones y planificar un aterrizaje sólido en Uruguay y la región. Acompañamos procesos de adquisición, asociación e inversión con visión de largo plazo.",
+      },
+      {
+        id:          "investment-banking",
+        image:       "/images/bandera.webp",
+        title:       "Sacramentum Capital",
+        description: "A través de SACRAMENTUM CAPITAL, brindamos asesoramiento estratégico y confidencial en procesos de M&A, mercado de capitales, relacionamiento institucional, estructuración financiera y régimen de inversiones, acompañando transacciones sofisticadas con precisión y criterio.",
       },
     ],
   },
@@ -1106,14 +1107,14 @@ const es: SiteTranslations = {
     eyebrow:     "Contacto",
     headline:    "Inicie una conversación confidencial.",
     subheadline: "Trabajamos con un número selecto de clientes. Todas las consultas se manejan con total discreción.",
-    cta:         "Solicitar una consulta",
+    cta:         "Reservar consulta",
   },
 
   closingCta: {
     eyebrow:  "Iniciar una Conversación",
     headline: "¿Listo para explorar su llegada a Uruguay?",
     body:     "Ya sea que esté evaluando la residencia, el despliegue de capital, la reubicación familiar o el establecimiento estratégico a largo plazo, nuestro equipo ofrece orientación senior discreta adaptada a sus prioridades.",
-    cta:      "Reservar una consulta privada",
+    cta:      "Reservar consulta",
   },
 
   contactPage: {
@@ -1125,7 +1126,7 @@ const es: SiteTranslations = {
     headline: "Conéctese con nuestro equipo.",
     intro:    "Conéctese con nuestro equipo en Uruguay para hablar sobre residencia, adquisición estratégica de activos, activos de estilo de vida o posicionamiento a largo plazo en la región.",
     disclaimer:   "Respondemos en 1 a 2 días hábiles. Toda consulta es completamente confidencial.",
-    errorMessage: "Algo salió mal. Por favor intentá de nuevo.",
+    errorMessage: "Algo salió mal. Por favor, intente de nuevo.",
     secondary: {
       eyebrow: "Trabajar con nosotros",
       body:    "Trabajamos con un número selecto de clientes en todo momento para garantizar la profundidad de atención que cada compromiso merece.",
@@ -1143,18 +1144,17 @@ const es: SiteTranslations = {
       interestLabel:       "Área de Interés",
       interestPlaceholder: "Seleccione un área",
       interestOptions: [
-        { value: "not-sure",               label: "Aún no lo sé, solo explorando"   },
-        { value: "residency",              label: "Residencia"                       },
-        { value: "strategic-acquisition",  label: "Adquisición Estratégica de Activos" },
-        { value: "lifestyle-assets",       label: "Activos de Estilo de Vida"         },
-        { value: "real-estate",            label: "Oportunidades Inmobiliarias"       },
-        { value: "agriculture-forestry",   label: "Agricultura y Forestación"         },
-        { value: "special-situations",     label: "Situaciones Especiales"            },
-        { value: "general-advisory",       label: "Asesoría General"                 },
+        { value: "residency",          label: "Residencia e instalación" },
+        { value: "real-estate",        label: "Inmobiliario" },
+        { value: "farmland",           label: "Agro y forestal" },
+        { value: "technology",         label: "Tecnología" },
+        { value: "investment-banking", label: "Sacramentum Capital (banca de inversión)" },
+        { value: "special-projects",   label: "Proyectos especiales" },
+        { value: "not-sure",           label: "Aún no lo sé, solo estoy explorando" },
       ],
       messageLabel:        "Mensaje",
       messagePlaceholder:  "Cuéntenos brevemente sobre sus prioridades y cómo podemos ayudarle.",
-      submit:              "Solicitar una Consulta Privada",
+      submit:              "Reservar consulta",
       submitting:          "Enviando…",
     },
     success: {
@@ -1181,16 +1181,18 @@ const es: SiteTranslations = {
         { label: "Inicio",          href: "/"             },
         { label: "Por qué Uruguay", href: "/invest"        },
         { label: "Servicios",       href: "/services"     },
+        { label: "Sacramentum Capital", href: "page:sacramentum-capital" },
         { label: "Noticias",        href: "/news"         },
+        { label: "Blog",            href: "/blog"         },
         { label: "Contacto",        href: "/contact"      },
       ],
     },
     services: {
       title: "Servicios",
       links: [
-        { label: "Asesoría Estratégica",           href: "page:services" },
-        { label: "Inteligencia de Mercado",         href: "/services?card=market-intelligence" },
-        { label: "Asociaciones de Soft Landing",    href: "page:services" },
+        { label: "Asesoría estratégica",           href: "page:services" },
+        { label: "Inteligencia de mercado",         href: "/services?card=market-intelligence" },
+        { label: "Residencia e instalación",        href: "page:services" },
         { label: "Sacramentum Capital",             href: "page:sacramentum-capital" },
       ],
     },
@@ -1200,7 +1202,7 @@ const es: SiteTranslations = {
       email:    "ines@sacramentumcapital.com",
     },
     legal: {
-      copyright: "© 2025 Sacramentum Advisors. Todos los derechos reservados.",
+      copyright: "© 2026 Sacramentum Advisors. Todos los derechos reservados.",
       privacy:   "Política de Privacidad",
       terms:     "Términos de Servicio",
       credit:    "Hecho por",
@@ -1209,7 +1211,7 @@ const es: SiteTranslations = {
   },
 
   investRealEstate: {
-    eyebrow:   "01 · Bienes Raíces",
+    eyebrow:   "01 · Inmobiliario",
     headline:  "Invierta donde pueda vivir: El concepto de Lifestyle Assets",
     body:      "Creemos que la cartera más sólida es aquella que también puede disfrutarse en la vida real. Activos que preservan y hacen crecer su capital, al tiempo que resultan habitables, disfrutables y productivos.\n\nLe ayudamos a identificar propiedades con un doble propósito: preservación de capital (campos productivos, estancias y bienes raíces premium) y calidad de vida inmediata.\n\nEl mercado inmobiliario de Uruguay ofrece seguridad jurídica, transacciones denominadas en dólares y propiedad sin restricciones para inversores extranjeros.",
     statValue: "0%",
@@ -1219,7 +1221,7 @@ const es: SiteTranslations = {
 
   investTechnology: {
     eyebrow:  "02 · Tecnología",
-    headline: "El ecosistema tecnológico exportador de Uruguay",
+    headline: "Uruguay, un ecosistema tecnológico que exporta al mundo",
     intro:    "Uruguay construyó, silenciosamente, uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina. En un país de apenas 3,5 millones de habitantes, el ecosistema reúne unas 500 startups, cientos de empresas de software y tecnología consolidadas, centros tecnológicos globales, empresas de producto con éxito internacional y un unicornio que cotiza en NASDAQ.",
     pillars: [
       { heading: "Instalación de operaciones estratégicas", body: "Instale una nueva operación tecnológica o amplíe una capacidad regional existente. Acompañamos el proceso desde la evaluación del mercado y el diseño del modelo operativo hasta el liderazgo local, la incorporación de talento, la instalación y la ejecución." },
@@ -1229,8 +1231,8 @@ const es: SiteTranslations = {
   },
 
   investAgriculture: {
-    eyebrow:    "03 · Sector Agropecuario y Forestal",
-    headline:   "Sector Agropecuario y Forestal",
+    eyebrow:    "03 · Agro y forestal",
+    headline:   "Agro y forestal",
     body:       "Con profunda tradición agropecuaria y más del 90% de su territorio apto para uso productivo, Uruguay sigue siendo una de las plataformas más confiables del mundo para la producción de alimentos, la inversión forestal y las estrategias sostenibles de uso de la tierra.",
     statValue:  "90%+",
     statLabel:  "Del territorio apto para uso productivo",

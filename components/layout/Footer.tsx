@@ -25,6 +25,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 import Image       from "next/image";
+import { useRef } from "react";
 import { motion }  from "framer-motion";
 import { useLocalePath, useT } from "@/lib/locale-context";
 import { isHomePath, pageLocales } from "@/lib/i18n";
@@ -37,6 +38,7 @@ import { usePathname } from "next/navigation";
 import { usePageTransition } from "@/lib/transition-context";
 import { scrollToSection } from "@/lib/utils";
 import { pendingScroll }   from "@/lib/pending-scroll";
+import { usePageBlend }    from "./usePageBlend";
 
 // ── Easing ────────────────────────────────────────────────────────────────────
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -181,6 +183,10 @@ export default function Footer({ cta: pageCta, closing }: { cta?: FooterCta; clo
     ? { heading: t.closingCta.headline, label: t.closingCta.cta, href: path("contact"), id: typeof closing === "string" ? closing : "closing-cta" }
     : pageCta;
   const isHome   = isHomePath(pathname);
+  // Every change of background colour on the page, the footer included, is a
+  // scroll blend, never a hard cut (Maque, 25.10.2026)
+  const footerRef = useRef<HTMLElement>(null);
+  usePageBlend(footerRef, pathname);
 
   const handleNavClick = (href: string) => {
     if (href === "/") {
@@ -205,6 +211,7 @@ export default function Footer({ cta: pageCta, closing }: { cta?: FooterCta; clo
 
   return (
     <footer
+      ref={footerRef}
       role="contentinfo"
       data-nav-dark
       style={{ backgroundColor: "var(--color-dark)" }}
@@ -426,37 +433,14 @@ export default function Footer({ cta: pageCta, closing }: { cta?: FooterCta; clo
               </div>
             </div>
 
-            {/* Consult CTA */}
+            {/* Consult CTA: same button as the nav, white on the dark footer */}
             <div className="mt-8">
               <button
                 type="button"
                 onClick={() => navigate(path("contact"))}
                 data-cta="footer-consult"
-                style={{
-                  display:         "inline-block",
-                  padding:         "0.65rem 1.4rem",
-                  borderRadius:    "50px",
-                  border:          "1px solid rgba(204,168,124,0.4)",
-                  color:           "var(--color-warm)",
-                  fontSize:        "0.7rem",
-                  letterSpacing:   "0.1em",
-                  textTransform:   "uppercase",
-                  fontWeight:      500,
-                  transition:      "border-color 0.25s ease, background-color 0.25s ease",
-                  background:      "none",
-                  cursor:          "pointer",
-                  fontFamily:      "inherit",
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(204,168,124,0.85)";
-                  el.style.backgroundColor = "rgba(204,168,124,0.07)";
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(204,168,124,0.4)";
-                  el.style.backgroundColor = "transparent";
-                }}
+                className="inline-block text-sm font-medium tracking-[0.03em] rounded-full whitespace-nowrap transition-transform duration-300 ease-out hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:scale-100"
+                style={{ padding: "0.65rem 1.4rem", backgroundColor: "#FFFFFF", color: "var(--color-dark)", border: "none", cursor: "pointer", fontFamily: "inherit" }}
               >
                 {copy.cta}
               </button>
@@ -481,18 +465,18 @@ export default function Footer({ cta: pageCta, closing }: { cta?: FooterCta; clo
           {/* Copyright */}
           <p
             style={{
-              color:         "rgba(250,250,248,0.28)",
+              color:         "rgba(250,250,248,0.55)",
               fontSize:      "0.72rem",
               letterSpacing: "0.04em",
             }}
           >
-            {copy.legal.copyright}
+            {copy.legal.copyright.replace(/© \d{4}/, `© ${new Date().getFullYear()}`)}
           </p>
 
           {/* Studio credit — Web System rule: every site links filamentolabs.com */}
           <p
             style={{
-              color:         "rgba(250,250,248,0.28)",
+              color:         "rgba(250,250,248,0.55)",
               fontSize:      "0.72rem",
               letterSpacing: "0.04em",
             }}
@@ -525,16 +509,16 @@ export default function Footer({ cta: pageCta, closing }: { cta?: FooterCta; clo
                 key={label}
                 href={href}
                 style={{
-                  color:         "rgba(250,250,248,0.28)",
+                  color:         "rgba(250,250,248,0.55)",
                   fontSize:      "0.72rem",
                   letterSpacing: "0.04em",
                   transition:    "color 0.2s ease",
                 }}
                 onMouseEnter={e =>
-                  ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.6)")
+                  ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.9)")
                 }
                 onMouseLeave={e =>
-                  ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.28)")
+                  ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.55)")
                 }
               >
                 {label}
@@ -543,16 +527,16 @@ export default function Footer({ cta: pageCta, closing }: { cta?: FooterCta; clo
             <button
               onClick={openCookieSettings}
               style={{
-                color:         "rgba(250,250,248,0.28)",
+                color:         "rgba(250,250,248,0.55)",
                 fontSize:      "0.72rem",
                 letterSpacing: "0.04em",
                 transition:    "color 0.2s ease",
               }}
               onMouseEnter={e =>
-                ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.6)")
+                ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.9)")
               }
               onMouseLeave={e =>
-                ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.28)")
+                ((e.currentTarget as HTMLElement).style.color = "rgba(250,250,248,0.55)")
               }
             >
               {COOKIE_CONSENT[locale].settings}

@@ -236,6 +236,7 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
         {/* ── Chapters — Desktop pinned ────────────────────────────────────── */}
         <div
           ref={chaptersSection}
+          data-bg-live
           className="hidden lg:grid"
           style={{
             gridTemplateColumns: "1fr 1fr",
@@ -321,7 +322,7 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
                             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                               {items.map((item: { text: string }) => (
                                 <li key={item.text} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
-                                  <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0, marginTop: "0.25rem" }}>—</span>{item.text}
+                                  <span aria-hidden="true" style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: "rgba(204,168,124,0.7)", flexShrink: 0, marginTop: "0.6rem" }} />{item.text}
                                 </li>
                               ))}
                             </ul>
@@ -446,7 +447,7 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
                         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                           {items.map((item: { text: string }) => (
                             <li key={item.text} style={{ display: "flex", gap: "0.5rem", color: "rgba(255,255,255,0.9)", fontSize: "0.95rem", lineHeight: 1.5 }}>
-                              <span style={{ color: "rgba(204,168,124,0.7)", flexShrink: 0 }}>—</span>{item.text}
+                              <span aria-hidden="true" style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: "rgba(204,168,124,0.7)", flexShrink: 0, marginTop: "0.6rem" }} />{item.text}
                             </li>
                           ))}
                         </ul>

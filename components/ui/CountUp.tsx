@@ -15,7 +15,8 @@ function parseValue(val: string) {
   return { prefix, num: parseFloat(`${intStr}.${decStr || 0}`), decimals: decStr.length, sep, suffix };
 }
 
-export default function CountUp({ value }: { value: string }) {
+// `immediate`: count even when the number is on screen at load (a hero figure).
+export default function CountUp({ value, immediate = false }: { value: string; immediate?: boolean }) {
   const parsed = parseValue(value);
   const ref = useRef<HTMLSpanElement>(null);
   const [current, setCurrent] = useState<number | null>(null); // null = final value
@@ -24,7 +25,7 @@ export default function CountUp({ value }: { value: string }) {
     const el = ref.current;
     if (!el || !parsed || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     // Already on screen at load: leave the final value, no count.
-    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    if (!immediate && el.getBoundingClientRect().top < window.innerHeight) return;
     setCurrent(0);
     const io = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;

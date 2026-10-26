@@ -290,6 +290,11 @@
 ::-webkit-scrollbar-thumb   { background: rgba(129, 166, 176, 0.4); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(129, 166, 176, 0.7); }
 
+/* ── Page height ─────────────────────────────────────────────────────────────── */
+/* Every page fills at least the screen: a short page (thank-you, 404, an empty  */
+/* list) never shows the footer halfway up the viewport (Maque, 25.10.2026).     */
+main { min-height: 100vh; min-height: 100svh; }
+
 /* ── Lenis smooth scroll ────────────────────────────────────────────────────── */
 /* Required resets so Lenis can control scroll position without fighting the    */
 /* browser's own overflow/height model.                                         */
@@ -353,6 +358,24 @@ html[data-cap-amb] body,
 html[data-cap-amb] main > section[data-amb],
 html[data-cap-amb] footer[role="contentinfo"] { background-color: transparent !important; }
 
+/* ── Page-wide colour blend (components/layout/usePageBlend.ts) ─────────────────
+   Every block the blend paints carries data-blend and takes the one colour of
+   the moment. !important: section colours are inline styles. */
+html [data-blend] { background-color: var(--page-blend) !important; }
+html [data-bg-live][data-blend] { transition: none !important; }
+/* A light section darkened by the blend takes the sector pages' light text
+   (.topic-theme, below); a dark one lightened goes back to the default ink. */
+[data-blend-tone="light"] {
+  --color-ink:        #111F30;
+  --color-ink-muted:  #4A5568;
+  --color-ink-subtle: #718096;
+  --color-warm:       #CCA87C;
+  --topic-line:       rgba(17, 31, 48, 0.1);
+}
+[data-blend-tone] .text-ink        { color: var(--color-ink); }
+[data-blend-tone] .text-ink-muted  { color: var(--color-ink-muted); }
+[data-blend-tone] .text-ink-subtle { color: var(--color-ink-subtle); }
+
 /* Outbound links inside copy (components/ui/LinkedText.tsx) */
 .ext-link {
   color: inherit;
@@ -367,8 +390,9 @@ html[data-cap-amb] footer[role="contentinfo"] { background-color: transparent !i
    Technology, real estate and agriculture take their Why Uruguay chapter
    colour (--topic-bg, from SECTOR_COLOR) with white text (Maque, 25.10.2026).
    The tokens are redefined for the page; white cards reset them locally. */
-.topic-theme {
-  background-color: var(--topic-bg);
+.topic-theme { background-color: var(--topic-bg); }
+.topic-theme,
+[data-blend-tone="dark"] {
   --color-ink:        #FAFAF8;
   --color-ink-muted:  rgba(250, 250, 248, 0.82);
   --color-ink-subtle: rgba(250, 250, 248, 0.64);
@@ -379,3 +403,6 @@ html[data-cap-amb] footer[role="contentinfo"] { background-color: transparent !i
 .topic-theme .text-ink-muted  { color: var(--color-ink-muted); }
 .topic-theme .text-ink-subtle { color: var(--color-ink-subtle); }
 .topic-theme .ext-link        { text-decoration-color: rgba(250, 250, 248, 0.5); }
+
+/* Mobile menu open: the cookie banner steps aside (Navigation sets the flag) */
+body[data-menu-open] [data-cookie-banner] { display: none; }

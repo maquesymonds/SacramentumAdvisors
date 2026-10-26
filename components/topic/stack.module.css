@@ -188,3 +188,19 @@
   .stack > li { transform: none !important; }
   .pic img { transition: none; }
 }
+
+/* On a sector page in its colour (.topic-theme): white cards with dark text,
+   the number and bullets in the page colour (Maque, 25.10.2026) */
+:global(.topic-theme) .card {
+  background: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.55);
+}
+:global(.topic-theme) .card::after { opacity: calc(var(--cover, 0) * 0.18); }
+:global(.topic-theme) .title { color: #111F30; }
+:global(.topic-theme) .body { color: #4A5568; }
+:global(.topic-theme) .number,
+:global(.topic-theme) .label { color: var(--topic-bg); }
+:global(.topic-theme) .bullets li::before { background: var(--topic-bg); }
+:global(.topic-theme) .pic { background: rgba(17, 31, 48, 0.04); }
+:global(.topic-theme) .pic::after { display: none; }

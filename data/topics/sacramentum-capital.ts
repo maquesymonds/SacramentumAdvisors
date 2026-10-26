@@ -53,7 +53,7 @@ const copy: TopicCopy = {
       { q: "Who leads Sacramentum Capital's mandates?", a: "Every mandate is led personally by the founding partner, Pablo Mautone, with an international investment banking career including J.P. Morgan." },
       { q: "In which countries does it work?", a: "Uruguay, Brazil, Argentina and Chile, for regional and international buyers, sellers and investors." },
       { q: "What kind of transactions does Sacramentum Capital advise on?", a: "Three areas: infrastructure and energy financing (over USD 960 million advised, from UTE's USD 100 million bond in 2012 to wind farms and PPP road projects), capital markets (bonds, IPOs and liability management) and cross-border M&A, with more than 17 transactions. In total, over USD 1.6 billion in closed transactions since 2010." },
-      { q: "How is Sacramentum Capital related to Sacramentum Advisors?", a: "Sacramentum Advisors helps investors and families who want to invest in or move to Uruguay. Sacramentum Capital is the investment banking boutique founded by Pablo Mautone, Director of Sacramentum Advisors: through it we advise on M&A, capital markets and financial structuring." },
+      { q: "How is Sacramentum Capital related to Sacramentum Advisors?", a: "Sacramentum Capital is the investment banking firm, with a track record since 2010. Sacramentum Advisors is its arm for international investors and families who want to invest in or move to Uruguay." },
     ],
     cta: {
       heading: "Considering a transaction in the Southern Cone?",
@@ -110,7 +110,7 @@ const copy: TopicCopy = {
       { q: "¿Quién lidera los mandatos de Sacramentum Capital?", a: "Cada mandato es dirigido personalmente por el socio fundador, Pablo Mautone, con trayectoria internacional en banca de inversión, incluida J.P. Morgan." },
       { q: "¿En qué países trabaja?", a: "En Uruguay, Brasil, Argentina y Chile, para compradores, vendedores e inversores regionales e internacionales." },
       { q: "¿En qué transacciones asesora Sacramentum Capital?", a: "En tres áreas: financiamiento de infraestructura y energía (más de USD 960 millones asesorados, desde la emisión de bonos de UTE por USD 100 millones en 2012 hasta parques eólicos y circuitos viales PPP), mercado de capitales (bonos, IPOs y gestión de pasivos) y M&A transfronterizo, con más de 17 transacciones. En total, más de USD 1.600 millones en transacciones cerradas desde 2010." },
-      { q: "¿Qué relación tiene Sacramentum Capital con Sacramentum Advisors?", a: "Sacramentum Advisors acompaña a inversores y familias que quieren invertir o instalarse en Uruguay. Sacramentum Capital es la boutique de banca de inversión fundada por Pablo Mautone, director de Sacramentum Advisors: a través de ella asesoramos en M&A, mercado de capitales y estructuración financiera." },
+      { q: "¿Qué relación tiene Sacramentum Capital con Sacramentum Advisors?", a: "Sacramentum Capital es la firma de banca de inversión, con trayectoria desde 2010. Sacramentum Advisors es su brazo dedicado a los inversores y las familias internacionales que quieren invertir o instalarse en Uruguay." },
     ],
     cta: {
       heading: "¿Evaluando una transacción en el Cono Sur?",
@@ -166,7 +166,7 @@ const copy: TopicCopy = {
       { q: "Wer führt die Mandate von Sacramentum Capital?", a: "Jedes Mandat wird vom Gründungspartner Pablo Mautone persönlich geführt, der eine internationale Laufbahn im Investment Banking mitbringt, unter anderem bei J.P. Morgan." },
       { q: "In welchen Ländern ist Sacramentum Capital tätig?", a: "In Uruguay, Brasilien, Argentinien und Chile, für regionale und internationale Käufer, Verkäufer und Investoren." },
       { q: "Bei welchen Transaktionen berät Sacramentum Capital?", a: "In drei Bereichen: Infrastruktur- und Energiefinanzierung (über USD 960 Millionen beraten, von der UTE-Anleihe über USD 100 Millionen 2012 bis zu Windparks und PPP-Straßenprojekten), Kapitalmärkte (Anleihen, IPOs, Liability Management) und grenzüberschreitende M&A mit mehr als 17 Transaktionen. Insgesamt über USD 1,6 Milliarden an abgeschlossenen Transaktionen seit 2010." },
-      { q: "Wie hängen Sacramentum Capital und Sacramentum Advisors zusammen?", a: "Sacramentum Advisors begleitet Investoren und Familien, die in Uruguay investieren oder sich dort niederlassen möchten. Sacramentum Capital ist die von Pablo Mautone, Director von Sacramentum Advisors, gegründete Investment-Banking-Boutique: Über sie beraten wir zu M&A, Kapitalmärkten und Finanzstrukturierung." },
+      { q: "Wie hängen Sacramentum Capital und Sacramentum Advisors zusammen?", a: "Sacramentum Capital ist die Investmentbank, mit einer Erfolgsbilanz seit 2010. Sacramentum Advisors ist ihr Bereich für internationale Investoren und Familien, die in Uruguay investieren oder sich dort niederlassen möchten." },
     ],
     cta: {
       heading: "Sie prüfen eine Transaktion im Southern Cone?",

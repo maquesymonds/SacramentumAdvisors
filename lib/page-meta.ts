@@ -34,7 +34,7 @@ export const PAGE_META: Record<CorePage, Record<Locale, { title: string; descrip
     de: { title: "Blog: Einblicke zu Uruguay", description: "Einblicke des Teams von Sacramentum Advisors zu Investitionen, Aufenthalt, Immobilien und Auswandern nach Uruguay." },
   },
   "contact": {
-    en: { title: "Contact: Book a Private Consultation", description: "Book a private consultation with Sacramentum Advisors about residency, real estate, farmland or investing in Uruguay. Reply within 1 to 2 business days." },
+    en: { title: "Contact: Book a Private Consultation", description: "Book a private consultation about residency, real estate, farmland or investing in Uruguay. Reply within 1 to 2 business days." },
     es: { title: "Contacto: agendar una consulta", description: "Agende una consulta privada sobre residencia, inmobiliario, campos o inversión en Uruguay. Respuesta en 1 a 2 días hábiles, con total discreción." },
     de: { title: "Kontakt: vertrauliche Beratung", description: "Vertrauliche Beratung zu Aufenthalt, Immobilien, Agrarland oder Investitionen in Uruguay vereinbaren. Antwort innerhalb von 1 bis 2 Werktagen." },
   },

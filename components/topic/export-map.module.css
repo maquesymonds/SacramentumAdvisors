@@ -1,0 +1,86 @@
+/* ExportMap — on the Technology page's blue (light-on-dark). Sizes are in
+   the SVG's grid units: the map is about 70 units wide. The gold is written
+   out: the sector theme (.topic-theme) redefines the site's colour tokens. */
+
+/* Larger than its column, running off the right edge (the hero section
+   clips it): the lines to Europe leave the screen. */
+.map {
+  position: relative;
+  width: 125%;
+  max-width: none;
+}
+
+@media (min-width: 1024px) {
+  .map {
+    width: 130%;
+    /* Raised toward the top of the hero (Maque, 25.10.2026), without moving
+       the text beside it: a translate, not a margin, so the layout keeps */
+    translate: -2.5rem -11rem;
+  }
+}
+
+.map svg {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  overflow: visible;
+}
+
+.dots circle { fill: rgba(250, 250, 248, 0.2); }
+
+.line {
+  stroke: rgba(250, 250, 248, 0.75);
+  stroke-width: 0.2;
+  stroke-linecap: round;
+}
+
+
+.end { fill: #FAFAF8; }
+
+.origin { fill: #CCA87C; }
+
+.pulse {
+  fill: none;
+  stroke: #CCA87C;
+  stroke-width: 0.25;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 2.6s ease-out 2.2s infinite;
+}
+
+@keyframes pulse {
+  0%   { opacity: 0.9; transform: scale(0.4); }
+  100% { opacity: 0;   transform: scale(1.8); }
+}
+
+/* Country names in a light pill, dark text: readable over the dots */
+.pill rect { fill: rgba(250, 250, 248, 0.94); }
+.pillOrigin rect { fill: #CCA87C; }
+
+.label {
+  fill: #0B2F57;
+  font-weight: 500;
+  font-size: 1.25px;
+  letter-spacing: 0.02em;
+}
+
+
+.originLabel {
+  fill: #0B2F57;
+  font-size: 1.45px;
+  font-weight: 500;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+}
+
+/* Phone: the map is ~350px wide, so a grid unit is ~5px; lift the labels to
+   a readable size */
+@media (max-width: 639px) {
+  .label { font-size: 2.3px; }
+  .originLabel { font-size: 2.5px; }
+}

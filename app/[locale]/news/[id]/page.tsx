@@ -14,6 +14,9 @@ import { getTranslationOverrides } from "@/lib/translation-overrides";
 
 export const dynamic = "force-dynamic";
 
+// Kept out of Google (Maque, 25.10.2026): the news cards link straight to the
+// original outlet, so these internal copies are thin pages under other media's
+// titles. noindex,follow keeps the stage-1 URLs working without listing them.
 export async function generateMetadata(
   { params }: { params: { id: string; locale: string } }
 ): Promise<Metadata> {
@@ -25,7 +28,7 @@ export async function generateMetadata(
     title:       article.title,
     absolute:    true, // articles carry no brand suffix (web-seo-geo §2)
     description: clampDescription(article.excerpt),
-  }, { sub: article.id });
+  }, { sub: article.id, noindex: true });
 }
 
 export default async function ArticlePage({ params }: { params: { id: string; locale: string } }) {

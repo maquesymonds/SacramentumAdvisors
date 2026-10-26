@@ -221,7 +221,8 @@ export default function OurTeam({ adminTeam }: { adminTeam?: AdminTeamMember[] |
             // Ignore stale blob data where name is still the old placeholder "Eleanor Parks".
             if (m.id === "eleanor") {
               if (!override || override.name === "Eleanor Parks") return m;
-              return { ...m, name: override.name, role: override.role, bio: override.bio };
+              // The admin only stores English: role and bio stay translated elsewhere
+              return locale === "en" ? { ...m, name: override.name, role: override.role, bio: override.bio } : { ...m, name: override.name };
             }
             const adminImg = override?.image;
             const useAdminImg = adminImg && !adminImg.toLowerCase().includes("eleanor");

@@ -1,0 +1,76 @@
+/* UruguayMap — on the sector page's colour (light-on-dark), like ExportMap.
+   Sizes are in the SVG's grid units (the map is about 42 units wide). The
+   gold is written out: the sector theme redefines the site's colour tokens. */
+
+.map {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+/* Desktop: sized so the whole map, coast and names included, fits the first
+   screen beside the text. The places map is taller (room for the names
+   below the coast), so it is narrower. */
+@media (min-width: 1024px) {
+  .map { max-width: none; margin-inline: auto 0; translate: 0 -4rem; }
+  .places { width: 112%; } /* the coast close-up is wide: it may run off the right edge */
+  .land { width: 82%; }
+  .zones { width: 82%; }
+}
+
+.map svg {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  overflow: visible;
+}
+
+.dots circle { fill: rgba(250, 250, 248, 0.3); }
+.lit circle  { fill: #CCA87C; }
+
+.pin { fill: #FAFAF8; }
+.leader { stroke: rgba(250, 250, 248, 0.6); stroke-width: 0.12; }
+
+/* Names in a light pill, dark text */
+.pill rect { fill: rgba(250, 250, 248, 0.94); }
+.pillFigure rect { fill: #CCA87C; }
+
+.label {
+  fill: #111F30;
+  font-weight: 500;
+  font-size: 1.3px;
+  letter-spacing: 0.02em;
+}
+
+.figure {
+  fill: #111F30;
+  font-weight: 500;
+  font-size: 3.4px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 639px) {
+  .label { font-size: 1.7px; }
+}
+
+/* The coast close-up is a crop: the land fades out upward so its top edge
+   reads as "the country goes on", not as a cut. */
+.places [data-uy-dots] {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 55%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 55%);
+}
+
+/* Zones: the dots of each zone in gold, the name in a pill */
+.zoneDot { fill: #CCA87C; }
+.zoneLabel {
+  fill: #111F30;
+  font-weight: 500;
+  font-size: 1.6px;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 639px) {
+  .zoneLabel { font-size: 2px; }
+}

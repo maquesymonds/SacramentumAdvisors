@@ -338,6 +338,7 @@ function ServiceCarousel({ cards, initialCard }: { cards: { id: string; image: s
     <div ref={outerRef} style={{ height: "350vh" }}>
       <section
         ref={sectionRef}
+        data-bg-live
         aria-label="How We Support Your Move"
         style={{
           position:        "sticky",

@@ -1,0 +1,620 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Sacramentum Capital — featured transactions and the "how it works" rail
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.bigTitle {
+  max-width: 18ch;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 1.2rem + 2.6vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.lede {
+  margin-top: 1rem;
+  max-width: 48ch;
+  color: var(--color-ink-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ── Featured transactions ─────────────────────────────────────────────────
+   The largest deal as a lead card (sticky beside the list on desktop), the
+   other five as editorial rows: amount · name and story · year. The sector
+   dot is the same colour as the bubble in the track-record chart above. */
+
+.deals {
+  display: grid;
+  gap: clamp(2rem, 4vw, 4rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .deals { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .lead { position: sticky; top: 7rem; }
+}
+
+.lead {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+  border-radius: 1.5rem;
+  background: #0C3B38;
+  color: #FAFAF8;
+}
+
+.leadAmount {
+  font-size: clamp(3.2rem, 2rem + 4vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+
+.leadName {
+  color: #FAFAF8;
+  font-size: clamp(1.4rem, 1.1rem + 0.8vw, 1.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.leadBody {
+  color: rgba(250, 250, 248, 0.75);
+  line-height: 1.65;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.lead .meta { color: rgba(250, 250, 248, 0.7); margin-top: auto; padding-top: 0.5rem; }
+
+.dot {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  flex: none;
+}
+
+.lead .dot { box-shadow: 0 0 0 2px rgba(250, 250, 248, 0.65); }
+
+/* "USD" as a small unit before the figure: at display size a plain space
+   between "USD" and "300M" read as a gap. */
+.unit {
+  font-size: 0.32em;
+  letter-spacing: 0.08em;
+  margin-right: 0.35em;
+  vertical-align: 0.35em;
+  opacity: 0.75;
+}
+.rowAmount .unit { font-size: 0.45em; vertical-align: 0.4em; margin-right: 0.3em; }
+
+.rows { display: flex; flex-direction: column; }
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 2fr) minmax(0, 5fr) auto;
+  gap: 0.5rem 1.75rem;
+  padding-block: clamp(1.4rem, 2.4vw, 2rem);
+  border-top: 1px solid rgba(17, 31, 48, 0.12);
+}
+
+.row:last-child { border-bottom: 1px solid rgba(17, 31, 48, 0.12); }
+
+.rowAmount {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: clamp(1.5rem, 1.1rem + 1vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rowAmount .dot { transform: translateY(-0.15em); }
+
+.rowName {
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+
+.rowBody {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.rowTags {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--color-ink-subtle);
+}
+
+.rowYear {
+  font-size: 0.9rem;
+  color: var(--color-warm);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 639px) {
+  .row { grid-template-columns: minmax(0, 1fr) auto; }
+  .rowAmount { grid-column: 1; }
+  .rowYear { grid-column: 2; grid-row: 1; align-self: center; }
+  .row > div:nth-child(2) { grid-column: 1 / -1; }
+}
+
+/* ── How it works: a route drawn by the scroll ─────────────────────────────
+   After christophbauer.de's process section ("So läuft es ab"): ONE curve
+   that enters from off-screen left, dives under the steps and leaves
+   off-screen right; from the curve a mast rises to each numbered node, and
+   the step's text sits centred under the curve (HowRail.tsx draws it).
+   Desktop only. On a phone: a straight vertical line with the nodes on it.
+   Without JS: nodes, masts and text are all there; only the curve is missing
+   (it is decoration, written by the script). */
+
+.how { overflow-x: clip; }
+
+.rail {
+  --node: 3.25rem;
+  --band: clamp(11rem, 18vw, 15rem); /* height of the curve band above the text */
+  --gap: clamp(1.5rem, 3vw, 3rem);
+  position: relative;
+  display: grid;
+  gap: 2.5rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  list-style: none;
+  padding: 0;
+}
+
+.curveHolder {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.curve {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  max-width: none; /* a global svg/img max-width capped it to the container */
+  height: var(--band);
+  overflow: visible;
+  pointer-events: none;
+  display: none;
+}
+
+/* phone: the straight line along the nodes' centre */
+.line {
+  position: absolute;
+  background: #0C3B38;
+  left: calc(var(--node) / 2 - 1px);
+  top: calc(var(--node) / 2);
+  bottom: 0;
+  width: 2px;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--node) minmax(0, 1fr);
+  gap: 1.25rem;
+  /* The steps stretch to the tallest one; without this the spare height of a
+     shorter step went into its node row and pushed its title down. */
+  align-content: start;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--node);
+  height: var(--node);
+  border-radius: 50%;
+  background: #0C3B38;
+  color: #FAFAF8;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.mast, .foot { display: none; }
+
+/* The icon inside the node, white on the green */
+.stepIcon {
+  display: block;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: #FAFAF8;
+}
+
+/* The step number, in front of the title */
+.stepNum {
+  margin-right: 0.5em;
+  color: var(--color-warm);
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepTitle {
+  font-size: clamp(1.2rem, 1rem + 0.5vw, 1.45rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+
+.stepBody {
+  margin-top: 0.75rem;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+
+@media (min-width: 768px) {
+  .rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap);
+  }
+  .line { display: none; }
+  .curve { display: block; }
+
+  /* Each step: the curve band on top (node, mast and foot placed in it by
+     --n and --c, fractions of the band), the text centred below it. */
+  .step {
+    grid-template-columns: 1fr;
+    padding-top: calc(var(--band) + 1.75rem);
+    text-align: center;
+  }
+  .node {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--n) * var(--band));
+    /* centred by margins, not translate: GSAP writes translate/scale inline
+       when it scales the node, which would undo a CSS translate */
+    margin: calc(var(--node) / -2) 0 0 calc(var(--node) / -2);
+  }
+  .mast {
+    display: block;
+    position: absolute;
+    left: calc(50% - 1px);
+    top: calc(var(--n) * var(--band));
+    height: calc((var(--c) - var(--n)) * var(--band));
+    width: 2px;
+    background: rgba(12, 59, 56, 0.45);
+  }
+  .foot {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: calc(var(--c) * var(--band));
+    width: 0.75rem;
+    height: 0.75rem;
+    margin: -0.375rem 0 0 -0.375rem;
+    border-radius: 50%;
+    background: #0C3B38;
+    box-shadow: 0 0 0 4px rgba(12, 59, 56, 0.16);
+    z-index: 1;
+  }
+  .stepBody { max-width: 34ch; margin-inline: auto; }
+}
+
+/* ── Pablo Mautone ─────────────────────────────────────────────────────────
+   Portrait beside the text on desktop, above it on a phone. His career runs
+   as a short route: a thin line with a dot per step, like "how it works". */
+
+.pablo {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .pablo { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+}
+
+.portrait {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.55);
+}
+
+.pabloRole {
+  margin-top: 0.9rem;
+  color: var(--color-warm);
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.pabloIntro {
+  margin-top: 1.75rem;
+  max-width: 34ch;
+  color: #FAFAF8;
+  font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.career {
+  position: relative;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: 0 0 0 1.75rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.career::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0.55rem;
+  bottom: 0.55rem;
+  width: 1px;
+  background: rgba(250, 250, 248, 0.22);
+}
+
+.career li {
+  position: relative;
+  color: rgba(250, 250, 248, 0.78);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 56ch;
+}
+
+.career li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.75rem + 0.3rem - 0.3rem + 0.5px);
+  top: 0.5rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-warm);
+}
+
+/* ── Hero (CapitalHero) ────────────────────────────────────────────────────
+   One screen tall: the copy top left, the curve filling the rest edge to
+   edge, each figure standing on its waypoint, the volume at the head. */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  background-color: #0C3B38;
+  /* A bit lower, away from the nav (Maque, 25.10.2026) */
+  padding-top: clamp(8.5rem, 13vw, 11.5rem);
+}
+.heroCopy { position: relative; z-index: 1; }
+.heroName {
+  font-weight: 400;
+  color: #FAFAF8;
+  font-size: clamp(2.6rem, 1.6rem + 3.4vw, 4.4rem);
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+.heroSub {
+  margin-top: 0.7rem;
+  color: #FAFAF8;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.heroText {
+  margin-top: 1.1rem;
+  max-width: 54ch;
+  color: rgba(250, 250, 248, 0.72);
+  font-size: 1rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.curve { position: relative; flex: 1; min-height: 0; }
+/* The line a little higher in the hero (Maque, 25.10.2026) */
+@media (min-width: 768px) { .curve { transform: translateY(-3rem); } }
+.curve svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.curveLine, .curveHalo {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: curveDraw 2.4s cubic-bezier(0.45, 0, 0.2, 1) 0.3s forwards;
+}
+.curveLine { stroke: #84CCC4; stroke-width: 3.5; }
+.curveHalo { stroke: rgba(132, 204, 196, 0.16); stroke-width: 14; }
+.curveArea { opacity: 0; animation: fadeIn 1.6s ease 1.2s forwards; }
+
+.heroStats { position: absolute; inset: 0; }
+.heroStat {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 0;
+  height: 0;
+}
+.heroStat::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #84CCC4;
+  box-shadow: 0 0 0 5px rgba(132, 204, 196, 0.22);
+  transform: translate(-50%, -50%) scale(0);
+  animation: dotIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--delay) forwards;
+}
+.heroStat dt, .heroStat dd {
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--delay) forwards;
+}
+.heroStat dd {
+  bottom: 3.6rem;
+  color: #FAFAF8;
+  font-size: clamp(3rem, 1.8rem + 3.4vw, 5.6rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.heroStat dt { bottom: 1.6rem; color: rgba(250, 250, 248, 0.85); font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.15rem); }
+
+/* The head: the closed volume, larger, with a glow on its point */
+.heroStatHead::before {
+  width: 18px;
+  height: 18px;
+  background: #FAFAF8;
+  box-shadow: 0 0 0 10px rgba(250, 250, 248, 0.08), 0 0 60px 24px rgba(132, 204, 196, 0.35);
+}
+.heroStatHead dd, .heroStatHead dt { transform: translateX(-62%); }
+.heroStatHead dd { bottom: 4.6rem; font-size: clamp(3.6rem, 2rem + 5vw, 7.5rem); }
+.heroStatHead dt { bottom: 2.5rem; font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.4rem); color: #FAFAF8; }
+
+@keyframes curveDraw { to { stroke-dashoffset: 0; } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes dotIn { to { transform: translate(-50%, -50%) scale(1); } }
+@keyframes fadeUp { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .curveLine, .curveHalo, .curveArea, .heroStat::before, .heroStat dt, .heroStat dd { animation: none; opacity: 1; stroke-dashoffset: 0; }
+  .heroStat::before { transform: translate(-50%, -50%); }
+}
+
+/* Phones: the volume, then the three figures in a row, the curve as a line at the foot */
+@media (max-width: 767px) {
+  .hero { height: auto; min-height: 100svh; padding-bottom: 0; }
+  .curve { display: flex; flex-direction: column; justify-content: flex-start; padding: 2.25rem 1.25rem 9rem; }
+  .curve svg { top: auto; height: 8rem; }
+  .heroStats { position: static; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem 1rem; }
+  .heroStat { position: static; width: auto; height: auto; display: flex; flex-direction: column; gap: 0.35rem; }
+  .heroStat::before { display: none; }
+  .heroStat dt, .heroStat dd, .heroStatHead dd, .heroStatHead dt { position: static; transform: none; text-align: left; white-space: normal; }
+  .heroStat dd { order: -1; font-size: 2.6rem; }
+  .heroStatHead { grid-column: 1 / -1; order: -1; }
+  .heroStatHead dd { font-size: 4rem; }
+  .heroStat dt { font-size: 0.95rem; }
+}
+
+/* How Capital and Advisors relate, first thing after the hero */
+/* Capital and Advisors: big statement lit word by word (ScrubText), after
+   SOCIO's home "Qué hacemos" (Maque, 25.10.2026) */
+.statement { display: grid; grid-template-columns: minmax(0, 0.6fr) minmax(0, 3.4fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+.statementLabel {
+  padding-top: 1.1em;
+  color: rgba(250, 250, 248, 0.6);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.statementText {
+  color: #FAFAF8;
+  font-size: clamp(1.9rem, 1.1rem + 2.9vw, 3.9rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+/* The two firms on one line, the hero's dot-and-line motif (FirmsDiagram):
+   the line draws from Capital to Advisors, then each node lights up. */
+.firms {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 6vw, 5rem);
+  margin-top: clamp(3.5rem, 7vw, 5.5rem);
+  padding-top: 2.25rem;
+}
+.firmsLine {
+  position: absolute;
+  top: 0;
+  left: 7px;
+  right: calc(50% - clamp(2rem, 6vw, 5rem) / 2 - 7px);
+  height: 1px;
+  background: linear-gradient(90deg, #84CCC4, rgba(132, 204, 196, 0.45));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.45, 0, 0.2, 1) 0.15s;
+}
+.firms[data-in] .firmsLine { transform: scaleX(1); }
+.firm { position: relative; display: flex; flex-direction: column; gap: 0.35rem; }
+.firmDot {
+  position: absolute;
+  top: calc(-2.25rem - 7px);
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #84CCC4;
+  box-shadow: 0 0 0 5px rgba(132, 204, 196, 0.22), 0 0 24px rgba(132, 204, 196, 0.45);
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--d);
+}
+.firms[data-in] .firmDot { transform: scale(1); }
+.firm b { color: #FAFAF8; font-weight: 400; font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.8rem); letter-spacing: -0.02em; line-height: 1.15; }
+.firmTagline { color: #84CCC4; font-size: 0.95rem; }
+.firm ul { list-style: none; margin: 1.1rem 0 0; padding: 0; display: flex; flex-direction: column; }
+.firm li {
+  padding: 0.7rem 0;
+  border-top: 1px solid rgba(250, 250, 248, 0.14);
+  color: rgba(250, 250, 248, 0.78);
+  font-size: 0.98rem;
+}
+.firm li:last-child { border-bottom: 1px solid rgba(250, 250, 248, 0.14); }
+@media (prefers-reduced-motion: reduce) {
+  .firmsLine, .firmDot { transition: none; transform: none; }
+}
+
+@media (max-width: 767px) {
+  .statement { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .statementLabel { padding-top: 0; }
+  /* Phones: the line runs down the left edge, Capital above Advisors */
+  .firms { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding-top: 0; padding-left: 2rem; }
+  .firmsLine { display: none; }
+  .firm:first-of-type::after {
+    content: "";
+    position: absolute;
+    left: calc(-2rem + 6.5px);
+    top: 0.8rem;
+    bottom: -2.85rem;
+    width: 1px;
+    background: linear-gradient(180deg, #84CCC4, rgba(132, 204, 196, 0.45));
+    transform-origin: 50% 0;
+    transform: scaleY(0);
+    transition: transform 1.2s cubic-bezier(0.45, 0, 0.2, 1) 0.15s;
+  }
+  .firms[data-in] .firm:first-of-type::after { transform: scaleY(1); }
+  .firmDot { top: 0.35rem; left: calc(-2rem); }
+}
+
+.group {
+  justify-self: start;
+  color: var(--color-ink-muted);
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.group:hover { color: var(--color-ink); }
+.group span:last-child { display: inline-block; margin-left: 0.5rem; transition: transform 0.3s ease; }
+.group:hover span:last-child { transform: translateX(4px); }

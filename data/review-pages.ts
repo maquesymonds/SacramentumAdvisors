@@ -30,7 +30,7 @@ export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
   ],
   "why-uruguay": [
     d("Descripción en Google: \"igualdad de trato al inversor extranjero\". ¿Lo nombramos en Google?"),
-    r("Tecnología: el titular \"El ecosistema tecnológico exportador de Uruguay\" es nuevo, y la traducción al español de tu texto es nuestra (falta que la revise Chiara). El botón aprobado de la etapa 1 se cambió por \"Explore oportunidades tecnológicas\"."),
+    r("Tecnología: el titular \"Uruguay, un ecosistema tecnológico que exporta al mundo\" es nuevo, y la traducción al español de tu texto es nuestra (falta que la revise Chiara). El botón aprobado de la etapa 1 se cambió por \"Explore oportunidades tecnológicas\"."),
   ],
   services: [
     p("Descripción en Google: ya usa \"Residencia e instalación\" en vez de Soft Landing (propuesta sin aprobar)."),
@@ -55,7 +55,6 @@ export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
     d("Hotel Enjoy / Baluma, USD 180M, 2026: ¿ya cerró? ¿Se puede publicar, sabiendo que Pablo preside el directorio de Baluma?"),
     d("¿Están cerradas todas las transacciones del gráfico? Los años y sectores de algunas burbujas salen del gráfico, no del texto: ¿están bien?"),
     s("\"Es la firma de banca de inversión de Sacramentum\" y el reparto entre Advisors y Capital: ¿Capital es parte de Sacramentum o una firma aparte? ¿Informan siempre el vínculo?"),
-    s("\"La firma nunca comercializó sus servicios: cada mandato llegó por referencias\": ¿lo publicamos, en una web que justamente promociona a la firma?"),
     d("¿Podemos nombrar al MEF, UTE y CVU como clientes institucionales?"),
     r("Cambiamos el \"5 mandatos\" de mercado de capitales por una lista de servicios, y en M&A falta \"retail\". ¿Está bien?"),
     s("El formulario es el de Advisors: ¿quién responde las consultas de Capital?"),

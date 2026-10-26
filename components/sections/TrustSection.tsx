@@ -99,7 +99,7 @@ export default function TrustSection({ cta = "testimonials", toForm = false }: {
             <li
               key={q.who}
               className="flex flex-col"
-              style={{ background: "var(--color-surface-card)", border: "1px solid rgba(31,41,51,0.08)", padding: "2rem 1.75rem" }}
+              style={{ background: "var(--color-surface-card)", borderRadius: "1.25rem", boxShadow: "0 18px 40px -24px rgb(17 31 48 / 0.25)", padding: "2rem 1.75rem" }}
             >
               <span aria-hidden="true" style={{ color: "var(--color-warm)", fontSize: "3rem", lineHeight: 0.6, height: "1.5rem" }}>“</span>
               <blockquote className="flex-1" style={{ color: "var(--color-ink)", fontSize: "1.05rem", lineHeight: 1.6 }}>

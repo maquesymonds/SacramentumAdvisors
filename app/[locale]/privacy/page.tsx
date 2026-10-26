@@ -5,7 +5,7 @@ import { pageMetadata, toLocale } from "@/lib/seo";
 
 // DRAFT privacy policy — pending legal review (see data/legal.ts). noindex,follow.
 export function generateMetadata({ params }: { params: { locale: string } }): Metadata {
-  return pageMetadata("privacy", params.locale, { title: PRIVACY[toLocale(params.locale)].metaTitle });
+  return pageMetadata("privacy", params.locale, { title: PRIVACY[toLocale(params.locale)].metaTitle, description: PRIVACY[toLocale(params.locale)].metaDescription });
 }
 
 export default function PrivacyPage({ params }: { params: { locale: string } }) {

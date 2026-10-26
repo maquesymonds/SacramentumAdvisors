@@ -127,6 +127,7 @@ export default function CookieConsent() {
       role="dialog"
       aria-live="polite"
       aria-label={copy.settings}
+      data-cookie-banner=""
       className="fixed z-[60] left-4 right-4 bottom-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md bg-brand-dark p-5 sm:p-6 shadow-2xl"
       style={{ border: "1px solid rgba(250,250,248,0.1)" }}
     >

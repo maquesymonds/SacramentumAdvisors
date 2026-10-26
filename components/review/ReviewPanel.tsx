@@ -11,7 +11,10 @@ import { usePathname } from "next/navigation";
 import { parsePublicPath, isTopicId } from "@/lib/i18n";
 import { REVIEW_MODE } from "@/lib/review";
 import { SITE_REVIEW, PAGE_REVIEW, LOCALE_REVIEW } from "@/data/review-pages";
-import { topicReview } from "@/data/review-flags";
+import { topicReview, allNotes } from "@/data/review-flags";
+import type { ReviewNote } from "@/lib/review";
+
+const WHOLE_PAGE: ReviewNote = { kind: "redaccion", pregunta: "Toda esta página es texto nuevo: leerla completa, de arriba abajo. Abajo, los puntos concretos." };
 import ReviewFlag from "./ReviewFlag";
 
 export default function ReviewPanel() {
@@ -24,8 +27,11 @@ export default function ReviewPanel() {
   const locale = parsed?.locale;
   const rv     = page && isTopicId(page) ? topicReview(page) : undefined;
 
-  const pageNotes = [...(page ? PAGE_REVIEW[page] ?? [] : []), ...(rv?.meta ?? [])];
-  const offPage   = rv && locale !== "es"
+  // A page reviewed as a whole: one list here, first the instruction, then every note
+  const pageNotes = rv?.wholePage
+    ? [WHOLE_PAGE, ...(page ? PAGE_REVIEW[page] ?? [] : []), ...allNotes(rv)]
+    : [...(page ? PAGE_REVIEW[page] ?? [] : []), ...(rv?.meta ?? [])];
+  const offPage   = rv && !rv.wholePage && locale !== "es"
     ? [...Object.values(rv.sections ?? {}).flat(), ...Object.values(rv.faqs ?? {}).flat()]
     : [];
   const langNotes = locale ? LOCALE_REVIEW[locale] ?? [] : [];

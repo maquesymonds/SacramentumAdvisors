@@ -27,12 +27,10 @@ function entry(id: PageId, sub?: string): MetadataRoute.Sitemap {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const content  = await fetchAdminContent();
-  const articles = (content.articles ?? []).filter(a => a.published !== false);
   const posts    = (content.blog ?? []).filter(p => p.published !== false);
 
   return [
     ...(Object.keys(PAGES) as PageId[]).filter(id => !PAGES[id].noindex).flatMap(id => entry(id)),
-    ...articles.flatMap(a => entry("news", a.id)),
     ...posts.flatMap(p => entry("blog", p.id)),
   ];
 }

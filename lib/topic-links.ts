@@ -1,12 +1,12 @@
-/* Footer "Uruguay" column — labels kept small so the footer does not ship
+/* Footer "Uruguay" column (same order as the menu dropdown) — labels kept small so the footer does not ship
    the full topic copy to the browser. Order = priority from the research. */
 
 import type { Locale, PageId, TopicId } from "@/lib/i18n";
 
 export const FOOTER_TOPICS: { id: TopicId; label: Record<Locale, string> }[] = [
-  { id: "real-estate",     label: { en: "Real estate",            es: "Bienes raíces",          de: "Immobilien" } },
-  { id: "farmland",        label: { en: "Agriculture & forestry", es: "Agropecuario y forestal", de: "Land- und Forstwirtschaft" } },
   { id: "technology",      label: { en: "Technology",             es: "Tecnología",             de: "Technologie" } },
+  { id: "real-estate",     label: { en: "Real estate",            es: "Inmobiliario",           de: "Immobilien" } },
+  { id: "farmland",        label: { en: "Farmland & forestry",    es: "Agro y forestal",         de: "Land- und Forstwirtschaft" } },
 ];
 
 /** Each sector's colour: its chapter on Why Uruguay and the background of its

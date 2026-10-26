@@ -16,6 +16,7 @@ import CookieConsent          from "@/components/layout/CookieConsent";
 import { notFound }           from "next/navigation";
 import { getTranslationOverrides } from "@/lib/translation-overrides";
 import { siteJsonLd } from "@/lib/schema";
+import { PAGE_META } from "@/lib/page-meta";
 import { LOCALES, OG_LOCALE, SITE_URL, isLocale, robotsFor, type Locale } from "@/lib/i18n";
 
 // ── Regola Pro ────────────────────────────────────────────────────────────────
@@ -65,15 +66,14 @@ export async function generateMetadata(
       default:  "Sacramentum Advisors",
       template: "%s | Sacramentum Advisors",
     },
-    description:
-      "Principled leadership for strategic asset acquisition in Uruguay. Protect your capital through lifestyle assets in Latin America's most stable market.",
+    description: PAGE_META.home[locale].description,
     authors:  [{ name: "Sacramentum Advisors" }],
     openGraph: {
       type:        "website",
       locale:      OG_LOCALE[locale],
       siteName:    "Sacramentum Advisors",
       title:       "Sacramentum Advisors",
-      description: "Principled leadership for strategic asset acquisition in Uruguay.",
+      description: PAGE_META.home[locale].description,
     },
     twitter: {
       card:  "summary", // no og:image yet — omitted rather than guessed

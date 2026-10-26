@@ -11,8 +11,11 @@ const copy: TopicCopy = {
     metaDescription: "Uruguay farmland, ranches, chacras and forestry: how a foreign investor buys land in Uruguay, what to check before buying and how to hold it.",
     navLabel:        "Farmland & forestry",
     cardText:        "Productive land, ranches, chacras and forestry: how foreign investors buy and hold land in Uruguay.",
-    eyebrow:         "Agriculture & forestry",
+    eyebrow:         "Farmland & forestry",
     title:           "Farmland, ranches and forestry in Uruguay",
+    // Hero like Technology (Maque, 25.10.2026): highlighted phrases + the 90 % figure lit on the map
+    titleMarks:      ["Farmland", "forestry"],
+    uruguayMap:      { kind: "land", share: 0.9, value: "90%+", label: "of Uruguay's land suitable for productive use" },
     intro: [
       "Uruguay is a country with deep agricultural tradition. With more than 90% of its land suitable for productive use, it stands as a reliable global food supplier.",
       "For investors, land is a real asset with a long horizon: productive farmland leased to an operator, a cattle ranch, a forestry project or a chacra combining land and lifestyle. We help you choose the model, find the land and buy it safely.",
@@ -81,10 +84,13 @@ const copy: TopicCopy = {
   es: {
     metaTitle:       "Campos y chacras en Uruguay",
     metaDescription: "Campos, chacras, estancias y forestación: cómo compra tierra en Uruguay un inversor extranjero, qué revisar antes de comprar y cómo administrarla.",
-    navLabel:        "Campos y chacras",
+    navLabel:        "Agro y forestal",
     cardText:        "Campos productivos, estancias, chacras y forestación: cómo comprar y mantener tierra en Uruguay.",
-    eyebrow:         "Agro y forestación",
+    eyebrow:         "Agro y forestal",
     title:           "Campos, chacras y forestación en Uruguay",
+    // Hero like Technology (Maque, 25.10.2026): highlighted phrases + the 90 % figure lit on the map
+    titleMarks:      ["Campos", "forestación"],
+    uruguayMap:      { kind: "land", share: 0.9, value: "90%+", label: "de la tierra de Uruguay es apta para uso productivo" },
     intro: [
       "Uruguay es un país con una profunda tradición agrícola. Con más del 90% de su tierra apta para uso productivo, es un proveedor confiable de alimentos a nivel mundial.",
       "Para el inversor, la tierra es un activo real de largo plazo: un campo productivo arrendado a un productor, una estancia ganadera, un proyecto forestal o una chacra que combina tierra y calidad de vida. Le ayudamos a elegir el modelo, encontrar la tierra y comprarla con seguridad.",
@@ -146,7 +152,7 @@ const copy: TopicCopy = {
     cta: {
       heading: "¿Está pensando en tierra en Uruguay?",
       body:    "Cuéntenos qué modelo está evaluando. Le ayudamos a entender las zonas, la renta real y los riesgos antes de comprar.",
-      label:   "Agendar una consulta",
+      label:   "Reservar consulta",
     },
   },
   de: {
@@ -156,6 +162,9 @@ const copy: TopicCopy = {
     cardText:        "Agrarland, Estancias, Chacras und Forstwirtschaft: Land in Uruguay kaufen und halten.",
     eyebrow:         "Landwirtschaft und Forstwirtschaft",
     title:           "Agrarland, Estancias und Forstwirtschaft in Uruguay",
+    // Hero like Technology (Maque, 25.10.2026): highlighted phrases + the 90 % figure lit on the map
+    titleMarks:      ["Agrarland", "Forstwirtschaft"],
+    uruguayMap:      { kind: "land", share: 0.9, value: "90 %+", label: "der Fläche Uruguays produktiv nutzbar" },
     intro: [
       "Uruguay ist ein Land mit tiefer landwirtschaftlicher Tradition. Mit über 90 % produktiv nutzbarer Fläche ist es ein verlässlicher Lebensmittellieferant für die Welt.",
       "Für Investoren ist Land ein Sachwert mit langem Horizont: verpachtetes Agrarland, eine Rinder-Estancia, ein Forstprojekt oder eine Chacra, die Land und Lebensqualität verbindet. Wir helfen bei der Wahl des Modells, bei der Suche und beim sicheren Kauf.",

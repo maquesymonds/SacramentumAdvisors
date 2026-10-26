@@ -171,8 +171,51 @@
   }
 }
 
-/* On a sector page in its colour (.topic-theme) the white cards keep dark text */
-:global(.topic-theme) .card {
+/* On a sector page in its colour (.topic-theme) the white cards keep dark text
+   and lose the hairline border, which read as a white line on the colour */
+:global(.topic-theme) .card,
+:global(.topic-theme) .card:hover {
   --color-ink: #111F30;
   --color-ink-muted: #4A5568;
+  border-color: transparent;
+}
+
+/* ── Hero title: rises in, then key phrases are highlighted ────────────────
+   After Frankonia's inline mark (.pain-hook__mark): a bar fills left to
+   right BEHIND the phrase, one fragment per line (box-decoration-break), the
+   text stays as it is. Plays once on load; CSS only, so the words are in the
+   HTML from the start. Reduced motion: no rise, bars already full. */
+
+.heroRise {
+  display: inline;
+  animation: heroRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+@keyframes heroRise {
+  from { opacity: 0; filter: blur(6px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+.mark {
+  color: inherit;
+  background-color: transparent;
+  background-image: linear-gradient(rgba(129, 166, 176, 0.5), rgba(129, 166, 176, 0.5));
+  background-repeat: no-repeat;
+  background-position: left 58%;
+  background-size: 0% 86%;
+  padding-inline: 0.08em;
+  margin-inline: -0.04em;
+  border-radius: 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: markFill 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes markFill {
+  to { background-size: 100% 86%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroRise { animation: none; }
+  .mark { animation: none; background-size: 100% 86%; }
 }

@@ -12,9 +12,21 @@ const copy: TopicCopy = {
     navLabel:        "Technology",
     cardText:        "Build a technology operation, acquire a software company or expand across the region from Uruguay.",
     eyebrow:         "Technology",
-    title:           "Uruguay's export-driven technology ecosystem",
+    title:           "Uruguay has built one of Latin America's most export-driven technology ecosystems",
+    titleMarks:      ["export-driven", "technology ecosystems"], // highlighted in the hero, in reading order
+    // Hero: Inés' opening line without "quietly" (Maque, 25.10.2026), one medium size; the intro as a list, same words
+    introList:       { lead: "In a country of just 3.5 million people, the ecosystem brings together:", items: ["around 500 startups", "hundreds of established software and technology companies", "global technology centers", "internationally successful product companies", "a NASDAQ-listed unicorn"] },
+    exportMap: {
+      origin:  "Montevideo",
+      links: [
+        { pin: "us", name: "United States" },
+        { pin: "ca", name: "Canada" },
+        { pin: "uk", name: "United Kingdom" },
+        { pin: "es", name: "Spain" },
+        { pin: "cl", name: "Chile" },
+      ],
+    },
     intro: [
-      "Uruguay has quietly built one of Latin America's most export-driven technology ecosystems.",
       "In a country of just 3.5 million people, the ecosystem brings together around 500 startups, hundreds of established software and technology companies, global technology centers, internationally successful product companies, and a NASDAQ-listed unicorn.",
     ],
     image: { src: "/images/tech.avif", alt: "Technology office in Montevideo, Uruguay" },
@@ -59,26 +71,38 @@ const copy: TopicCopy = {
     ],
     cta: {
       heading: "Explore technology opportunities",
-      body:    "Building an operation or looking for an acquisition? Tell us what you need and we will map the options in Uruguay.",
+      body:    "", // Inés approved only "Explore technology opportunities" (docs/content/technology-en.md); no line of our own
       label:   "Book a consultation",
     },
   },
 
   es: {
     metaTitle:       "Tecnología en Uruguay",
-    metaDescription: "El ecosistema tecnológico exportador de Uruguay: instalar una operación, adquirir una empresa de software o expandirse a la región desde Uruguay.",
+    metaDescription: "Uruguay, un ecosistema tecnológico que exporta al mundo: instalar una operación, adquirir una empresa de software o expandirse a la región.",
     navLabel:        "Tecnología",
     cardText:        "Instalar una operación tecnológica, adquirir una empresa de software o expandirse a la región desde Uruguay.",
     eyebrow:         "Tecnología",
-    title:           "El ecosistema tecnológico exportador de Uruguay",
+    title:           "Uruguay construyó uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina",
+    titleMarks:      ["ecosistemas tecnológicos", "exportación"], // highlighted in the hero, in reading order
+    // Hero: Inés' opening line without "quietly" (Maque, 25.10.2026), one medium size; the intro as a list, same words
+    introList:       { lead: "En un país de apenas 3,5 millones de habitantes, el ecosistema reúne:", items: ["unas 500 startups", "cientos de empresas de software y tecnología consolidadas", "centros tecnológicos globales", "empresas de producto con éxito internacional", "un unicornio que cotiza en NASDAQ"] },
+    exportMap: {
+      origin:  "Montevideo",
+      links: [
+        { pin: "us", name: "Estados Unidos" },
+        { pin: "ca", name: "Canadá" },
+        { pin: "uk", name: "Reino Unido" },
+        { pin: "es", name: "España" },
+        { pin: "cl", name: "Chile" },
+      ],
+    },
     intro: [
-      "Uruguay construyó, silenciosamente, uno de los ecosistemas tecnológicos más orientados a la exportación de América Latina.",
       "En un país de apenas 3,5 millones de habitantes, el ecosistema reúne unas 500 startups, cientos de empresas de software y tecnología consolidadas, centros tecnológicos globales, empresas de producto con éxito internacional y un unicornio que cotiza en NASDAQ.",
     ],
     image: { src: "/images/tech.avif", alt: "Oficina tecnológica en Montevideo, Uruguay" },
     facts: [
       { value: "#2",          label: "Exportador de software per cápita de América Latina, y el primero de América del Sur" },
-      { value: "US$3,7 MM",   label: "Facturación del sector tecnológico en 2024 (miles de millones de dólares), equivalente al 4,5% del PIB" },
+      { value: "US$ 3.700 M", label: "Facturación del sector tecnológico en 2024, en millones de dólares, equivalente al 4,5% del PIB" },
       { value: "63%",         label: "De la facturación del sector proviene de ventas internacionales" },
       { value: "77,6%",       label: "De las exportaciones tecnológicas de Uruguay van a Estados Unidos" },
     ],
@@ -117,19 +141,31 @@ const copy: TopicCopy = {
     ],
     cta: {
       heading: "Explore oportunidades tecnológicas",
-      body:    "¿Instalar una operación o buscar una adquisición? Cuéntenos qué necesita y le mostramos las opciones en Uruguay.",
-      label:   "Agendar una consulta",
+      body:    "", // Inés approved only "Explore technology opportunities" (docs/content/technology-en.md); no line of our own
+      label:   "Reservar consulta",
     },
   },
   de: {
     metaTitle:       "Technologie in Uruguay",
-    metaDescription: "Uruguays exportstarkes Technologie-Ökosystem: einen Standort aufbauen, ein Softwareunternehmen übernehmen oder von Uruguay aus expandieren.",
+    metaDescription: "Uruguays exportstarkes Technologie-Ökosystem: einen Standort aufbauen, ein Softwareunternehmen übernehmen oder expandieren.",
     navLabel:        "Technologie",
     cardText:        "Technologiestandort aufbauen, Softwareunternehmen übernehmen oder von Uruguay aus expandieren.",
     eyebrow:         "Technologie",
-    title:           "Uruguays exportstarkes Technologie-Ökosystem",
+    title:           "Uruguay hat eines der exportstärksten Technologie-Ökosysteme Lateinamerikas aufgebaut",
+    titleMarks:      ["exportstärksten", "Technologie-Ökosysteme"], // highlighted in the hero, in reading order
+    // Hero: Inés' opening line without "quietly" (Maque, 25.10.2026), one medium size; the intro as a list, same words
+    introList:       { lead: "In einem Land mit nur 3,5 Millionen Einwohnern vereint das Ökosystem:", items: ["rund 500 Start-ups", "Hunderte etablierte Software- und Technologieunternehmen", "globale Technologiezentren", "international erfolgreiche Produktunternehmen", "ein an der NASDAQ notiertes Unicorn"] },
+    exportMap: {
+      origin:  "Montevideo",
+      links: [
+        { pin: "us", name: "USA" },
+        { pin: "ca", name: "Kanada" },
+        { pin: "uk", name: "Großbritannien" },
+        { pin: "es", name: "Spanien" },
+        { pin: "cl", name: "Chile" },
+      ],
+    },
     intro: [
-      "Uruguay hat unauffällig eines der exportstärksten Technologie-Ökosysteme Lateinamerikas aufgebaut.",
       "In einem Land mit nur 3,5 Millionen Einwohnern vereint das Ökosystem rund 500 Start-ups, Hunderte etablierte Software- und Technologieunternehmen, globale Technologiezentren, international erfolgreiche Produktunternehmen und ein an der NASDAQ notiertes Unicorn.",
     ],
     image: { src: "/images/tech.avif", alt: "Technologiebüro in Montevideo, Uruguay" },
@@ -174,7 +210,7 @@ const copy: TopicCopy = {
     ],
     cta: {
       heading: "Technologiechancen entdecken",
-      body:    "Sie planen einen Standort oder suchen eine Akquisition? Sagen Sie uns, was Sie brauchen, und wir zeigen Ihnen die Optionen in Uruguay.",
+      body:    "", // Inés approved only "Explore technology opportunities" (docs/content/technology-en.md); no line of our own
       label:   "Beratung vereinbaren",
     },
   },

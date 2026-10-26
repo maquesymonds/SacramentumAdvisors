@@ -18,7 +18,6 @@ import { fetchAdminContent } from "@/lib/admin-content";
 import type { Metadata } from "next";
 import { coreMetadata, toLocale } from "@/lib/seo";
 import CapitalTeaser from "@/components/sections/CapitalTeaser";
-import SeamBlend from "@/components/ui/SeamBlend";
 import TrustSection from "@/components/sections/TrustSection";
 import FaqSection from "@/components/faq/FaqSection";
 import { coreFaqs } from "@/data/faqs";
@@ -44,11 +43,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
         <WhyUruguay />
         <HowWeSupport />
         <WhySacramentum />
-        {/* Testimonials (light) melt into Capital (green) as you scroll, like the Capital page */}
-        <SeamBlend from="#FAFAF8" to="#0C3B38">
-          <TrustSection cta="home-testimonials" />
-          <CapitalTeaser />
-        </SeamBlend>
+        <TrustSection cta="home-testimonials" />
+        <CapitalTeaser />
         <OurTeam adminTeam={adminTeam} />
         <FaqSection id="home" locale={locale} items={coreFaqs("home", locale)} />
 

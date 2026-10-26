@@ -17,7 +17,7 @@ export default function NotFound() {
   return (
     <>
       <Navigation />
-      <main className="container-site" style={{ minHeight: "70vh", paddingTop: "10rem", paddingBottom: "6rem" }}>
+      <main className="container-site" style={{ paddingTop: "10rem", paddingBottom: "6rem" }}>
         <h1 className="text-h2" style={{ marginBottom: "1rem" }}>{copy.title}</h1>
         <p style={{ marginBottom: "2rem", opacity: 0.75 }}>{copy.body}</p>
         <a href={path("home")} className="btn-primary">{copy.cta}</a>

@@ -18,8 +18,11 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const START = "top 85%";
-const END   = "bottom 65%";
+// Earlier than before (Maque, 25.10.2026): with "bottom 65%" bubbles were
+// still missing once the chart reached the middle of the screen. Now the
+// chart is complete by the time its centre is a little below the middle.
+const START = "top 92%";
+const END   = "center 58%";
 const SCRUB = 0.7;
 const LINE  = 0.9;  // share of the timeline the axis takes to draw; the rest lets the last bubble land
 

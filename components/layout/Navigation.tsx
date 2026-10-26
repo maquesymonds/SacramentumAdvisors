@@ -168,7 +168,7 @@ export default function Navigation() {
         return r.top <= NAV_Y && r.bottom >= NAV_Y;
       });
       // A light section can still have a dark background behind the nav
-      // (testimonials melting into Capital, SeamBlend): the real colour wins.
+      // (the page-wide colour blend, usePageBlend): the real colour wins.
       setScrollDark(inLight && !backgroundBehindNavIsDark(NAV_Y));
     };
 
@@ -232,9 +232,12 @@ export default function Navigation() {
   }, []);
 
   // ── Prevent body scroll when mobile menu open ───────────────────────────
+  // The flag also hides the cookie banner, which otherwise covers the menu.
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (menuOpen) document.body.dataset.menuOpen = "";
+    else delete document.body.dataset.menuOpen;
+    return () => { document.body.style.overflow = ""; delete document.body.dataset.menuOpen; };
   }, [menuOpen]);
 
   // ── Fire pending scroll after navigation ────────────────────────────────

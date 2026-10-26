@@ -14,6 +14,10 @@ import type { TopicId } from "@/lib/i18n";
 import type { ReviewNote } from "@/lib/review";
 
 export interface TopicReview {
+  /** The whole page is new copy Inés has to read end to end: no inline
+      blocks on the page, every note listed once in the review panel
+      (Maque, 25.10.2026, Real estate and Farmland). */
+  wholePage?: boolean;
   meta?:     ReviewNote[];
   intro?:    ReviewNote[];
   facts?:    ReviewNote[];
@@ -34,54 +38,13 @@ export const TOPIC_REVIEW: Partial<Record<TopicId, TopicReview>> = {
 
 
   "real-estate": {
+    // 25.10.2026: the page is back to Inés' stage-1 copy; only what is not hers is asked
+    wholePage: true,
     meta: [
-      s("¿Asesoran compras en Punta del Este, José Ignacio, Montevideo y Piriápolis? La etapa 1 solo habla de \"propiedades costeras\"."),
-      s("¿Trabajan del lado del comprador y no cobran del vendedor? (La propuesta \"del lado del cliente\" no está aprobada.)"),
-      p("El nombre \"Inmobiliario en Uruguay\" (en vez de \"Bienes Raíces\") es una propuesta sin aprobar."),
-    ],
-    intro: [
-      r("El primer párrafo es una traducción nueva de tu texto en inglés. Tu versión aprobada en español decía \"la cartera más sólida es aquella que también puede disfrutarse en la vida real\". ¿Volvemos a la tuya?"),
-      s("\"Asesoramos del lado del comprador: qué comprar, dónde, a qué precio y cómo cerrar la operación.\" ¿Es así?"),
-    ],
-    facts: [
-      d("La etapa 1 dice \"0% restricciones a propietarios extranjeros\". Acá se agregó \"de inmuebles residenciales\". ¿Lo dejamos?"),
-      d("\"USD: moneda en que se cotizan y operan las propiedades.\" La etapa 1 dice \"transacciones en dólares\". ¿Se puede decir también que se cotizan en USD?"),
-    ],
-    sections: {
-      0: [
-        s("¿Son de verdad estos cuatro los mercados por los que más les consultan?"),
-        d("Punta del Este como \"el mercado más consolidado, con el mayor mercado de alquiler y reventa\": ¿es correcto?"),
-        d("José Ignacio: \"baja densidad, casas de autor, terrenos amplios, oferta limitada\". ¿Confirmás la descripción?"),
-        d("Montevideo: ¿trabajan Carrasco, Pocitos y Punta Carretas? ¿Es correcto lo de \"alquileres anuales estables\"?"),
-        d("Piriápolis: ¿asesoran ahí? ¿Es correcto que tiene \"precios de entrada más bajos\"?"),
-      ],
-      1: [
-        d("¿Personas y empresas extranjeras compran con los mismos derechos que los uruguayos y sin residencia?"),
-        d("¿La tierra rural y algunas sociedades tienen reglas propias?"),
-        s("\"Las revisamos caso a caso\": ¿lo hacen ustedes o un abogado o escribano que coordinan?"),
-        p("\"Comprar no da por sí solo la residencia legal ni la fiscal\" es un mensaje de la propuesta, sin aprobar."),
-        s("¿Estructuran la compra pensando en la residencia y la fiscalidad desde el inicio?"),
-      ],
-      2: [
-        d("\"El corredor inmobiliario tradicional suele cobrar por la venta\": ¿es correcto decirlo así?"),
-        s("\"Trabajamos para el comprador\": ¿cómo cobran? ¿Nunca cobran comisión del vendedor?"),
-        s("¿Comparan el mercado, cuestionan el precio pedido y revisan los costos de mantener la propiedad?"),
-        s("¿Coordinan un escribano independiente para el estudio de títulos?"),
-      ],
-      3: [
-        d("\"El alquiler de temporada en Punta del Este se concentra en pocas semanas de verano.\" Ojo: la noticia de la etapa 1 dice que Punta del Este maduró hacia una propuesta de todo el año."),
-        d("¿El alquiler anual en Montevideo es más estable?"),
-        s("¿Calculan la renta neta para el cliente (ocupación, gastos comunes, impuestos)?"),
-        d("Vivienda promovida, Ley 18.795: ¿es correcta, sigue vigente y querés mencionarla?"),
-        s("¿Evalúan si un proyecto califica para vivienda promovida?"),
-      ],
-    },
-    steps: [
-      s("¿Es así como acompañan una compra, en estos cuatro pasos?"),
-      s("¿Seleccionan propiedades de varias inmobiliarias y también fuera del mercado (off-market)?"),
-      d("¿Se usa un \"boleto de reserva\"? ¿Hay además una promesa de compraventa con seña?"),
-      d("¿Es correcto lo que revisa el escribano en el estudio de títulos (titularidad, deudas, permisos, gravámenes)?"),
-      d("¿Se puede firmar la escritura por poder?"),
+      s("El título y la descripción para Google, y la tarjeta que enlaza a esta página desde otras, nombran Punta del Este, José Ignacio, Montevideo y Piriápolis (propuesta del research, la gente busca por lugar). ¿Asesoran en esos lugares? Si no, los sacamos."),
+      p("El mapa ubica tus tres tipos de propiedad: campos en el interior, chacras serranas en las sierras del este y propiedades costeras en la costa. ¿Está bien así?"),
+      r("Los títulos de las dos secciones (\"Preservación de capital y calidad de vida\" y \"El mercado inmobiliario de Uruguay\") salen de tu texto. ¿Te sirven?"),
+      s("Falta contenido para completar la página: ¿cómo acompañan una compra, en qué zonas trabajan, cómo cobran? Tenemos un borrador para proponerte."),
     ],
     faqs: {
       0: [d("¿Los extranjeros compran con los mismos derechos y sin residencia? ¿La residencia legal y la fiscal son trámites aparte?"), s("¿Coordinan la residencia junto con la compra?")],
@@ -89,9 +52,10 @@ export const TOPIC_REVIEW: Partial<Record<TopicId, TopicReview>> = {
       2: [d("¿Es correcta la lista de costos (escribano, comisión, ITP, registro)? ¿El ITP se calcula sobre el valor catastral? ¿Quién lo paga?"), s("¿Le dan al cliente una estimación completa de costos antes de ofertar?")],
       3: [d("¿Se puede comprar a distancia con poder? ¿Con qué requisitos (apostilla, consulado)?")],
     },
-    cta: [s("\"Le diremos dónde tiene sentido, y dónde no.\" ¿Te sirve esta promesa?")],
+    cta: [r("El cierre usa tu línea de listings partida en título y bajada. ¿Te sirve?")],
   },
   "farmland": {
+    wholePage: true,
     meta: [
       s("¿Asesoran también en la administración del campo después de la compra?"),
       p("\"Campos, chacras y forestación\" es una propuesta sin aprobar. También se cambió \"Sector Agropecuario y Forestal\" por \"Agro y forestación\"."),
@@ -139,9 +103,6 @@ export const TOPIC_REVIEW: Partial<Record<TopicId, TopicReview>> = {
 
   "technology": {
     meta: [r("El título, la descripción y la tarjeta resumen tu texto, sin agregar nada. ¿Te sirven? (En inglés: \"Build & Acquire\".)")],
-    intro: [r("La traducción al español es nuestra. ¿La revisás con Chiara? Lo mismo vale para las tres secciones.")],
-    facts: [r("Redondeamos US$3.680 millones a \"US$3,7 MM\". En español \"MM\" suele leerse como millones: ¿preferís \"US$ 3.680 millones\"?")],
-    cta: [s("\"Cuéntenos qué necesita y le mostramos las opciones en Uruguay\": ¿así trabajan con tecnología?")],
   },
 };
 

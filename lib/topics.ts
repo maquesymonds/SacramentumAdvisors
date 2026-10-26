@@ -45,6 +45,19 @@ export interface TopicContent {
   facts?:          TopicFact[];
   /** Heading above the stacked section cards */
   sectionsHeading?: string;
+  /** Technology hero: dot map with lines from Montevideo to the markets named
+      in the approved copy (components/topic/ExportMap.tsx). Code only. */
+  /** Phrases of the title highlighted in the hero (a bar fills behind them). Code only. */
+  titleMarks?:     string[];
+  /** The intro shown as a lead line and a list (same words as `intro`). Code only. */
+  introList?:      { lead: string; items: string[] };
+  /** Real estate / Farmland hero: dot map of Uruguay, either the places the
+      page names or its productive-land share lit (components/topic/UruguayMap.tsx). Code only. */
+  uruguayMap?:
+    | { kind: "places"; pins: { pin: "mvd" | "pir" | "pde" | "jig"; name: string }[] }
+    | { kind: "land"; share: number; value: string; label: string }
+    | { kind: "zones"; zones: { zone: "campos" | "sierras" | "costa"; name: string }[] };
+  exportMap?:      { origin: string; links: { pin: "us" | "ca" | "uk" | "es" | "cl"; name: string }[] };
   sections:        TopicSection[];
   steps?:          { heading: string; items: { title: string; body: string }[] };
   faqs:            { q: string; a: string }[];

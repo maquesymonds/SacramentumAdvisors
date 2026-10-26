@@ -11,36 +11,34 @@ import type { Locale } from "@/lib/i18n";
 
 export interface LegalSection { heading: string; body: string[] }
 
-export const THANK_YOU: Record<Locale, { metaTitle: string; eyebrow: string; title: string; body: string; next: string; home: string }> = {
+export const THANK_YOU: Record<Locale, { metaTitle: string; metaDescription: string; title: string; body: string; home: string }> = {
   en: {
     metaTitle: "Thank you",
-    eyebrow:   "Message received",
+    metaDescription: "We have received your enquiry and will respond within one to two business days.",
     title:     "Thank you for reaching out.",
     body:      "We have received your enquiry and will respond within one to two business days. All correspondence is handled with complete discretion.",
-    next:      "While you wait, you may find these useful:",
     home:      "Back to the home page",
   },
   es: {
     metaTitle: "Gracias",
-    eyebrow:   "Mensaje recibido",
+    metaDescription: "Hemos recibido su consulta y le responderemos dentro de uno a dos días hábiles.",
     title:     "Gracias por contactarnos.",
     body:      "Hemos recibido su consulta y le responderemos dentro de uno a dos días hábiles. Toda la correspondencia se maneja con total discreción.",
-    next:      "Mientras tanto, esto puede serle útil:",
     home:      "Volver al inicio",
   },
   de: {
     metaTitle: "Vielen Dank",
-    eyebrow:   "Nachricht erhalten",
+    metaDescription: "Wir haben Ihre Anfrage erhalten und antworten innerhalb von ein bis zwei Werktagen.",
     title:     "Vielen Dank für Ihre Nachricht.",
     body:      "Wir haben Ihre Anfrage erhalten und antworten innerhalb von ein bis zwei Werktagen. Alle Korrespondenz wird mit absoluter Diskretion behandelt.",
-    next:      "In der Zwischenzeit könnte Sie Folgendes interessieren:",
     home:      "Zur Startseite",
   },
 };
 
-export const PRIVACY: Record<Locale, { metaTitle: string; title: string; updated: string; sections: LegalSection[] }> = {
+export const PRIVACY: Record<Locale, { metaTitle: string; metaDescription: string; title: string; updated: string; sections: LegalSection[] }> = {
   en: {
     metaTitle: "Privacy Policy",
+    metaDescription: "How Sacramentum Advisors handles the personal data sent through the contact form and the cookies used on this website.",
     title:     "Privacy Policy",
     updated:   "Last updated: October 2026",
     sections: [
@@ -68,6 +66,7 @@ export const PRIVACY: Record<Locale, { metaTitle: string; title: string; updated
   },
   es: {
     metaTitle: "Política de privacidad",
+    metaDescription: "Cómo Sacramentum Advisors trata los datos personales que llegan por el formulario de contacto y las cookies de este sitio.",
     title:     "Política de privacidad",
     updated:   "Última actualización: octubre de 2026",
     sections: [
@@ -95,6 +94,7 @@ export const PRIVACY: Record<Locale, { metaTitle: string; title: string; updated
   },
   de: {
     metaTitle: "Datenschutz",
+    metaDescription: "Wie Sacramentum Advisors die über das Kontaktformular gesendeten Daten und die Cookies dieser Website verarbeitet.",
     title:     "Datenschutzerklärung",
     updated:   "Stand: Oktober 2026",
     sections: [

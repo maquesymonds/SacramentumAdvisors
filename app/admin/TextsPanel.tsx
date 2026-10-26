@@ -405,8 +405,8 @@ const SECTIONS: SectionDef[] = [
 // ── Sector & service pages (data/topics) ──────────────────────────────────────
 // Shown flattened: paragraphs separated by a blank line, bullets one per line.
 const TOPIC_LABEL: Record<TopicId, string> = {
-  "real-estate":         "Bienes raíces",
-  "farmland":            "Agropecuario y forestal",
+  "real-estate":         "Inmobiliario",
+  "farmland":            "Agro y forestal",
   "technology":          "Tecnología (página)",
   "sacramentum-capital": "Sacramentum Capital",
 };

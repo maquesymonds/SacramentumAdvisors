@@ -9,17 +9,17 @@
 
    Looks like the nav's "Reservar consulta" (Maque, 21.10.): sentence case,
    navy with white text; `onDark` flips it to white with navy text, as the nav
-   does over dark backgrounds.
+   does over dark backgrounds. `href`: another page instead of the contact page.
    ─────────────────────────────────────────────────────────────────────────── */
 
 import { useLocalePath } from "@/lib/locale-context";
 import { usePageTransition } from "@/lib/transition-context";
 import { lenisRef } from "@/lib/lenis-ref";
 
-export default function SectionCta({ id, label, align = "center", className = "", scrollTo, onDark = false }: { id: string; label: string; align?: "center" | "start"; className?: string; scrollTo?: string; onDark?: boolean }) {
+export default function SectionCta({ id, label, align = "center", className = "", scrollTo, onDark = false, href: to }: { id: string; label: string; align?: "center" | "start"; className?: string; scrollTo?: string; onDark?: boolean; href?: string }) {
   const { path } = useLocalePath();
   const { navigate } = usePageTransition();
-  const href = scrollTo ? `#${scrollTo}` : path("contact");
+  const href = scrollTo ? `#${scrollTo}` : to ?? path("contact");
 
   return (
     <div className={`flex ${align === "start" ? "justify-start" : "justify-center"} ${className}`} style={{ marginTop: "clamp(2rem, 4vw, 3rem)" }}>

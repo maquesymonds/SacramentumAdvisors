@@ -24,7 +24,7 @@ const YEARS = String(new Date().getFullYear() - 2010);
 export interface CapitalCopy {
   hero:  { eyebrow: string; title: string; intro: string[]; stats: Stat[] };
   focus: { heading: string; items: { title: string; stat: string; body: string }[] };
-  track: { eyebrow: string; heading: string; intro: string; legend: string; scrollHint: string; sectors: Record<Sector, string>; featured: string };
+  track: { eyebrow: string; heading: string; intro: string; legend: string; scrollHint: string; sectors: Record<Sector, string>; featured: string; featuredIntro: string };
   deals: { year: string; name: string; amount: string; tags: string; body: string }[];
   how:   { heading: string; items: { title: string; body: string }[] };
   pablo: { eyebrow: string; name: string; role: string; intro: string; points: string[] };
@@ -54,11 +54,11 @@ export const TRACK: { label: string; year: number; value: number; sector: Sector
 export const CAPITAL: Record<Locale, CapitalCopy> = {
   en: {
     hero: {
-      eyebrow: "Sacramentum Capital",
-      title:   "Investment banking boutique in Montevideo, since 2010",
+      eyebrow: "Sacramentum Capital · Investment banking",
+      title:   "Looking to sell your company, buy one or finance a project?",
       intro: [
-        "Sacramentum Capital advises on structured finance, capital markets and cross-border M&A across the Southern Cone, for regional companies, institutional investors and public entities, on transactions that require both technical depth and local judgment.",
-        "It is Sacramentum Advisors' investment banking firm: Advisors guides international investors and families in Uruguay; Capital leads corporate finance transactions. When an Advisors client considers a transaction led by Capital, we disclose that relationship.",
+        "Sacramentum Capital is an investment banking boutique in Montevideo. Since 2010 it has advised on cross-border M&A, structured finance and capital markets across the Southern Cone, for companies, institutional investors and public entities.",
+        "Sacramentum Capital is the investment banking firm, with a track record since 2010. Sacramentum Advisors is its arm for international investors and families who want to invest or settle in Uruguay.",
       ],
       stats: [
         { value: "USD 1.6B+", label: "In closed transactions" },
@@ -86,6 +86,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       scrollHint: "Swipe to see the full timeline",
       sectors:  { energy: "Energy", infra: "Infrastructure", devbank: "Development bank", ma: "M&A" },
       featured: "Featured transactions",
+      featuredIntro: "Six of the firm's 30 mandates since 2010.",
     },
     deals: [
       { year: "2016", name: "CAF Infrastructure Fund",    amount: "USD 300M", tags: "Development bank · IPO",           body: "The first infrastructure debt fund in Uruguay, structured and placed for CAF: the largest transaction in the firm's history." },
@@ -99,7 +100,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       heading: "How Sacramentum Capital works",
       items: [
         { title: "Led by the founding partner", body: "Every mandate is led personally by Pablo Mautone, from origination through closing. No junior handoffs at critical stages." },
-        { title: "Built on referrals and discretion", body: "The firm has never marketed its services: every mandate has come through referral. The most consequential transactions in the region rarely make headlines, and confidentiality matters as much as execution." },
+        { title: "Built on referrals and discretion", body: "Every mandate has come through referral, from former clients, institutional partners and regional peers. The most consequential transactions in the region rarely make headlines, and confidentiality matters as much as execution." },
         { title: "Trusted by institutions", body: "Advisor to Uruguay's Ministry of Economy and Finance, UTE and Corporación Vial del Uruguay across successive governments, with a recognized standing among the country's pension funds." },
       ],
     },
@@ -124,11 +125,11 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
 
   es: {
     hero: {
-      eyebrow: "Sacramentum Capital",
-      title:   "Boutique de banca de inversión en Montevideo, desde 2010",
+      eyebrow: "Sacramentum Capital · Banca de inversión",
+      title:   "¿Quiere vender su empresa, comprar otra o financiar un proyecto?",
       intro: [
-        "Sacramentum Capital asesora en finanzas estructuradas, mercado de capitales y M&A transfronterizo en el Cono Sur, para empresas regionales, inversores institucionales y entidades públicas, en transacciones que requieren profundidad técnica y conocimiento local.",
-        "Es la firma de banca de inversión de Sacramentum: Advisors acompaña a inversores y familias internacionales en Uruguay; Capital lidera transacciones de finanzas corporativas. Cuando un cliente de Advisors considera una transacción liderada por Capital, lo informamos.",
+        "Sacramentum Capital es una boutique de banca de inversión en Montevideo. Desde 2010 asesora en M&A transfronterizo, finanzas estructuradas y mercado de capitales en el Cono Sur, para empresas, inversores institucionales y entidades públicas.",
+        "Sacramentum Capital es la firma de banca de inversión, con trayectoria desde 2010. Sacramentum Advisors es su brazo dedicado a los inversores y las familias internacionales que quieren invertir o instalarse en Uruguay.",
       ],
       stats: [
         { value: "USD 1.6B+", label: "En transacciones cerradas" },
@@ -153,9 +154,10 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       heading:  "Principales transacciones desde 2012",
       intro:    "Cada burbuja es una transacción cerrada, ubicada por año; su tamaño es proporcional al valor de la transacción.",
       legend:   "Sector",
-      scrollHint: "Deslizá para ver toda la línea de tiempo",
+      scrollHint: "Deslice para ver toda la línea de tiempo",
       sectors:  { energy: "Energía", infra: "Infraestructura", devbank: "Banco de desarrollo", ma: "M&A" },
       featured: "Transacciones destacadas",
+      featuredIntro: "Seis de los 30 mandatos de la firma desde 2010.",
     },
     deals: [
       { year: "2016", name: "Fondo de Infraestructura CAF",  amount: "USD 300M", tags: "Banco de desarrollo · IPO",             body: "El primer fondo de deuda de infraestructura de Uruguay, estructurado y colocado para CAF: la mayor transacción de la historia de la firma." },
@@ -169,7 +171,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       heading: "Cómo trabaja Sacramentum Capital",
       items: [
         { title: "Liderado por el socio fundador", body: "Cada mandato lo dirige personalmente Pablo Mautone, de inicio a cierre. Sin traspasos a equipos junior en las etapas críticas." },
-        { title: "Referencias y discreción", body: "La firma nunca comercializó sus servicios: cada mandato llegó por referencias. Las transacciones más relevantes de la región rara vez trascienden, y la confidencialidad importa tanto como la ejecución." },
+        { title: "Referencias y discreción", body: "Cada mandato llegó por referencias de clientes anteriores y pares institucionales. Las transacciones más relevantes de la región rara vez trascienden, y la confidencialidad importa tanto como la ejecución." },
         { title: "Confianza institucional", body: "Asesor del Ministerio de Economía y Finanzas, UTE y Corporación Vial del Uruguay a lo largo de sucesivos gobiernos, con una posición reconocida ante los fondos de pensión del país." },
       ],
     },
@@ -194,11 +196,11 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
 
   de: {
     hero: {
-      eyebrow: "Sacramentum Capital",
-      title:   "Investment-Banking-Boutique in Montevideo, seit 2010",
+      eyebrow: "Sacramentum Capital · Investmentbanking",
+      title:   "Sie möchten Ihr Unternehmen verkaufen, ein anderes kaufen oder ein Projekt finanzieren?",
       intro: [
-        "Sacramentum Capital berät zu strukturierten Finanzierungen, Kapitalmärkten und grenzüberschreitenden M&A-Transaktionen im Southern Cone, für regionale Unternehmen, institutionelle Investoren und öffentliche Einrichtungen, bei Transaktionen, die technische Tiefe und lokales Urteilsvermögen verlangen.",
-        "Sie ist die Investment-Banking-Firma von Sacramentum: Advisors begleitet internationale Investoren und Familien in Uruguay, Capital führt Corporate-Finance-Transaktionen. Erwägt ein Advisors-Kunde eine von Capital geführte Transaktion, legen wir diese Verbindung offen.",
+        "Sacramentum Capital ist eine Investment-Banking-Boutique in Montevideo. Seit 2010 berät sie zu grenzüberschreitenden M&A-Transaktionen, strukturierten Finanzierungen und Kapitalmärkten im Southern Cone, für Unternehmen, institutionelle Investoren und öffentliche Einrichtungen.",
+        "Sacramentum Capital ist die Investmentbank, mit einer Erfolgsbilanz seit 2010. Sacramentum Advisors ist ihr Bereich für internationale Investoren und Familien, die in Uruguay investieren oder sich dort niederlassen möchten.",
       ],
       stats: [
         { value: "USD 1.6B+", label: "Abgeschlossene Transaktionen" },
@@ -226,6 +228,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       scrollHint: "Wischen, um die ganze Zeitleiste zu sehen",
       sectors:  { energy: "Energie", infra: "Infrastruktur", devbank: "Entwicklungsbank", ma: "M&A" },
       featured: "Ausgewählte Transaktionen",
+      featuredIntro: "Sechs der 30 Mandate der Firma seit 2010.",
     },
     deals: [
       { year: "2016", name: "CAF-Infrastrukturfonds",     amount: "USD 300M", tags: "Entwicklungsbank · IPO",             body: "Der erste Infrastruktur-Schuldenfonds Uruguays, für CAF strukturiert und platziert: die größte Transaktion der Firmengeschichte." },
@@ -239,7 +242,7 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
       heading: "Wie Sacramentum Capital arbeitet",
       items: [
         { title: "Vom Gründungspartner geführt", body: "Jedes Mandat führt Pablo Mautone persönlich, von der Anbahnung bis zum Abschluss. Keine Übergabe an Junior-Teams in entscheidenden Phasen." },
-        { title: "Empfehlungen und Diskretion", body: "Die Firma hat ihre Leistungen nie beworben: Jedes Mandat kam über Empfehlungen. Die wichtigsten Transaktionen der Region kommen selten in die Schlagzeilen, und Vertraulichkeit zählt so viel wie die Umsetzung." },
+        { title: "Empfehlungen und Diskretion", body: "Jedes Mandat kam über Empfehlungen von früheren Kunden und institutionellen Partnern. Die wichtigsten Transaktionen der Region kommen selten in die Schlagzeilen, und Vertraulichkeit zählt so viel wie die Umsetzung." },
         { title: "Vertrauen der Institutionen", body: "Berater des uruguayischen Wirtschafts- und Finanzministeriums, von UTE und der Corporación Vial del Uruguay über mehrere Regierungen hinweg, mit anerkanntem Ruf bei den Pensionsfonds des Landes." },
       ],
     },
