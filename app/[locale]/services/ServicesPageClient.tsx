@@ -216,7 +216,8 @@ function MobileServiceTimeline({ cards }: { cards: { id: string; image: string; 
 
 // ── 3D Carousel ───────────────────────────────────────────────────────────────
 function ServiceCarousel({ cards, initialCard }: { cards: { id: string; image: string; title: string; description: string }[]; locale?: string; initialCard?: string | null }) {
-  const stepWord    = useT().services.step;
+  const t           = useT();
+  const stepWord    = t.services.step;
   const outerRef    = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const sectionRef  = useRef<HTMLElement>(null);
@@ -458,7 +459,10 @@ function ServiceCarousel({ cards, initialCard }: { cards: { id: string; image: s
           </div>
         </div>
 
-
+        {/* CTA inside the pinned scene, over the rocks (Maque, 26.10.2026) */}
+        <div className="relative" style={{ zIndex: 6, paddingBottom: "clamp(2rem, 5vh, 3.5rem)" }}>
+          <SectionCta id="services-after-services" label={t.closingCta.cta} className="!mt-0" />
+        </div>
       </section>
     </div>
   );
@@ -532,7 +536,8 @@ export default function ServicesPageClient({ faq }: { faq?: React.ReactNode }) {
           <ServiceCarousel cards={copy.howWeSupport.cards} locale={locale} initialCard={initialCard} />
         </div>
 
-        <div className="container-site">
+        {/* Mobile: the carousel (and its CTA) is desktop only */}
+        <div className="container-site lg:hidden">
           <SectionCta id="services-after-services" label={copy.closingCta.cta} className="pb-[var(--section-padding-y)]" />
         </div>
 
