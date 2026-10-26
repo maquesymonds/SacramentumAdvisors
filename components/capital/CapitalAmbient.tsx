@@ -181,7 +181,7 @@ export default function CapitalAmbient() {
   // opacity or transform (the page transition) would stop being fixed.
   if (!mounted) return null;
   return createPortal(
-    <div ref={ref} className="cap-ambient" aria-hidden="true">
+    <div ref={ref} className="cap-ambient" aria-hidden="true" data-nav-backdrop="">
       <div className="cap-ambient__grain" />
     </div>,
     document.body,

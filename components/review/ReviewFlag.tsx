@@ -47,9 +47,7 @@ export default function ReviewFlag({
       <p style={{ fontWeight: 600, marginBottom: "0.4rem", letterSpacing: "0.01em" }}>⚠ {title}</p>
       <ul style={{ display: "flex", flexDirection: "column", gap: "0.35rem", paddingLeft: "1.1rem", listStyle: "disc" }}>
         {notes.map((n, i) => (
-          <li key={i}>
-            <span style={{ fontWeight: 600 }}>{KIND[n.kind]}:</span> {n.pregunta}
-          </li>
+          <li key={i} title={KIND[n.kind]}>{n.pregunta}</li>
         ))}
       </ul>
     </aside>

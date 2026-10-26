@@ -92,43 +92,196 @@ function LanguageMenu({
   );
 }
 
-// Samples the page behind the fixed nav at a few points along its height
-// line: for each, the first ancestor with an opaque background decides. Photos
-// and other media are skipped (their tone is unknown). Dark when most of the
-// readable samples are dark.
-// Fixed layers (the loader, the page transition, floating panels) are skipped:
-// sampled while the loader still covered the page, a white page read as dark
-// and the nav kept white text on white until the first scroll.
-// Content pinned by ScrollTrigger is fixed too while it is pinned (Why
-// Uruguay's chapters), but it IS the page: it sits in a .pin-spacer and is
-// read like any other section. Skipping it left grey text on the green
-// chapter (Maque, 25.10.2026).
+// ── What colour is behind the nav ───────────────────────────────────────────
+// Composites, at a few points along the nav's height line, what the eye sees:
+// semi-transparent layers (a dark veil) over opaque ones, and for photos the
+// real pixel (an <img> or a CSS background image, read through a small cached
+// canvas). Used on every page, home included: a list of "light sections" and
+// skipped photos kept leaving white text on white (Maque, 26.10.2026).
+// data-nav-tone="dark|light" still wins where a block wants to say it itself.
+// Fixed layers (loader, page transition, floating panels) are skipped, except
+// page backdrops marked data-nav-backdrop and content pinned by ScrollTrigger.
+
+type Rgb = [number, number, number];
+const lum = ([r, g, b]: Rgb) => (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+
 function inFixedLayer(el: Element): boolean {
   for (let e: Element | null = el; e && e !== document.body; e = e.parentElement) {
+    if ((e as HTMLElement).dataset?.navBackdrop !== undefined) return false;
     if (getComputedStyle(e).position === "fixed" && !e.parentElement?.classList.contains("pin-spacer")) return true;
   }
   return false;
 }
 
-function backgroundBehindNavIsDark(y: number): boolean {
+const imgCache = new Map<string, { data: Uint8ClampedArray; w: number; h: number } | null>();
+function pixels(src: string, img?: HTMLImageElement) {
+  if (imgCache.has(src)) return imgCache.get(src)!;
+  const el = img && img.complete && img.naturalWidth ? img : null;
+  if (!el) {
+    // load it for next time
+    const probe = document.createElement("img");
+    probe.crossOrigin = "anonymous";
+    probe.onload = () => { imgCache.delete(src); pixels(src, probe); };
+    probe.src = src;
+    return null;
+  }
+  try {
+    const w = 96, h = Math.max(1, Math.round(96 * el.naturalHeight / el.naturalWidth));
+    const c = document.createElement("canvas"); c.width = w; c.height = h;
+    const ctx = c.getContext("2d", { willReadFrequently: true })!;
+    ctx.drawImage(el, 0, 0, w, h);
+    const v = { data: ctx.getImageData(0, 0, w, h).data, w, h };
+    imgCache.set(src, v);
+    return v;
+  } catch { imgCache.set(src, null); return null; }
+}
+
+/** Pixel of an image drawn into box with object-fit / background-size cover|contain|fill */
+function samplePhoto(src: string, img: HTMLImageElement | undefined, box: DOMRect, fit: string, pos: string, x: number, y: number): Rgb | null {
+  const px = pixels(src, img);
+  if (!px) return null;
+  const ar = px.w / px.h;
+  let w = box.width, h = box.height;
+  if (fit === "cover" || fit === "contain") {
+    const scale = fit === "cover" ? Math.max(box.width / px.w, box.height / px.h) : Math.min(box.width / px.w, box.height / px.h);
+    w = px.w * scale; h = px.h * scale;
+  } else if (fit !== "fill" && fit !== "100% 100%") { w = box.width; h = box.width / ar; }
+  const [pxs, pys] = (pos || "50% 50%").split(" ");
+  const pct = (s: string | undefined, free: number) => s?.endsWith("%") ? parseFloat(s) / 100 * free : s?.endsWith("px") ? parseFloat(s) : free / 2;
+  const left = box.left + pct(pxs, box.width - w), top = box.top + pct(pys ?? pxs, box.height - h);
+  const u = Math.floor((x - left) / w * px.w), v = Math.floor((y - top) / h * px.h);
+  if (u < 0 || v < 0 || u >= px.w || v >= px.h) return null;
+  const i = (v * px.w + u) * 4;
+  return [px.data[i], px.data[i + 1], px.data[i + 2]];
+}
+
+/** Colour and alpha of a linear-gradient() at a point of its box. Handles
+    "to top|bottom|left|right", "<n>deg" and plain colour stops (rgb/rgba/hex,
+    optional %); anything else returns null. */
+function gradientAt(value: string, box: DOMRect, x: number, y: number): [Rgb, number] | null {
+  const m = value.match(/linear-gradient\((.*)\)/);
+  if (!m) return null;
+  const parts = m[1].split(/,(?![^(]*\))/).map(s => s.trim());
+  let deg = 180;
+  if (/^to |deg$/.test(parts[0])) {
+    const d = parts.shift()!;
+    deg = d === "to top" ? 0 : d === "to right" ? 90 : d === "to left" ? 270 : d === "to bottom" ? 180 : parseFloat(d);
+  }
+  const stops = parts.map((p, i) => {
+    const pos = p.match(/(-?[\d.]+)%\s*$/);
+    const col = p.replace(/\s+-?[\d.]+%\s*$/, "");
+    let c: number[] | null = null;
+    const rgb = col.match(/rgba?\(([^)]+)\)/);
+    if (rgb) c = rgb[1].split(/[\s,/]+/).filter(Boolean).map(Number);
+    else if (/^#[0-9a-f]{6}$/i.test(col)) c = [1, 3, 5].map(k => parseInt(col.slice(k, k + 2), 16));
+    else if (col === "transparent") c = [0, 0, 0, 0];
+    else if (col === "black") c = [0, 0, 0];
+    else if (col === "white") c = [255, 255, 255];
+    if (!c) return null;
+    return { c: [c[0], c[1], c[2]] as Rgb, a: c.length > 3 ? c[3] : 1, at: pos ? parseFloat(pos[1]) / 100 : i / Math.max(1, parts.length - 1) };
+  });
+  if (stops.some(s => !s) || !stops.length) return null;
+  const st = stops as { c: Rgb; a: number; at: number }[];
+  // position along the gradient line (projection on its direction)
+  const rad = (deg * Math.PI) / 180, dx = Math.sin(rad), dy = -Math.cos(rad);
+  const len = Math.abs(box.width * dx) + Math.abs(box.height * dy) || 1;
+  const cx = box.left + box.width / 2, cy = box.top + box.height / 2;
+  const f = Math.min(1, Math.max(0, ((x - cx) * dx + (y - cy) * dy) / len + 0.5));
+  let j = st.findIndex(s => s.at >= f);
+  if (j <= 0) j = j === 0 ? 0 : st.length - 1;
+  const A = st[Math.max(0, j - 1)], B = st[j];
+  const k = B.at === A.at ? 1 : (f - A.at) / (B.at - A.at);
+  const mixc = (u: number, v: number) => u + (v - u) * Math.min(1, Math.max(0, k));
+  return [[mixc(A.c[0], B.c[0]), mixc(A.c[1], B.c[1]), mixc(A.c[2], B.c[2])], mixc(A.a, B.a)];
+}
+
+function colourAt(x: number, y: number, header: Element | null): Rgb | "dark" | "light" | null {
+  const stack = document.elementsFromPoint(x, y).filter(el => !header?.contains(el) && !inFixedLayer(el));
+  if (!stack.length) return null;
+  const tone = stack[0].closest<HTMLElement>("[data-nav-tone]")?.dataset.navTone;
+  if (tone === "dark" || tone === "light") return tone;
+  const out: Rgb = [0, 0, 0];
+  let left = 1;
+  const add = (c: Rgb, a: number) => { for (let k = 0; k < 3; k++) out[k] += left * a * c[k]; left *= 1 - a; };
+  for (const el of stack) {
+    const cs = getComputedStyle(el);
+    if (cs.visibility === "hidden" || Number(cs.opacity) < 0.05) continue;
+    if (el.classList.contains("cap-ambient")) {
+      const m = cs.getPropertyValue("--amb-top").trim().split(/\s+/).map(Number);
+      if (m.length === 3 && m.every(n => !Number.isNaN(n))) { add(m as Rgb, 1); break; }
+    }
+    // a gradient mask (a photo fading out) scales what this element paints
+    const maskVal = cs.getPropertyValue("mask-image") || cs.getPropertyValue("-webkit-mask-image");
+    const mask = maskVal && maskVal !== "none" ? gradientAt(maskVal, el.getBoundingClientRect(), x, y) : null;
+    const k = mask ? mask[1] : 1;
+    const box = el.getBoundingClientRect();
+    // Paint order inside one element, top first: the <img> itself, then its
+    // background images (photo or gradient), then its background colour
+    if (el instanceof HTMLImageElement) {
+      const p = samplePhoto(el.currentSrc || el.src, el, box, cs.objectFit, cs.objectPosition, x, y);
+      if (p) add(p, k);
+    }
+    const bg = cs.backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+    if (bg && left > 0.03) {
+      const p = samplePhoto(new URL(bg[1], location.href).href, undefined, box, cs.backgroundSize, cs.backgroundPosition, x, y);
+      if (p) add(p, k);
+    }
+    const grad = cs.backgroundImage.includes("linear-gradient") ? gradientAt(cs.backgroundImage, box, x, y) : null;
+    if (grad && grad[1] > 0 && left > 0.03) add(grad[0], grad[1] * k);
+    const m = cs.backgroundColor.match(/[\d.]+/g);
+    const a = m ? (m.length > 3 ? Number(m[3]) : 1) : 0;
+    if (m && a > 0 && left > 0.03) add([Number(m[0]), Number(m[1]), Number(m[2])], a * k);
+    if (left < 0.03) break;
+  }
+  if (left > 0.6) return null; // mostly unknown (a photo still loading)
+  return [out[0] / (1 - left), out[1] / (1 - left), out[2] / (1 - left)];
+}
+
+// true = dark behind the nav, false = light, null = nothing readable yet.
+// Luminance threshold 0.6: mid tones (Why Uruguay's sand chapter) carry white text.
+function backgroundBehindNavIsDark(y: number): boolean | null {
   const header = document.querySelector("header[role=banner]");
   let dark = 0, light = 0;
-  for (const fx of [0.1, 0.3, 0.5, 0.7, 0.9]) {
-    const hit = document.elementsFromPoint(window.innerWidth * fx, y).find(el => !header?.contains(el) && !inFixedLayer(el));
-    if (!hit || hit.closest("img, video, canvas, picture, figure")) continue;
-    for (let el: Element | null = hit; el; el = el.parentElement) {
-      const m = getComputedStyle(el).backgroundColor.match(/[\d.]+/g);
-      if (!m || (m.length > 3 && parseFloat(m[3]) < 0.5)) continue;
-      const [r, g, b] = m.map(Number);
-      // Luminance (sRGB weights). 0.6, not 0.5: mid tones like Why Uruguay's
-      // sand chapter carry white text, so the nav goes white there too; the
-      // site's light surfaces sit above 0.9.
-      if ((0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 < 0.6) dark++;
+  // elementsFromPoint skips pointer-events:none, and that is exactly what
+  // paints a lot of this site (carousel photos, veils over photos, Capital's
+  // backdrop): make everything hit-testable for the length of the reading.
+  const root = document.documentElement;
+  root.classList.add("nav-probe");
+  try {
+    // Read right behind what has to be legible: the logo, each link, the
+    // language menu (not the consult button, it carries its own fill). A
+    // vote across the full width let coloured margins outvote white cards
+    // sitting under the links (Maque, 26.10.2026).
+    const targets = Array.from(header?.querySelectorAll<HTMLElement>("a, button, img") ?? [])
+      .filter(el => {
+        const r = el.getBoundingClientRect();
+        if (!r.width || r.top > y + 30 || r.bottom < y - 30) return false;
+        const m = getComputedStyle(el).backgroundColor.match(/[\d.]+/g);
+        return !(m && (m.length < 4 || Number(m[3]) > 0.5)); // skip filled buttons
+      })
+      .map(el => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; });
+    const points = targets.length ? targets : [0.08, 0.3, 0.5, 0.7, 0.92].map(fx => [window.innerWidth * fx, y]);
+    for (const [px, py] of points) {
+      const c = colourAt(px, py, header);
+      if (c === null) continue;
+      if (c === "dark" || (c !== "light" && lum(c) < 0.6)) dark++;
       else light++;
-      break;
     }
+  } finally {
+    root.classList.remove("nav-probe");
   }
+  if (!dark && !light) return null;
   return dark > light;
+}
+
+// Dev only: inspect what the nav reads at a point (window.__navColour(x, y))
+if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
+  (window as unknown as { __navColour: unknown }).__navColour = (x: number, y: number) => {
+    const header = document.querySelector("header[role=banner]");
+    const stack = document.elementsFromPoint(x, y).filter(el => !header?.contains(el) && !inFixedLayer(el)).slice(0, 6)
+      .map(el => `${el.tagName}.${String((el as HTMLElement).className).slice(0, 24)} bg=${getComputedStyle(el).backgroundColor} img=${getComputedStyle(el).backgroundImage.slice(0, 30)}`);
+    return { colour: colourAt(x, y, header), stack };
+  };
 }
 
 export default function Navigation() {
@@ -156,27 +309,23 @@ export default function Navigation() {
   useEffect(() => {
     if (!isHome) return;
 
-    const LIGHT_IDS = ["why-uruguay", "how-we-support", "why-sacramentum", "testimonials", "team", "news"];
     const NAV_Y = 60; // vertical midpoint of the nav bar
     let rafId: number;
 
+    // The real colour behind the nav decides; nothing readable keeps the last state
     const check = () => {
-      const inLight = LIGHT_IDS.some(id => {
-        const el = document.getElementById(id);
-        if (!el) return false;
-        const r = el.getBoundingClientRect();
-        return r.top <= NAV_Y && r.bottom >= NAV_Y;
-      });
-      // A light section can still have a dark background behind the nav
-      // (the page-wide colour blend, usePageBlend): the real colour wins.
-      setScrollDark(inLight && !backgroundBehindNavIsDark(NAV_Y));
+      const darkBehind = backgroundBehindNavIsDark(NAV_Y);
+      if (darkBehind !== null) setScrollDark(!darkBehind);
     };
 
     const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(check); };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    // Backgrounds keep changing after the scroll stops (the colour blend, a
+    // photo that finishes loading): look again a few times a second
+    const timer = window.setInterval(check, 300);
     check();
-    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(rafId); };
+    return () => { window.removeEventListener("scroll", onScroll); window.clearInterval(timer); cancelAnimationFrame(rafId); };
   }, [isHome]);
 
   // Other pages are light, except sections marked data-nav-dark (the
@@ -187,23 +336,22 @@ export default function Navigation() {
     const NAV_Y = 60;
     let rafId: number;
     const check = () => {
-      // Sacramentum Capital's blended background says its own tone (CapitalAmbient)
-      const tone = document.documentElement.dataset.capAmbTone;
-      if (tone) { setOverDarkSection(tone === "dark"); return; }
       const over = Array.from(document.querySelectorAll("[data-nav-dark]")).some(el => {
         const r = el.getBoundingClientRect();
         return r.top <= NAV_Y && r.bottom >= NAV_Y;
       });
-      // Not marked: read the real background behind the nav, so coloured
-      // sections (Why Uruguay's chapters…) get the light text too.
-      setOverDarkSection(over || backgroundBehindNavIsDark(NAV_Y));
+      // The real background wins; the data-nav-dark markers only decide
+      // when nothing behind the nav can be read
+      const darkBehind = backgroundBehindNavIsDark(NAV_Y);
+      setOverDarkSection(darkBehind ?? over);
     };
     const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(check); };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     window.addEventListener("cap-amb-tone", check);
+    const timer = window.setInterval(check, 300); // backgrounds that keep changing after the scroll stops
     check();
-    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); window.removeEventListener("cap-amb-tone", check); cancelAnimationFrame(rafId); };
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); window.removeEventListener("cap-amb-tone", check); window.clearInterval(timer); cancelAnimationFrame(rafId); };
   }, [isHome, pathname]);
 
   const isDark = isHome ? scrollDark : !overDarkSection;

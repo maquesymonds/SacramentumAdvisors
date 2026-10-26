@@ -16,7 +16,8 @@ function parseValue(val: string) {
 }
 
 // `immediate`: count even when the number is on screen at load (a hero figure).
-export default function CountUp({ value, immediate = false }: { value: string; immediate?: boolean }) {
+// `fullCurrency`: the currency word at the figure's size (home Capital band, Maque 26.10.2026).
+export default function CountUp({ value, immediate = false, fullCurrency = false }: { value: string; immediate?: boolean; fullCurrency?: boolean }) {
   const parsed = parseValue(value);
   const ref = useRef<HTMLSpanElement>(null);
   const [current, setCurrent] = useState<number | null>(null); // null = final value
@@ -54,7 +55,7 @@ export default function CountUp({ value, immediate = false }: { value: string; i
 
   return (
     <span ref={ref}>
-      {currency && <span style={{ fontSize: "0.5em", marginRight: "0.15em" }}>{currency[1]}</span>}
+      {currency && <span style={fullCurrency ? { marginRight: "0.25em" } : { fontSize: "0.5em", marginRight: "0.15em" }}>{currency[1]}</span>}
       {lead}{number}
       {unit
         ? <span style={{ fontSize: "0.5em", marginLeft: "0.15em" }}>{unit[1]}</span>

@@ -294,6 +294,10 @@ html::-webkit-scrollbar { display: none; }
 ::-webkit-scrollbar-track   { background: var(--color-surface-muted); }
 ::-webkit-scrollbar-thumb   { background: rgba(129, 166, 176, 0.4); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(129, 166, 176, 0.7); }
+/* Boxes over a coloured panel (Why Uruguay chapters) hide it: the grey track
+   showed as a line down the middle of the page. */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
 /* ── Page height ─────────────────────────────────────────────────────────────── */
 /* Every page fills at least the screen: a short page (thank-you, 404, an empty  */
@@ -411,3 +415,8 @@ html [data-bg-live][data-blend] { transition: none !important; }
 
 /* Mobile menu open: the cookie banner steps aside (Navigation sets the flag) */
 body[data-menu-open] [data-cookie-banner] { display: none; }
+
+/* Navigation.tsx reads the colour behind the nav with elementsFromPoint, which
+   skips pointer-events:none. For the instant of the reading, everything counts
+   (the nav itself is excluded by the reader). */
+html.nav-probe *, html.nav-probe *::before, html.nav-probe *::after { pointer-events: auto !important; }

@@ -119,26 +119,23 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
           }
         });
 
-        // Pin entire section, scrub through (CHAPTERS.length - 1) screens
+        // Short still moment at both ends of each step between chapters
+        const HOLD  = 0.05;
+        const total = CHAPTERS.length - 1;
+
+        // Pin entire section, scrub through (CHAPTERS.length - 1) screens.
+        // Scrolling is taken over below: one gesture = one chapter.
         const mainTl = gsap.timeline({
           scrollTrigger: {
             trigger: chaptersSection.current,
             start:   "top top",
-            end:     `+=${(CHAPTERS.length - 1) * 100}%`,
+            end:     `+=${total * 100}%`,
             pin:     true,
             scrub:   0.3,
-            snap: {
-              snapTo:    1 / (CHAPTERS.length - 1),
-              duration:  { min: 0.5, max: 0.9 },
-              delay:     0.08,
-              ease:      "power2.inOut",
-              inertia:   false,
-            },
             onUpdate: (self) => {
-              const total      = CHAPTERS.length - 1;
               const raw        = self.progress * total;
               const segIndex   = Math.min(Math.floor(raw), total - 1);
-              const segProgress = raw - segIndex;
+              const segProgress = gsap.utils.clamp(0, 1, (raw - segIndex - HOLD) / (1 - 2 * HOLD));
               const colorA  = bgColorsRef.current[segIndex];
               const colorB  = bgColorsRef.current[segIndex + 1];
               const blended = lerpColor(colorA, colorB, segProgress);
@@ -154,24 +151,123 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
           },
         });
 
-        for (let i = 0; i < CHAPTERS.length - 1; i++) {
+        for (let i = 0; i < total; i++) {
           const curr = textPanelRefs.current[i];
           const next = textPanelRefs.current[i + 1];
+          const span = 1 - 2 * HOLD;
           const seg = gsap.timeline();
-          seg.to(imageRefs.current[i], { clipPath: "inset(0 0 100% 0)", duration: 1, ease: "none" }, 0);
-          seg.to(curr, { opacity: 0, y: -24, duration: 0.35, ease: "power2.in" }, 0);
+          seg.to(imageRefs.current[i], { clipPath: "inset(0 0 100% 0)", duration: span, ease: "power1.inOut" }, HOLD);
+          // Out and in overlap, so there is never a moment with no text
+          seg.to(curr, { opacity: 0, y: -24, duration: span * 0.5, ease: "power2.in" }, HOLD);
           seg.fromTo(
             next,
             { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
-            0.5,
+            { opacity: 1, y: 0, duration: span * 0.55, ease: "power2.out" },
+            HOLD + span * 0.45,
           );
+          seg.set({}, {}, 1); // pad the segment to a full screen
           mainTl.add(seg);
         }
+
+        // ── Scroll jacking: one gesture moves exactly one chapter ──────────
+        // Inside the pinned range every wheel/key scroll is taken from Lenis.
+        // A gesture triggers one step; the rest of it (trackpad inertia) is
+        // swallowed, so you can't slide past a chapter or out of the section.
+        // Lenis is created by SmoothScrollProvider, whose effect runs after
+        // this one, so it is read when needed instead of captured above.
+        const st  = mainTl.scrollTrigger!;
+        const TOL = 4;
+        let busy      = false;  // a step is animating
+        let swallow   = false;  // rest of the gesture that made the last step
+        let lastWheel = 0;
+        let lastAbs   = 0;
+        let release: ReturnType<typeof setTimeout> | undefined;
+
+        const chapterY = (i: number) => st.start + (st.end - st.start) * (i / total);
+
+        const goTo = (i: number) => {
+          const lenis = lenisRef.current;
+          if (!lenis) return;
+          busy = swallow = true;
+          clearTimeout(release);
+          release = setTimeout(() => { busy = false; }, 1600);
+          lenis.scrollTo(chapterY(i), {
+            duration:   1.1,
+            easing:     (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+            lock:       true,
+            force:      true,
+            onComplete: () => { clearTimeout(release); busy = false; },
+          });
+        };
+
+        const block = (e: Event) => { e.preventDefault(); e.stopImmediatePropagation(); };
+
+        // Returns true when the event was handled (and must not scroll).
+        const step = (dir: 1 | -1, newGesture: boolean, delta = 0): boolean => {
+          const lenis = lenisRef.current;
+          if (!lenis) return false;
+          const y = window.scrollY;
+
+          if (newGesture) swallow = false;
+
+          // Approaching from outside: if this scroll would cross into the
+          // section, stop at its edge instead of sliding in
+          if (y < st.start - TOL || y > st.end + TOL) {
+            const next = lenis.targetScroll + delta;
+            if (dir > 0 && y < st.start && next >= st.start) { goTo(0); return true; }
+            if (dir < 0 && y > st.end && next <= st.end) { goTo(total); return true; }
+            return false;
+          }
+
+          if (busy || swallow) return true;
+
+          const idx = Math.round(st.progress * total);
+          // First chapter going up / last going down: let the page scroll on
+          if (dir < 0 && idx === 0) return false;
+          if (dir > 0 && idx === total) return false;
+
+          goTo(Math.min(total, Math.max(0, idx + dir)));
+          return true;
+        };
+
+        const onWheel = (e: WheelEvent) => {
+          if (Math.abs(e.deltaY) < 1) return;
+          // Boxes with their own scroll (review panel, modals) keep it; at
+          // their end the wheel stops there instead of jumping the page
+          const box = (e.target as HTMLElement).closest?.("[data-lenis-prevent]");
+          if (box) {
+            const canScroll = e.deltaY > 0
+              ? box.scrollTop + box.clientHeight < box.scrollHeight - 1
+              : box.scrollTop > 0;
+            if (!canScroll) block(e);
+            return;
+          }
+          const now = performance.now();
+          const abs = Math.abs(e.deltaY);
+          // A pause, or a push stronger than the dying inertia, is a new gesture
+          const newGesture = now - lastWheel > 200 || abs > lastAbs * 1.6 + 8;
+          lastWheel = now;
+          lastAbs   = abs;
+          if (step(e.deltaY > 0 ? 1 : -1, newGesture, e.deltaY)) block(e);
+        };
+
+        const KEYS: Record<string, 1 | -1> = { ArrowDown: 1, PageDown: 1, " ": 1, ArrowUp: -1, PageUp: -1 };
+        const onKey = (e: KeyboardEvent) => {
+          const dir = KEYS[e.key];
+          const el  = e.target as HTMLElement;
+          if (!dir || el.closest("input, textarea, select, [contenteditable]")) return;
+          if (step(e.shiftKey && e.key === " " ? -1 : dir, true)) block(e);
+        };
+
+        window.addEventListener("wheel", onWheel, { capture: true, passive: false });
+        window.addEventListener("keydown", onKey, { capture: true });
 
         setTimeout(() => ScrollTrigger.refresh(), 150);
 
         return () => {
+          clearTimeout(release);
+          window.removeEventListener("wheel", onWheel, { capture: true });
+          window.removeEventListener("keydown", onKey, { capture: true });
           if (lenis) lenis.off("scroll", ScrollTrigger.update);
         };
       });
@@ -254,6 +350,7 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
                 <div
                   key={chapter.id}
                   ref={(el) => { textPanelRefs.current[i] = el; }}
+                  className="no-scrollbar"
                   style={{
                     position:      "absolute",
                     inset:         0,
@@ -330,7 +427,7 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
                         ))}
                       </div>
                       <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.82rem", lineHeight: 1.5, fontStyle: "italic", borderLeft: "2px solid rgba(204,168,124,0.3)", paddingLeft: "0.875rem", marginBottom: "1.25rem", maxWidth: "52ch" }}><LinkedText text={copy.legalNote} locale={locale} /></p>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "1.5rem" }}>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
                         {copy.downloads.map((dl: { label: string; href: string }) => (
                           <a key={dl.label} href={dl.href} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "rgba(255,255,255,0.75)", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 500, border: "1px solid rgba(255,255,255,0.18)", borderRadius: "50px", padding: "0.45rem 1rem", transition: "all 0.25s ease" }}
                             onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(204,168,124,0.6)"; e.currentTarget.style.color = "rgba(204,168,124,0.9)"; }}
@@ -340,12 +437,7 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
                           </a>
                         ))}
                       </div>
-                      <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "rgba(255,255,255,0.85)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.25)", paddingBottom: "0.2rem", transition: "all 0.25s ease", width: "fit-content" }}
-                        onMouseEnter={e => { e.currentTarget.style.borderColor = "white"; e.currentTarget.style.color = "white"; }}
-                        onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}>
-                        {copy.cta}
-                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                      </a>
+                      {/* No contact CTA here: the downloads plus the sector link are enough */}
                     </>
                   ) : (
                     /* ── Default: body + stat + cta ── */
@@ -463,9 +555,6 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
                         </a>
                       ))}
                     </div>
-                    <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ display: "inline-block", marginTop: "1.5rem", color: "rgba(255,255,255,0.8)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "0.2rem" }}>
-                    {copy.cta}
-                  </a>
                   </>
                 ) : (
                   <a href={path("contact")} data-cta={`why-uruguay-${chapter.id}`} style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "0.2rem" }}>

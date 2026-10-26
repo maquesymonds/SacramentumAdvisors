@@ -61,7 +61,7 @@ export default function OlasBackground({ initialTop, initialHeight }: { initialT
 
       {/* Floating admin panel */}
       {visible && (
-        <div style={{
+        <div data-nav-backdrop="" style={{
           position:        "fixed",
           bottom:          "1.5rem",
           right:           "1.5rem",

@@ -40,7 +40,9 @@ export default function CapitalTeaser() {
       className="flex items-center bg-surface"
       style={{ minHeight: "100svh", paddingBlock: "clamp(5rem, 9vw, 8rem)" }}
     >
-      <div className="container-site w-full grid gap-14 lg:grid-cols-[7fr_5fr] lg:gap-24 lg:items-center">
+      {/* The figures column is as tall as the copy column: first line at the
+          eyebrow, last label level with the button (Maque, 26.10.2026) */}
+      <div className="container-site w-full grid gap-14 lg:grid-cols-[7fr_5fr] lg:gap-24">
         <div>
           <p className="text-eyebrow mb-6 flex items-center gap-3" style={{ color: "var(--color-warm)" }}>
             <span className="block h-px w-8" style={{ backgroundColor: "var(--color-warm)" }} />
@@ -58,12 +60,12 @@ export default function CapitalTeaser() {
           <SectionCta id="home-capital" label={ui.link} href={path("sacramentum-capital")} align="start" className="max-lg:hidden" />
         </div>
 
-        <div>
-          <dl>
-            {c.hero.stats.slice(0, 3).map(s => (
-              <div key={s.label} className="flex flex-col gap-2 py-7" style={{ borderTop: `1px solid ${LINE}` }}>
+        <div className="flex flex-col">
+          <dl className="lg:flex-1 lg:flex lg:flex-col lg:justify-between">
+            {c.hero.stats.slice(0, 3).map((s, i) => (
+              <div key={s.label} className={`flex flex-col gap-2 py-5 ${i === 2 ? "lg:pb-0" : ""}`} style={{ borderTop: `1px solid ${LINE}` }}>
                 <dt className="order-2 text-ink-muted" style={{ fontSize: "clamp(1.05rem, 0.9rem + 0.4vw, 1.25rem)" }}>{s.label}</dt>
-                <dd className="order-1 text-ink" style={{ fontSize: "clamp(3.4rem, 2rem + 4vw, 5.8rem)", letterSpacing: "-0.045em", lineHeight: 0.95 }}><CountUp value={s.value} /></dd>
+                <dd className="order-1 text-ink" style={{ fontSize: "clamp(3.2rem, 1.8rem + 3.6vw, 5.2rem)", letterSpacing: "-0.045em", lineHeight: 0.95 }}><CountUp value={s.value} fullCurrency /></dd>
               </div>
             ))}
           </dl>

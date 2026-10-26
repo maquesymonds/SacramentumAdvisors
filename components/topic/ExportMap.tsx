@@ -45,9 +45,9 @@ function arc(to: MapPin): string {
 /** Label beside the end point; Europe's labels sit left of the pin so they stay on the map */
 function labelAt(pin: MapPin): { x: number; y: number; anchor: "start" | "end" } {
   const [x, y] = MAP_PINS[pin];
-  if (pin === "uk" || pin === "es") return { x: x - 1.4, y: y + 0.6, anchor: "end" };
-  if (pin === "cl") return { x: x - 1.4, y: y + 0.6, anchor: "end" };
-  return { x: x + 1.4, y: y + 0.6, anchor: "start" };
+  if (pin === "uk" || pin === "es") return { x: x - 2.2, y: y + 0.45, anchor: "end" };
+  if (pin === "cl") return { x: x - 2.2, y: y + 0.45, anchor: "end" };
+  return { x: x + 2.2, y: y + 0.45, anchor: "start" };
 }
 
 export default function ExportMap({ origin, links }: { origin: string; links: ExportLink[] }) {
@@ -125,7 +125,7 @@ export default function ExportMap({ origin, links }: { origin: string; links: Ex
         </g>
         <g data-map-label="mvd" className={`${s.pill} ${s.pillOrigin}`}>
           <rect rx={1} />
-          <text x={ox + 1.8} y={oy + 2.8} className={s.originLabel}>{origin}</text>
+          <text x={ox + 2.2} y={oy + 3.2} className={s.originLabel}>{origin}</text>
         </g>
       </svg>
     </figure>

@@ -28,6 +28,7 @@ export default function IntroReveal() {
   return (
     <div
       id="home"
+      data-nav-tone="dark" /* photo under a dark veil: the nav reads it as dark */
       style={{
         position:       "relative",
         height:         "100vh",

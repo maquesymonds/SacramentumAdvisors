@@ -46,7 +46,11 @@ type Band = {
   holding?: boolean;       // live band currently painted by us
 };
 
-const cap = () => document.documentElement.hasAttribute("data-cap-amb");
+// Capital's sections carry data-amb from the server HTML; data-cap-amb only
+// arrives a render later, and in between the hero's title and subtitle were
+// painted as solid bands for ~0.7 s (Maque, 26.10.2026).
+const cap = () =>
+  document.documentElement.hasAttribute("data-cap-amb") || !!document.querySelector("main > section[data-amb]");
 
 export function usePageBlend(footerRef: RefObject<HTMLElement>, key?: string) {
   useEffect(() => {
