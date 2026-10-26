@@ -1,12 +1,11 @@
 "use client";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   CapitalTeaser — home, right after "How we support you", whose last card is
-   Sacramentum Capital: the story goes on to the financial side (Maque,
-   26.10.2026). One screen tall like the other home sections: title and what
-   the firm is on the left, the three figures large on the right with the
-   button to its page under them. The track-record chart stays on the
-   Capital page ("no es para la home").
+   CapitalTeaser — home, after "Why Sacramentum" (Maque, 26.10.2026; right
+   after the pinned "How we support you" the colour blend misbehaved).
+   One screen tall like the other home sections: title, what the firm is and
+   the button to its page on the left, the three figures large on the right.
+   The track-record chart stays on the Capital page ("no es para la home").
 
    Copy: intro and figures from data/capital.ts (the client's presentation);
    the title is new and listed for Inés in the home's review notes.
@@ -54,18 +53,20 @@ export default function CapitalTeaser() {
           <p className="mt-8" style={{ color: "rgba(250,250,248,0.78)", fontSize: "1.1rem", lineHeight: 1.7, maxWidth: "46ch", textWrap: "pretty" }}>
             {c.hero.intro[0]}
           </p>
+          <SectionCta id="home-capital" label={ui.link} href={path("sacramentum-capital")} align="start" onDark className="max-lg:hidden" />
         </div>
 
         <div>
           <dl>
             {c.hero.stats.slice(0, 3).map(s => (
-              <div key={s.label} className="flex flex-col gap-1 py-6" style={{ borderTop: `1px solid ${LINE}` }}>
-                <dt className="order-2" style={{ color: "rgba(250,250,248,0.72)", fontSize: "0.95rem" }}>{s.label}</dt>
-                <dd className="order-1" style={{ color: "#FAFAF8", fontSize: "clamp(2.8rem, 1.6rem + 3.4vw, 4.6rem)", letterSpacing: "-0.04em", lineHeight: 1 }}>{s.value}</dd>
+              <div key={s.label} className="flex flex-col gap-2 py-7" style={{ borderTop: `1px solid ${LINE}` }}>
+                <dt className="order-2" style={{ color: "rgba(250,250,248,0.85)", fontSize: "clamp(1.05rem, 0.9rem + 0.4vw, 1.25rem)" }}>{s.label}</dt>
+                <dd className="order-1" style={{ color: "#FAFAF8", fontSize: "clamp(3.4rem, 2rem + 4vw, 5.8rem)", letterSpacing: "-0.045em", lineHeight: 0.95 }}>{s.value}</dd>
               </div>
             ))}
           </dl>
-          <SectionCta id="home-capital" label={ui.link} href={path("sacramentum-capital")} align="start" onDark />
+          {/* On phones the button comes after the figures */}
+          <SectionCta id="home-capital" label={ui.link} href={path("sacramentum-capital")} align="start" onDark className="lg:hidden" />
         </div>
       </div>
     </section>

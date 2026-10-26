@@ -42,8 +42,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
         <IntroReveal />
         <WhyUruguay />
         <HowWeSupport />
-        <CapitalTeaser />
         <WhySacramentum />
+        <CapitalTeaser />
         <TrustSection cta="home-testimonials" />
         <OurTeam adminTeam={adminTeam} />
         <FaqSection id="home" locale={locale} items={coreFaqs("home", locale)} />
