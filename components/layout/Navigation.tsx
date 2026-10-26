@@ -284,8 +284,9 @@ export default function Navigation() {
   const topicLabel = (id: TopicId) => FOOTER_TOPICS.find(t => t.id === id)?.label[locale] ?? id;
 
   // Menu by what the visitor is looking for (Maque, 25.10.2026): the country and
-  // its sectors, the services, Sacramentum Capital, news, blog, contact. One
-  // dropdown only, for the sector pages.
+  // its sectors, the services, Sacramentum Capital, news, blog. One dropdown
+  // only, for the sector pages. No "Contact" link: the "Reservar consulta"
+  // button already goes there (Maque, 25.10.2026).
   const navLinks: { label: string; id: string; href: string; children?: { label: string; href: string }[] }[] = [
     // No "Home" link: the logo takes you home (client decision, 20.10.2026)
     {
@@ -296,7 +297,6 @@ export default function Navigation() {
     { label: "Sacramentum Capital", id: "capital",  href: path("sacramentum-capital") },
     { label: copy.nav.news,         id: "news",     href: path("news")                },
     { label: copy.nav.blog,         id: "blog",     href: path("blog")                },
-    { label: copy.nav.contact,      id: "contact",  href: path("contact")             },
   ];
 
   return (
