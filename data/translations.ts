@@ -313,7 +313,7 @@ const en: SiteTranslations = {
   hero: {
     eyebrow:     "Strategic Asset Acquisition",
     headline:    "We help you establish your strategic footprint in Uruguay.",
-    subheadline: "Bespoke residency, real estate, and capital structuring for those seeking a foundational base in Latin America's premier haven.",
+    subheadline: "Tailored residency, real estate, and capital structuring for those seeking a foundational base in Latin America's premier haven.",
     cta:         "Book a consultation",
     ctaSecondary:"Explore Uruguay",
     scrollLabel: "Scroll to explore",
@@ -322,7 +322,7 @@ const en: SiteTranslations = {
   whyUruguay: {
     eyebrow:     "Why Uruguay",
     headline:    "Why Uruguay?",
-    subheadline: "A stable, globally connected platform for capital preservation, regional expansion, and long-term family positioning.",
+    subheadline: "A stable, globally connected hub for capital preservation, regional expansion, and long-term family positioning.",
     stats: [
       { value: "#1",   label: "Least corruption in Latin America" },
       { value: "97%",  label: "Renewable electricity" },
@@ -426,7 +426,7 @@ const en: SiteTranslations = {
         id:          "investment-banking",
         image:       "/images/bandera.webp",
         title:       "Sacramentum Capital",
-        description: "Through Sacramentum Capital, we provide professional advisory across M&A, capital markets advisory, institutional relationships, and investment projects law, supporting sophisticated transactions with precision and strategic clarity.",
+        description: "Through Sacramentum Capital, we provide professional advisory across M&A, capital markets advisory, institutional relationships, and investment tax-incentives program (COMAP), supporting sophisticated transactions with precision and strategic clarity.",
       },
     ],
   },
@@ -625,7 +625,7 @@ const en: SiteTranslations = {
     },
     eyebrow:  "Private Consultation",
     headline: "Connect with our team.",
-    intro:    "Connect with our team in Uruguay to discuss residency, strategic asset acquisition, lifestyle assets, or long-term positioning in the region.",
+    intro:    "Connect with our team in Uruguay to discuss residency, strategic asset acquisition, \"lifestyle assets\", or long-term positioning in the region.",
     disclaimer:   "We respond within 1 to 2 business days. All enquiries are fully confidential.",
     errorMessage: "Something went wrong. Please try again.",
     secondary: {

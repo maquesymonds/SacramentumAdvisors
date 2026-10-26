@@ -17,8 +17,9 @@ const r = (pregunta: string): ReviewNote => ({ kind: "redaccion", pregunta });
 
 /** Notes that apply on every page */
 export const SITE_REVIEW: ReviewNote[] = [
-  p("Los nombres nuevos de las páginas en el menú y en el footer (\"Residencia e instalación\", \"Campos y chacras\", \"Family offices\"…) son propuestas sin aprobar."),
-  s("Footer: \"Asesoría estratégica\" lleva a la página de Family office y \"Banca de Inversión Boutique\" se cambió por \"Sacramentum Capital\". ¿Está bien?"),
+  p("Nombres nuevos en toda la web, para que coincidan con lo que la gente busca en Google: \"Residencia e instalación\" (antes Soft Landing), \"Inteligencia de mercado\", \"Inmobiliario\" y \"Agro y forestal\". ¿Te parecen bien?"),
+  p("Todos los botones dicen \"Reservar consulta\", igual que el del menú. Y \"Contacto\" salió del menú porque ese botón ya lleva ahí (sigue en el footer)."),
+  s("En Servicios y en el footer, \"Banca de Inversión Boutique\" ahora se llama \"Sacramentum Capital\" y lleva a su página. ¿Está bien?"),
   s("Datos para Google (invisibles): idiomas de atención = español e inglés. ¿Y alemán? Zona de trabajo = solo Uruguay. ¿También Argentina y Paraguay?"),
   d("Datos para Google (invisibles): mail ines@sacramentumcapital.com y teléfono +598 95 532 533 como contacto público de Advisors, aunque el mail sea del dominio de Capital. ¿Confirmás?"),
 ];
@@ -31,13 +32,15 @@ export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
   "why-uruguay": [
     d("Descripción en Google: \"igualdad de trato al inversor extranjero\". ¿Lo nombramos en Google?"),
     r("Tecnología: el titular \"Uruguay, un ecosistema tecnológico que exporta al mundo\" es nuevo, y la traducción al español de tu texto es nuestra (falta que la revise Chiara). El botón aprobado de la etapa 1 se cambió por \"Explore oportunidades tecnológicas\"."),
+    d("Corregimos \"97% de su matriz energética\" por \"97% de su electricidad\": el 97% renovable es de la electricidad, no de toda la energía."),
   ],
   services: [
     p("Descripción en Google: ya usa \"Residencia e instalación\" en vez de Soft Landing (propuesta sin aprobar)."),
-    s("Los botones \"Ver más\" de Inteligencia de mercado y Asesoría estratégica llevan a la página de Family office. ¿Esos servicios son solo para family offices o para cualquier cliente?"),
+    p("Las tarjetas van en el mismo orden en los tres idiomas, con Sacramentum Capital al final."),
   ],
   contact: [
     r("Descripción en Google: \"respondemos en 1 a 2 días hábiles\" y temas reordenados. ¿Te sirve?"),
+    p("Las opciones de \"Área de interés\" del formulario ahora son las mismas áreas de la web (antes: Adquisición estratégica de activos, Activos de estilo de vida, Situaciones especiales…)."),
     d("Inversión mínima, en \"Trabajar con nosotros\": \"Acompañamos inversiones a partir de USD ___\". ¿Cuál es el monto? Mientras falte, la línea no se ve en la web en vivo. Si preferís no poner una cifra, la sacamos o la cambiamos por otra frase."),
   ],
   privacy: [
@@ -64,7 +67,7 @@ export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
 /** Notes that only apply to one language version */
 export const LOCALE_REVIEW: Partial<Record<Locale, ReviewNote[]>> = {
   de: [
-    p("En alemán ya se aplicaron propuestas sin aprobar: el eyebrow de la portada, \"el mercado más estable\" en vez de \"haven\", \"Auswandern und Niederlassung\" en vez de Soft Landing, la corrección de \"proyects law\" y el botón de Inmobiliario sin \"listings\"."),
+    p("En alemán ya se aplicaron propuestas sin aprobar: el eyebrow de la portada, \"el mercado más estable\" en vez de \"haven\", \"Aufenthalt und Niederlassung\" en vez de Soft Landing, la corrección de \"proyects law\" y el botón de Inmobiliario sin \"listings\"."),
     d("La nota de residencia en alemán habla de la exención de 5 años, y el régimen cambió el 1/1/2026. ¿La actualizamos en los tres idiomas? ¿Dejamos \"Offshore-Strukturen\" en la nota de inversión?"),
     r("Todo el alemán es traducción nuestra: falta la revisión de una persona nativa."),
   ],

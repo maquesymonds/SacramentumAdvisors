@@ -28,8 +28,8 @@ const COPY: Record<Locale, Copy> = {
     headline: "Lo que dicen quienes ya trabajaron con nosotros",
     quotes: [
       { text: "Llegamos a Uruguay sin conocer a nadie. En pocos meses teníamos la residencia en trámite, cuenta bancaria y una casa elegida con criterio, no por apuro.", who: "Familia de Buenos Aires", topic: "Residencia e inmobiliario" },
-      { text: "Lo que más valoro es la discreción. Cada paso se explicó con claridad y nunca sentí que me estuvieran vendiendo algo.",                            who: "Empresario, São Paulo",   topic: "Family office" },
-      { text: "Nos ayudaron a evaluar tres campos antes de comprar. Nos dijeron que no a dos, y eso nos dio más confianza que cualquier presentación.",              who: "Inversor, Madrid",        topic: "Campos" },
+      { text: "Lo que más valoro es la discreción. Cada paso se explicó con claridad y nunca sentí que me estuvieran vendiendo algo.",                            who: "Empresario, São Paulo",   topic: "Asesoría estratégica" },
+      { text: "Nos ayudaron a evaluar tres campos antes de comprar. Nos dijeron que no a dos, y eso nos dio más confianza que cualquier presentación.",              who: "Inversor, Madrid",        topic: "Agro y forestal" },
     ],
   },
   en: {
@@ -37,7 +37,7 @@ const COPY: Record<Locale, Copy> = {
     headline: "What our clients say",
     quotes: [
       { text: "We arrived in Uruguay without knowing anyone. Within a few months our residency was under way, we had a bank account and a home chosen with judgement, not in a hurry.", who: "Family from Buenos Aires", topic: "Residency and real estate" },
-      { text: "What I value most is the discretion. Every step was explained clearly and I never felt I was being sold something.",                                          who: "Entrepreneur, São Paulo",  topic: "Family office" },
+      { text: "What I value most is the discretion. Every step was explained clearly and I never felt I was being sold something.",                                          who: "Entrepreneur, São Paulo",  topic: "Strategic advisory" },
       { text: "They helped us assess three farms before buying. They advised against two, and that gave us more confidence than any presentation.",                               who: "Investor, Madrid",         topic: "Farmland" },
     ],
   },
@@ -46,7 +46,7 @@ const COPY: Record<Locale, Copy> = {
     headline: "Was unsere Mandanten sagen",
     quotes: [
       { text: "Wir kamen nach Uruguay, ohne jemanden zu kennen. Nach wenigen Monaten lief die Residency, wir hatten ein Bankkonto und ein Haus, mit Bedacht gewählt statt in Eile.", who: "Familie aus Buenos Aires", topic: "Residency und Immobilien" },
-      { text: "Am meisten schätze ich die Diskretion. Jeder Schritt wurde klar erklärt, und ich hatte nie das Gefühl, dass man mir etwas verkaufen will.",                     who: "Unternehmer, São Paulo",   topic: "Family Office" },
+      { text: "Am meisten schätze ich die Diskretion. Jeder Schritt wurde klar erklärt, und ich hatte nie das Gefühl, dass man mir etwas verkaufen will.",                     who: "Unternehmer, São Paulo",   topic: "Strategische Beratung" },
       { text: "Sie haben uns geholfen, drei Betriebe vor dem Kauf zu prüfen. Von zweien haben sie abgeraten, und das gab uns mehr Vertrauen als jede Präsentation.",          who: "Investor, Madrid",         topic: "Agrarland" },
     ],
   },

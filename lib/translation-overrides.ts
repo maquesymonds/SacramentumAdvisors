@@ -23,6 +23,21 @@ export type Overrides = Record<string, Record<string, unknown>>;
 const RESETS: Record<string, string> = {
   // New client-approved Technology copy (docs/content/technology-en.md)
   investTechnology: "2026-10-20T00:00:00Z",
+  // Stage-2 content review (25.10.2026): one name per service and sector,
+  // "Reservar consulta" buttons, contact form options, usted, 97 % of the
+  // electricity. The panel's real edits in these sections (EN hero
+  // "Tailored", "hub", COMAP, quoted "lifestyle assets") were moved to code.
+  hero:              "2026-10-26T00:00:00Z",
+  whyUruguay:        "2026-10-26T00:00:00Z",
+  howWeSupport:      "2026-10-26T00:00:00Z",
+  closingCta:        "2026-10-26T00:00:00Z",
+  contact:           "2026-10-26T00:00:00Z",
+  contactPage:       "2026-10-26T00:00:00Z",
+  footer:            "2026-10-26T00:00:00Z",
+  investAgriculture: "2026-10-26T00:00:00Z",
+  investRealEstate:  "2026-10-26T00:00:00Z",
+  lifestyleAssets:   "2026-10-26T00:00:00Z",
+  blog:              "2026-10-26T00:00:00Z",
 };
 
 function applyResets(data: Overrides, savedAt: Date): Overrides {
