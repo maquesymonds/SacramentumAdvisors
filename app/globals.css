@@ -285,6 +285,11 @@
 }
 
 /* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+/* The page's own scrollbar is hidden: a thin line at the top fills as you
+   scroll instead (components/layout/ScrollProgress, Maque 25.10.2026).
+   Inner scrolling boxes keep the thin styled bar below. */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
 ::-webkit-scrollbar         { width: 6px; }
 ::-webkit-scrollbar-track   { background: var(--color-surface-muted); }
 ::-webkit-scrollbar-thumb   { background: rgba(129, 166, 176, 0.4); border-radius: 3px; }
