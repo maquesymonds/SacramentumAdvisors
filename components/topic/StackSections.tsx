@@ -35,7 +35,7 @@ export default function StackSections({ heading, sections, locale }: { heading?:
                 {/* Without a photo: number and heading left, text right */}
                 <div>
                   <h3 className={s.title}>
-                    <span className={s.number} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    <span className={s.number} aria-hidden="true">{i + 1}.</span>
                     {sec.heading}
                   </h3>
                   {sec.image && <Body sec={sec} locale={locale} />}

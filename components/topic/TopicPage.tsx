@@ -199,7 +199,8 @@ export default async function TopicPage({ id, locale }: { id: TopicId; locale: L
                         </a>
                       )}
                     </dt>
-                    <dd className="text-ink order-1" style={{ fontSize: "clamp(2.3rem, 1rem + 4vw, 5rem)", letterSpacing: "-0.04em", lineHeight: 1, whiteSpace: "nowrap" }}>
+                    {/* Long figures ("US$ 3.700 M") get a smaller size so they never overflow their column */}
+                    <dd className="text-ink order-1" style={{ fontSize: f.value.length > 7 ? "clamp(1.9rem, 0.9rem + 2.6vw, 3.4rem)" : "clamp(2.3rem, 1rem + 4vw, 5rem)", letterSpacing: "-0.04em", lineHeight: 1, whiteSpace: "nowrap", minHeight: "clamp(2.3rem, 1rem + 4vw, 5rem)", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
                       <CountUp value={f.value} />
                     </dd>
                   </div>

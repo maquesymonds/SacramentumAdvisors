@@ -76,8 +76,8 @@
 /* Number in front of the card title, on the same line */
 .number {
   color: var(--color-warm);
-  margin-right: 0.35em;
-  font-variant-numeric: tabular-nums;
+  margin-right: 0.3em;
+  font: inherit; /* same font, size and weight as the title (Maque, 25.10.2026) */
 }
 
 .title { margin-bottom: 0; }
@@ -110,8 +110,8 @@
 /* Number in front of the card title, on the same line */
 .number {
   color: var(--color-warm);
-  margin-right: 0.35em;
-  font-variant-numeric: tabular-nums;
+  margin-right: 0.3em;
+  font: inherit; /* same font, size and weight as the title (Maque, 25.10.2026) */
 }
 
 .title {

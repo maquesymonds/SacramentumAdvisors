@@ -61,7 +61,7 @@
   overflow: hidden;
   border-radius: 1.25rem;
   background: #ffffff;
-  border: 1px solid rgb(17 31 48 / 0.08);
+  border: none;
   box-shadow: 0 1px 2px rgb(17 31 48 / 0.04);
   /* Hover uses `scale` / `translate`, not `transform`: ItemReveal (GSAP)
      leaves an inline transform on the card, which would override a
@@ -76,7 +76,6 @@
 .card:hover {
   scale: 1.035;
   translate: 0 -4px;
-  border-color: rgb(17 31 48 / 0.14);
   box-shadow: 0 36px 60px -32px rgb(17 31 48 / 0.45);
 }
 

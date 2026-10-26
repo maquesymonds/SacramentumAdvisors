@@ -1,95 +1,66 @@
 "use client";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   CapitalTeaser — home, between "Why Sacramentum" and the team
-   Says in one line what Sacramentum Capital is for (the question from its own
-   page), then shows the track record: the bubble chart of the Capital page,
-   built with the scroll, and three closed transactions by name (Maque,
-   25.10.2026: "la persona tiene que entender perfecto de qué se trata").
-   On Capital's light green: the chart's sector greens need a light ground.
+   CapitalTeaser — home, right after "How we support you", whose last card is
+   Sacramentum Capital: the story goes on to the financial side (Maque,
+   26.10.2026). A short band, not a full screen: a clear title, what the firm
+   is, three figures and the button to its page. The track-record chart stays
+   on the Capital page ("no es para la home").
 
-   No new claims: question, intro, figures and deals come from data/capital.ts
-   (the client's presentation). Publishing them is still to be confirmed by
-   Inés (review list on the home).
+   Copy: intro and figures from data/capital.ts (the client's presentation);
+   the title is new and listed for Inés in the home's review notes.
    ─────────────────────────────────────────────────────────────────────────── */
 
 import { useLocale, useLocalePath } from "@/lib/locale-context";
 import { CAPITAL } from "@/data/capital";
 import type { Locale } from "@/lib/i18n";
 import SectionCta from "@/components/ui/SectionCta";
-import TrackReveal from "@/components/capital/TrackReveal";
-import { TrackChart, TrackLegend, dealColor } from "@/components/capital/TrackChart";
 
-const BG = "#EDF3F1"; // Capital's light green
+const BG = "#0C3B38"; // Capital page colour
 
-const UI: Record<Locale, string> = {
-  en: "Explore Sacramentum Capital",
-  es: "Conocer Sacramentum Capital",
-  de: "Sacramentum Capital entdecken",
+const UI: Record<Locale, { title: string; link: string }> = {
+  en: { title: "Buying, selling or financing a company", link: "Explore Sacramentum Capital" },
+  es: { title: "Comprar, vender o financiar una empresa", link: "Conocer Sacramentum Capital" },
+  de: { title: "Ein Unternehmen kaufen, verkaufen oder finanzieren", link: "Sacramentum Capital entdecken" },
 };
-
-// Three closed deals from data/capital.ts deals[], oldest first: UTE bonds 2012,
-// CAF fund 2016, INFRAM IPO 2025 (indices into the deals list)
-const FEATURED = [3, 0, 4];
 
 export default function CapitalTeaser() {
   const { locale } = useLocale();
   const { path }   = useLocalePath();
-  const c = CAPITAL[locale] ?? CAPITAL.en;
+  const c  = CAPITAL[locale] ?? CAPITAL.en;
+  const ui = UI[locale];
 
   return (
-    <section id="sacramentum-capital" aria-label="Sacramentum Capital" style={{ backgroundColor: BG, paddingBlock: "clamp(4.5rem, 9vw, 8rem)" }}>
-      <div className="container-site">
-        <div className="grid gap-10 lg:grid-cols-[7fr_5fr] lg:gap-20 lg:items-end">
-          <div>
-            <p className="text-eyebrow mb-6 flex items-center gap-3" style={{ color: "var(--color-warm)" }}>
-              <span className="block h-px w-8" style={{ backgroundColor: "var(--color-warm)" }} />
-              {c.hero.eyebrow}
-            </p>
-            <h2
-              className="font-normal text-ink"
-              style={{ fontSize: "clamp(2.1rem, 3.8vw, 3.4rem)", letterSpacing: "-0.03em", lineHeight: 1.08, textWrap: "balance" }}
-            >
-              {c.hero.title}
-            </h2>
-          </div>
-          <div>
-            <p className="text-ink-muted" style={{ fontSize: "1.05rem", lineHeight: 1.7, textWrap: "pretty" }}>
-              {c.hero.intro[0]}
-            </p>
-            <SectionCta id="home-capital" label={UI[locale]} href={path("sacramentum-capital")} align="start" />
-          </div>
+    <section id="sacramentum-capital" aria-label="Sacramentum Capital" data-nav-dark style={{ backgroundColor: BG, paddingBlock: "clamp(4rem, 7vw, 6rem)" }}>
+      <div className="container-site grid gap-10 lg:grid-cols-[6fr_5fr] lg:gap-20 lg:items-center">
+        <div>
+          <p className="text-eyebrow mb-6 flex items-center gap-3" style={{ color: "var(--color-warm)" }}>
+            <span className="block h-px w-8" style={{ backgroundColor: "var(--color-warm)" }} />
+            {c.hero.eyebrow}
+          </p>
+          <h2
+            className="font-normal"
+            style={{ color: "#FAFAF8", fontSize: "clamp(2.4rem, 4.6vw, 4.2rem)", letterSpacing: "-0.035em", lineHeight: 1.04, textWrap: "balance" }}
+          >
+            {ui.title}
+          </h2>
+          <SectionCta id="home-capital" label={ui.link} href={path("sacramentum-capital")} align="start" onDark className="max-lg:hidden" />
         </div>
 
-        {/* Track record: the figures, then the chart building with the scroll */}
-        <dl className="grid grid-cols-3" style={{ marginTop: "clamp(3rem, 6vw, 4.5rem)", borderTop: "1px solid rgba(12,59,56,0.15)" }}>
-          {c.hero.stats.slice(0, 3).map((s, i) => (
-            <div key={s.label} className={`flex flex-col gap-1 pt-6 ${i > 0 ? "pl-4 sm:pl-8 border-l" : ""}`} style={{ borderColor: "rgba(12,59,56,0.15)" }}>
-              <dt className="order-2 text-ink-muted" style={{ fontSize: "0.9rem" }}>{s.label}</dt>
-              <dd className="order-1 text-ink" style={{ fontSize: "clamp(1.6rem, 1rem + 2.2vw, 2.6rem)", letterSpacing: "-0.03em", lineHeight: 1.05 }}>{s.value}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <TrackLegend locale={locale} className="mt-12" />
-        <div className="mt-4 overflow-x-auto" style={{ marginInline: "-1rem", paddingInline: "1rem" }}>
-          <div style={{ minWidth: 880 }}><TrackReveal><TrackChart locale={locale} titleId="home-track-title" /></TrackReveal></div>
+        <div>
+          <p style={{ color: "rgba(250,250,248,0.78)", fontSize: "1.05rem", lineHeight: 1.7, textWrap: "pretty" }}>
+            {c.hero.intro[0]}
+          </p>
+          <dl className="grid grid-cols-3 mt-8" style={{ borderTop: "1px solid rgba(250,250,248,0.16)" }}>
+            {c.hero.stats.slice(0, 3).map((s, i) => (
+              <div key={s.label} className={`flex flex-col gap-1 pt-5 ${i > 0 ? "pl-4 border-l" : ""}`} style={{ borderColor: "rgba(250,250,248,0.16)" }}>
+                <dt className="order-2" style={{ color: "rgba(250,250,248,0.72)", fontSize: "0.85rem", lineHeight: 1.35 }}>{s.label}</dt>
+                <dd className="order-1" style={{ color: "#FAFAF8", fontSize: "clamp(1.5rem, 1rem + 1.4vw, 2.2rem)", letterSpacing: "-0.03em", lineHeight: 1.05 }}>{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <SectionCta id="home-capital" label={ui.link} href={path("sacramentum-capital")} align="start" onDark className="lg:hidden" />
         </div>
-        <p className="mt-2 text-caption text-ink-subtle md:hidden">{c.track.scrollHint} →</p>
-
-        {/* Three closed transactions by name */}
-        <ul className="grid gap-6 sm:grid-cols-3" style={{ marginTop: "clamp(2rem, 4vw, 3rem)" }}>
-          {FEATURED.map(i => {
-            const d = c.deals[i];
-            return (
-              <li key={d.name} className="flex flex-col gap-1 pt-5" style={{ borderTop: `2px solid ${dealColor(i)}` }}>
-                <span className="text-ink-subtle" style={{ fontSize: "0.85rem", fontVariantNumeric: "tabular-nums" }}>{d.year} · {d.amount}</span>
-                <span className="text-ink" style={{ fontSize: "1.1rem", lineHeight: 1.3 }}>{d.name}</span>
-                <span className="text-ink-muted" style={{ fontSize: "0.85rem" }}>{d.tags}</span>
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </section>
   );

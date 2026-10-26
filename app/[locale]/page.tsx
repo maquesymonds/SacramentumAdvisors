@@ -42,9 +42,9 @@ export default async function HomePage({ params }: { params: { locale: string } 
         <IntroReveal />
         <WhyUruguay />
         <HowWeSupport />
+        <CapitalTeaser />
         <WhySacramentum />
         <TrustSection cta="home-testimonials" />
-        <CapitalTeaser />
         <OurTeam adminTeam={adminTeam} />
         <FaqSection id="home" locale={locale} items={coreFaqs("home", locale)} />
 
