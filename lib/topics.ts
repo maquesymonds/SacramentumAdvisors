@@ -179,8 +179,8 @@ export function topicCodeCopy(id: TopicId, locale: Locale): TopicContent {
 /** Labels for non-topic pages that can appear as related links. */
 export const PAGE_LABELS: Partial<Record<string, Record<Locale, { title: string; text: string }>>> = {
   "why-uruguay": {
-    en: { title: "Why Uruguay",     text: "Stability, institutions and the four sectors we advise on." },
-    es: { title: "Por qué Uruguay", text: "Estabilidad, instituciones y los cuatro sectores en los que asesoramos." },
-    de: { title: "Warum Uruguay",   text: "Stabilität, Institutionen und die vier Sektoren, in denen wir beraten." },
+    en: { title: "Why Uruguay",     text: "Stability, institutions and the three sectors we advise on." },
+    es: { title: "Por qué Uruguay", text: "Estabilidad, instituciones y los tres sectores en los que asesoramos." },
+    de: { title: "Warum Uruguay",   text: "Stabilität, Institutionen und die drei Sektoren, in denen wir beraten." },
   },
 };

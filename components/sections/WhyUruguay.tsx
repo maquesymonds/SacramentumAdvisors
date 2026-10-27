@@ -9,7 +9,6 @@ import SectionCta from "@/components/ui/SectionCta";
 import StatItem          from "@/components/ui/StatItem";
 import { useScrollReveal } from "@/lib/use-scroll-reveal";
 import { useCharReveal }   from "@/hooks/useCharReveal";
-import { lenisRef }      from "@/lib/lenis-ref";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -232,9 +231,6 @@ export default function WhyUruguay() {
     const grid  = gridRef.current;
     if (!grid || cards.length < 1) return;
 
-    const lenis = lenisRef.current;
-    if (lenis) lenis.on("scroll", ScrollTrigger.update);
-
     /*
      * Index2-inspired column-fan effect.
      *
@@ -346,7 +342,6 @@ export default function WhyUruguay() {
 
     return () => {
       ctx.revert();
-      if (lenis) lenis.off("scroll", ScrollTrigger.update);
     };
   }, []);
 

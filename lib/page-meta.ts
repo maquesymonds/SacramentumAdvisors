@@ -14,9 +14,9 @@ export const PAGE_META: Record<CorePage, Record<Locale, { title: string; descrip
     de: { title: "Sacramentum Advisors | Uruguay: Investieren, Auswandern", description: "Unabhängige Beratung für Investoren und Familien in Uruguay: Aufenthalt, Immobilien, Agrarland und Investitionen, koordiniert aus Montevideo.", absolute: true },
   },
   "why-uruguay": {
-    en: { title: "Why Invest in Uruguay: Stability & Sectors", description: "Why Uruguay: stability, equal rights for foreign investors and four sectors we advise on: real estate, technology, farmland and special projects." },
-    es: { title: "Por qué invertir en Uruguay", description: "Por qué Uruguay: estabilidad, igualdad de trato al inversor extranjero y cuatro sectores: inmobiliario, tecnología, campos y proyectos especiales." },
-    de: { title: "Warum Uruguay: Stabilität und Sektoren", description: "Warum Uruguay: Stabilität, Gleichbehandlung ausländischer Investoren und vier Sektoren: Immobilien, Technologie, Agrarland und Sonderprojekte." },
+    en: { title: "Why Invest in Uruguay: Stability & Sectors", description: "Why Uruguay: stability, equal rights for foreign investors and three sectors we advise on: real estate, technology and farmland." },
+    es: { title: "Por qué invertir en Uruguay", description: "Por qué Uruguay: estabilidad, igualdad de trato al inversor extranjero y tres sectores: inmobiliario, tecnología y campos." },
+    de: { title: "Warum Uruguay: Stabilität und Sektoren", description: "Warum Uruguay: Stabilität, Gleichbehandlung ausländischer Investoren und drei Sektoren: Immobilien, Technologie und Agrarland." },
   },
   "services": {
     en: { title: "Advisory Services for Investing in Uruguay", description: "Residency and relocation, market intelligence, strategic advisory and investment banking: how we support each stage of your move to Uruguay." },

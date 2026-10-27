@@ -243,6 +243,9 @@ export default function HowWeSupport() {
         <div
           ref={trackRef}
           style={{
+            // Its own layer for good: GSAP otherwise drops the 3D transform
+            // whenever a scrub settles and the whole track is rasterised again
+            willChange:   "transform",
             display:      "flex",
             flexShrink:   0,
             gap:          "clamp(1rem, 1.5vw, 1.5rem)",

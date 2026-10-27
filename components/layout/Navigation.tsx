@@ -114,14 +114,20 @@ function inFixedLayer(el: Element): boolean {
 }
 
 const imgCache = new Map<string, { data: Uint8ClampedArray; w: number; h: number } | null>();
+const imgLoading = new Set<string>();
 function pixels(src: string, img?: HTMLImageElement) {
   if (imgCache.has(src)) return imgCache.get(src)!;
   const el = img && img.complete && img.naturalWidth ? img : null;
   if (!el) {
-    // load it for next time
+    // load it for next time, once: a probe per check downloaded every
+    // background photo three times (26.10.2026). Same-origin needs no
+    // crossOrigin, and without it the request reuses the page's cached copy.
+    if (imgLoading.has(src)) return null;
+    imgLoading.add(src);
     const probe = document.createElement("img");
-    probe.crossOrigin = "anonymous";
-    probe.onload = () => { imgCache.delete(src); pixels(src, probe); };
+    if (new URL(src, location.href).origin !== location.origin) probe.crossOrigin = "anonymous";
+    probe.onload = () => { imgLoading.delete(src); pixels(src, probe); };
+    probe.onerror = () => { imgLoading.delete(src); imgCache.set(src, null); };
     probe.src = src;
     return null;
   }
@@ -274,6 +280,24 @@ function backgroundBehindNavIsDark(y: number): boolean | null {
   return dark > light;
 }
 
+// One reading costs two full style recalcs of the page (the nav-probe class
+// goes on and off), so it runs at most every 120 ms while scrolling, plus once
+// when the scroll stops. Every frame cost ~7 s of style work in a 25 s scroll
+// (trace, 26.10.2026) and was the stutter.
+function throttledCheck(check: () => void) {
+  let last = 0, raf = 0, timer = 0, settle = 0;
+  const run = () => { last = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(check); };
+  const onScroll = () => {
+    const wait = 120 - (performance.now() - last);
+    window.clearTimeout(timer);
+    if (wait <= 0) run(); else timer = window.setTimeout(run, wait);
+    window.clearTimeout(settle);
+    settle = window.setTimeout(run, 400);
+  };
+  const stop = () => { cancelAnimationFrame(raf); window.clearTimeout(timer); window.clearTimeout(settle); };
+  return [onScroll, stop] as const;
+}
+
 // Dev only: inspect what the nav reads at a point (window.__navColour(x, y))
 if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   (window as unknown as { __navColour: unknown }).__navColour = (x: number, y: number) => {
@@ -310,7 +334,6 @@ export default function Navigation() {
     if (!isHome) return;
 
     const NAV_Y = 60; // vertical midpoint of the nav bar
-    let rafId: number;
 
     // The real colour behind the nav decides; nothing readable keeps the last state
     const check = () => {
@@ -318,14 +341,13 @@ export default function Navigation() {
       if (darkBehind !== null) setScrollDark(!darkBehind);
     };
 
-    const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(check); };
-
+    const [onScroll, stop] = throttledCheck(check);
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Backgrounds keep changing after the scroll stops (the colour blend, a
-    // photo that finishes loading): look again a few times a second
-    const timer = window.setInterval(check, 300);
+    // Backgrounds keep changing after the scroll stops (a photo that
+    // finishes loading): look again once a second
+    const timer = window.setInterval(check, 1000);
     check();
-    return () => { window.removeEventListener("scroll", onScroll); window.clearInterval(timer); cancelAnimationFrame(rafId); };
+    return () => { window.removeEventListener("scroll", onScroll); window.clearInterval(timer); stop(); };
   }, [isHome]);
 
   // Other pages are light, except sections marked data-nav-dark (the
@@ -334,7 +356,6 @@ export default function Navigation() {
   useEffect(() => {
     if (isHome) return;
     const NAV_Y = 60;
-    let rafId: number;
     const check = () => {
       const over = Array.from(document.querySelectorAll("[data-nav-dark]")).some(el => {
         const r = el.getBoundingClientRect();
@@ -345,13 +366,13 @@ export default function Navigation() {
       const darkBehind = backgroundBehindNavIsDark(NAV_Y);
       setOverDarkSection(darkBehind ?? over);
     };
-    const onScroll = () => { cancelAnimationFrame(rafId); rafId = requestAnimationFrame(check); };
+    const [onScroll, stop] = throttledCheck(check);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     window.addEventListener("cap-amb-tone", check);
-    const timer = window.setInterval(check, 300); // backgrounds that keep changing after the scroll stops
+    const timer = window.setInterval(check, 1000); // backgrounds that keep changing after the scroll stops
     check();
-    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); window.removeEventListener("cap-amb-tone", check); window.clearInterval(timer); cancelAnimationFrame(rafId); };
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); window.removeEventListener("cap-amb-tone", check); window.clearInterval(timer); stop(); };
   }, [isHome, pathname]);
 
   const isDark = isHome ? scrollDark : !overDarkSection;

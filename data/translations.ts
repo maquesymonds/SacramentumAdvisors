@@ -488,7 +488,7 @@ const en: SiteTranslations = {
         image: "/images/pablo-mautone-portrait.jpg",
         name:  "Pablo Mautone",
         role:  "Director",
-        bio:   "Pablo Mautone is the founder and director of Sacramentum Capital, an investment banking firm headquartered in Uruguay, recognized for its strategic leadership, reliability, and professional approach. He brings a solid international track record, having served as Vice President of Investment Banking at J.P. Morgan and Lehman Brothers, with a specialized focus on energy, infrastructure, and agribusiness.\n\nHis career also includes a distinguished tenure at Bozano Simonsen in Rio de Janeiro and experience at VR Hedge Fund. Combining deep technical expertise, professional rigor, and a discreet leadership style, Pablo leads Sacramentum Capital in delivering high-impact financial solutions and top-confidentiality strategic advisory focused on generating real and sustainable value for clients.",
+        bio:   "Pablo Mautone is the founder and director of Sacramentum Capital, an investment banking firm headquartered in Uruguay, recognized for its strategic leadership, reliability, and professional approach. He brings a solid international track record, having worked in Investment Banking at J.P. Morgan, where he rose to Executive Director, and at Lehman Brothers, with a specialized focus on energy, infrastructure, and agribusiness.\n\nHis career also includes a distinguished tenure at Bozano Simonsen in Rio de Janeiro and experience at VR Hedge Fund. Combining deep technical expertise, professional rigor, and a discreet leadership style, Pablo leads Sacramentum Capital in delivering high-impact financial solutions and top-confidentiality strategic advisory focused on generating real and sustainable value for clients.",
       },
     ],
     advisory: {
@@ -631,7 +631,7 @@ const en: SiteTranslations = {
     secondary: {
       eyebrow: "Working with us",
       body:    "We work with a select number of clients at any given time to ensure the depth of attention each engagement deserves.",
-      minimum: "We support investments from USD ___.",
+      minimum: "",
     },
     form: {
       nameLabel:           "Full Name",
@@ -987,7 +987,7 @@ const es: SiteTranslations = {
         image: "/images/pablo-mautone-portrait.jpg",
         name:  "Pablo Mautone",
         role:  "Director",
-        bio:   "Pablo Mautone es fundador y director de Sacramentum Capital, firma de banca de inversión con sede en Uruguay, reconocida por su liderazgo estratégico, confiabilidad y enfoque profesional. Posee una sólida trayectoria internacional, habiéndose desempeñado como vicepresidente de Banca de Inversión en instituciones globales de primer nivel como J.P. Morgan y Lehman Brothers, con un enfoque especializado en los sectores de energía, infraestructura y agroindustria.\n\nSu carrera incluye también un paso destacado por Bozano Simonsen en Río de Janeiro, Brasil, así como una valiosa experiencia en el fondo de cobertura VR Hedge Fund. Con una combinación de profundo conocimiento técnico, rigor profesional y un estilo de liderazgo discreto, Pablo lidera Sacramentum Capital brindando soluciones financieras de alto impacto y asesoramiento estratégico de máxima confidencialidad, orientado a generar valor real y sostenible para sus clientes.",
+        bio:   "Pablo Mautone es fundador y director de Sacramentum Capital, firma de banca de inversión con sede en Uruguay, reconocida por su liderazgo estratégico, confiabilidad y enfoque profesional. Posee una sólida trayectoria internacional, habiéndose desempeñado en Banca de Inversión en instituciones globales de primer nivel como J.P. Morgan, donde llegó a director ejecutivo, y Lehman Brothers, con un enfoque especializado en los sectores de energía, infraestructura y agroindustria.\n\nSu carrera incluye también un paso destacado por Bozano Simonsen en Río de Janeiro, Brasil, así como una valiosa experiencia en el fondo de cobertura VR Hedge Fund. Con una combinación de profundo conocimiento técnico, rigor profesional y un estilo de liderazgo discreto, Pablo lidera Sacramentum Capital brindando soluciones financieras de alto impacto y asesoramiento estratégico de máxima confidencialidad, orientado a generar valor real y sostenible para sus clientes.",
       },
     ],
     advisory: {
@@ -1130,7 +1130,7 @@ const es: SiteTranslations = {
     secondary: {
       eyebrow: "Trabajar con nosotros",
       body:    "Trabajamos con un número selecto de clientes en todo momento para garantizar la profundidad de atención que cada compromiso merece.",
-      minimum: "Acompañamos inversiones a partir de USD ___.",
+      minimum: "",
     },
     form: {
       nameLabel:           "Nombre Completo",

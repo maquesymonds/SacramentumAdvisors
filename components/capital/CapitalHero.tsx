@@ -40,13 +40,12 @@ function spline(pts: [number, number][]) {
 const LINE = spline(WAYPOINTS);
 const AREA = `${LINE} L1060,${H + 200} L-40,${H + 200} Z`;
 
-export default function CapitalHero({ title, intro, stats }: { title: string; intro: string; stats: Stat[] }) {
+export default function CapitalHero({ intro, stats }: { intro: string; stats: Stat[] }) {
   const points = WAYPOINTS.slice(1, 5);
   return (
     <section data-nav-dark data-amb="bosque" className={cs.hero}>
       <div className={`container-site ${cs.heroCopy}`}>
         <h1 className={cs.heroName}>Sacramentum Capital</h1>
-        <p className={cs.heroSub}>{title}</p>
         <p className={cs.heroText}>{intro}</p>
       </div>
 

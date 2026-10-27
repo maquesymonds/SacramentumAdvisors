@@ -37,7 +37,8 @@ const CHAPTERS = [
   { id: "real-estate",        image: "/images/RealEstate.webp",    key: "investRealEstate",  page: "real-estate"        },
   { id: "technology",         image: "/images/tech.avif",          key: "investTechnology",  page: "technology"         },
   { id: "agriculture",        image: "/images/woods.avif",         key: "investAgriculture", page: "farmland"           },
-  { id: "special-situations", image: "/placeholders/colonia.avif", key: "investSpecial",     page: null                 },
+  // Special projects hidden for now (Inés, 27/10/2026). Uncomment to bring it back.
+  // { id: "special-situations", image: "/placeholders/colonia.avif", key: "investSpecial",     page: null                 },
 ] as const;
 
 // Link from each chapter to its sector page (docs/ARCHITECTURE.md §8).
@@ -97,9 +98,6 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
   // ── GSAP ───────────────────────────────────────────────────────────────────
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const lenis = lenisRef.current;
-      if (lenis) lenis.on("scroll", ScrollTrigger.update);
-
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
@@ -268,7 +266,6 @@ export default function InvestPageClient({ faq }: { faq?: React.ReactNode }) {
           clearTimeout(release);
           window.removeEventListener("wheel", onWheel, { capture: true });
           window.removeEventListener("keydown", onKey, { capture: true });
-          if (lenis) lenis.off("scroll", ScrollTrigger.update);
         };
       });
     });

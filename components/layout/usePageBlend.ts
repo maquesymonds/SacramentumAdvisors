@@ -165,7 +165,11 @@ export function usePageBlend(footerRef: RefObject<HTMLElement>, key?: string) {
         c = mix(c, colourOf(bands[k + 1]), progress(r.bottom - h, n.top + nh));
       }
 
-      document.documentElement.style.setProperty("--page-blend", `rgb(${c[0]} ${c[1]} ${c[2]})`);
+      // A custom property on <html> restyles the whole page: write it only
+      // when the colour moves, not on every scroll frame inside one band
+      const value = `rgb(${c[0]} ${c[1]} ${c[2]})`;
+      const root = document.documentElement;
+      if (root.style.getPropertyValue("--page-blend") !== value) root.style.setProperty("--page-blend", value);
       paintEl(document.body);
       // A section made for the other tone switches its text when the colour
       // crosses over (light text on a darkened light section, and back)
@@ -175,7 +179,9 @@ export function usePageBlend(footerRef: RefObject<HTMLElement>, key?: string) {
         if (b.live && b.holding) paintEl(b.live);
         if (b.el === footer || b.live) return;
         const el = b.el as HTMLElement;
-        if (dark !== isDark(b.colour)) el.setAttribute("data-blend-tone", dark ? "dark" : "light");
+        const tone = dark !== isDark(b.colour) ? (dark ? "dark" : "light") : null;
+        if (el.getAttribute("data-blend-tone") === tone) return;
+        if (tone) el.setAttribute("data-blend-tone", tone);
         else el.removeAttribute("data-blend-tone");
       });
     };

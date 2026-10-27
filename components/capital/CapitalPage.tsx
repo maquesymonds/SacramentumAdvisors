@@ -47,7 +47,7 @@ const RELATION: Record<Locale, { label: string; capital: string; advisors: strin
         capitalItems: ["Cross-border M&A", "Structured finance", "Capital markets"],
         advisorsItems: ["Residency & relocation", "Market intelligence", "Strategic advisory"] },
   es: { label: "Capital y Advisors", capital: "Banca de inversión, desde 2010", advisors: "Inversores y familias en Uruguay",
-        capitalItems: ["M&A transfronterizo", "Finanzas estructuradas", "Mercado de capitales"],
+        capitalItems: ["M&A local y regional", "Finanzas estructuradas", "Mercado de capitales"],
         advisorsItems: ["Residencia e instalación", "Inteligencia de mercado", "Asesoría estratégica"] },
   de: { label: "Capital und Advisors", capital: "Investmentbanking, seit 2010", advisors: "Investoren und Familien in Uruguay",
         capitalItems: ["Grenzüberschreitende M&A", "Strukturierte Finanzierungen", "Kapitalmärkte"],
@@ -130,7 +130,7 @@ export default function CapitalPage({ locale }: { locale: Locale }) {
       <main className="[&_p]:[text-wrap:pretty] [&_li]:[text-wrap:pretty]">
 
         {/* ── Hero: one screen, after bauerchristoph.de/referenzen (CapitalHero) ── */}
-        <CapitalHero title={c.hero.title} intro={c.hero.intro[0]} stats={c.hero.stats} />
+        <CapitalHero intro={c.hero.intro[0]} stats={c.hero.stats} />
 
         {/* ── Capital and Advisors: a big statement that lights up word by word
                on scroll, like SOCIO's home "Qué hacemos" (Maque, 25.10.2026),

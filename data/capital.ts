@@ -22,7 +22,7 @@ export interface Stat { value: string; label: string }
 const YEARS = String(new Date().getFullYear() - 2010);
 
 export interface CapitalCopy {
-  hero:  { eyebrow: string; title: string; intro: string[]; stats: Stat[] };
+  hero:  { eyebrow: string; intro: string[]; stats: Stat[] };
   focus: { heading: string; items: { title: string; stat: string; body: string }[] };
   track: { eyebrow: string; heading: string; intro: string; legend: string; scrollHint: string; sectors: Record<Sector, string>; featured: string; featuredIntro: string };
   deals: { year: string; name: string; amount: string; tags: string; body: string }[];
@@ -55,7 +55,6 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
   en: {
     hero: {
       eyebrow: "Sacramentum Capital · Investment banking",
-      title:   "Looking to sell your company, buy one or finance a project?",
       intro: [
         "Sacramentum Capital is an investment banking boutique in Montevideo. Since 2010 it has advised on cross-border M&A, structured finance and capital markets across the Southern Cone, for companies, institutional investors and public entities.",
         "Sacramentum Capital is the investment banking firm, with a track record since 2010. Sacramentum Advisors is its arm for international investors and families who want to invest or settle in Uruguay.",
@@ -126,9 +125,8 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
   es: {
     hero: {
       eyebrow: "Sacramentum Capital · Banca de inversión",
-      title:   "¿Quiere vender su empresa, comprar otra o financiar un proyecto?",
       intro: [
-        "Sacramentum Capital es una boutique de banca de inversión en Montevideo. Desde 2010 asesora en M&A transfronterizo, finanzas estructuradas y mercado de capitales en el Cono Sur, para empresas, inversores institucionales y entidades públicas.",
+        "Sacramentum Capital es una boutique de banca de inversión en Montevideo. Desde 2010 asesora en M&A local y regional, finanzas estructuradas y mercado de capitales en el Cono Sur, para empresas, inversores institucionales y entidades públicas.",
         "Sacramentum Capital es la firma de banca de inversión, con trayectoria desde 2010. Sacramentum Advisors es su brazo dedicado a los inversores y las familias internacionales que quieren invertir o instalarse en Uruguay.",
       ],
       stats: [
@@ -197,7 +195,6 @@ export const CAPITAL: Record<Locale, CapitalCopy> = {
   de: {
     hero: {
       eyebrow: "Sacramentum Capital · Investmentbanking",
-      title:   "Sie möchten Ihr Unternehmen verkaufen, ein anderes kaufen oder ein Projekt finanzieren?",
       intro: [
         "Sacramentum Capital ist eine Investment-Banking-Boutique in Montevideo. Seit 2010 berät sie zu grenzüberschreitenden M&A-Transaktionen, strukturierten Finanzierungen und Kapitalmärkten im Southern Cone, für Unternehmen, institutionelle Investoren und öffentliche Einrichtungen.",
         "Sacramentum Capital ist die Investmentbank, mit einer Erfolgsbilanz seit 2010. Sacramentum Advisors ist ihr Bereich für internationale Investoren und Familien, die in Uruguay investieren oder sich dort niederlassen möchten.",

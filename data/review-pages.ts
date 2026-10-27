@@ -40,10 +40,8 @@ export const PAGE_REVIEW: Partial<Record<PageId, ReviewNote[]>> = {
   contact: [
     r("Los testimonios son inventados: pasanos 2 o 3 reales."),
     r("¿Ok prometer respuesta en 1 a 2 días hábiles?"),
-    d("¿Cuál es la inversión mínima? (Si no querés cifra, la sacamos.)"),
   ],
   privacy: [
-    d("¿La revisa el abogado de la firma?"),
     d("Pasanos razón social, RUT, domicilio y mail para temas de privacidad."),
   ],
   "sacramentum-capital": [
